@@ -20,13 +20,21 @@ p {
 }
 
 .parallax-container {
-  min-height: 310px;
+  min-height: 340px;
   line-height: 0;
-  height: auto;
+  margin: auto;
+  height: 100%;
+  width: 100%;
   color: rgba(255,255,255,.9);
+  padding-top: 30px; 
+  padding-bottom: 30px;
 }
-  .parallax-container .section {
-    width: 100%;
+.parallax-container .section {
+  width: 100%;
+  padding-top: 30px; 
+  padding-bottom: 30px;
+  height: 100%;
+  margin: auto;
   }
 
 @media only screen and (max-width : 992px) {
@@ -41,41 +49,53 @@ p {
 
 @media only screen and (max-width : 600px) {
   #index-banner .section {
-    top: 0;
+    top: 10px;
+    padding-top: 30px; 
+    padding-bottom: 30px;
+    height: 100%;
+    margin: auto;
   }
 }
 
+.valign-wrapper {
+  height: 100%;
+  width: ;
+}
+
 .icon-block {
-  padding: 0 15px;
+  padding: 15px;
 }
 .icon-block .material-icons {
   font-size: inherit;
 }
 
 footer.page-footer {
-  margin: 0;
+  margin: auto;
 }
 
 .album-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 3rem 0;
+  justify-content: center;
+  margin: 1rem 0;
+  overflow: hidden;
+  align-items: center;
+  font-weight: bold;
+
 }
 
 .album-image {
   width: 27%;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
-  border: 15px solid rgb(0, 0, 0);
-  border-radius: 5px;
+  border: 13px solid rgb(0, 0, 0);
   overflow: hidden;
 }
 
 .album-image img {
-  width: 99%;
+  width: 100%;
   height: auto;
 }
 
