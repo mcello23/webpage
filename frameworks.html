@@ -9,57 +9,39 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 </head>
 <body>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="index.html" class="brand-logo">Home</a>
       <ul class="right hide-on-med-and-down">
-        <a class="cv-header">Personalized CV</a>
-      </div>
+        <li><a class="nav-link" href="https://mail.google.com/mail/?view=cm&to=someone@example.com" target="_blank">Marcelo Costa</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
   </nav>
 
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
-        <h2 class="header center teal-text text-lighten-2">Portfolio and CV</h2>
-        <h1 class="header center teal-text text-lighten-2">QA Automation</h1>
+        <h2 class="header center teal-text text-lighten-2">Frameworks</h2>
+        <h1 class="header center teal-text text-lighten-2">in detail</h1>
         <div class="row center">
           <a href="certificates.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Certificates</a>
           <a href="frameworks.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Frameworks</a>
           <a href="https://mcello23.github.io/parallax-website/" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">GitHub</a>
           <a href="https://www.dropbox.com/s/l7ciheuf4cmj4k6/Marcelo%27s%20Resume%20-%206.0.pdf?dl=0" download id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Download my CV (English)</a>
           <a href="mailto:your-email@example.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F" target="_blank" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Contact Me</a>
+          </button>
         </div>
+        <br><br>
 
       </div>
     </div>
-    <div class="parallax"><img src="background5.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="background4.jpg" alt="Unsplashed background img 1"></div>
   </div>
-  <div class="container">
-    <div class="section">
-
-      <div class="row">
-        <div class="col s12 center">
-          <h4><i class="mdi-content-send brown-text col s12 dark"></i>About Me</h4>
-          <p class="enlarged">Orignally from São Paulo, Brazil, I'm a self-taught professional and I've been working with specific frameworks for clients, and others most known. I </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h2 class="header col s12 dark">Automation Frameworks Worked</h2>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="background4.jpg" alt="Unsplashed background img 2"></div>
-  </div>
-
   <div class="container">
     <div class="section">
 
@@ -68,7 +50,7 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Selenium IDE</h5>
+            <h5 class="center">Speeds up development</h5>
 
             <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
           </div>
@@ -93,23 +75,18 @@
         </div>
       </div>
 
-    </div>
-  </div>
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 dark">Thanks for visiting!</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="background5.jpg" alt="Unsplashed background img 2"></div>
-
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems, options);
+  });
+  </script>
+
 
   </body>
 </html>
