@@ -20,7 +20,7 @@ p {
 }
 
 .parallax-container {
-  min-height: 340px;
+  min-height: 330px;
   line-height: 0;
   margin: auto;
   height: 100%;
@@ -59,7 +59,7 @@ p {
 
 .valign-wrapper {
   height: 100%;
-  width: ;
+  width: 100%
 }
 
 .icon-block {
