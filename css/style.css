@@ -11,13 +11,35 @@ nav .brand-logo {
   color: #444;
 }
 
+nav .nav-wrapper {
+  background-color: #00bfa5;
+}
+
+.text-description {
+  font: 15px;
+ }
+
 p {
-  line-height: 2rem;
+  line-height: 1.8rem;
 }
 
 .sidenav-trigger {
   color: #9a921c;
 }
+
+.image-desc {
+  border-radius: 60%;  /* makes the image round */
+  width: 240px;  /* sets the width of the image to 64 pixels */
+  float: right;  /* floats the image to the right */
+  padding-top: 50px; 
+  padding-bottom: 50px;
+}
+
+a#download-button1,
+a#download-button2 {
+  margin: 0 10px;  /* adds a 16px margin on both sides of the button */
+}
+
 
 .parallax-container {
   min-height: 330px;
@@ -110,4 +132,3 @@ footer.page-footer {
   font-size: 0.9rem;
   color: #666;
 }
-
