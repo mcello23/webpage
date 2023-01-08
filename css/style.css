@@ -36,7 +36,8 @@ p {
 }
 
 a#download-button1,
-a#download-button2 {
+a#download-button2,
+a#download-button3 {
   margin: 0 11px;  /* adds a 16px margin on both sides of the button */
 }
 
