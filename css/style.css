@@ -37,12 +37,12 @@ p {
 
 a#download-button1,
 a#download-button2 {
-  margin: 0 10px;  /* adds a 16px margin on both sides of the button */
+  margin: 0 11px;  /* adds a 16px margin on both sides of the button */
 }
 
 
 .parallax-container {
-  min-height: 330px;
+  min-height: 331px;
   line-height: 0;
   margin: auto;
   height: 100%;
