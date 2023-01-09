@@ -57,11 +57,10 @@ p#text-in6
 }
 
 .image-desc-doom {
-  border-radius: 20%;  /* makes the image round */
   width: 280px;  /* sets the width of the image to 64 pixels */
   float: left;  /* floats the image to the right */
-  padding-top: 10px; 
-  padding-bottom: 10px;
+  padding-top: 30px; 
+  padding-bottom: 30px;
 }
 
 a#download-button1,
