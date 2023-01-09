@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<juiceboxgallery 
+
+	cropToFit="true"
+	galleryTitle="Certificates"
+	indexPageName="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\index.html"
+
+>
+  <image imageURL="images/GitHub.jpg"
+	thumbURL="thumbs/GitHub.jpg"
+	linkURL="images/GitHub.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\GitHub.jpg">
+    <title><![CDATA[GitHub]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/ISTQB.jpg"
+	thumbURL="thumbs/ISTQB.jpg"
+	linkURL="images/ISTQB.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\ISTQB.jpg">
+    <title><![CDATA[ISTQB]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/Swift 5.jpg"
+	thumbURL="thumbs/Swift 5.jpg"
+	linkURL="images/Swift 5.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\Swift 5.jpg">
+    <title><![CDATA[Swift 5]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/UC-3ef466ba-72f0-4bc2-8d3e-c01128ea22f9.jpg"
+	thumbURL="thumbs/UC-3ef466ba-72f0-4bc2-8d3e-c01128ea22f9.jpg"
+	linkURL="images/UC-3ef466ba-72f0-4bc2-8d3e-c01128ea22f9.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\UC-3ef466ba-72f0-4bc2-8d3e-c01128ea22f9.jpg">
+    <title><![CDATA[Software Tester - Becoming an Expert]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/UC-5c615f9b-603b-4140-a57e-5349ab84ee6f.jpg"
+	thumbURL="thumbs/UC-5c615f9b-603b-4140-a57e-5349ab84ee6f.jpg"
+	linkURL="images/UC-5c615f9b-603b-4140-a57e-5349ab84ee6f.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\UC-5c615f9b-603b-4140-a57e-5349ab84ee6f.jpg">
+    <title><![CDATA[Git Crash Course]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/UC-9b5ea711-6721-49cd-8281-83248eb4179b.jpg"
+	thumbURL="thumbs/UC-9b5ea711-6721-49cd-8281-83248eb4179b.jpg"
+	linkURL="images/UC-9b5ea711-6721-49cd-8281-83248eb4179b.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\UC-9b5ea711-6721-49cd-8281-83248eb4179b.jpg">
+    <title><![CDATA[Regular Expressions]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/UC-7479ab2b-a38b-482b-bf11-60b9d2188496.jpg"
+	thumbURL="thumbs/UC-7479ab2b-a38b-482b-bf11-60b9d2188496.jpg"
+	linkURL="images/UC-7479ab2b-a38b-482b-bf11-60b9d2188496.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\UC-7479ab2b-a38b-482b-bf11-60b9d2188496.jpg">
+    <title><![CDATA[Cypress Automation: Full Course with Frameworks]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/UC-808536a6-a2bd-44e2-9b9a-74f423f72c72.jpg"
+	thumbURL="thumbs/UC-808536a6-a2bd-44e2-9b9a-74f423f72c72.jpg"
+	linkURL="images/UC-808536a6-a2bd-44e2-9b9a-74f423f72c72.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\UC-808536a6-a2bd-44e2-9b9a-74f423f72c72.jpg">
+    <title><![CDATA[Postman Introduction]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/UC-b1bf6ead-40d6-4942-9166-59de03c1f975.jpg"
+	thumbURL="thumbs/UC-b1bf6ead-40d6-4942-9166-59de03c1f975.jpg"
+	linkURL="images/UC-b1bf6ead-40d6-4942-9166-59de03c1f975.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\UC-b1bf6ead-40d6-4942-9166-59de03c1f975.jpg">
+    <title><![CDATA[Cypress - Basic Level]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/UC-b9368ddf-124c-464a-8cc4-4f1be7d63754.jpg"
+	thumbURL="thumbs/UC-b9368ddf-124c-464a-8cc4-4f1be7d63754.jpg"
+	linkURL="images/UC-b9368ddf-124c-464a-8cc4-4f1be7d63754.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\UC-b9368ddf-124c-464a-8cc4-4f1be7d63754.jpg">
+    <title><![CDATA[The Python Bible course]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/UC-d3955587-e5a2-416e-a652-9a95704f5f5c.jpg"
+	thumbURL="thumbs/UC-d3955587-e5a2-416e-a652-9a95704f5f5c.jpg"
+	linkURL="images/UC-d3955587-e5a2-416e-a652-9a95704f5f5c.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\UC-d3955587-e5a2-416e-a652-9a95704f5f5c.jpg">
+    <title><![CDATA[HTML and CSS course]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/UC-f46ea1bb-4ed8-4269-aa12-6b18d0b24028.jpg"
+	thumbURL="thumbs/UC-f46ea1bb-4ed8-4269-aa12-6b18d0b24028.jpg"
+	linkURL="images/UC-f46ea1bb-4ed8-4269-aa12-6b18d0b24028.jpg"
+	linkTarget="_blank"
+	sourcePath="C:\Users\marce\OneDrive\Documentos\GitHub\parallax-template\parallax-website\Certificados\UC-f46ea1bb-4ed8-4269-aa12-6b18d0b24028.jpg">
+    <title><![CDATA[Python for beginners]]></title>
+    <caption><![CDATA[]]></caption>
+  </image>
+</juiceboxgallery>
