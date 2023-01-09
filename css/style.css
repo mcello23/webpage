@@ -22,6 +22,16 @@ nav .nav-wrapper {
 p {
   line-height: 1.8rem;
 }
+  
+.waves-green {
+font-size: 1.29rem;
+}
+
+p#text-in,
+p#text-in1,
+p#text-in2 {
+  font-size: 1.3rem;
+}
 
 .sidenav-trigger {
   color: #9a921c;
@@ -31,8 +41,8 @@ p {
   border-radius: 60%;  /* makes the image round */
   width: 240px;  /* sets the width of the image to 64 pixels */
   float: right;  /* floats the image to the right */
-  padding-top: 50px; 
-  padding-bottom: 50px;
+  padding-top: 20px; 
+  padding-bottom: 20px;
 }
 
 a#download-button1,
