@@ -156,12 +156,16 @@
   <!--START JUICEBOX EMBED-->
   <script src="jbcore/juicebox.js"></script>
   <script>
-    new juicebox({
-      containerId: "juicebox-container",
-      galleryWidth: "100%",
-      galleryHeight: "100%",
-      backgroundColor: "#222222"
-    });
+  const juiceboxConfig = {
+    scaleToFit: false,
+  };
+  
+  new juicebox({
+    containerId: "juicebox-container",
+    galleryWidth: "100%",
+    galleryHeight: "100%",
+    backgroundColor: "#222222",
+  }, juiceboxConfig);
   </script>
 </body>
 </html>
