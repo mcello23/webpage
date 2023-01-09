@@ -32,7 +32,7 @@
           <a href="side_proj.html" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
           <a href="#modal1" id="download-button3" class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger">Certificates</a>
         </div>
-        <h3 class="header center teal-text text-lighten-5">Marcelo Costa</h3>
+        <h3 class="header center teal-text white-text">Marcelo Costa</h3>
 
       </div>
     </div>
@@ -47,13 +47,16 @@
           <!--Profile image-->
           <img class="right-aligned image-desc" src="./DSC_9554.jpg" alt="personal-picture">
           <p class="text-accent-2 waves-green left-align">Hi!</p>
-          <p class="text-accent-2 waves-green left-align">I've been working as a QA for the last 5 years in companies like Cognizant and EA, as a functional, manual, user acceptance and automation tester.</p>
-          <p class="text-accent-2 waves-green left-align">Lately I also acted as the Team Lead for my locale (pt-BR) in which I trained and formed 3 people in the team, always providing constant feedback.</p>
-          <p class="text-accent-2 waves-green left-align">In my QA role at Apple, I've tested Siri and fixed pipeline issues of the 23 localised languages that the product supports.</p>
-          <p class="text-accent-2 waves-green left-align">In automation I've mainly worked with Swift language, with Xcode (IDE) and UST (Uinified Siri Test).</p>
-          <p class="text-accent-2 waves-green left-align">My project also includes Git commands, in which we add new fixes through a CI/CD environment.</p>
+          <p class="text-accent-2 waves-green left-align">I'm a QA tester in which I have been working for the last 5 years in companies like Cognizant (for S Project) and EA as a manual and automation tester.
+            I have been working with many test scenarios, mainly with iOS and validating test outputs through blackbox testing. I've also done regression, smoke test, user acceptance and UI testing.</p>
+          <p class="text-accent-2 waves-green left-align">Also acted as the Team Lead for my locale (pt-BR) in which I trained and formed 3 people in the team, always providing constant feedback.
+            In my QA role at the S project, I tested the specific AI and fixed pipeline issues of the 23 localised languages that the product supports.
+            In automation I've mainly worked with Swift language, with Xcode (IDE) and UST (Unified Siri Test).</p>
+          <p class="text-accent-2 waves-green left-align">My project also includes Git commands, in which we add new fixes through a CI/CD environment and understanding Machine Learning:
+            Natural Languge (NLP), Speech Recognition (ASR), Flow, Dialog and Text to Speech.
+          </p>
           <div class="row center"><br><br><br>
-            <a href="https://www.dropbox.com/s/l7ciheuf4cmj4k6/Marcelo%27s%20Resume%20-%206.0.pdf?dl=0" download id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Download my CV</a>
+            <button id="download-button" class="btn-large waves-effect waves-light teal lighten-1" onclick="downloadFile()">Download my CV</button>
           </div>
           </div>
       </div>
@@ -185,6 +188,11 @@
         galleryHeight: "720",
         backgroundColor: "#222222",
         }, juiceboxConfig);
+  </script>
+  <script>
+    function downloadFile() {
+      window.open("https://www.dropbox.com/s/l7ciheuf4cmj4k6/Marcelo%27s%20Resume%20-%206.0.pdf?dl=1");
+    }
   </script>
 </body>
 </html>
