@@ -57,16 +57,18 @@ p#text-in6
 }
 
 .image-desc-doom {
-  border-radius: 10%;  /* makes the image round */
-  width: 340px;  /* sets the width of the image to 64 pixels */
+  border-radius: 20%;  /* makes the image round */
+  width: 280px;  /* sets the width of the image to 64 pixels */
   float: left;  /* floats the image to the right */
-  padding-top: 20px; 
-  padding-bottom: 20px;
+  padding-top: 10px; 
+  padding-bottom: 10px;
 }
 
 a#download-button1,
 a#download-button2,
-a#download-button3 {
+a#download-button3,
+a#download-button4,
+a#download-button5 {
   margin: 0 11px;  /* adds a 16px margin on both sides of the button */
 }
 
