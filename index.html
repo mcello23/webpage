@@ -96,7 +96,7 @@
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h2 class="header col s12 dark">Automation Frameworks</h2>
+          <h2 class="header col s12 dark">Languages</h2>
         </div>
       </div>
     </div>
@@ -109,22 +109,22 @@
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">laptop</i></h2>
-            <h5 class="center">Selenium IDE</h5>
-            <p class="light">Selenium Integrated Development Environment (IDE) is a plugin that allows you to record, edit, and debug tests. It is generally the easiest way to get started with Selenium. You can record and play back tests in the Firefox browser and easily debug them.</p>
+            <h5 class="center">Pyhton</h5>
+            <p class="light" p="text-in3">Selenium Integrated Development Environment (IDE) is a plugin that allows you to record, edit, and debug tests. It is generally the easiest way to get started with Selenium. You can record and play back tests in the Firefox browser and easily debug them.</p>
           </div>
         </div>
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">data_object</i></h2>
-            <h5 class="center">Cypress</h5>
-            <p class="light">Cypress is a free and open-source test automation tool for web applications that makes it easy to write, debug, and run automated tests. It is designed to be fast and easy to use, with a user-friendly interface that allows you to write tests in JavaScript or TypeScript and run them directly in the browser.</p>
+            <h5 class="center">JavaScript</h5>
+            <p class="light" id="text-in4">Cypress is a free and open-source test automation tool for web applications that makes it easy to write, debug, and run automated tests. It is designed to be fast and easy to use, with a user-friendly interface that allows you to write tests in JavaScript or TypeScript and run them directly in the browser.</p>
           </div>
         </div>
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center brown-text"><i class="material-icons">terminal</i></h2>
-            <h5 class="center">Xcode</h5>
-            <p class="light">Xcode is a development environment for creating applications for Apple platforms, such as iOS, iPadOS, macOS, watchOS, and tvOS. It is a complete package for building apps, and it includes a number of tools for developing, debugging, and testing your code.</p>
+            <h5 class="center">Swift</h5>
+            <p class="light" id="text-in5">Xcode is a development environment for creating applications for Apple platforms, such as iOS, iPadOS, macOS, watchOS, and tvOS. It is a complete package for building apps, and it includes a number of tools for developing, debugging, and testing your code.</p>
           </div>
         </div>
       </div>
@@ -157,17 +157,22 @@
   <!--START JUICEBOX EMBED-->
   <script src="jbcore/juicebox.js"></script>
   <script>
-  const juiceboxConfig = {
-    scaleToFit: false,
-  };
+    document.addEventListener("DOMContentLoaded", function() {
+      // Code to run when the DOM is fully loaded goes here
+      const juiceboxConfig = {
+        scaleToFit: false,
+        enableKeyboardControls: true,
+        screenMode: "AUTO",
+      };
 
-  new juicebox({
-    containerId: "juicebox-container",
-    galleryWidth: "100%",
-    galleryHeight: "100%",
-    backgroundColor: "#222222",
-  }, juiceboxConfig);
-  <div id="juicebox-container"></div>
+      new juicebox({
+        containerId: "juicebox-container",
+        galleryWidth: "100%",
+        galleryHeight: "100%",
+        backgroundColor: "#222222",
+        showOpenButton: true,
+        }, juiceboxConfig);
+    });
   </script>
 </body>
 </html>
