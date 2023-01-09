@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<title>Expanded Gallery</title>
-	<meta charset="utf-8" />
+	<meta charset="utf-8">
 	<meta name="viewport" id="jb-viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
 	<script src="juicebox.js"></script>
 	<style type="text/css" >
@@ -21,9 +21,11 @@
 	<script>
 	var expanded_jb_gallery = true;
 	new juicebox({
+		baseUrl: "/Juicebox/",
 		containerid:'juicebox-container',
 		galleryHeight:'100%',
-		galleryWidth:'100%'
+		galleryWidth:'100%',
+		backgroundColor: "#222222"
 	});
 	</script>
 	<div id="juicebox-container"></div>
