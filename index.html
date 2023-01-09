@@ -28,9 +28,9 @@
         <br><br>
         <h2 class="header center teal-text text-lighten-2">Portfolio and CV</h2>
         <div class="row center">
-          <a href="certificates.html" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1">Certificates</a>
-          <a href="frameworks.html" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1 pad">Frameworks</a>
-          <a href="side_proj.html" id="download-button3" class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
+          <button href="#modal1" id="button" class="modal-trigger btn-large waves-effect waves-light teal lighten-1 pad" type="button">Certificates</button>
+          <a href="frameworks.html" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1 pad">Frameworks</a>
+          <a href="side_proj.html" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
         </div>
         <h3 class="header center teal-text text-lighten-5">Marcelo Costa</h3>
 
@@ -40,12 +40,11 @@
   </div>
   <div>
   </div>
-
   <div class="container">
-  <!--Profile image-->
     <div class="section">
       <div class="row">
         <div class="center-align"><br><br>
+          <!--Profile image-->
           <img class="right-aligned image-desc" src="./DSC_9554.jpg" alt="personal-picture">
           <h4 class="mdi-content-send dark center-align">QA Automation Engineer</h4>
           <p class="text-accent-2 waves-green left-align"><br>Orignaly from São Paulo, Brazil, my name is Marcelo and I'm a self-taught IT professional.
@@ -59,7 +58,6 @@
       </div>
     </div>
   </div>
-
   <div class="container">
     <div class="section">
       <!--   Icon Section   -->
@@ -145,5 +143,18 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!--START JUICEBOX EMBED-->
+  <script src="jbcore/juicebox.js"></script>
+  <script>
+  new juicebox({
+  containerId: "juicebox-container",
+  galleryWidth: "100%",
+  galleryHeight: "100%",
+  backgroundColor: "rgba(34,34,34,1)"
+  });
+  </script>
+<div id="juicebox-container"></div>
+<!--END JUICEBOX EMBED-->
 </body>
 </html>
