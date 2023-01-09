@@ -56,6 +56,14 @@ p#text-in6
   padding-bottom: 20px;
 }
 
+.image-desc-doom {
+  border-radius: 10%;  /* makes the image round */
+  width: 340px;  /* sets the width of the image to 64 pixels */
+  float: left;  /* floats the image to the right */
+  padding-top: 20px; 
+  padding-bottom: 20px;
+}
+
 a#download-button1,
 a#download-button2,
 a#download-button3 {
