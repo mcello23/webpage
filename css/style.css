@@ -38,7 +38,9 @@ p#text-in1,
 p#text-in2,
 p#text-in3,
 p#text-in4,
-p#text-in5 {
+p#text-in5,
+p#text-in6
+ {
   font-size: 1.3rem;
 }
 
