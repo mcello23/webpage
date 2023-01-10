@@ -10,6 +10,7 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
 </head>
 <body>
   <nav>
@@ -25,31 +26,48 @@
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
       <div class="container">
-        <h2 class="header center teal-text text-lighten-5">Automation</h2>
+        <h2 class="header center teal-text text-lighten-5">Portfolio</h2>
         <div class="row center">
           <a href="frameworks.html" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1 pad">Frameworks</a>
           <a href="side_proj.html" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
           <a href="#modal1" id="download-button3" class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger">Certificates</a>
         </div>
-        <h3 class="header center teal-text text-lighten-5">E2E Frameworks</h3>
-
+        <h3 class="header center teal-text text-lighten-5">Marcelo Costa</h3>
       </div>
     </div>
     <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 1"></div>
   </div>
+
   <div class="container"><br>
-    <div class="section">
-      <div class="row">
-        <div class="center-align">
-          <h2 class="mdi-content-send dark center-align"><b>Cypress</b></h2><img class="right-align image-cyp" src="./cypress.jpeg" alt="personal-picture"><br>
-          <h3 class="mdi-content-send dark center-align"><b>Testing a Website</b></h3>
-          <p class="text-accent-2 waves-green left-align">During one of my courses, I created a test suite to test a local page of login. In it, I assert values of of the webpage
-            bieng via CSS selector like checkboxes, blank spaces, login, the privacy policy, simulate drag-and-drop of files, make an HTTP request and even use a custom command.
-            All the texts were written in <b>JavaScript</b>.
-          </p><br><br>
+    <h3 class="mdi-content-send dark center-align"><b>Cypress</b></h3>
+      <h4 class="mdi-content-send dark center-align"><b>Testing a Website</b></h4>
+      <img class="image-cyp right-align" src="./cypress.jpeg" alt="cypress-logo">
+        <div class="section"><br>
+          <div class="row">
+            <div class="center-align">
+              <p class="text-accent-2 waves-green left-align">During one of my courses, I created a test suite to test a local page of login. In it, I assert values of of the webpage
+              bieng via CSS selector like checkboxes, blank spaces, login, the privacy policy, simulate drag-and-drop of files, make an HTTP request and even use a custom command.
+              All the tests were written in <b>JavaScript</b>.</p>
+              <br><br>
           </div>
       </div>
     </div>
+    <div class="center-align language-javascript">
+    <pre>
+      <code class="language-javascript">it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
+cy.clock()
+cy.get('#firstName').type('João')
+cy.get('#lastName').type('Neves')
+cy.get('#email').type('johnsnow@gmail.com')
+cy.get('#phone-checkbox').last().check()
+cy.contains('button', 'Enviar').click()
+cy.get('.error').should('be.visible')
+<!--Changes time of assertion-->
+cy.tick(THREE_SECONDS_IN_MS)
+<!--Assertion-->
+cy.get('.error').should('not.be.visible')</code>
+    </pre>
+  </div>
     <div class="video-container">
       <video controls>
         <source src="./videos/1_test_suite.cy.js.mp4" type="video/mp4">
@@ -57,6 +75,7 @@
       </video>
     </div>
   </div>
+  <br><br>
   <div id="modal1" class="modal">
     <div class="modal-content">
       <div id="juicebox-container" class="juicebox-container"></div>
@@ -134,6 +153,8 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
@@ -143,17 +164,48 @@
   <!--START JUICEBOX EMBED-->
   <script src="jbcore/juicebox.js"></script>
   <script>
-  const juiceboxConfig = {
-    scaleToFit: false,
-  };
+      const juiceboxConfig = {
+        scaleToFit: false,
+        enableKeyboardControls: true,
+        showOpenButton: true,
+      };
 
-  new juicebox({
-    containerId: "juicebox-container",
-    galleryWidth: "100%",
-    galleryHeight: "100%",
-    backgroundColor: "#222222",
-  }, juiceboxConfig);
-  <div id="juicebox-container"></div>
+      new juicebox({
+        containerId: "juicebox-container",
+        galleryWidth: "1280",
+        galleryHeight: "720",
+        backgroundColor: "#222222",
+        }, juiceboxConfig);
   </script>
+  <script src="clipboard.min.js"></script>
+  <script>
+      new ClipboardJS('.copy-button');
+  </script>
+  <script>
+    import React, { Component } from 'react';
+    import { SyntaxHighlighter } from 'react-syntax-highlighter';
+
+    class MyComponent extends Component {
+    render() {
+      return (
+        <SyntaxHighlighter language='javascript'>
+          {`it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
+cy.clock()
+cy.get('#firstName').type('João')
+cy.get('#lastName').type('Neves')
+cy.get('#email').type('johnsnow@gmail.com')
+cy.get('#phone-checkbox').last().check()
+cy.contains('button', 'Enviar').click()
+cy.get('.error').should('be.visible')
+<!--Changes time of assertion-->
+cy.tick(THREE_SECONDS_IN_MS)
+<!--Assertion-->
+cy.get('.error').should('not.be.visible')`}
+      </SyntaxHighlighter>
+      );
+    }
+  }
+  </script>
+  <script>import 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow.css';</script>
 </body>
 </html>
