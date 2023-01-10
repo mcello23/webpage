@@ -57,17 +57,19 @@ p#text-in6
 }
 
 .image-desc-doom {
-  width: 280px;  /* sets the width of the image to 64 pixels */
+  border-radius: 13%;
+  width: 488px;  /* sets the width of the image to 64 pixels */
   float: left;  /* floats the image to the right */
-  padding-top: 30px; 
-  padding-bottom: 30px;
+  padding-top: 12px; 
+  padding-right: 30px;
 }
 
 a#download-button1,
 a#download-button2,
 a#download-button3,
 a#download-button4,
-a#download-button5 {
+a#download-button5,
+a#download-button6 {
   margin: 0 11px;  /* adds a 16px margin on both sides of the button */
 }
 
