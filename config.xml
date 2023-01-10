@@ -7,14 +7,6 @@
 	indexPageName="./index.html"
 
 >
-  <image imageURL="images/GitHub.jpg"
-	thumbURL="thumbs/GitHub.jpg"
-	linkURL="images/GitHub.jpg"
-	linkTarget="_blank"
-	sourcePath="./Certificados/GitHub.jpg">
-    <title><![CDATA[GitHub]]></title>
-    <caption><![CDATA[]]></caption>
-  </image>
   <image imageURL="images/ISTQB.jpg"
 	thumbURL="thumbs/ISTQB.jpg"
 	linkURL="images/ISTQB.jpg"
@@ -30,6 +22,14 @@
 	sourcePath="./Certificados/Swift 5.jpg">
     <title><![CDATA[Swift 5]]></title>
     <caption><![CDATA[]]></caption>
+  </image>
+  <image imageURL="images/GitHub.jpg"
+	thumbURL="thumbs/GitHub.jpg"
+  	linkURL="images/GitHub.jpg"
+  	linkTarget="_blank"
+  	sourcePath="./Certificados/GitHub.jpg">
+  	<title><![CDATA[GitHub]]></title>
+  	<caption><![CDATA[]]></caption>
   </image>
   <image imageURL="images/UC-3ef466ba-72f0-4bc2-8d3e-c01128ea22f9.jpg"
 	thumbURL="thumbs/UC-3ef466ba-72f0-4bc2-8d3e-c01128ea22f9.jpg"
