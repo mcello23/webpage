@@ -57,10 +57,10 @@ p#text-in6
 }
 
 .image-cyp {
-  border-radius: 60%;  /* makes the image round */
   width: 200px;  /* sets the width of the image to 64 pixels */
-  float: right;  /* floats the image to the right */
-  padding-top: 60px; 
+  float:right;
+  position: right;
+  padding-top: 0px; 
   padding-bottom: 10px;
   margin-left: 0px;
 }
@@ -87,8 +87,8 @@ a#download-button6 {
 }
 
 .parallax-container {
-  min-height: 331px;
-  line-height: 0;
+  min-height: auto;
+  line-height: auto;
   margin: auto;
   height: 100%;
   width: 100%;
@@ -98,9 +98,9 @@ a#download-button6 {
 }
 .parallax-container .section {
   width: 100%;
-  padding-top: 30px; 
-  padding-bottom: 30px;
-  height: 100%;
+  padding-top: 10px; 
+  padding-bottom: 10px;
+  height: 200%;
   margin: auto;
   }
 
@@ -108,15 +108,23 @@ a#download-button6 {
   .parallax-container .section {
     position: absolute;
     top: 40%;
+    padding-top: 30px; 
+    padding-bottom: 30px;
+    height: 100%;
+    margin: auto;
   }
   #index-banner .section {
     top: 10%;
+    padding-top: 30px; 
+    padding-bottom: 30px;
+    height: 100%;
+    margin: auto;
   }
 }
 
-@media only screen and (max-width : 700px) {
+@media only screen and (max-width : 992px) {
   #index-banner .section {
-    top: 10px;
+    top: 40px;
     padding-top: 30px; 
     padding-bottom: 30px;
     height: 100%;
@@ -183,4 +191,16 @@ footer.page-footer {
   height: '800';
   margin: 0 auto;
   margin-bottom: 30px;
+} 
+
+.video-container video {
+  background-image: url(play-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+code.language-javascript {
+  color: #f66;
+  background-color: #232;
+  padding: 2px;
 }
