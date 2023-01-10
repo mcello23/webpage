@@ -87,14 +87,15 @@ a#download-button6 {
 }
 
 .parallax-container {
-  min-height: auto;
-  line-height: auto;
-  margin: auto;
+  min-height: 331px;
+  line-height: 0px;
   height: 100%;
   width: 100%;
   color: rgba(255,255,255,.9);
   padding-top: 30px; 
   padding-bottom: 30px;
+  background-size: cover;
+  background-position: center;
 }
 .parallax-container .section {
   width: 100%;
@@ -102,6 +103,8 @@ a#download-button6 {
   padding-bottom: 10px;
   height: 200%;
   margin: auto;
+  background-size: cover;
+  background-position: center;
   }
 
 @media only screen and (max-width : 992px) {
