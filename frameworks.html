@@ -14,8 +14,8 @@
 <body>
   <nav>
     <div class="nav-wrapper">
-      <a href="https://mcello23.github.io/webpage/" class="house-logo"><i class="material-icons fab-house">home</i></a>
       <ul class="right hide-on-med-and-down">
+        <li><a href="https://mcello23.github.io/webpage/" class="material-icons house-logo"><i class="material-icons">home</i></a></li>
         <li><a href="https://github.com/mcello23" aria-label="github-link"><i class="material-icons fab fa-github"></i></a></li>
         <li><a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link"><i class="material-icons fab fa-linkedin"></i></a></li>
         <li><a href="mailto:marceloadsc@gmail.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F" aria-label="email-link"><i class="material-icons">mail_outline</i></a></li>
@@ -25,35 +25,36 @@
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
       <div class="container">
-        <br><br>
         <h2 class="header center teal-text text-lighten-5">Automation</h2>
         <div class="row center">
           <a href="frameworks.html" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1 pad">Frameworks</a>
           <a href="side_proj.html" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
           <a href="#modal1" id="download-button3" class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger">Certificates</a>
         </div>
-        <h3 class="header center teal-text text-lighten-5">Frameworks Examples</h3>
+        <h3 class="header center teal-text text-lighten-5">E2E Frameworks</h3>
 
       </div>
     </div>
     <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 1"></div>
   </div>
   <div class="container"><br>
-
     <div class="section">
       <div class="row">
         <div class="center-align">
-          <h4 class="mdi-content-send dark center-align"><b>Cypress</b></h4><br>
-          <!--Profile image-->
-          <img class="right-aligned image-desc" src="./cypress.jpeg" alt="personal-picture">
-          <p class="text-accent-2 waves-green left-align">Hi!</p>
-          <p class="text-accent-2 waves-green left-align">I've been working as a QA for the last 5 years in companies like Apple and EA, as a functional, manual, user acceptance and automation tester.</p>
-          <p class="text-accent-2 waves-green left-align">Lately I also acted as the Team Lead for my locale (pt-BR) in which I trained and formed 3 people in the team, always providing constant feedback.</p>
-          <p class="text-accent-2 waves-green left-align">In my QA role at Apple, I've tested Siri and fixed pipeline issues of the 23 localised languages that the product supports.</p>
-          <p class="text-accent-2 waves-green left-align">In automation I've mainly worked with Swift language, with Xcode (IDE) and UST (Uinified Siri Test).</p>
-          <p class="text-accent-2 waves-green left-align">My project also includes Git commands, in which we add new fixes through a CI/CD environment.</p>
+          <h2 class="mdi-content-send dark center-align"><b>Cypress</b></h2><img class="right-align image-cyp" src="./cypress.jpeg" alt="personal-picture"><br>
+          <h3 class="mdi-content-send dark center-align"><b>Testing a Website</b></h3>
+          <p class="text-accent-2 waves-green left-align">During one of my courses, I created a test suite to test a local page of login. In it, I assert values of of the webpage
+            bieng via CSS selector like checkboxes, blank spaces, login, the privacy policy, simulate drag-and-drop of files, make an HTTP request and even use a custom command.
+            All the texts were written in <b>JavaScript</b>.
+          </p><br><br>
           </div>
       </div>
+    </div>
+    <div class="video-container">
+      <video controls>
+        <source src="./videos/1_test_suite.cy.js.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </div>
   <div id="modal1" class="modal">

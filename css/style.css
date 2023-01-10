@@ -12,7 +12,7 @@ nav .house-logo {
 }
 
 nav {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 10;
 }
@@ -52,8 +52,17 @@ p#text-in6
   border-radius: 60%;  /* makes the image round */
   width: 240px;  /* sets the width of the image to 64 pixels */
   float: right;  /* floats the image to the right */
-  padding-top: 20px; 
+  padding-top: 0px; 
   padding-bottom: 20px;
+}
+
+.image-cyp {
+  border-radius: 60%;  /* makes the image round */
+  width: 200px;  /* sets the width of the image to 64 pixels */
+  float: right;  /* floats the image to the right */
+  padding-top: 60px; 
+  padding-bottom: 10px;
+  margin-left: 0px;
 }
 
 .image-desc-doom {
@@ -62,6 +71,10 @@ p#text-in6
   float: left;  /* floats the image to the right */
   padding-top: 12px; 
   padding-right: 30px;
+}
+
+h3#mdi-content {
+  float: center;
 }
 
 a#download-button1,
@@ -101,7 +114,7 @@ a#download-button6 {
   }
 }
 
-@media only screen and (max-width : 600px) {
+@media only screen and (max-width : 700px) {
   #index-banner .section {
     top: 10px;
     padding-top: 30px; 
@@ -163,4 +176,11 @@ footer.page-footer {
 .album-image p {
   font-size: 0.9rem;
   color: #666;
+}
+
+.video-container {
+  width: '1200';
+  height: '800';
+  margin: 0 auto;
+  margin-bottom: 30px;
 }
