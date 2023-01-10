@@ -13,7 +13,7 @@
 	linkTarget="_blank"
 	sourcePath="./Certificados/ISTQB.jpg">
     <title><![CDATA[ISTQB]]></title>
-    <caption><![CDATA[]]></caption>
+    <caption><![CDATA[<span style="font-family: Times; font-size: 20px; color: #ffff00;">ISTQB</span>]]></caption>
   </image>
   <image imageURL="images/Swift 5.jpg"
 	thumbURL="thumbs/Swift 5.jpg"
@@ -21,7 +21,7 @@
 	linkTarget="_blank"
 	sourcePath="./Certificados/Swift 5.jpg">
     <title><![CDATA[Swift 5]]></title>
-    <caption><![CDATA[]]></caption>
+    <caption><![CDATA[<span style="font-family: Times; font-size: 20px; color: #ffff00;">Swift 5</span>]]></caption>
   </image>
   <image imageURL="images/GitHub.jpg"
 	thumbURL="thumbs/GitHub.jpg"
