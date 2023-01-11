@@ -65,6 +65,15 @@ p#text-in6
   margin-left: 0px;
 }
 
+.image-cac {
+  width: 300px;  /* sets the width of the image to 64 pixels */
+  float:right;
+  position: right;
+  padding-top: 0px; 
+  padding-bottom: 0px;
+  margin-right: 10px;
+}
+
 .image-desc-doom {
   border-radius: 13%;
   width: 488px;  /* sets the width of the image to 64 pixels */
@@ -213,4 +222,12 @@ footer.page-footer {
   border-radius: 14px !important;
   padding-left: 15px !important;
   padding-right: 15px !important;
+}
+
+ol#list {
+  font-size: 16px;
+}
+
+.spaced {
+  word-spacing: 5px;
 }
