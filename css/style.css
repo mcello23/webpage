@@ -193,6 +193,7 @@ footer.page-footer {
   width: auto;
   height: auto;
   margin: 0 auto;
+  background-color: transparent;
 } 
 
 .video-container video {
