@@ -193,13 +193,18 @@ footer.page-footer {
   width: auto;
   height: auto;
   margin: 0 auto;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0);
 } 
 
 .video-container video {
   background-image: url(play-button.svg);
   background-repeat: no-repeat;
   background-position: center;
+  display: none;
+}
+
+.video-container.playing video {
+  display: block;
 }
 
 #code-container {

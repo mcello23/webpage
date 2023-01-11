@@ -184,5 +184,17 @@
       window.open("https://github.com/mcello23/cypress-basico-v2/archive/heads/main.zip");
     }
   </script>
+  <script>
+    var videoContainer = document.querySelector(".video-container");
+    var video = videoContainer.querySelector("video");
+
+      video.addEventListener("play", function() {
+      videoContainer.classList.add("playing");
+      });
+
+      video.addEventListener("pause", function() {
+      videoContainer.classList.remove("playing");
+      });
+  </script>
 </body>
 </html>
