@@ -10,6 +10,7 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -48,34 +49,48 @@
               <p class="text-accent-2 waves-green left-align">During one of my courses, I created a test suite to test a local page of login. In it, I assert values of of the webpage
               bieng via CSS selector like checkboxes, blank spaces, login, the privacy policy, simulate drag-and-drop of files, make an HTTP request and even use a custom command.
               All the tests were written in <b>JavaScript</b>.</p>
-              <br><br>
+              <br>
           </div>
+          <div class="center-align">
+            <p class="text-accent-2 waves-green left-align">During one of my courses, I created a test suite to test a local page of login. In it, I assert values of of the webpage
+            bieng via CSS selector like checkboxes, blank spaces, login, the privacy policy, simulate drag-and-drop of files, make an HTTP request and even use a custom command.
+            All the tests were written in <b>JavaScript</b>.</p>
+            <br>
+        </div>
       </div>
     </div>
-    <div class="center-align language-javascript">
-    <pre>
-      <code class="language-javascript">it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
-cy.clock()
-cy.get('#firstName').type('João')
-cy.get('#lastName').type('Neves')
-cy.get('#email').type('johnsnow@gmail.com')
-cy.get('#phone-checkbox').last().check()
-cy.contains('button', 'Enviar').click()
-cy.get('.error').should('be.visible')
-<!--Changes time of assertion-->
-cy.tick(THREE_SECONDS_IN_MS)
-<!--Assertion-->
-cy.get('.error').should('not.be.visible')</code>
-    </pre>
-  </div>
-    <div class="video-container">
-      <video controls>
-        <source src="./videos/1_test_suite.cy.js.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <h4 class="mdi-content-send dark center-align"><b>Code Example:</b></h4><br>
+    <div id="code-container" data-bgcolor="black">
+      <pre>
+        <code class="language-javascript">
+          it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
+            cy.clock()
+            cy.get('#firstName').type('João')
+            cy.get('#lastName').type('Neves')
+            cy.get('#email').type('johnsnow@gmail.com')
+            cy.get('#phone-checkbox').last().check()
+            cy.contains('button', 'Enviar').click()
+            cy.get('.error').should('be.visible')
+            <!--Changes time of assertion-->
+            cy.tick(THREE_SECONDS_IN_MS)
+            Assertion:
+            cy.get('.error').should('not.be.visible')
+        </code>
+      </pre>
     </div>
-  </div>
-  <br><br>
+  </div><br>
+      <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite running</b></h4>
+      <h5 class="mdi-content-send dark center-align"><b>It tests and passes 24 test cases in 11 seconds:</b></h5><br>
+  <div id="video-container" class="center-align">
+      <video id="video" controls preload="metadata">
+          <source src="./videos/1_test_suite.cy.js.mp4" type="video/mp4">
+           Your browser does not support the video tag.
+        </video>
+      </div><br><br><br><br>
+            <div class="row center">
+              <a id="download-button4" class="btn-large waves-effect waves-light teal lighten-1 left-align" onclick="downloadFile()">Download the Test Suite</a>
+              <a href="https://github.com/mcello23/DoomGamePython" id="download-button5" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
+             </div><br><br><br>
   <div id="modal1" class="modal">
     <div class="modal-content">
       <div id="juicebox-container" class="juicebox-container"></div>
@@ -93,20 +108,11 @@ cy.get('.error').should('not.be.visible')</code>
     <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
   </div>
   <div class="container"><br>
-
     <div class="section">
       <div class="row">
         <div class="center-align">
-          <h4 class="mdi-content-send dark center-align"><b>QA Automation Engineer</b></h4><br>
-          <!--Profile image-->
-          <img class="right-aligned image-desc" src="./DSC_9554.jpg" alt="personal-picture">
-          <p class="text-accent-2 waves-green left-align">Hi!</p>
-          <p class="text-accent-2 waves-green left-align">I've been working as a QA for the last 5 years in companies like Apple and EA, as a functional, manual, user acceptance and automation tester.</p>
-          <p class="text-accent-2 waves-green left-align">Lately I also acted as the Team Lead for my locale (pt-BR) in which I trained and formed 3 people in the team, always providing constant feedback.</p>
-          <p class="text-accent-2 waves-green left-align">In my QA role at Apple, I've tested Siri and fixed pipeline issues of the 23 localised languages that the product supports.</p>
-          <p class="text-accent-2 waves-green left-align">In automation I've mainly worked with Swift language, with Xcode (IDE) and UST (Uinified Siri Test).</p>
-          <p class="text-accent-2 waves-green left-align">My project also includes Git commands, in which we add new fixes through a CI/CD environment.</p>
-          </div>
+          <h4 class="mdi-content-send dark center-align"><b>Coming soon!</b></h4><br><br>
+        </div>
       </div>
     </div>
   </div>
@@ -122,21 +128,11 @@ cy.get('.error').should('not.be.visible')</code>
     <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
   </div>
   <div class="container"><br>
-
     <div class="section">
       <div class="row">
         <div class="center-align">
-          <h4 class="mdi-content-send dark center-align"><b>QA Automation Engineer</b></h4><br>
-          <!--Profile image-->
-          <img class="right-aligned image-desc" src="./DSC_9554.jpg" alt="personal-picture">
-          <p class="text-accent-2 waves-green left-align">Hi!</p>
-          <p class="text-accent-2 waves-green left-align">I am a self-thaught QA tester and I have been working in this area for the last 5 years in companies like Cognizant and EA, as a functional, manual, user acceptance and automation tester.</p>
-          <p class="text-accent-2 waves-green left-align">Lately I also acted as the Team Lead for my locale (pt-BR) in which I trained and formed 3 people in the team, always providing constant feedback.</p>
-          <p class="text-accent-2 waves-green left-align">In my QA role at Apple, I've tested Siri and fixed pipeline issues of the 23 localised languages that the product supports.</p>
-          <p class="text-accent-2 waves-green left-align">In automation I've mainly worked with Swift language, with Xcode (IDE) and UST (Uinified Siri Test).</p>
-          <p class="text-accent-2 waves-green left-align">My project also includes Git commands, in which we add new fixes through a CI/CD environment.</p>
-          </div>
-      </div>
+          <h4 class="mdi-content-send dark center-align"><b>Coming soon!</b></h4><br><br>
+        </div>
     </div>
   </div>
   <div class="section no-pad-bot">
@@ -148,12 +144,12 @@ cy.get('.error').should('not.be.visible')</code>
       </div>
     </div>
   </div>
+  </div>
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -177,35 +173,16 @@ cy.get('.error').should('not.be.visible')</code>
         backgroundColor: "#222222",
         }, juiceboxConfig);
   </script>
-  <script src="clipboard.min.js"></script>
+    <script>
+      var codeContainer = document.getElementById("code-container");
+      var bgcolor = codeContainer.getAttribute("data-bgcolor");
+      codeContainer.style.backgroundColor = bgcolor;
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
   <script>
-      new ClipboardJS('.copy-button');
-  </script>
-  <script>
-    import React, { Component } from 'react';
-    import { SyntaxHighlighter } from 'react-syntax-highlighter';
-
-    class MyComponent extends Component {
-    render() {
-      return (
-        <SyntaxHighlighter language='javascript'>
-          {`it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
-cy.clock()
-cy.get('#firstName').type('João')
-cy.get('#lastName').type('Neves')
-cy.get('#email').type('johnsnow@gmail.com')
-cy.get('#phone-checkbox').last().check()
-cy.contains('button', 'Enviar').click()
-cy.get('.error').should('be.visible')
-<!--Changes time of assertion-->
-cy.tick(THREE_SECONDS_IN_MS)
-<!--Assertion-->
-cy.get('.error').should('not.be.visible')`}
-      </SyntaxHighlighter>
-      );
+    function downloadFile() {
+      window.open("https://github.com/mcello23/cypress-basico-v2/archive/heads/main.zip");
     }
-  }
   </script>
-  <script>import 'react-syntax-highlighter/dist/cjs/styles/prism/tomorrow.css';</script>
 </body>
 </html>

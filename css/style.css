@@ -190,10 +190,9 @@ footer.page-footer {
 }
 
 .video-container {
-  width: '1200';
-  height: '800';
+  width: auto;
+  height: auto;
   margin: 0 auto;
-  margin-bottom: 30px;
 } 
 
 .video-container video {
@@ -202,8 +201,10 @@ footer.page-footer {
   background-position: center;
 }
 
-code.language-javascript {
-  color: #f66;
-  background-color: #232;
-  padding: 2px;
+#code-container {
+  background-color: black !important;
+  padding: 10px !important;
+  border-radius: 14px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
