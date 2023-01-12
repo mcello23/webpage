@@ -4,12 +4,15 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Marcelo's Website</title>
+  <!--Script for circle of percentage of language codes-->
+  <script src="path/to/circle.js"></script>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+
 </head>
 <body>
   <nav>
@@ -86,6 +89,7 @@
             <h2 class="center brown-text"><i class="material-icons">laptop</i></h2>
             <h5 class="center">Python</h5>
           </div>
+          <div id="circle"></div>
         </div>
         <div class="col s12 m3">
           <div class="icon-block">
@@ -120,7 +124,6 @@
   </div>
   <div class="container">
     <div class="section">
-
       <!--   Icon Section   -->
       <div class="row">
         <div class="col s12 m4">
@@ -228,6 +231,18 @@
     function downloadFile() {
       window.open("https://www.dropbox.com/s/l7ciheuf4cmj4k6/Marcelo%27s%20Resume%20-%206.0.pdf?dl=1");
     }
+  </script>
+  <script>
+    var circle = new Circle(document.getElementById('circle'), {
+        value: 0.75,
+        size: 200,
+        thickness: 20,
+        fill: {
+          color: '#ffa500'
+          }
+          
+        });
+        circle.setValue(0.8);
   </script>
 </body>
 </html>
