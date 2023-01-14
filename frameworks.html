@@ -10,8 +10,7 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism.min.css" rel="stylesheet">
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism.css" rel="stylesheet">
 </head>
 <body>
   <nav>
@@ -38,7 +37,11 @@
     </div>
     <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 1"></div>
   </div>
-
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div id="juicebox-container" class="juicebox-container"></div>
+      </div>
+    </div>
   <div class="container"><br>
     <h3 class="mdi-content-send dark center-align"><b>Cypress</b></h3>
       <h4 class="mdi-content-send dark center-align"><b>Testing a Website</b></h4>
@@ -87,13 +90,13 @@
       </div>
     </div>
     <h4 class="mdi-content-send dark center-align"><b>Code Example:</b></h4><br>
-    <div id="code-container" data-bgcolor="black">
+    <div class="code-container" data-bgcolor="black">
       <pre>
         <code class="language-javascript">
-          it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', function() {
+          it('displays error message when the phone number becomes mandatory but is not filled in before sending the form', function() {
             cy.clock()
-            cy.get('#firstName').type('João')
-            cy.get('#lastName').type('Neves')
+            cy.get('#firstName').type('John')
+            cy.get('#lastName').type('Snow')
             cy.get('#email').type('johnsnow@gmail.com')
             cy.get('#phone-checkbox').last().check()
             cy.contains('button', 'Enviar').click()
@@ -102,47 +105,119 @@
             cy.tick(THREE_SECONDS_IN_MS)
             Assertion:
             cy.get('.error').should('not.be.visible')
+          </code>
+        </pre>
+      </div>
+    </div><br>
+    <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite running</b></h4>
+    <h5 class="mdi-content-send dark center-align"><b>It tests and passes 24 test cases in 11 seconds:</b></h5><br>
+      <div class="video container center-align">
+        <video id="video-selenium" class="video container center-align" controls preload="metadata">
+            <source src="./videos/1_test_suite.cy.js.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div><br><br><br><br>
+  <div class="row center">
+      <a id="download-button6" class="btn-large waves-effect waves-light teal lighten-1 left-align" onclick="downloadFile()">Download the Test Suite</a>
+      <a href="https://github.com/mcello23/cypress-basico-v2" id="download-button7" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
+    </div><br><br><br>
+      <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+          <div class="container">
+            <div class="row center">
+              <h2 class="header col s12 dark center-align">Selenium</h2>
+            </div>
+          </div>
+        </div>
+        <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
+      </div>
+      <div class="container"><br>
+        <h3 class="mdi-content-send dark center-align"><b>Selenium</b></h3>
+        <h4 class="mdi-content-send dark center-align"><b>Testing a Website</b></h4>
+      <div class="section">
+        <img class="image-sel right-align" src="https://ewig5qf9cgn.exactdn.com/wp-content/uploads/2020/08/Selenium-SI_Hex-1.svg" alt="selenium-logo"><br>
+        <div class="row">
+          <div class="center-align">
+            <p class="text-accent-2 waves-green left-align">During an exercise, I took the liberty to test and create a test suite for a streaming data website. 
+              While the test suite might seem "small", the objective was to show negative and positive test cases - while some had to pass, others needed to fail in 
+              order to show what was the correct behaviour. While the test itself is recorded with Selenium IDE, the test cases are written in <b>Python</b>.</p>
+              <br><br>
+          </div>
+          <div class="row"><br>
+          <div class="left-align">
+            <ol class="text-darken-3 waves-green left-align" id="list-second-code"><br>
+              <h5 class="dark right-align" style="display: grid; grid-template-columns: 5fr 1fr;"><b>Website:</b></h5>
+              <img class="image-cac left-align" src="./images/quix_webiste.jpg" alt="quix-webiste">
+              <li>Login Quix</li>
+              <li>Languages Filter Broken</li>
+              <li>Case Sensitive Broken</li>
+              <li>API Deployment Stuck</li>
+              <li>Unable to Edit Code</li>
+              <li>Alphabetical Selector Broken</li>
+              <li>Adding Slack Notification</li>
+            </ol>
+              <p id="manual-tests" class="text-accent-2 waves-green left-align"><i>...plus manual tests!</i></p>
+            <br>
+        </div>
+        </div>
+      </div>
+    </div>
+    <h4 class="mdi-content-send dark center-align"><b>Code Example:</b></h4><br>
+    <div class="code-container" data-bgcolor="black">
+      <pre>
+        <code class="language-javascript">
+          import pytest
+          import time
+          import json
+          from selenium import webdriver
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.action_chains import ActionChains
+          from selenium.webdriver.support import expected_conditions
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+          
+          class Test3CaseSensitive():
+            def setup_method(self, method):
+              self.driver = webdriver.Chrome()
+              self.vars = {}
+            
+            def teardown_method(self, method):
+              self.driver.quit()
+            
+            def test_3CaseSensitive(self):
+              # Test name: 3-CaseSensitive
+              # Step # | name | target | value
+              # 1 | open | webiste
+              self.driver.get("https://www.quix.io/")
+              # 2 | setWindowSize | 2044x1392 | 
+              self.driver.set_window_size(2044, 1392)
+              # 3 | click | css=.mat-list-item:nth-child(2) > .mat-list-item-content | 
+              self.driver.find_element(By.CSS_SELECTOR, ".mat-list-item:nth-child(2) > .mat-list-item-content").click()
+              # 4 | click | css=div > .text-truncate:nth-child(1) | 
+              self.driver.find_element(By.CSS_SELECTOR, "div > .text-truncate:nth-child(1)").click()
+              # 5 | click | css=.mat-list-item:nth-child(2) > .mat-list-item-content | 
+              self.driver.find_element(By.CSS_SELECTOR, ".mat-list-item:nth-child(2) > .mat-list-item-content").click()
+              # 6 | click | id=mat-input-0 | 
+              self.driver.find_element(By.ID, "mat-input-0").click()
+              # 7 | type | id=mat-input-0 | transformation
+              self.driver.find_element(By.ID, "mat-input-0").send_keys("transformation")
+              # 8 | click | css=.w-100:nth-child(2) | 
+              self.driver.find_element(By.CSS_SELECTOR, ".w-100:nth-child(2)").click()
+              # 9 | assertText | id=mat-input-0 | RESULTS
+              assert self.driver.find_element(By.ID, "mat-input-0").text == "RESULTS"
         </code>
       </pre>
     </div>
   </div><br>
-      <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite running</b></h4>
-      <h5 class="mdi-content-send dark center-align"><b>It tests and passes 24 test cases in 11 seconds:</b></h5><br>
-  <div id="video-container" class="center-align">
-      <video id="video" controls preload="metadata">
-          <source src="./videos/1_test_suite.cy.js.mp4" type="video/mp4">
-           Your browser does not support the video tag.
-        </video>
-      </div><br><br><br><br>
-      <div class="row center">
-        <a id="download-button4" class="btn-large waves-effect waves-light teal lighten-1 left-align" onclick="downloadFile()">Download the Test Suite</a>
-        <a href="https://github.com/mcello23/cypress-basico-v2" id="download-button5" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
+      <h4 class="mdi-content-send dark center-align"><b>Screenshot</b></h4>
+      <h5 class="mdi-content-send dark center-align"><b>Test suite execution</b></h5><br>
+        <div class="video container center-align">
+          <img class="image-selenium right-align" src="./images/selenium_screenshot.jpg" alt="selenium-test"><br>
+          </div><br><br><br><br>
+    <div class="row center">
+        <a href="https://github.com/mcello23/Quix_Testing" id="download-button5" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
       </div><br><br><br>
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <div id="juicebox-container" class="juicebox-container"></div>
-    </div>
-  </div>
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h2 class="header col s12 dark">Selenium IDE</h2>
-        </div>
-        <h3 class="header center teal-text text-lighten-5">Example</h3>
-      </div>
-    </div>
-    <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
-  </div>
-  <div class="container"><br>
-    <div class="section">
-      <div class="row">
-        <div class="center-align">
-          <h4 class="mdi-content-send dark center-align"><b>Coming soon!</b></h4><br><br>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
@@ -173,16 +248,20 @@
   </div>
   </div>
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
-  });
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
+      });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
+  <script>
+      Prism.highlightAll();
   </script>
   <!--START JUICEBOX EMBED-->
   <script src="jbcore/juicebox.js"></script>
@@ -200,28 +279,22 @@
         backgroundColor: "#222222",
         }, juiceboxConfig);
   </script>
-    <script>
-      var codeContainer = document.getElementById("code-container");
-      var bgcolor = codeContainer.getAttribute("data-bgcolor");
-      codeContainer.style.backgroundColor = bgcolor;
-    </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
   <script>
     function downloadFile() {
       window.open("https://github.com/mcello23/cypress-basico-v2/archive/heads/main.zip");
     }
   </script>
   <script>
-    var videoContainer = document.querySelector(".video-container");
-    var video = videoContainer.querySelector("video");
-
+    var videoContainers = document.querySelectorAll(".video-cypress", ".video-selenium");
+    for (var i = 0; i < videoContainers.length; i++) {
+      var video = videoContainers[i].querySelector("video");
       video.addEventListener("play", function() {
-      videoContainer.classList.add("playing");
+        videoContainers[i].classList.add("playing");
       });
-
       video.addEventListener("pause", function() {
-      videoContainer.classList.remove("playing");
+        videoContainers[i].classList.remove("playing");
       });
+      }
   </script>
 </body>
 </html>

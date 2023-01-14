@@ -74,6 +74,24 @@ p#text-in6
   margin-right: 10px;
 }
 
+.image-sel {
+  width: 232px;  /* sets the width of the image to 64 pixels */
+  float: right;
+  position: right;
+  padding-top: 0px; 
+  margin-bottom: 40px;
+  margin-right: 30px;
+}
+
+.image-selenium {
+  width: 1200px;  /* sets the width of the image to 64 pixels */
+  height: 800px;
+  position: center;
+  padding-top: 0px; 
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
 .image-desc-doom {
   border-radius: 13%;
   width: 488px;  /* sets the width of the image to 64 pixels */
@@ -92,7 +110,7 @@ a#download-button3,
 a#download-button4,
 a#download-button5,
 a#download-button6 {
-  margin: 0 11px;  /* adds a 16px margin on both sides of the button */
+  margin: auto 6px;  /* adds a 16px margin on both sides of the button */
 }
 
 .parallax-container {
@@ -108,46 +126,13 @@ a#download-button6 {
 }
 .parallax-container .section {
   width: 100%;
-  padding-top: 10px; 
+  padding-top: 1px; 
   padding-bottom: 10px;
   height: 200%;
   margin: auto;
   background-size: cover;
   background-position: center;
   }
-
-@media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
-    padding-top: 30px; 
-    padding-bottom: 30px;
-    height: 100%;
-    margin: auto;
-  }
-  #index-banner .section {
-    top: 10%;
-    padding-top: 30px; 
-    padding-bottom: 30px;
-    height: 100%;
-    margin: auto;
-  }
-}
-
-@media only screen and (max-width : 992px) {
-  #index-banner .section {
-    top: 40px;
-    padding-top: 30px; 
-    padding-bottom: 30px;
-    height: 100%;
-    margin: auto;
-  }
-}
-
-.valign-wrapper {
-  height: 100%;
-  width: 100%
-}
 
 .icon-block {
   padding: 15px;
@@ -198,25 +183,41 @@ footer.page-footer {
   color: #666;
 }
 
-.video-container {
+.video-cypress {
   width: auto;
   height: auto;
-  margin: 0 auto;
   background-color: rgba(0, 0, 0, 0);
 } 
 
-.video-container video {
-  background-image: url(play-button.svg);
+.video-cypress video {
+  background-image: url(https://www.svgrepo.com/show/13672/play-button.svg);
   background-repeat: no-repeat;
   background-position: center;
   display: none;
 }
 
-.video-container.playing video {
+.video-cypress.playing video {
   display: block;
 }
 
-#code-container {
+.video-selenium {
+  width: auto;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0);
+} 
+
+.video-selenium video {
+  background-image: url(https://www.svgrepo.com/show/13672/play-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
+}
+
+.video-selenium.playing video {
+  display: block;
+}
+
+.code-container {
   background-color: black !important;
   padding: 10px !important;
   border-radius: 14px !important;
@@ -224,10 +225,16 @@ footer.page-footer {
   padding-right: 15px !important;
 }
 
-ol#list {
-  font-size: 16px;
+ol#list,
+ol#list-second-code {
+  font-size: 18px;
 }
 
 .spaced {
   word-spacing: 5px;
+}
+
+p#manual-tests {
+  text-align: center;
+  text-decoration-line:underline;
 }
