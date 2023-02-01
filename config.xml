@@ -7,6 +7,30 @@
 	indexPageName="./index.html"
 
 >
+   <image imageURL="images/agile.jpg"
+	thumbURL="thumbs/Agile.jpg"
+	linkURL="images/agile.jpg"
+	linkTarget="_blank"
+	sourcePath="_./Certificados/agile.jpg">
+	<title><![CDATA[]]></title>
+	<caption><![CDATA[<span style="font-family: Times; font-size: 20px; color: #222222;">Agile and Scrum Methodology</span>]]></caption>
+   </image>  
+   <image imageURL="images/cyp-inter.jpg"
+	thumbURL="thumbs/cyp-inter.jpg"
+	linkURL="images/cyp-inter.jpg"
+	linkTarget="_blank"
+	sourcePath="_./Certificados/cyp-inter.jpg">
+	<title><![CDATA[]]></title>
+	<caption><![CDATA[<span style="font-family: Times; font-size: 20px; color: #222222;">Cypress Intermediary Course</span>]]></caption>
+   </image>  
+   <image imageURL="images/cucumber_appium.jpg"
+	thumbURL="thumbs/cucumber_appium.jpg"
+	linkURL="images/cucumber_appium.jpg"
+	linkTarget="_blank"
+	sourcePath="_./Certificados/cucumber_appium.jpg">
+	<title><![CDATA[]]></title>
+	<caption><![CDATA[<span style="font-family: Times; font-size: 20px; color: #222222;">Mobile Automation: Appium Cucumber Android & iOS + Jenkins</span>]]></caption>
+   </image>
   <image imageURL="images/UC-f46ea1bb-4ed8-4269-aa12-6b18d0b24028.jpg"
 	thumbURL="thumbs/UC-f46ea1bb-4ed8-4269-aa12-6b18d0b24028.jpg"
 	linkURL="images/UC-f46ea1bb-4ed8-4269-aa12-6b18d0b24028.jpg"
