@@ -118,9 +118,9 @@
  }
  
  .image-selenium {
-   width: 1200px;  /* sets the width of the image to 64 pixels */
-   height: 800px;
-   position: center;
+   width: 96%;  /* sets the width of the image to 64 pixels */
+   height: 80%;
+   float:none;
    padding-top: 0px; 
    margin-bottom: 20px;
    margin-right: 20px;
