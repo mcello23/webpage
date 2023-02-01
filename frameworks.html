@@ -10,7 +10,7 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism.css" rel="stylesheet">
+  <link href="./css/prism.css" rel="stylesheet">
 </head>
 <body>
   <nav>
@@ -43,7 +43,7 @@
       </div>
     </div>
   <div class="container center-align"><br>
-    <br><h3 class="title-frame dark center-align" id="title-cyp"><b>Amazon Automation </b></h3>
+    <br><h3 class="title-frame dark center-align" id="title-cyp"><b>Amazon Automation</b></h3>
       <h4 class="mdi-content-send dark center-align" id="title-cyp2"><b>Using Cypress</b></h4>
         <div class="section"><img class="image-cyp right-align" src="./cypress.jpeg" alt="cypress-logo"><br>
           <div class="row">
@@ -53,7 +53,7 @@
               </p>
               <p class="text-accent-2 waves-green left-align">
               In order to run the test suite, you will need to have Cypress installed, as well as Node.js and NPM. A web browser will also be required. If you would like more information on how to set up and run the test suite, please follow the link provided, where I have detailed all the necessary steps. 
-              </p>
+              </p><img class="image-js center-align" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="javascript-logo">
               <p class="text-accent-2 waves-green left-align"><b>
               The test suite contains three distinct test cases:
               </b></p>
@@ -116,48 +116,200 @@
            })
 
            })
-          </code>
-        </pre>
-      </div>
+           </code>
+          </pre>
+        </div>
         </div>
        </div>
-      </div>
-
+      </div><br><br><br><br>
       <div class="parallax-container valign-wrapper">
         <div class="section no-pad-bot">
           <div class="container">
             <div class="row center">
-              <h2 class="header col s12 dark center-align">Selenium</h2>
+              <h2 class="header col s12 dark center-align">Cucumber and Appium</h2>
             </div>
           </div>
         </div>
         <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
       </div>
-      <div class="container"><br>
-        <h3 class="mdi-content-send dark center-align"><b>Selenium</b></h3>
-        <h4 class="mdi-content-send dark center-align"><b>Testing a Website</b></h4>
-      <div class="section">
-        <img class="image-sel right-align" src="https://ewig5qf9cgn.exactdn.com/wp-content/uploads/2020/08/Selenium-SI_Hex-1.svg" alt="selenium-logo"><br>
-        <div class="row">
-          <div class="center-align">
-            <p class="text-accent-2 waves-green left-align">During an exercise, I took the liberty to test and create a test suite for a streaming data website. 
-              While the test suite might seem "small", the objective was to show negative and positive test cases - while some had to pass, others needed to fail in 
-              order to show what was the correct behaviour. While the test itself is recorded with Selenium IDE, the test cases are written in <b>Python</b>.</p>
-              <br><br>
+      <div class="container center-align"><br>
+        <br><h3 class="title-frame dark center-align" id="title-cyp3"><b>Android Automation</b></h3>
+          <h4 class="mdi-content-send dark center-align" id="title-cyp4"><b>Using Cucumber, Appium and Ruby</b></h4>
+            <img class="image-cyp right-align" src="./images/cucumber-logo.png" alt="cucumber-logo"><br>
+              <div class="row">
+                <div class="center-align">
+                  <img class="image-amz center-align" src="./images/simulated_android_app.jpg" alt="amazon-website">
+                  <p class="text-accent-2 waves-green left-align">
+                    This is a test made for Android using <b>Android Studio</b> for a simulated device in which I used a real life app called "Unit Converter", available <a href="https://play.google.com/store/apps/details?id=com.ba.universalconverter&hl=en_IE&gl=US">here</a>.
+                    I've created a total of 14 test cases in which they're really simple to read and test the Main menu of the app, the Home screen and the Gestures.
+                    To develop this test I used <b>Cucumber</b> test engine with <b>Gherkin</b> language, executing through <b>Ruby</b> environment, with <b>Appium</b> driver in a simulated Android device.
+                  </p>
+                  <img class="image-cyp right-align" src="./images/appium-logo.png" alt="cypress-logo">
+                  <p class="text-accent-2 waves-green left-align">
+                    I've installed the app inside an Android simulated device, using "adb install" command in terminal.
+                    Then, I created the feature file of each section I wanted to test, in which I detailed the steps of execution through Ruby language.
+                    I also created tags, hooks, detailed the environment in Ruby, which you can see it in my GitHub link down below.
+                  </p>
+                  <p class="text-accent-2 waves-green left-align"><b>
+                  Here are some of the test cases I've written:
+                  </b></p>
+                  <img class="image-cyp right-align" src="images/ruby-logo.png" alt="ruby-logo">
+                  <p class="text-accent-2 waves-green left-align">
+                    Show all button should be enabled at launch;
+                  </p>
+                  <p class="text-accent-2 waves-green left-align">
+                    When I tap on menu icon, I should see left side menu;
+                  </p>
+                  <p class="text-accent-2 waves-green left-align">
+                    User able to select values from unit pickers;
+                  </p>
+                  <p class="text-accent-2 waves-green left-align">
+                    User able to swipe to open Calculator.
+                  </p><br><br>
+                  <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite</b></h4>
+                  <h5 class="mdi-content-send dark center-align"><b>Runs and asserts in 4 minutes and a half:</b></h5><br>
+                </div>
+              <video id="video-cucumber" class="video container center-align" controls preload="metadata">
+              <source src="./videos/Appium and Cucumber Testing in Android.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+              </video><br><br><br><br>
+              <div class="row center">
+                <a id="download-button8" class="btn-large waves-effect waves-light teal lighten-1 left-align" onclick="downloadFile()">Download the Test Suite</a>
+                <a href="https://github.com/mcello23/android_automation" id="download-button9" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
+              </div><br><br>
+        <h4 class="mdi-content-send dark center-align"><b>Gherkin code:</b></h4><br>
+        <div class="code-container" data-bgcolor="black">
+          <pre>
+            <code class="language-gherkin">
+              @home_screen
+              Feature: Tests for Home Screen Functionality
+              
+                Background:
+                  Given I land on home screen
+              
+                @default
+                Scenario: Default values on home screen is Foot and Centimeter
+                  Then  Left Unit picker value should be "Foot"
+                  And Right unit picker value should be "Centimeter"
+              
+                Scenario: Show all button should be enabled at launch
+                  Then Show All button should be disabled
+                  When I type "1" on application keyboard
+                  Then Show All button should be enabled
+              
+              
+                Scenario Outline: Verify default conversion
+                  When I type "<target>" on application keyboard
+                  Then I should see results as "<result>"
+              
+              Examples:
+                  |target|result   |
+                  |1     |30.48    |
+                  |2     |60.96    |
+                  |3     |91.44    |
+                  |9     |274.32   |
+                  |1011  |30 815.28|
+              
+              
+                Scenario: User able to add current conversion to Favorites list
+                  Then I press on Add to Favorites icon
+                  When I press on menu icon
+                  Then I press on Favorite conversions
+                  And I verify "Length" added to Favorite conversions list
+              
+                Scenario: User able to search by existing Conversion type
+                  Then I press on search icon
+                  Then I type "Temperature" in search field
+                  And I press return button on soft keyboard
+                  Then I see "Temperature" as a current unit converter
+                  Then Left Unit picker value should be "Celsius"
+                  And Right unit picker value should be "Fahrenheit"
+              
+                Scenario Outline: User able to select values from unit pickers
+                  Then I select "<unit_type>" from left unit picker
+                  When I type "<amount>" on application keyboard
+                  Then I should see results as "<result>"
+              
+                  Examples:
+                    | unit_type | amount | result |
+                    | Inch      |1       | 2.54   |
+                    | Link      |1       | 20.1168|
+              
+                  Scenario: User able to convert values
+                    When I press on menu icon
+                    Then I select "Volume" from menu
+                    Then I select "Cup" from right unit picker
+                    When I type "1" on application keyboard
+                    Then I should see results as "15.1416"
+              
+              
+                Scenario: User able to switch values
+                  Then Left Unit picker value should be "Foot"
+                  And Right unit picker value should be "Centimeter"
+                  When I press on switch unit button
+                  Then Left Unit picker value should be "Centimeter"
+                  And Right unit picker value should be "Foot"
+              
+                  Scenario: User able to cleanup conversion history
+                    When I press on menu icon
+                    Then I select "History" from menu
+                    Then I see "History" as a current unit converter
+                    Then I should see text "No history right now"
+                    When I press on menu icon
+                    Then I select "Length" from menu
+                    When I type "1" on application keyboard
+                    When I press on menu icon
+                    Then I select "History" from menu
+                    And I verify that 1st result in history list is "Length"
+                    When I press delete from history at 1st row
+                    Then I should see text "No history right now"
+                </code>
+              </pre>
+            </div>
           </div>
-          <div class="row"><br>
+          </div><br><br><br>
+          <div class="parallax-container valign-wrapper">
+            <div class="section no-pad-bot">
+              <div class="container">
+                <div class="row center">
+                  <h2 class="header col s12 dark center-align">Selenium</h2>
+                </div>
+              </div>
+            </div>
+            <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
+          </div>
+      <div class="container"><br>
+        <h3 class="mdi-content-send dark center-align"><b>Quix Automation</b></h3>
+        <h4 class="mdi-content-send dark center-align"><b>Using Selenium</b></h4>
+      <div class="section">
+        <img class="image-sel right-align" src="https://ewig5qf9cgn.exactdn.com/wp-content/uploads/2020/08/Selenium-SI_Hex-1.svg" alt="selenium-logo">
+        <div class="row">
+          <img class="image-quix left-align" src="./images/quix_webiste.jpg" alt="quix-webiste">
+          <div class="center-align">
+            <p class="text-accent-2 waves-green left-align">
+              I created a small test suite in which I test some aspects of a website called <a href="https://www.quix.io/">Quix</a>, a data streaming page.
+              While the test suite might seem basic, the objective was to show <b>negative</b> and <b>positive</b> test cases, this means that some had to pass and others to fail in order to show the correct behaviour.
+              The test was made with <b>Selenium IDE</b> and the code is written in <b>Python</b>.
+            </p>
+            <p class="text-accent-2 waves-green left-align"><b>
+              Here are some of the test cases I've written:
+              </b></p>
+              <p class="text-accent-2 waves-green left-align">
+                Login Quix;
+              </p>
+              <img class="image-py right-align" src="https://logos-world.net/wp-content/uploads/2021/10/Python-Symbol.png" alt="python-logo">
+              <p class="text-accent-2 waves-green left-align">
+                Case Sensitive Broken;
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                Alphabetical Selector Broken;
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                Unable to Edit Code.
+              </p><br><br>
+          </div>
+          <div class="row">
           <div class="left-align">
-            <ol class="text-darken-3 waves-green left-align" id="list-second-code"><br>
-              <h5 class="dark right-align" style="display: grid; grid-template-columns: 5fr 1fr;"><b>Website:</b></h5>
-              <img class="image-cac left-align" src="./images/quix_webiste.jpg" alt="quix-webiste">
-              <li>Login Quix</li>
-              <li>Languages Filter Broken</li>
-              <li>Case Sensitive Broken</li>
-              <li>API Deployment Stuck</li>
-              <li>Unable to Edit Code</li>
-              <li>Alphabetical Selector Broken</li>
-              <li>Adding Slack Notification</li>
-            </ol>
               <p id="manual-tests" class="text-accent-2 waves-green left-align"><i>...plus manual tests!</i></p>
             <br>
         </div>
@@ -167,7 +319,7 @@
     <h4 class="mdi-content-send dark center-align"><b>Code Example:</b></h4><br>
     <div class="code-container" data-bgcolor="black">
       <pre>
-        <code class="language-javascript">
+        <code class="language-python">
           import pytest
           import time
           import json
@@ -212,29 +364,21 @@
       </pre>
     </div>
   </div><br>
-      <h4 class="mdi-content-send dark center-align"><b>Screenshot</b></h4>
-      <h5 class="mdi-content-send dark center-align"><b>Test suite execution</b></h5><br>
-        <div class="video container center-align">
-          <img class="image-selenium right-align" src="./images/selenium_screenshot.jpg" alt="selenium-test"><br>
-          </div><br><br><br><br>
-    <div class="row center">
-        <a href="https://github.com/mcello23/Quix_Testing" id="download-button5" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
-      </div><br><br><br>
   <div class="parallax-container valign-wrapper">
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
-          <h2 class="header col s12 dark">Xcode</h2>
+          <h2 class="header col s12 dark">Other Frameworks</h2>
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
+      <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
   </div>
   <div class="container"><br>
     <div class="section">
       <div class="row">
         <div class="center-align">
-          <h4 class="mdi-content-send dark center-align"><b>Coming soon!</b></h4><br><br>
+          <h4 class="mdi-content-send dark center-align"><b>Like Xray, Robot Framework... coming soon!</b></h4><br><br>
         </div>
     </div>
   </div>
@@ -259,8 +403,7 @@
       var instances = M.Modal.init(elems);
       });
   </script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.min.js"></script>
+  <script src="./js/prism.js"></script>
   <script>
       Prism.highlightAll();
   </script>
@@ -286,7 +429,7 @@
     }
   </script>
   <script>
-    var videoContainers = document.querySelectorAll(".video-amz", ".video-selenium");
+    var videoContainers = document.querySelectorAll(".video-amz", ".video-cucumber", ".video-selenium");
     for (var i = 0; i < videoContainers.length; i++) {
       var video = videoContainers[i].querySelector("video");
       video.addEventListener("play", function() {

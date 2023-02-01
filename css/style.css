@@ -6,237 +6,274 @@
  * Made By MaterializeCSS.com
  */
 
-nav ul a,
-nav .house-logo {
-  color: #444;
-}
-
-nav {
-  position: fixed;
-  top: 0;
-  z-index: 10;
-}
-
-nav .nav-wrapper {
-  background-color: #00bfa5;
-}
-
-.text-description {
-  font: 15px;
+ nav ul a,
+ nav .house-logo {
+   color: #444;
  }
-
-p {
-  line-height: 1.8rem;
-}
-  
-.waves-green {
-font-size: 1.29rem;
-}
-
-p#text-in,
-p#text-in1,
-p#text-in2,
-p#text-in3,
-p#text-in4,
-p#text-in5,
-p#text-in6
- {
-  font-size: 1.3rem;
-}
-
-.sidenav-trigger {
-  color: #9a921c;
-}
-
-.image-desc {
-  border-radius: 60%;  /* makes the image round */
-  width: 240px;  /* sets the width of the image to 64 pixels */
-  float: right;  /* floats the image to the right */
-  padding-top: 0px; 
-  padding-bottom: 20px;
-}
-
-.image-cyp {
-  width: 170px;  /* sets the width of the image to 64 pixels */
-  float:right;
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.image-amz {
-  width: 232px;  /* sets the width of the image to 64 pixels */
-  float:left;
-  position: left;
-  padding-top: 0px; 
-  padding-bottom: 0px;
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.image-sel {
-  width: 232px;  /* sets the width of the image to 64 pixels */
-  float: right;
-  position: right;
-  padding-top: 0px; 
-  margin-bottom: 40px;
-  margin-right: 30px;
-}
-
-.image-selenium {
-  width: 1200px;  /* sets the width of the image to 64 pixels */
-  height: 800px;
-  position: center;
-  padding-top: 0px; 
-  margin-bottom: 20px;
-  margin-right: 20px;
-}
-
-.image-desc-doom {
-  border-radius: 13%;
-  width: 488px;  /* sets the width of the image to 64 pixels */
-  float: left;  /* floats the image to the right */
-  padding-top: 12px; 
-  padding-right: 30px;
-}
-
-h3#mdi-content {
-  float: center;
-}
-
-a#download-button1,
-a#download-button2,
-a#download-button3,
-a#download-button4,
-a#download-button5,
-a#download-button6 {
-  margin: auto 6px;  /* adds a 16px margin on both sides of the button */
-}
-
-.parallax-container {
-  min-height: 331px;
-  line-height: 0px;
-  height: 100%;
-  width: 100%;
-  color: rgba(255,255,255,.9);
-  padding-top: 30px; 
-  padding-bottom: 30px;
-  background-size: cover;
-  background-position: center;
-}
-.parallax-container .section {
-  width: 100%;
-  padding-top: 1px; 
-  padding-bottom: 10px;
-  height: 200%;
-  margin: auto;
-  background-size: cover;
-  background-position: center;
+ 
+ nav {
+   position: fixed;
+   top: 0;
+   z-index: 10;
+ }
+ 
+ nav .nav-wrapper {
+   background-color: #00bfa5;
+ }
+ 
+ .text-description {
+   font: 15px;
   }
-
-.icon-block {
-  padding: 15px;
-}
-.icon-block .material-icons {
-  font-size: inherit;
-}
-
-footer.page-footer {
-  margin: auto;
-}
-
-.album-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 1rem 0;
-  overflow: hidden;
-  align-items: center;
-  font-weight: bold;
-
-}
-
-.album-image {
-  width: 27%;
-  text-align: center;
-  margin-bottom: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  border: 13px solid rgb(0, 0, 0);
-  overflow: hidden;
-}
-
-.album-image img {
-  width: 100%;
-  height: auto;
-}
-
-.album-image h3 {
-  margin: 0.5rem 0;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.album-image p {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.video-cypress.playing {
-
-  background-color: rgba(0, 0, 0, 0);
-  background-image: url(https://www.svgrepo.com/show/13672/play-button.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  display: none;
-}
-
-.video-selenium {
-  width: auto;
-  height: auto;
-  background-color: rgba(0, 0, 0, 0);
-} 
-
-.video-selenium video {
-  background-image: url(https://www.svgrepo.com/show/13672/play-button.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  display: none;
-}
-
-.video-selenium.playing video {
-  display: block;
-}
-
-.code-container {
-  background-color: black !important;
-  padding: 10px !important;
-  border-radius: 14px !important;
-  padding-left: 15px !important;
-  padding-right: 15px !important;
-}
-
-ol#list,
-ol#list-second-code {
-  font-size: 28px;
-}
-
-.spaced {
-  word-spacing: 5px;
-}
-
-p#manual-tests {
-  text-align: center;
-  text-decoration-line:underline;
-}
-
-.title-cyp,
-.title-cyp2 {
-  width: 27%;
-  text-align: center;
-  margin-bottom: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  border: 13px solid rgb(0, 0, 0);
-  overflow: hidden;
-}
+ 
+ p {
+   line-height: 1.8rem;
+ }
+   
+ .waves-green {
+ font-size: 1.29rem;
+ }
+ 
+ p#text-in,
+ p#text-in1,
+ p#text-in2,
+ p#text-in3,
+ p#text-in4,
+ p#text-in5,
+ p#text-in6
+  {
+   font-size: 1.3rem;
+ }
+ 
+ .sidenav-trigger {
+   color: #9a921c;
+ }
+ 
+ .image-desc {
+   border-radius: 60%;  /* makes the image round */
+   width: 240px;  /* sets the width of the image to 64 pixels */
+   float: right;  /* floats the image to the right */
+   padding-top: 0px; 
+   padding-bottom: 20px;
+ }
+ 
+ .image-cyp {
+   width: 170px;  /* sets the width of the image to 64 pixels */
+   float:right;
+   margin-right: 20px;
+   margin-left: 20px;
+ }
+ 
+ .image-amz {
+   width: 232px;  /* sets the width of the image to 64 pixels */
+   float:left;
+   position: left;
+   padding-top: 0px; 
+   padding-bottom: 0px;
+   margin-right: 20px;
+   margin-left: 20px;
+   border-radius: 20px;
+ }
+ 
+ .image-quix {
+   width: 292px;  /* sets the width of the image to 64 pixels */
+   float:left;
+   position: left;
+   padding-top: 0px; 
+   padding-bottom: 0px;
+   margin-right: 20px;
+   margin-left: 20px;
+   border-radius: 20px;
+ }
+ 
+ .image-js {
+   width: 170px;  
+   float:right;
+   position: right;
+   padding-top: 0px; 
+   padding-bottom: 0px;
+   margin-right: 20px;
+   margin-left: 20px;
+   border-radius: 20px;
+ }
+ 
+ .image-py {
+   width: 290px;  
+   float:right;
+   position: right;
+   padding-top: 0px; 
+   padding-bottom: 0px;
+   padding-left: 20px;
+   margin-right: 0px;
+   margin-left: 30px;
+   border-radius: 20px;
+ }
+ 
+ .image-sel {
+   width: 192px;  /* sets the width of the image to 64 pixels */
+   float: right;
+   position: right;
+   padding-top: 0px; 
+   margin-bottom: 40px;
+   margin-right: 30px;
+ }
+ 
+ .image-selenium {
+   width: 1200px;  /* sets the width of the image to 64 pixels */
+   height: 800px;
+   position: center;
+   padding-top: 0px; 
+   margin-bottom: 20px;
+   margin-right: 20px;
+ }
+ 
+ .image-desc-doom {
+   border-radius: 13%;
+   width: 488px;  /* sets the width of the image to 64 pixels */
+   float: left;  /* floats the image to the right */
+   padding-top: 12px; 
+   padding-right: 30px;
+ }
+ 
+ h3#mdi-content {
+   float: center;
+ }
+ 
+ a#download-button1,
+ a#download-button2,
+ a#download-button3,
+ a#download-button4,
+ a#download-button5,
+ a#download-button6,
+ a#download-button7,
+ a#download-button8,
+ a#download-button9 {
+   margin: auto 6px;  /* adds a 16px margin on both sides of the button */
+ }
+ 
+ .parallax-container {
+   min-height: 331px;
+   line-height: 0px;
+   height: 100%;
+   width: 100%;
+   color: rgba(255,255,255,.9);
+   padding-top: 30px; 
+   padding-bottom: 30px;
+   background-size: cover;
+   background-position: center;
+ }
+ 
+ .parallax-container .section {
+   width: 100%;
+   padding-top: 1px; 
+   padding-bottom: 10px;
+   height: 200%;
+   margin: auto;
+   background-size: cover;
+   background-position: center;
+   }
+ 
+ .icon-block {
+   padding: 15px;
+ }
+ .icon-block .material-icons {
+   font-size: inherit;
+ }
+ 
+ footer.page-footer {
+   margin: auto;
+ }
+ 
+ .album-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   margin: 1rem 0;
+   overflow: hidden;
+   align-items: center;
+   font-weight: bold;
+ }
+ 
+ .album-image {
+   width: 27%;
+   text-align: center;
+   margin-bottom: 1rem;
+   margin-left: auto;
+   margin-right: auto;
+   border: 13px solid rgb(0, 0, 0);
+   overflow: hidden;
+ }
+ 
+ .album-image img {
+   width: 100%;
+   height: auto;
+ }
+ 
+ .album-image h3 {
+   margin: 0.5rem 0;
+   font-size: 2rem;
+   font-weight: bold;
+   color: #333;
+ }
+ 
+ .album-image p {
+   font-size: 0.9rem;
+   color: #666;
+ }
+ 
+ .video-cypress.playing {
+   background-color: rgba(0, 0, 0, 0);
+   background-image: url(https://www.svgrepo.com/show/13672/play-button.svg);
+   background-repeat: no-repeat;
+   background-position: center;
+   display: none;
+ }
+ 
+ .video-selenium {
+   width: auto;
+   height: auto;
+   background-color: rgba(0, 0, 0, 0);
+ } 
+ 
+ .video-selenium video {
+   background-image: url(https://www.svgrepo.com/show/13672/play-button.svg);
+   background-repeat: no-repeat;
+   background-position: center;
+   display: none;
+ }
+ 
+ .video-selenium.playing video {
+   display: block;
+ }
+ 
+ .code-container {
+   background-color: black !important;
+   padding: 10px !important;
+   border-radius: 14px !important;
+   padding-left: 15px !important;
+   padding-right: 15px !important;
+ }
+ 
+ ol#list,
+ ol#list-second-code {
+   font-size: 18px;
+ }
+ 
+ .spaced {
+   word-spacing: 5px;
+ }
+ 
+ p#manual-tests {
+   text-align: center;
+   text-decoration-line:underline;
+ }
+ 
+ .title-cyp,
+ .title-cyp2 {
+   width: 24%;
+   text-align: center;
+   margin-bottom: 1rem;
+   margin-left: auto;
+   margin-right: auto;
+   border: 13px solid rgb(0, 0, 0);
+   overflow: hidden;
+ }
