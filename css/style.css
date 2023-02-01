@@ -57,21 +57,20 @@ p#text-in6
 }
 
 .image-cyp {
-  width: 200px;  /* sets the width of the image to 64 pixels */
+  width: 170px;  /* sets the width of the image to 64 pixels */
   float:right;
-  position: right;
-  padding-top: 0px; 
-  padding-bottom: 10px;
-  margin-left: 0px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
-.image-cac {
-  width: 300px;  /* sets the width of the image to 64 pixels */
-  float:right;
-  position: right;
+.image-amz {
+  width: 232px;  /* sets the width of the image to 64 pixels */
+  float:left;
+  position: left;
   padding-top: 0px; 
   padding-bottom: 0px;
-  margin-right: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .image-sel {
@@ -183,21 +182,13 @@ footer.page-footer {
   color: #666;
 }
 
-.video-cypress {
-  width: auto;
-  height: auto;
-  background-color: rgba(0, 0, 0, 0);
-} 
+.video-cypress.playing {
 
-.video-cypress video {
+  background-color: rgba(0, 0, 0, 0);
   background-image: url(https://www.svgrepo.com/show/13672/play-button.svg);
   background-repeat: no-repeat;
   background-position: center;
   display: none;
-}
-
-.video-cypress.playing video {
-  display: block;
 }
 
 .video-selenium {
@@ -227,7 +218,7 @@ footer.page-footer {
 
 ol#list,
 ol#list-second-code {
-  font-size: 18px;
+  font-size: 28px;
 }
 
 .spaced {
@@ -237,4 +228,15 @@ ol#list-second-code {
 p#manual-tests {
   text-align: center;
   text-decoration-line:underline;
+}
+
+.title-cyp,
+.title-cyp2 {
+  width: 27%;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: 13px solid rgb(0, 0, 0);
+  overflow: hidden;
 }

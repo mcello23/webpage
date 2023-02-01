@@ -42,85 +42,87 @@
         <div id="juicebox-container" class="juicebox-container"></div>
       </div>
     </div>
-  <div class="container"><br>
-    <h3 class="mdi-content-send dark center-align"><b>Cypress</b></h3>
-      <h4 class="mdi-content-send dark center-align"><b>Testing a Website</b></h4>
-      <img class="image-cyp right-align" src="./cypress.jpeg" alt="cypress-logo">
-        <div class="section"><br>
+  <div class="container center-align"><br>
+    <br><h3 class="title-frame dark center-align" id="title-cyp"><b>Amazon Automation </b></h3>
+      <h4 class="mdi-content-send dark center-align" id="title-cyp2"><b>Using Cypress</b></h4>
+        <div class="section"><img class="image-cyp right-align" src="./cypress.jpeg" alt="cypress-logo"><br>
           <div class="row">
             <div class="center-align">
-              <p class="text-accent-2 waves-green left-align">During one of my courses, I created a test suite to test a local page of login. In it, I assert values of of the webpage
-              bieng via CSS selector like checkboxes, blank spaces, login, the privacy policy, simulate drag-and-drop of files, make an HTTP request and even use a custom command.
-              All the tests were written in <b>JavaScript</b>.</p>
-              <br><br>
-          </div>
-          <div class="row">
-          <div class="left-align">
-            <ol class="text-darken-3 waves-green left-align" id="list"><br>
-              <h5 class="dark right-align" style="display: grid; grid-template-columns: 5fr 1fr;"><b>Website:</b></h5>
-              <img class="image-cac right-align" src="./images/cac_webiste.jpg" alt="cac-tat-webiste">
-              <li>Checks The Application Title</li>
-              <li>Fills In The Required Fields And Submits The Form</li>
-              <li>Displays Error Message When Submitting The Form With An Email With Invalid Formatting</li>
-              <li>The Phone Field Remains Empty When Filled With A Non-Numeric Value</li>
-              <li>Displays Error Message When The Phone Number Becomes Mandatory But Is Not Filled In Before Sending The Form</li>
-              <li>Fills In And Clears The First Name, Last Name, Email And Phone Fields</li>
-              <li>Displays Error Message When Submitting The Form Without Filling In The Required Fields</li>
-              <li>Successfully Submits The Form Using A Custom Command</li>
-              <li>Selects A Product (Youtube) By Text</li>
-              <li>Selects A Product (Mentorship) By Its Value</li>
-              <li>Selects A Product (Blog) By Its Index</li>
-              <li>Selects The Type Of Service "Feedback".</li>
-              <li>Ticks Each Type Of Service</li>
-              <li>Check Both Checkboxes, Then Uncheck The Last One</li>
-              <li>Selects A File From The Fixtures Folder</li>
-              <li>Select A File Simulating A Drag-And-Drop</li>
-              <li>Select A File Using A Fixture That Has Been Given An Alias</li>
-              <li>Verify That The Privacy Policy Opens In Another Tab Without A Click</li>
-              <li>Accesses The Privacy Policy Page By Removing The Target And Then Clicking On The Link</li>
-              <li>Tests The Privacy Policy Page Independently</li>
-              <li>Displays And Hides Success And Error Messages Using .Invoke</li>
-              <li>Fills The Text Area Using The Invoke Command</li>
-              <li>Makes An Http Request</li>
-              <li>By Finding A Cat</li>
-            </ol>
-            <br>
-         </div>
-        </div>
-      </div>
-    </div>
-    <h4 class="mdi-content-send dark center-align"><b>Code Example:</b></h4><br>
+              <img class="image-amz center-align" src="https://technicallyautonomous.com/wp-content/uploads/2021/05/iphone-x-homepage-view.png" alt="amazon-website">
+              <p class="text-accent-2 waves-green left-align">I have recently created a compact and efficient test suite using the Cypress testing framework. The suite runs through the Amazon website and verifies the contents of the shopping cart in various ways. The test suite was written using <b>JavaScript</b>, a high-level programming language that is widely used for web development.
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+              In order to run the test suite, you will need to have Cypress installed, as well as Node.js and NPM. A web browser will also be required. If you would like more information on how to set up and run the test suite, please follow the link provided, where I have detailed all the necessary steps. 
+              </p>
+              <p class="text-accent-2 waves-green left-align"><b>
+              The test suite contains three distinct test cases:
+              </b></p>
+              <p class="text-accent-2 waves-green left-align">
+              1. Verify Amazon's Title Webpage.
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+              2. Search For a Nespresso Coffee Machine And Assert It In The Cart.
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+              3. Search For A Specific Nespresso Machine And Assert It In The Cart In A Different Way.
+              </p><br><br>
+              <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite</b></h4>
+              <h5 class="mdi-content-send dark center-align"><b>Runs and asserts in 51 seconds:</b></h5><br>
+            </div>
+
+          <video id="video-amz" class="video container center-align" controls preload="metadata">
+          <source src="./videos/testing_amazon.cy.js.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+          </video><br><br><br><br>
+          <div class="row center">
+            <a id="download-button6" class="btn-large waves-effect waves-light teal lighten-1 left-align" onclick="downloadFile()">Download the Test Suite</a>
+            <a href="https://github.com/mcello23/cypress-amazon" id="download-button7" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
+          </div><br><br>
+    <h4 class="mdi-content-send dark center-align"><b>Code Explained:</b></h4><br>
     <div class="code-container" data-bgcolor="black">
       <pre>
         <code class="language-javascript">
-          it('displays error message when the phone number becomes mandatory but is not filled in before sending the form', function() {
-            cy.clock()
-            cy.get('#firstName').type('John')
-            cy.get('#lastName').type('Snow')
-            cy.get('#email').type('johnsnow@gmail.com')
-            cy.get('#phone-checkbox').last().check()
-            cy.contains('button', 'Enviar').click()
-            cy.get('.error').should('be.visible')
-            <!--Changes time of assertion-->
-            cy.tick(THREE_SECONDS_IN_MS)
-            Assertion:
-            cy.get('.error').should('not.be.visible')
+          describe('Amazon', function() {
+            beforeEach(function() {
+             //Visits the Amazon Spain webpage:
+             cy.visit('https://www.amazon.es/')
+             //Clicks on the continue without accepting cookies for better visualization of the exercise:
+             cy.get('#sp-cc-rejectall-container').click()
+           })
+           it('Verifies the title of the Webpage', function() {
+             cy.title().should('be.equal', 'Amazon.es: compra online de electrónica, libros, deporte, hogar, moda y mucho más.') //Assertion of the Amazon webpage by its title, not the h1, the <head></head>
+         })
+           it('Searches for a Nespresso product and adds it to the cart', function() {
+
+             cy.get('#twotabsearchtextbox').type('Cafetera Nespresso') //Here, it finds the search bar and clicks on it and writes 'Cafetera Nespresso'
+             cy.get('#nav-search-submit-button').click() //It looks for the search icon and clicks on it
+             cy.get('[data-asin="B00G5YOVZA"] > .sg-col-inner > .s-widget-container > .s-card-container > .a-spacing-base > .s-product-image-container > .rush-component > .a-link-normal > .a-section > .s-image').scrollIntoView().click() //Here I'm telling Cypress to look for a specific coffee machine by its ID, and it scrolls down until it finds and then clicks on it
+             cy.get('#add-to-cart-button-ubb').click() //It looks for the 'Add to cart' button and clicks on it
+             cy.get('#sw-gtc > .a-button-inner > .a-button-text').click() //It looks for the 'View this in cart' button and clicks on it
+             //Assertion
+             cy.get('h1').contains('Cesta') //And finally the assertion, when we enter the 'Cart' page, there's an element called 'Cesta' in the page, which it looks for it by it's ID and it verifies that it contains the text 'Cesta' and it assures that it passes.
+           })
+           //Here, I want to do the same test case in a different way
+           it('Searches for a specific Nespresso SNE900 product, adds it to the cart and validates it', function() {
+
+             cy.get('#twotabsearchtextbox').type('NESPRESSO SNE900') //Here, it finds the search bar and clicks on it and writes 'NESPRESSO SNE900'
+             cy.get('#nav-search-submit-button').click() //It looks for the search icon and clicks on it
+             cy.get('[data-asin="B08LDSF6XP"] > .sg-col-inner > .s-widget-container > .s-card-container > :nth-child(1) > .puis-padding-left-small > .s-title-instructions-style > .a-size-mini > .a-link-normal > .a-size-base-plus').click() //Since there's 23 results, I tell cypress to click on the model of the coffee machine by the ID that I've passed on
+             cy.get('#add-to-cart-button').click() //It looks for the 'Add to cart' button and clicks on it
+             cy.get('#attachSiNoCoverage').click() //It looks for the 'No, thank you' in the Extra Warranty slider and clicks on it
+             cy.get('#sw-gtc > .a-button-inner > .a-button-text').click() //It looks for the 'View this in cart' button and clicks on it
+             //Assertion
+             cy.get('.a-color-base > .a-truncate > .a-truncate-cut').contains('NESPRESSO SNE900') //Here the assertion is slightly different than in the last test case, it looks 'NESPRESSO SNE900' is in the child element inside the cart. It finds it and it passes the test.
+           })
+
+           })
           </code>
         </pre>
       </div>
-    </div><br>
-    <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite running</b></h4>
-    <h5 class="mdi-content-send dark center-align"><b>It tests and passes 24 test cases in 11 seconds:</b></h5><br>
-      <div class="video container center-align">
-        <video id="video-selenium" class="video container center-align" controls preload="metadata">
-            <source src="./videos/1_test_suite.cy.js.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div><br><br><br><br>
-  <div class="row center">
-      <a id="download-button6" class="btn-large waves-effect waves-light teal lighten-1 left-align" onclick="downloadFile()">Download the Test Suite</a>
-      <a href="https://github.com/mcello23/cypress-basico-v2" id="download-button7" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
-    </div><br><br><br>
+        </div>
+       </div>
+      </div>
+
       <div class="parallax-container valign-wrapper">
         <div class="section no-pad-bot">
           <div class="container">
@@ -176,15 +178,15 @@
           from selenium.webdriver.support.wait import WebDriverWait
           from selenium.webdriver.common.keys import Keys
           from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-          
+
           class Test3CaseSensitive():
             def setup_method(self, method):
               self.driver = webdriver.Chrome()
               self.vars = {}
-            
+
             def teardown_method(self, method):
               self.driver.quit()
-            
+
             def test_3CaseSensitive(self):
               # Test name: 3-CaseSensitive
               # Step # | name | target | value
@@ -280,11 +282,11 @@
   </script>
   <script>
     function downloadFile() {
-      window.open("https://github.com/mcello23/cypress-basico-v2/archive/heads/main.zip");
+      window.open("https://github.com/mcello23/cypress-amazon/archive/refs/heads/master.zip");
     }
   </script>
   <script>
-    var videoContainers = document.querySelectorAll(".video-cypress", ".video-selenium");
+    var videoContainers = document.querySelectorAll(".video-amz", ".video-selenium");
     for (var i = 0; i < videoContainers.length; i++) {
       var video = videoContainers[i].querySelector("video");
       video.addEventListener("play", function() {
