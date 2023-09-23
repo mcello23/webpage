@@ -7,6 +7,14 @@
 	indexPageName="./index.html"
 
 >
+   <image imageURL="images/Selenium WebDriver e Java.jpg"
+	thumbURL="thumbs/Selenium WebDriver e Java.jpg"
+	linkURL="images/Selenium WebDriver e Java.jpg"
+	linkTarget="_blank"
+	sourcePath="_./Certificados/Selenium WebDriver e Java.jpg">
+	<title><![CDATA[]]></title>
+	<caption><![CDATA[<span style="font-family: Times; font-size: 20px; color: #222222;">Selenium WebDriver and Java</span>]]></caption>
+   </image>  
    <image imageURL="images/agile.jpg"
 	thumbURL="thumbs/Agile.jpg"
 	linkURL="images/agile.jpg"
