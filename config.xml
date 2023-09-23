@@ -7,22 +7,6 @@
 	indexPageName="./index.html"
 
 >
-  <image imageURL="images/UC-30dbd631-5bcf-466b-93d6-3ef05d78483a.jpg"
-	thumbURL="thumbs/UC-30dbd631-5bcf-466b-93d6-3ef05d78483a.jpg"
-	linkURL="images/UC-30dbd631-5bcf-466b-93d6-3ef05d78483a.jpg"
-	linkTarget="_blank"
-	sourcePath="C:\Users\marce\OneDrive\Escritorio\Cursos\UC-30dbd631-5bcf-466b-93d6-3ef05d78483a.jpg">
-    <title><![CDATA[UC-30dbd631-5bcf-466b-93d6-3ef05d78483a]]></title>
-    <caption><![CDATA[]]></caption>
-  </image>
-  <image imageURL="images/UC-b1bf6ead-40d6-4942-9166-59de03c1f975.jpg"
-	thumbURL="thumbs/UC-b1bf6ead-40d6-4942-9166-59de03c1f975.jpg"
-	linkURL="images/UC-b1bf6ead-40d6-4942-9166-59de03c1f975.jpg"
-	linkTarget="_blank"
-	sourcePath="C:\Users\marce\OneDrive\Escritorio\Cursos\UC-b1bf6ead-40d6-4942-9166-59de03c1f975.jpg">
-    <title><![CDATA[UC-b1bf6ead-40d6-4942-9166-59de03c1f975]]></title>
-    <caption><![CDATA[]]></caption>
-   </image>
    <image imageURL="images/agile.jpg"
 	thumbURL="thumbs/Agile.jpg"
 	linkURL="images/agile.jpg"
