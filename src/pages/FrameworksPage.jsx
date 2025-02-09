@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marcelo's Website</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+  <link href="./css/prism.css" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="https://mcello23.github.io/webpage/" class="material-icons house-logo"><i class="material-icons">home</i></a></li>
+        <li><a href="https://github.com/mcello23" aria-label="github-link"><i class="material-icons fab fa-github"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link"><i class="material-icons fab fa-linkedin"></i></a></li>
+        <li><a href="mailto:marceloadsc@gmail.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F" aria-label="email-link"><i class="material-icons">mail_outline</i></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <h2 class="header center teal-text text-lighten-5">Portfolio</h2>
+        <div class="row center">
+          <a href="frameworks.html" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1 pad">Frameworks</a>
+          <a href="side_proj.html" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
+          <a href="#modal1" id="download-button3" class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger">Certificates</a>
+        </div>
+        <h3 class="header center teal-text text-lighten-5">Marcelo Costa</h3>
+      </div>
+    </div>
+    <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 1"></div>
+  </div>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div id="juicebox-container" class="juicebox-container"></div>
+      </div>
+    </div>
+  <div class="container center-align"><br>
+    <br><h3 class="title-frame dark center-align" id="title-cyp"><b>Amazon Automation</b></h3>
+      <h4 class="mdi-content-send dark center-align" id="title-cyp2"><b>Using Cypress</b></h4>
+        <div class="section"><img class="image-cyp right-align" src="./images/cypress-logo.jpeg" alt="cypress-logo"><br>
+          <div class="row">
+            <div class="center-align">
+              <img class="image-amz center-align" src="https://technicallyautonomous.com/wp-content/uploads/2021/05/iphone-x-homepage-view.png" alt="amazon-website">
+              <p class="text-accent-2 waves-green left-align">I have recently created a compact and efficient test suite using the Cypress testing framework. The suite runs through the Amazon website and verifies the contents of the shopping cart in various ways. The test suite was written using <b>JavaScript</b>, a high-level programming language that is widely used for web development.
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+              In order to run the test suite, you will need to have Cypress installed, as well as Node.js and NPM. A web browser will also be required. If you would like more information on how to set up and run the test suite, please follow the link provided, where I have detailed all the necessary steps. 
+              </p><img class="image-js center-align" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="javascript-logo">
+              <p class="text-accent-2 waves-green left-align"><b>
+              The test suite contains three distinct test cases:
+              </b></p>
+              <p class="text-accent-2 waves-green left-align">
+              1. Verify Amazon's Title Webpage.
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+              2. Search For a Nespresso Coffee Machine And Assert It In The Cart.
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+              3. Search For A Specific Nespresso Machine And Assert It In The Cart In A Different Way.
+              </p><br><br>
+              <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite</b></h4>
+              <h5 class="mdi-content-send dark center-align"><b>Runs and asserts in 51 seconds:</b></h5><br>
+            </div>
+
+          <video id="video-amz" class="video container center-align" controls preload="metadata">
+          <source src="./videos/testing_amazon.cy.js.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+          </video><br><br><br><br>
+          <div class="row center">
+            <a id="download-button6" class="btn-large waves-effect waves-light teal lighten-1 left-align" onclick="downloadFile()">Download the Test Suite</a>
+            <a href="https://github.com/mcello23/cypress-amazon" id="download-button7" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
+          </div><br><br>
+    <h4 class="mdi-content-send dark center-align"><b>Code Explained:</b></h4><br>
+    <div class="code-container" data-bgcolor="black">
+      <pre>
+        <code class="language-javascript">
+          describe('Amazon', function() {
+            beforeEach(function() {
+             //Visits the Amazon Spain webpage:
+             cy.visit('https://www.amazon.es/')
+             //Clicks on the continue without accepting cookies for better visualization of the exercise:
+             cy.get('#sp-cc-rejectall-container').click()
+           })
+           it('Verifies the title of the Webpage', function() {
+             cy.title().should('be.equal', 'Amazon.es: compra online de electrónica, libros, deporte, hogar, moda y mucho más.') //Assertion of the Amazon webpage by its title, not the h1, the <head></head>
+         })
+           it('Searches for a Nespresso product and adds it to the cart', function() {
+
+             cy.get('#twotabsearchtextbox').type('Cafetera Nespresso') //Here, it finds the search bar and clicks on it and writes 'Cafetera Nespresso'
+             cy.get('#nav-search-submit-button').click() //It looks for the search icon and clicks on it
+             cy.get('[data-asin="B00G5YOVZA"] > .sg-col-inner > .s-widget-container > .s-card-container > .a-spacing-base > .s-product-image-container > .rush-component > .a-link-normal > .a-section > .s-image').scrollIntoView().click() //Here I'm telling Cypress to look for a specific coffee machine by its ID, and it scrolls down until it finds and then clicks on it
+             cy.get('#add-to-cart-button-ubb').click() //It looks for the 'Add to cart' button and clicks on it
+             cy.get('#sw-gtc > .a-button-inner > .a-button-text').click() //It looks for the 'View this in cart' button and clicks on it
+             //Assertion
+             cy.get('h1').contains('Cesta') //And finally the assertion, when we enter the 'Cart' page, there's an element called 'Cesta' in the page, which it looks for it by it's ID and it verifies that it contains the text 'Cesta' and it assures that it passes.
+           })
+           //Here, I want to do the same test case in a different way
+           it('Searches for a specific Nespresso SNE900 product, adds it to the cart and validates it', function() {
+
+             cy.get('#twotabsearchtextbox').type('NESPRESSO SNE900') //Here, it finds the search bar and clicks on it and writes 'NESPRESSO SNE900'
+             cy.get('#nav-search-submit-button').click() //It looks for the search icon and clicks on it
+             cy.get('[data-asin="B08LDSF6XP"] > .sg-col-inner > .s-widget-container > .s-card-container > :nth-child(1) > .puis-padding-left-small > .s-title-instructions-style > .a-size-mini > .a-link-normal > .a-size-base-plus').click() //Since there's 23 results, I tell cypress to click on the model of the coffee machine by the ID that I've passed on
+             cy.get('#add-to-cart-button').click() //It looks for the 'Add to cart' button and clicks on it
+             cy.get('#attachSiNoCoverage').click() //It looks for the 'No, thank you' in the Extra Warranty slider and clicks on it
+             cy.get('#sw-gtc > .a-button-inner > .a-button-text').click() //It looks for the 'View this in cart' button and clicks on it
+             //Assertion
+             cy.get('.a-color-base > .a-truncate > .a-truncate-cut').contains('NESPRESSO SNE900') //Here the assertion is slightly different than in the last test case, it looks 'NESPRESSO SNE900' is in the child element inside the cart. It finds it and it passes the test.
+           })
+
+           })
+           </code>
+          </pre>
+        </div>
+        </div>
+       </div>
+      </div><br><br><br><br>
+      <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+          <div class="container">
+            <div class="row center">
+              <h2 class="header col s12 dark center-align">Cucumber and Appium</h2>
+            </div>
+          </div>
+        </div>
+        <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
+      </div>
+      <div class="container center-align"><br>
+        <br><h3 class="title-frame dark center-align" id="title-cyp3"><b>Android Automation</b></h3>
+          <h4 class="mdi-content-send dark center-align" id="title-cyp4"><b>Using Cucumber, Appium and Ruby</b></h4>
+            <img class="image-cyp right-align" src="./images/cucumber-logo.png" alt="cucumber-logo"><br>
+              <div class="row">
+                <div class="center-align">
+                  <img class="image-amz center-align" src="./images/simulated_android_app.jpg" alt="amazon-website">
+                  <p class="text-accent-2 waves-green left-align">
+                    This is a test made for Android using <b>Android Studio</b> for a simulated device in which I used a real life app called "Unit Converter", available <a href="https://play.google.com/store/apps/details?id=com.ba.universalconverter&hl=en_IE&gl=US">here</a>.
+                    I've created a total of 14 test cases in which they're really simple to read and test the Main menu of the app, the Home screen and the Gestures.
+                    To develop this test I used <b>Cucumber</b> test engine with <b>Gherkin</b> language, executing through <b>Ruby</b> environment, with <b>Appium</b> driver in a simulated Android device.
+                  </p>
+                  <img class="image-cyp right-align" src="./images/appium-logo.png" alt="cypress-logo">
+                  <p class="text-accent-2 waves-green left-align">
+                    I've installed the app inside an Android simulated device, using "adb install" command in terminal.
+                    Then, I created the feature file of each section I wanted to test, in which I detailed the steps of execution through Ruby language.
+                    I also created tags, hooks, detailed the environment in Ruby, which you can see it in my GitHub link down below.
+                  </p>
+                  <p class="text-accent-2 waves-green left-align"><b>
+                  Here are some of the test cases I've written:
+                  </b></p>
+                  <img class="image-cyp right-align" src="images/ruby-logo.png" alt="ruby-logo">
+                  <p class="text-accent-2 waves-green left-align">
+                    Show all button should be enabled at launch;
+                  </p>
+                  <p class="text-accent-2 waves-green left-align">
+                    When I tap on menu icon, I should see left side menu;
+                  </p>
+                  <p class="text-accent-2 waves-green left-align">
+                    User able to select values from unit pickers;
+                  </p>
+                  <p class="text-accent-2 waves-green left-align">
+                    User able to swipe to open Calculator.
+                  </p><br><br>
+                  <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite</b></h4>
+                  <h5 class="mdi-content-send dark center-align"><b>Runs and asserts 14 screnarios in 4 minutes:</b></h5><br>
+                </div>
+              <video id="video-cucumber" class="video container center-align" controls preload="metadata">
+              <source src="./videos/Appium and Cucumber Testing in Android.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+              </video><br><br><br><br>
+              <div class="row center">
+                <a href="https://github.com/mcello23/android_automation" id="download-button9" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
+              </div><br><br>
+        <h4 class="mdi-content-send dark center-align"><b>Gherkin code:</b></h4><br>
+        <div class="code-container" data-bgcolor="black">
+          <pre>
+            <code class="language-gherkin">
+              @home_screen
+              Feature: Tests for Home Screen Functionality
+              
+                Background:
+                  Given I land on home screen
+              
+                @default
+                Scenario: Default values on home screen is Foot and Centimeter
+                  Then  Left Unit picker value should be "Foot"
+                  And Right unit picker value should be "Centimeter"
+              
+                Scenario: Show all button should be enabled at launch
+                  Then Show All button should be disabled
+                  When I type "1" on application keyboard
+                  Then Show All button should be enabled
+              
+              
+                Scenario Outline: Verify default conversion
+                  When I type "<target>" on application keyboard
+                  Then I should see results as "<result>"
+              
+              Examples:
+                  |target|result   |
+                  |1     |30.48    |
+                  |2     |60.96    |
+                  |3     |91.44    |
+                  |9     |274.32   |
+                  |1011  |30 815.28|
+              
+              
+                Scenario: User able to add current conversion to Favorites list
+                  Then I press on Add to Favorites icon
+                  When I press on menu icon
+                  Then I press on Favorite conversions
+                  And I verify "Length" added to Favorite conversions list
+              
+                Scenario: User able to search by existing Conversion type
+                  Then I press on search icon
+                  Then I type "Temperature" in search field
+                  And I press return button on soft keyboard
+                  Then I see "Temperature" as a current unit converter
+                  Then Left Unit picker value should be "Celsius"
+                  And Right unit picker value should be "Fahrenheit"
+              
+                Scenario Outline: User able to select values from unit pickers
+                  Then I select "<unit_type>" from left unit picker
+                  When I type "<amount>" on application keyboard
+                  Then I should see results as "<result>"
+              
+                  Examples:
+                    | unit_type | amount | result |
+                    | Inch      |1       | 2.54   |
+                    | Link      |1       | 20.1168|
+              
+                  Scenario: User able to convert values
+                    When I press on menu icon
+                    Then I select "Volume" from menu
+                    Then I select "Cup" from right unit picker
+                    When I type "1" on application keyboard
+                    Then I should see results as "15.1416"
+              
+              
+                Scenario: User able to switch values
+                  Then Left Unit picker value should be "Foot"
+                  And Right unit picker value should be "Centimeter"
+                  When I press on switch unit button
+                  Then Left Unit picker value should be "Centimeter"
+                  And Right unit picker value should be "Foot"
+              
+                  Scenario: User able to cleanup conversion history
+                    When I press on menu icon
+                    Then I select "History" from menu
+                    Then I see "History" as a current unit converter
+                    Then I should see text "No history right now"
+                    When I press on menu icon
+                    Then I select "Length" from menu
+                    When I type "1" on application keyboard
+                    When I press on menu icon
+                    Then I select "History" from menu
+                    And I verify that 1st result in history list is "Length"
+                    When I press delete from history at 1st row
+                    Then I should see text "No history right now"
+                </code>
+              </pre>
+            </div>
+          </div>
+          </div><br><br><br>
+          <div class="parallax-container valign-wrapper">
+            <div class="section no-pad-bot">
+              <div class="container">
+                <div class="row center">
+                  <h2 class="header col s12 dark center-align">Selenium</h2>
+                </div>
+              </div>
+            </div>
+            <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
+          </div>
+      <div class="container"><br>
+        <h3 class="mdi-content-send dark center-align"><b>Quix Automation</b></h3>
+        <h4 class="mdi-content-send dark center-align"><b>Using Selenium</b></h4>
+      <div class="section">
+        <img class="image-sel right-align" src="https://ewig5qf9cgn.exactdn.com/wp-content/uploads/2020/08/Selenium-SI_Hex-1.svg" alt="selenium-logo">
+        <div class="row">
+          <img class="image-quix left-align" src="./images/quix_webiste.jpg" alt="quix-webiste">
+          <div class="center-align">
+            <p class="text-accent-2 waves-green left-align">
+              I created a small test suite in which I test some aspects of a website called <a href="https://www.quix.io/">Quix</a>, a data streaming page.
+              While the test suite might seem basic, the objective was to show <b>negative</b> and <b>positive</b> test cases, this means that some had to pass and others to fail in order to show the correct behaviour.
+              The test was made with <b>Selenium IDE</b> and the code is written in <b>Python</b>.
+            </p>
+            <p class="text-accent-2 waves-green left-align"><b>
+              Here are some of the test cases I've written:
+              </b></p>
+              <p class="text-accent-2 waves-green left-align">
+                Login Quix;
+              </p>
+              <img class="image-py right-align" src="https://logos-world.net/wp-content/uploads/2021/10/Python-Symbol.png" alt="python-logo">
+              <p class="text-accent-2 waves-green left-align">
+                Case Sensitive Broken;
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                Alphabetical Selector Broken;
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                Unable to Edit Code.
+              </p><br><br>
+          </div>
+          <div class="row">
+          <div class="left-align">
+              <p id="manual-tests" class="text-accent-2 waves-green left-align"><i>...plus manual tests!</i></p>
+            <br>
+        </div>
+        </div>
+      </div>
+    </div>
+      <br>
+      <h4 class="mdi-content-send dark center-align"><b>Screenshot</b></h4>
+      <h5 class="mdi-content-send dark center-align"><b>Test suite execution</b></h5><br>
+      <img class="image-selenium center-aligned" src="./images/selenium_screenshot.jpg" alt="selenium-test"><br>
+      <div class="row center">
+        <a href="https://github.com/mcello23/Quix_Testing" id="download-button5" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
+      </div><br><br><br>
+    <h4 class="mdi-content-send dark center-align"><b>Code Example:</b></h4><br>
+    <div class="code-container" data-bgcolor="black">
+      <pre>
+        <code class="language-python">
+          import pytest
+          import time
+          import json
+          from selenium import webdriver
+          from selenium.webdriver.common.by import By
+          from selenium.webdriver.common.action_chains import ActionChains
+          from selenium.webdriver.support import expected_conditions
+          from selenium.webdriver.support.wait import WebDriverWait
+          from selenium.webdriver.common.keys import Keys
+          from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
+          class Test3CaseSensitive():
+            def setup_method(self, method):
+              self.driver = webdriver.Chrome()
+              self.vars = {}
+
+            def teardown_method(self, method):
+              self.driver.quit()
+
+            def test_3CaseSensitive(self):
+              # Test name: 3-CaseSensitive
+              # Step # | name | target | value
+              # 1 | open | webiste
+              self.driver.get("https://www.quix.io/")
+              # 2 | setWindowSize | 2044x1392 | 
+              self.driver.set_window_size(2044, 1392)
+              # 3 | click | css=.mat-list-item:nth-child(2) > .mat-list-item-content | 
+              self.driver.find_element(By.CSS_SELECTOR, ".mat-list-item:nth-child(2) > .mat-list-item-content").click()
+              # 4 | click | css=div > .text-truncate:nth-child(1) | 
+              self.driver.find_element(By.CSS_SELECTOR, "div > .text-truncate:nth-child(1)").click()
+              # 5 | click | css=.mat-list-item:nth-child(2) > .mat-list-item-content | 
+              self.driver.find_element(By.CSS_SELECTOR, ".mat-list-item:nth-child(2) > .mat-list-item-content").click()
+              # 6 | click | id=mat-input-0 | 
+              self.driver.find_element(By.ID, "mat-input-0").click()
+              # 7 | type | id=mat-input-0 | transformation
+              self.driver.find_element(By.ID, "mat-input-0").send_keys("transformation")
+              # 8 | click | css=.w-100:nth-child(2) | 
+              self.driver.find_element(By.CSS_SELECTOR, ".w-100:nth-child(2)").click()
+              # 9 | assertText | id=mat-input-0 | RESULTS
+              assert self.driver.find_element(By.ID, "mat-input-0").text == "RESULTS"
+        </code>
+      </pre>
+    </div>
+  </div><br><br><br>
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h2 class="header col s12 dark">Other Frameworks</h2>
+        </div>
+      </div>
+    </div>
+      <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+  <div class="container"><br>
+    <div class="section">
+      <div class="row">
+        <div class="center-align">
+          <h4 class="mdi-content-send dark center-align"><b>Like Xray, Robot Framework... coming soon!</b></h4><br><br>
+        </div>
+    </div>
+  </div>
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 dark">Thanks for the visit! ☺</h5>
+        <p>Feel free to send me an e-mail or connect with me in any social media on top.</p>
+        <p>Marcelo Costa</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
+      });
+  </script>
+  <script src="./js/prism.js"></script>
+  <script>
+      Prism.highlightAll();
+  </script>
+  <!--START JUICEBOX EMBED-->
+  <script src="jbcore/juicebox.js"></script>
+  <script>
+      const juiceboxConfig = {
+        scaleToFit: false,
+        enableKeyboardControls: true,
+        showOpenButton: true,
+      };
+
+      new juicebox({
+        containerId: "juicebox-container",
+        galleryWidth: "1280",
+        galleryHeight: "720",
+        backgroundColor: "#222222",
+        }, juiceboxConfig);
+  </script>
+  <script>
+    function downloadFile() {
+      window.open("https://github.com/mcello23/cypress-amazon/archive/refs/heads/master.zip");
+    }
+  </script>
+  <script>
+    var videoContainers = document.querySelectorAll(".video-amz", ".video-cucumber", ".video-selenium");
+    for (var i = 0; i < videoContainers.length; i++) {
+      var video = videoContainers[i].querySelector("video");
+      video.addEventListener("play", function() {
+        videoContainers[i].classList.add("playing");
+      });
+      video.addEventListener("pause", function() {
+        videoContainers[i].classList.remove("playing");
+      });
+      }
+  </script>
+</body>
+</html>

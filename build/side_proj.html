@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marcelo's Website</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="https://mcello23.github.io/webpage/" class="material-icons house-logo"><i
+              class="material-icons">home</i></a></li>
+        <li><a href="https://github.com/mcello23" aria-label="github-link"><i
+              class="material-icons fab fa-github"></i></a></li>
+        <li><a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link"><i
+              class="material-icons fab fa-linkedin"></i></a></li>
+        <li><a href="mailto:marceloadsc@gmail.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F"
+            aria-label="email-link"><i class="material-icons">mail_outline</i></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h2 class="header center teal-text text-lighten-5">Portfolio</h2>
+        <div class="row center hide-on-med-and-down">
+          <a href="frameworks.html" id="download-button1"
+            class="btn-large waves-effect waves-light teal lighten-1 pad">Frameworks</a>
+          <a href="side_proj.html" id="download-button2"
+            class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
+          <a href="#modal1" id="download-button3"
+            class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger">Certificates</a>
+        </div>
+        <h3 class="header center-align teal-text text-lighten-5">Marcelo Costa</h3>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="./backgrounds/background10_snes_controller.jpg"
+        alt="Unsplashed background img 1"></div>
+  </div>
+  <div class="container"><br>
+    <div class="section">
+      <div class="row">
+        <div class="center-align">
+          <h4 class="mdi-content-send dark center-align"><b>Creating a game called Doom in... Python!</b></h4><br>
+          <!--Profile image-->
+          <img class="left-aligned image-desc-doom"
+            src="https://raw.githubusercontent.com/mcello23/DoomGamePython/master/screenshots/0.gif"
+            alt="personal-picture">
+          <p class="text-accent-2 waves-green left-align">As someone that worked with video games for more than 10 years
+            (started as a media member, then a PR and finally a QA tester), It was always
+            one of my goals to learn programming to create something. Even though I haven't reached an amazing
+            programming level, I followed a tutorial provided by StanislavPetrovV.
+            The objective here was to not only push a videogame program but to train and understand how powerful Python
+            can be. The code autor is StanislavPetrovV, and this is merely
+            a Python practice. Down here I explain how the game functions as it was built.</p>
+          <h4 class="mdi-content-send dark left-align"><b>How it works?</b></h4>
+          <p class="text-accent-2 waves-green left-align">The game runs in PyGame engine in a total of 12 py files. It
+            features only one level with a bunch of enemies. The interesting was using Python logic to
+            design enemy AI and gameplay mechanics. Once my gameplay was working, I've added game assets, such as the
+            character models, textures, and sounds.
+            Python's logic controls the various elements of the game, such as the player character, enemies, and other
+            objects. Finally, I've tested and debugged the game to ensure it is functioning properly and is enjoyable
+            to play.
+          </p><br><br><br><br><br>
+          <div class="row center">
+            <a id="download-button4" class="btn-large waves-effect waves-light teal lighten-1 left-align"
+              onclick="downloadFile()">Download the Doom game</a>
+            <a href="https://github.com/mcello23/DoomGamePython" id="download-button5"
+              class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
+            <a href="https://youtu.be/ECqUrT7IdqQ" id="download-button6"
+              class="btn-large waves-effect waves-light teal lighten-1 pad right-align">Video Tutorial</a><br><br><br><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div id="juicebox-container" class="juicebox-container"></div>
+    </div>
+  </div>
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h1 class="header col s12 dark center-align">Tetris in</h1>
+          <h2 class="header col s12 dark center-align">Python</h2>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="./backgrounds/background7_tetris.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+  <div class="container"><br>
+    <div class="section">
+      <div class="row">
+        <div class="center-align">
+          <h4 class="mdi-content-send dark center-align"><b>Coming soon!</b></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 dark">Thanks for the visit! ☺</h5>
+        <p>Feel free to send me an e-mail or connect with me in any social media on top.</p>
+        <p>Marcelo Costa</p>
+      </div>
+    </div>
+  </div>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="jbcore/juicebox.js"></script>
+  <script src="js/modals.js"></script>
+  <script src="js/juicebox-config.js"></script>
+  <script>
+    function downloadFile() {
+      window.open("https://github.com/mcello23/DoomGamePython/archive/refs/heads/master.zip");
+    }
+  </script>
+</body>
+
+</html>

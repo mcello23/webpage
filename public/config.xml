@@ -4,7 +4,7 @@
 
 	cropToFit="true"
 	galleryTitle="Certificates"
-	indexPageName="./index.html"
+	indexPageName="src/pages/HomePage.jsx"
 
 >
    <image imageURL="images/Selenium WebDriver e Java.jpg"
