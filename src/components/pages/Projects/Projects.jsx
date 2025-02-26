@@ -24,13 +24,13 @@ const projects: Project[] = [
   },
   {
     title: 'Doom Game in Python',
-    description: 'A recreation of Doom in Python using Pygame. This project was created following a tutorial by StanislavPetrovV to practice Python and game development concepts.',
+    description: 'A recreation of Doom in Python using Pygame. This project demonstrates 3D rendering techniques using raycasting and game development concepts.',
     image: 'https://raw.githubusercontent.com/mcello23/DoomGamePython/master/screenshots/0.gif',
-    technologies: ['Python', 'Pygame'],
+    technologies: ['Python', 'Pygame', 'Raycasting', 'Game Development'],
     githubUrl: 'https://github.com/mcello23/DoomGamePython',
     downloadUrl: 'https://github.com/mcello23/DoomGamePython/archive/refs/heads/master.zip',
     videoUrl: 'https://youtu.be/ECqUrT7IdqQ',
-    longDescription: 'As someone that worked with video games for more than 10 years (started as a media member, then a PR and finally a QA tester), It was always one of my goals to learn programming to create something. Even though I haven\'t reached an amazing programming level, I followed a tutorial provided by StanislavPetrovV. The objective here was to not only push a videogame program but to train and understand how powerful Python can be. The code autor is StanislavPetrovV, and this is merely a Python practice. The game runs in PyGame engine in a total of 12 py files. It features only one level with a bunch of enemies. The interesting was using Python logic to design enemy AI and gameplay mechanics. Once my gameplay was working, I\'ve added game assets, such as the character models, textures, and sounds. Python\'s logic controls the various elements of the game, such as the player character, enemies, and other objects. Finally, I\'ve tested and debugged the game to ensure it is functioning properly and is enjoyable to play.'
+    longDescription: 'This project was inspired by the classic game Doom and serves as a practical exercise in Python and game development. It utilizes the Pygame library to implement a raycasting engine, creating a pseudo-3D environment. The game features a single level populated with enemies and demonstrates fundamental concepts such as collision detection, AI, and basic game mechanics.',
   }
 ];
 
@@ -38,29 +38,43 @@ const Projects: React.FC = () => {
   return (
     <div>
       <ParallaxSection 
-        title="Side Projects" 
-        backgroundImage="/backgrounds/background2_coding.jpg"
+        title="Game Projects" 
+        backgroundImage="/backgrounds/background10_snes_controller.jpg"
       >
         <div className="container">
+          <div className="center-align">
+            <h4 className="mdi-content-send dark center-align">
+              <b>Creating a game called Doom in... Python!</b>
+            </h4>
+          </div>
+          
           {projects.map((project, index) => (
             <div key={index} className="section">
               <div className="card">
                 <div className="card-image">
-                  <img src={project.image} alt={project.title} />
-                  <span className="card-title">{project.title}</span>
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="responsive-img center-block"
+                    style={{maxHeight: "400px", margin: "0 auto", display: "block"}}
+                  />
+                  <span className="card-title center-align" style={{width: "100%", background: "rgba(0,0,0,0.5)"}}>
+                    {project.title}
+                  </span>
                 </div>
                 <div className="card-content">
-                  <p>{project.description}</p>
+                  <p className="center-align">{project.description}</p>
+                  <h4 className="mdi-content-send dark left-align"><b>How it works?</b></h4>
                   {project.longDescription && (
                     <p className="text-accent-2 waves-green left-align">{project.longDescription}</p>
                   )}
-                  <div className="chips">
+                  <div className="chips center-align">
                     {project.technologies.map((tech, i) => (
                       <div key={i} className="chip">{tech}</div>
                     ))}
                   </div>
                 </div>
-                <div className="card-action">
+                <div className="card-action center-align">
                   <a 
                     href={project.githubUrl}
                     target="_blank"
@@ -117,7 +131,7 @@ const Projects: React.FC = () => {
           </div>
         </div>
         <div className="parallax">
-          <img src="./backgrounds/background7_tetris.jpg" alt="Tetris background" />
+          <img src="/backgrounds/background7_tetris.jpg" alt="Tetris background" />
         </div>
       </div>
       

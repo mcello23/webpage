@@ -1,13 +1,8 @@
 import React, { useEffect } from 'react';
 import M from 'materialize-css';
 
-interface ParallaxSectionProps {
-  title: string;
-  backgroundImage: string;
-  children?: React.ReactNode;
-}
-
-const ParallaxSection: React.FC<ParallaxSectionProps> = ({ title, backgroundImage, children }) => {
+// Remover interface e usar PropTypes ou comentários para documentar props
+const ParallaxSection = ({ title, backgroundImage, children }) => {
   useEffect(() => {
     const elements = document.querySelectorAll('.parallax');
     M.Parallax.init(elements);

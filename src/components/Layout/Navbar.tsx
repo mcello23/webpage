@@ -1,5 +1,11 @@
 import React from 'react';
-import './Navbar.styles.css';
+import { Link } from 'react-router-dom';
+import './Layout.styles.css';
+import './Navbar.styles.css'; // Import the CSS file
+
+interface LayoutProps {
+  children: React.ReactNode;
+}
 
 const Navbar = () => {
   return (
@@ -7,9 +13,9 @@ const Navbar = () => {
       <div className="nav-wrapper">
         <ul className="right hide-on-med-and-down">
           <li>
-            <a href="/" className="material-icons house-logo">
+            <Link to="/" className="material-icons house-logo">
               <i className="material-icons">home</i>
-            </a>
+            </Link>
           </li>
           <li>
             <a 
@@ -45,4 +51,28 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  return (
+    <div className="app">
+      <Navbar />
+      <main className="main-content">
+        {children}
+      </main>
+      <div className="container">
+          <div className="row">
+            <div className="col l12 s12 center-align">
+              <h5 className="white-text">Thanks for visiting! ☺</h5>
+              <p className="grey-text text-lighten-4">Feel free to send me an e-mail or connect with me in any social media on top.</p>
+            </div>
+          </div>
+        </div>
+        <div className="footer-copyright teal">
+          <div className="container center-align">
+            © 2024 Marcelo Costa
+          </div>
+        </div>
+    </div>
+  );
+};
+
+export default Layout;

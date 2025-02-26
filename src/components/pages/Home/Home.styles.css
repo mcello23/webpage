@@ -51,3 +51,69 @@ p#text-in6
 .spaced {
   word-spacing: 5px;
 }
+
+/* Increase size of material icons */
+.material-icons {
+  font-size: 2rem !important; /* Increase icon size */
+}
+
+/* Make sure the Programming Languages section is centered */
+.header.col.s12.dark {
+  text-align: center;
+  width: 100%;
+}
+
+/* Icon blocks need larger icons */
+.icon-block h2 i.material-icons {
+  font-size: 3rem !important; /* Even larger icons in the programming language sections */
+}
+
+/* Additional spacing for better layout */
+.icon-block {
+  padding: 0 15px;
+  text-align: center;
+}
+
+/* Make sure the footer doesn't duplicate content */
+footer.page-footer {
+  margin-top: 20px;
+}
+
+/* Estilo específico para centralizar títulos de seção */
+.header-title {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para melhor legibilidade */
+}
+
+/* Ajustes adicionais para contêineres parallax */
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+
+/* Garantir que a row center realmente centralize */
+.row.center {
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+/* Ajuste do container dentro do parallax */
+.parallax-container .container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Espaçamento da seção */
+.parallax-container .section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
