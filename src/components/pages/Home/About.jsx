@@ -2,6 +2,10 @@ import React from 'react';
 import './Home.styles.css';
 
 const About = () => {
+  const downloadCV = () => {
+    window.open("https://www.dropbox.com/scl/fi/m8xsfhlkk6zye20vz7fvc/Marcelo-s-Resume-Q3-2023.pdf?rlkey=nfcbts87e9gv4o0nrjq4v57yc&dl=0");
+  };
+
   return (
     <div className="container">
       <br />
@@ -21,7 +25,7 @@ const About = () => {
               Natural Languge (NLP), Speech Recognition (ASR), Flow, Dialog and Text to Speech.
             </p>
             <div className="row center"><br /><br /><br />
-              <button id="download-button" type="button" className="btn-large waves-effect waves-light teal lighten-1" onClick={() => window.open("https://www.dropbox.com/scl/fi/m8xsfhlkk6zye20vz7fvc/Marcelo-s-Resume-Q3-2023.pdf?rlkey=nfcbts87e9gv4o0nrjq4v57yc&dl=0")}>Download my CV</button>
+              <button id="download-button" type="button" className="btn-large waves-effect waves-light teal lighten-1" onClick={downloadCV}>Download my CV</button>
             </div>
           </div>
         </div>

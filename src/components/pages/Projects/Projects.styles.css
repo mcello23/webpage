@@ -1,0 +1,56 @@
+.project-card {
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .project-image {
+    max-height: 400px;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+  }
+  
+  .project-title {
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  
+  .chip {
+    margin: 5px;
+    background-color: #e0e0e0;
+    border-radius: 16px;
+    padding: 5px 12px;
+  }
+  
+  .card-action {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .card-action a {
+    margin: 5px !important;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .project-image {
+      max-height: 250px;
+    }
+    
+    .card-action {
+      flex-direction: column;
+    }
+  }

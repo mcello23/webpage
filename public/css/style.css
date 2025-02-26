@@ -132,6 +132,11 @@
    float: left;  /* floats the image to the right */
    padding-top: 12px; 
    padding-right: 30px;
+   float: left;
+   margin-right: 20px;
+   max-width: 300px;
+   border-radius: 5px;
+   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
  }
  
  h3#mdi-content {
@@ -160,6 +165,10 @@
    padding-bottom: 30px;
    background-size: cover;
    background-position: center;
+   min-height: 380px;
+   line-height: 0;
+   height: auto;
+   color: rgba(255,255,255,.9);
  }
  
  .parallax-container .section {
@@ -170,7 +179,8 @@
    margin: auto;
    background-size: cover;
    background-position: center;
-   }
+   width: 100%;
+ }
  
  .icon-block {
    padding: 15px;
@@ -277,3 +287,62 @@
    border: 13px solid rgb(0, 0, 0);
    overflow: hidden;
  }
+
+.pad {
+  margin: 0 10px;
+}
+
+.left-aligned {
+  text-align: left;
+}
+
+.dark {
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.7);
+}
+
+.house-logo {
+  font-size: 2.1rem !important;
+}
+
+.modal {
+  max-height: 85%;
+  width: 85%;
+  max-width: 1320px;
+}
+
+.juicebox-container {
+  width: 100%;
+  height: 650px;
+}
+
+.center-align {
+  text-align: center;
+}
+
+.left-align {
+  text-align: left;
+}
+
+@media only screen and (max-width: 992px) {
+  .parallax-container .section {
+    position: relative;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+  .image-desc-doom {
+    float: none;
+    margin: 10px auto;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+  }
+}
