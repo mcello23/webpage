@@ -1,0 +1,53 @@
+/* Styles for the Home component */
+#index-banner {
+  min-height: 331px;
+  line-height: 0px;
+  height: 100%;
+  width: 100%;
+  color: rgba(255,255,255,.9);
+  padding-top: 30px; 
+  padding-bottom: 30px;
+  background-size: cover;
+  background-position: center;
+}
+
+#index-banner .section {
+  width: 100%;
+  padding-top: 1px; 
+  padding-bottom: 10px;
+  height: 200%;
+  margin: auto;
+  background-size: cover;
+  background-position: center;
+}
+
+.image-desc {
+  border-radius: 60%;  /* makes the image round */
+  width: 240px;  /* sets the width of the image to 64 pixels */
+  float: right;  /* floats the image to the right */
+  padding-top: 0px; 
+  padding-bottom: 20px;
+}
+
+.image-desc-doom {
+  border-radius: 13%;
+  width: 488px;  /* sets the width of the image to 64 pixels */
+  float: left;  /* floats the image to the right */
+  padding-top: 12px; 
+  padding-right: 30px;
+}
+
+p#text-in,
+p#text-in1,
+p#text-in2,
+p#text-in3,
+p#text-in4,
+p#text-in5,
+p#text-in6
+ {
+  font-size: 1.3rem;
+}
+
+.spaced {
+  word-spacing: 5px;
+}

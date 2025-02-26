@@ -1,0 +1,51 @@
+/* Estilos para o projeto React */
+.pad {
+  margin: 0 10px;
+}
+
+.image-desc-doom {
+  max-width: 50%;
+  margin: 0 20px 20px 0;
+  border-radius: 8px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.chip {
+  margin: 5px;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+
+.card .card-image .card-title {
+  background-color: rgba(0,0,0,0.5);
+  padding: 10px;
+  width: 100%;
+}
+
+/* Estilos básicos para o site */
+nav {
+  background-color: #26a69a;
+}
+
+.house-logo {
+  font-size: 24px !important;
+}
+
+.btn, .btn-large, .btn-small {
+  margin: 5px;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
