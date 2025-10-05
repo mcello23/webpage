@@ -1,258 +1,773 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Marcelo's Website</title>
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marcelo Costa - SDET Portfolio</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav
+      style="
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        height: 80px;
+      "
+    >
+      <div
+        class="nav-wrapper"
+        style="
+          padding: 0 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 100%;
+          position: relative;
+        "
+      >
+        <!-- Left: Brand Logo -->
+        <a
+          href="index.html"
+          class="brand-logo"
+          style="
+            font-size: 1.15rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            line-height: 80px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+          "
+        >
+          <i
+            class="material-icons"
+            style="
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 20px;
+            "
+            >folder_open</i
+          >
+          <span style="display: inline-block">Marcelo Costa - SDET Portfolio</span>
+        </a>
 
-</head>
-<body>
-  <nav>
-    <div class="nav-wrapper">
-      <ul class="right hide-on-med-and-down">
-        <li><a href="https://mcello23.github.io/webpage/" class="material-icons house-logo"><i class="material-icons">home</i></a></li>
-        <li><a href="https://github.com/mcello23" aria-label="github-link"><i class="material-icons fab fa-github"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link"><i class="material-icons fab fa-linkedin"></i></a></li>
-        <li><a href="mailto:marceloadsc@gmail.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F" aria-label="email-link"><i class="material-icons">mail_outline</i></a></li>
-      </ul>
-    </div>
-  </nav>
-  <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h2 class="header center teal-text text-lighten-5">Portfolio</h2>
-        <div class="row center">
-          <a href="frameworks.html" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1 pad">Frameworks</a>
-          <a href="side_proj.html" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
-          <a href="#modal1" id="download-button3" class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger">Certificates</a>
-        </div>
-        <h3 class="header center teal-text white-text">Marcelo Costa</h3>
+        <!-- Center: Main Navigation Buttons -->
+        <ul
+          class="center-nav hide-on-med-and-down"
+          style="
+            display: flex;
+            gap: 72px;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            list-style: none;
+            align-items: center;
+          "
+        >
+          <li>
+            <a
+              href="side_proj.html"
+              class="nav-btn"
+              style="
+                padding: 8px 20px;
+                border-radius: 8px;
+                background: linear-gradient(135deg, #5c6bc0, #3f51b5);
+                border: 0;
+                color: #fff;
+                transition: all 0.25s ease;
+                display: inline-flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 0.85rem;
+                letter-spacing: 0.3px;
+              "
+              ><i
+                class="material-icons"
+                style="font-size: 18px; margin-right: 6px; color: rgba(255, 255, 255, 0.95)"
+                >extension</i
+              >Side Projects</a
+            >
+          </li>
+          <li>
+            <a
+              href="frameworks.html"
+              class="nav-btn"
+              style="
+                padding: 8px 20px;
+                border-radius: 8px;
+                background: linear-gradient(135deg, #b66a50, #9b4b2f);
+                border: 0;
+                color: #fff;
+                transition: all 0.25s ease;
+                display: inline-flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 0.85rem;
+                letter-spacing: 0.3px;
+              "
+              ><i
+                class="material-icons"
+                style="font-size: 18px; margin-right: 6px; color: rgba(255, 255, 255, 0.95)"
+                >code</i
+              >Frameworks</a
+            >
+          </li>
+          <li>
+            <a
+              href="#modal1"
+              class="modal-trigger nav-btn"
+              style="
+                padding: 8px 20px;
+                border-radius: 8px;
+                background: linear-gradient(135deg, #ff9800, #f57c00);
+                border: 0;
+                color: #fff;
+                transition: all 0.25s ease;
+                display: inline-flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 0.85rem;
+                letter-spacing: 0.3px;
+              "
+              ><i
+                class="material-icons"
+                style="font-size: 18px; margin-right: 6px; color: rgba(255, 255, 255, 0.95)"
+                >card_membership</i
+              >Certificates</a
+            >
+          </li>
+        </ul>
 
+        <!-- Right: Social Icons -->
+        <ul
+          class="hide-on-med-and-down"
+          style="
+            display: flex;
+            gap: 12px;
+            margin: 0;
+            list-style: none;
+            align-items: center;
+            margin-left: auto;
+          "
+        >
+          <li>
+            <a
+              href="https://github.com/mcello23"
+              aria-label="github-link"
+              class="social-icon"
+              style="
+                transition: all 0.25s ease;
+                display: flex;
+                align-items: center;
+                padding: 6px;
+                border-radius: 0;
+                background: transparent;
+                color: inherit;
+                text-decoration: none;
+              "
+              ><i class="fab fa-github" style="font-size: 22px; color: inherit"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/marceloc/"
+              aria-label="linkedin-link"
+              class="social-icon"
+              style="
+                transition: all 0.25s ease;
+                display: flex;
+                align-items: center;
+                padding: 6px;
+                border-radius: 0;
+                background: transparent;
+                color: inherit;
+                text-decoration: none;
+              "
+              ><i class="fab fa-linkedin" style="font-size: 22px; color: inherit"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://discord.com/users/mcello.654"
+              aria-label="discord-link"
+              class="social-icon"
+              style="
+                transition: all 0.25s ease;
+                display: flex;
+                align-items: center;
+                padding: 6px;
+                border-radius: 0;
+                background: transparent;
+                color: inherit;
+                text-decoration: none;
+              "
+              ><i class="fab fa-discord" style="font-size: 22px; color: inherit"></i
+            ></a>
+          </li>
+        </ul>
       </div>
-    </div>
-    <div class="parallax"><img src="./backgrounds/background2_coding.jpg" alt="Unsplashed background img 1"></div>
-  </div>
-  <div class="container"><br>
+    </nav>
+    <style>
+      .brand-logo:hover {
+        transform: translateX(-5px);
+        opacity: 0.8;
+      }
 
-    <div class="section">
-      <div class="row">
-        <div class="center-align">
-          <h4 class="mdi-content-send dark center-align"><b>QA Lead</b></h4><br>
-          <!--Profile image-->
-          <img class="right-aligned image-desc" src="./DSC_9554.jpg" alt="personal-picture">
-          <p class="text-accent-2 waves-green left-align">Hi!</p>
-          <p class="text-accent-2 waves-green left-align">I have been working as a QA for the last 6 years in companies like Apple, EA and, more recently, Nespresso IoT in which I'm QA Lead managing a team of 5 manual testers and 3 automation ones.
-          Recently, I've implemented KPIs to track the quality of tests, bugs opened and closed each sprint, refactored manual and automated test cases, execute regression, pairing, stability and smoke tests before every new deployment. Taken care of Market Acceptance Tests (MATs), User Acceptance Testing (UATs) of every new machine that comes out.
-          My experience is focused in testing apps for iOS and Andoird with real and simulated devices using a stack that goes from Appium, Xcode, Cucumber, XCUITest, Espresso, XRay, Ruby, Postman, Swift and JavaScript. Documentation with Confluence and Jira. </p>
-          <p class="text-accent-2 waves-green left-align">Also acted as the Team Lead for my locale (pt-BR) in which I trained and formed 3 people in the team, always providing constant feedback.
-            In my QA role at the S project, I tested the specific AI and fixed pipeline issues of the 23 localised languages that the product supports.
-            In automation I've mainly worked with Swift language, with Xcode (IDE) in a framework designed by my client.</p>
-          <p class="text-accent-2 waves-green left-align">My project also includes Git commands, in which we add new fixes through a CI/CD environment and understanding Machine Learning:
-            Natural Languge (NLP), Speech Recognition (ASR), Flow, Dialog and Text to Speech.
-          </p>
-          <div class="row center"><br><br><br>
-            <button id="download-button" type="button" class="btn-large waves-effect waves-light teal lighten-1" onclick="downloadFile()">Download my CV</button>
-          </div>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <div id="juicebox-container" class="juicebox-container"></div>
-    </div>
-  </div>
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h2 class="header col s12 dark">My Programming Languages</h2>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="./backgrounds/background2_coding.jpg" alt="Unsplashed background img 2"></div>
-  </div>
-  <div class="container">
-    <div class="section">
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m3">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">laptop</i></h2>
-            <h5 class="center">Python</h5>
-          </div>
-        </div>
-        <div class="col s12 m3">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">code</i></h2>
-            <h5 class="center">JavaScript</h5>
-           </div>
-        </div>
-        <div class="col s12 m3">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">data_object</i></h2>
-            <h5 class="center">Swift</h5>
-          </div>
-        </div>
-        <div class="col s12 m3">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">developer_mode</i></h2>
-            <h5 class="center">Ruby</h5>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="section">
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">adb</i></h2>
-            <h5 class="center">Gherkin</h5>
-          </div>
-        </div>
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons outlined">data_array</i></h2>
-            <h5 class="center">Cucumber</h5>
-           </div>
-        </div>
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">terminal</i></h2>
-            <h5 class="center">HTML and CSS</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h2 class="header col s12 dark">Three pillars of a QA</h2>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="./backgrounds/background2_coding.jpg" alt="Unsplashed background img 2"></div>
-  </div>
-  <div class="container">
-    <div class="section">
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">zoom_in</i></h2>
-            <h5 class="center">Attention to detail</h5>
-            <p class="light" id="text-in">As in every project that I work, I have great attention to detail in order to identify even the smallest defects in a product. This includes being able to carefully review and test every aspect of the product to ensure that it meets the required specifications and standards.</p>
-          </div>
-        </div>
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">developer_mode</i></h2>
-            <h5 class="center">Problem-solving skills</h5>
+      .nav-btn:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+      }
 
-            <p class="light" id="text-in1">In order to be a good professional in this area, it's essential to be able to troubleshoot problems and find creative solutions to issues that may arise during the testing process. This requires strong analytical skills and the ability to think critically.</p>
-          </div>
-        </div>
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">call</i></h2>
-            <h5 class="center">Communication skills</h5>
+      .nav-btn[href='frameworks.html']:hover {
+        background: linear-gradient(135deg, #b66a50, #9b4b2f) !important;
+        color: white !important;
+        border-color: #9b4b2f;
+      }
 
-            <p class="light" id="text-in2">The best QA is the one that communicates effectively with different teams and stakeholders, including developers, project managers, and customers. This may involve writing detailed bug reports, giving presentations, or providing feedback and recommendations.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h2 class="header col s12 dark">Test Fundamentals</h2>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="./backgrounds/background2_coding.jpg" alt="Unsplashed background img 2"></div>
-  </div><br><br>
+      .nav-btn[href='side_proj.html']:hover {
+        background: linear-gradient(135deg, #5c6bc0, #3f51b5) !important;
+        color: white !important;
+        border-color: #3f51b5;
+      }
+
+      .nav-btn[href='#modal1']:hover {
+        background: linear-gradient(135deg, #ff9800, #f57c00) !important;
+        color: white !important;
+        border-color: #f57c00;
+      }
+
+      .nav-btn:active {
+        transform: translateY(0px) scale(1.02);
+      }
+
+      /* Social icons hover effects */
+      .social-icon:hover {
+        transform: translateX(-5px);
+        opacity: 0.85;
+      }
+
+      /* subtle hover tints for colorless icons */
+      .social-icon[aria-label='github-link']:hover {
+        background: rgba(51, 51, 51, 0.06) !important;
+        color: #222 !important;
+      }
+
+      .social-icon[aria-label='linkedin-link']:hover {
+        background: rgba(0, 119, 181, 0.06) !important;
+        color: #0a66c2 !important;
+      }
+
+      .social-icon[aria-label='discord-link']:hover {
+        background: rgba(88, 101, 242, 0.06) !important; /* subtle Discord blur */
+        color: #5865f2 !important;
+      }
+      /* Small, reusable card styles used across pages */
+      .gradient-card {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e6eef9 100%);
+        border-radius: 12px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        transition: transform 0.28s ease, box-shadow 0.28s ease;
+        overflow: hidden;
+      }
+
+      .gradient-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
+      }
+
+      .highlight-box {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 12px;
+        margin: 10px 0;
+        border-left: 4px solid #4db6ac;
+        border-radius: 6px;
+        transition: transform 0.18s ease, background 0.18s ease;
+      }
+
+      .highlight-box:hover {
+        transform: translateX(6px);
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      /* Custom parallax backgrounds */
+      .parallax-experience {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .parallax-skills {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .parallax-articles {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      }
+
+      .parallax-fundamentals {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      }
+
+      /* Modern intro card styles */
+      .intro-card {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        margin: 40px 0;
+      }
+
+      .intro-card h3 {
+        color: #2c3e50;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .intro-stats {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin: 20px 0;
+      }
+
+      .stat-item {
+        flex: 1;
+        min-width: 200px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+      }
+
+      .stat-item strong {
+        color: #667eea;
+        font-size: 1.8rem;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .stat-item span {
+        color: #555;
+        font-size: 0.9rem;
+      }
+
+      .skill-tag {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 6px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border-radius: 25px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+        transition: all 0.3s ease;
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.35);
+      }
+
+      .intro-card h3 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+    </style>
+    <div style="margin-top: 80px"></div>
+    
     <div class="container">
       <div class="section">
         <div class="row">
-          <div class="center-align">
-            <!--Profile image-->
-            <h4 class="mdi-content-send dark center-align"><b>Why is the test pyramid a pyramid?</b></h4><br>
-              <p class="text-accent-2 waves-green left-align">The test pyramid is a visual metaphor that represents the recommended balance between different types of tests in an application. It is called a "pyramid" because the base of the pyramid represents the tests that should be the most numerous, while the top of the pyramid represents the tests that should be the least numerous.
-                The idea behind the test pyramid is that you should have a large number of low-level unit tests, a smaller number of integration tests, and an even smaller number of end-to-end (E2E) tests. This is represented by the shape of the pyramid, with unit tests at the bottom (the widest part), integration tests in the middle, and E2E tests at the top (the narrowest part).
-                The rationale behind this recommendation is that unit tests are typically faster and easier to write than integration or E2E tests, and they provide a solid foundation for testing the individual units or components of an application. Integration tests come next and provide a way to test how different units or components work together. Finally, E2E tests are the most expensive and time-consuming to write, but they provide the highest level of confidence that the application is working as expected in a real-world scenario.</p><br><br>
-              <h4 class="mdi-content-send dark center-align"><b>Does the Software Development Life Cycle (SDLC) end?</b></h4><br>
-              <p class="text-accent-2 waves-green left-align">The Software Development Life Cycle (SDLC) does not necessarily end, as software often requires ongoing maintenance and updates even after it has been deployed.
-                However, the formal SDLC process may be considered complete once the software has been deployed and is in use by the intended audience.
-                After the software has been deployed, it may enter a phase of maintenance and support, during which bugs are fixed, updates are made, and new features are added.
-                This maintenance phase may continue indefinitely, as long as the software is being used and supported.
-                In some cases, the software may reach the end of its useful life and be retired, at which point the SDLC process may be considered fully complete.
-                However, in many cases, software is continuously updated and maintained, and the SDLC process may continue in some form even after the initial release of the software.</p><br><br><br>
-              <h4 class="mdi-content-send dark center-align"><b>How to prevent bugs into production</b></h4><br>
-              <p class="text-accent-2 waves-green left-align">Write clean, well-structured code: This can help to reduce the likelihood of bugs occurring in the first place.</p>
-              <p class="text-accent-2 waves-green left-align">Use a version control system: This will allow you to track changes to your code and easily revert to a previous version if a bug is introduced.</p>
-              <p class="text-accent-2 waves-green left-align">Use automated testing: Automated testing can help to catch bugs before they make it into production.</p>
-              <p class="text-accent-2 waves-green left-align">Review code changes: Having other developers review your code changes can help to catch bugs that may have been missed during testing.</p>
-              <p class="text-accent-2 waves-green left-align">Use error logging and monitoring: Tools such as error logs and application performance monitoring can help to identify and fix bugs that may occur in production.</p>
-              <p class="text-accent-2 waves-green left-align">Implement a robust QA process: A thorough quality assurance (QA) process can help to catch bugs before they make it into production.</p>
-              <p class="text-accent-2 waves-green left-align">While it is not possible to completely eliminate the risk of bugs occurring in production, following these best practices can help to minimize the likelihood of bugs occurring and make it easier to identify and fix them when they do occur.</p>
-              <br><br>
+          <div class="col s12">
+            <div class="center-align" style="margin-bottom: 30px;">
+              <img class="circle responsive-img" src="./DSC_9554.jpg" alt="Marcelo Costa" style="max-width: 180px; border: 5px solid #667eea; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);" />
+              <h2 style="margin-top: 20px; font-weight: 700; color: #2c3e50;">Marcelo Costa</h2>
+              <h4 style="color: #667eea; font-weight: 600; line-height: 1.6;">SDET | AI Enthusiast | Cypress Ambassador | Playwright | TypeScript + JavaScript | E2E Test + CI/CD | DevOps</h4>
+              <p style="color: #666; font-size: 1.1rem;">Madrid, Spain 🇪🇸 | Trilingual: English • Portuguese • Spanish</p>
             </div>
+
+            <div class="intro-card">
+              <h3>⚡ Quick Impact Metrics</h3>
+              <div class="intro-stats">
+                <div class="stat-item">
+                  <strong>5,000+</strong>
+                  <span>E2E tests maintained daily</span>
+                </div>
+                <div class="stat-item">
+                  <strong>98%</strong>
+                  <span>Test time reduction (60s → instant)</span>
+                </div>
+                <div class="stat-item">
+                  <strong>67%</strong>
+                  <span>Suite optimization (25min → 8min)</span>
+                </div>
+                <div class="stat-item">
+                  <strong>30%</strong>
+                  <span>Customer issues reduced</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="intro-card">
+              <h3>🎯 What I Do</h3>
+              <div class="row">
+                <div class="col s12 m6">
+                  <ul style="line-height: 2; font-size: 1.05rem;">
+                    <li><strong>E2E Test Automation:</strong> Cypress, Playwright, TypeScript/JavaScript</li>
+                    <li><strong>Performance Tuning:</strong> Webpack optimization, race condition fixes</li>
+                    <li><strong>CI/CD Pipelines:</strong> Azure DevOps, GitHub Actions, ArgoCD</li>
+                    <li><strong>Mobile Testing:</strong> Appium, XCTest, Selenium, WebdriverIO</li>
+                  </ul>
+                </div>
+                <div class="col s12 m6">
+                  <ul style="line-height: 2; font-size: 1.05rem;">
+                    <li><strong>BDD Frameworks:</strong> Cucumber/Gherkin for readable tests</li>
+                    <li><strong>API Testing:</strong> Postman, GraphQL, REST validation</li>
+                    <li><strong>Team Leadership:</strong> Mentoring, sprint presentations, KPIs</li>
+                    <li><strong>Release Management:</strong> Dev → Staging → Production</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="intro-card">
+              <h3>💻 Tech Stack</h3>
+              <div class="center-align">
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Cypress (E2E)</span>
+                <span class="skill-tag">Playwright (E2E)</span>
+                <span class="skill-tag">GitHub Actions (YML CI/CD)</span>
+                <span class="skill-tag">Azure DevOps (YML CI/CD)</span>
+                <span class="skill-tag">API Stubbing/Interception</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Mock Testing</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Cucumber/Gherkin (BDD Syntax)</span>
+                <span class="skill-tag">Nightly Builds (Implementation)</span>
+                <span class="skill-tag">Automated Reporting (Allure/Mochawesome/Mocha-Junit)</span>
+                <span class="skill-tag">Postman/Bruno</span>
+                <span class="skill-tag">Mobile Automation (Appium/Selenium/XCTest/Android Studio/Webdriver IO)</span>
+                <span class="skill-tag">DBs in SQL/Postgres/GraphQL</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="section no-pad-bot">
+    <!-- Recent Experience with Parallax -->
+    <div class="parallax-container valign-wrapper parallax-experience" style="min-height: 300px;">
+      <div class="section no-pad-bot" style="width: 100%;">
+        <div class="container">
+          <div class="row center">
+            <h2 class="header col s12 white-text" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7); font-weight: 700;">Recent Experience</h2>
+            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Last 4 roles — SDET & QA Manager</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="experience" class="section" style="padding: 60px 0;">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 l3">
+            <div class="card gradient-card">
+              <div class="card-content">
+                <span class="card-title"><b>Board International</b></span>
+                <p class="grey-text text-darken-1" style="font-size:0.9rem;"><i>Senior QA Engineer</i><br>May 2025 - Present | Madrid, Spain</p>
+                <div class="highlight-box" style="border-left-color: #1e88e5;">
+                  • Daily reviews of 5K+ E2E tests in Azure DevOps (Cypress + TypeScript)
+                </div>
+                <div class="highlight-box" style="border-left-color: #1e88e5;">
+                  • Reduced test execution from 60s to instant via webpack refactoring
+                </div>
+                <div class="highlight-box" style="border-left-color: #1e88e5;">
+                  • Step Decorators improved debugging from hours to seconds
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m6 l3">
+            <div class="card gradient-card">
+              <div class="card-content">
+                <span class="card-title"><b>Facephi Biometrics</b></span>
+                <p class="grey-text text-darken-1" style="font-size:0.9rem;"><i>Senior QA Engineer</i><br>Feb 2024 - Apr 2025 | Madrid, Spain</p>
+                <div class="highlight-box" style="border-left-color: #43a047;">
+                  • Created greenfield E2E tests (Cypress/Playwright with TypeScript)
+                </div>
+                <div class="highlight-box" style="border-left-color: #43a047;">
+                  • Reduced E2E execution time from 25 min to 8 min (same tests)
+                </div>
+                <div class="highlight-box" style="border-left-color: #43a047;">
+                  • Document ID + selfie testing: 1h manual → 1 min automated
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m6 l3">
+            <div class="card gradient-card">
+              <div class="card-content">
+                <span class="card-title"><b>Nespresso IoT (Nestlé)</b></span>
+                <p class="grey-text text-darken-1" style="font-size:0.9rem;"><i>QA Manager</i><br>Feb 2023 - Feb 2024 | Madrid, Spain</p>
+                <div class="highlight-box" style="border-left-color: #fb8c00;">
+                  • Managed team of 8 (manual + automation) for IoT Vertuo machines
+                </div>
+                <div class="highlight-box" style="border-left-color: #fb8c00;">
+                  • Established bug reporting guidelines, KPIs, and expanded docs
+                </div>
+                <div class="highlight-box" style="border-left-color: #fb8c00;">
+                  • Negative test validation reduced customer issues by 30%
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m6 l3">
+            <div class="card gradient-card">
+              <div class="card-content">
+                <span class="card-title"><b>Apple (Siri)</b></span>
+                <p class="grey-text text-darken-1" style="font-size:0.9rem;"><i>Automation Tester & Team Lead</i><br>Oct 2020 - Feb 2023 | Madrid, Spain</p>
+                <div class="highlight-box" style="border-left-color: #8e24aa;">
+                  • Worked with UST framework (Swift/Xcode) for Siri testing
+                </div>
+                <div class="highlight-box" style="border-left-color: #8e24aa;">
+                  • Trained team of 3, managed tasks and reviewed bugs
+                </div>
+                <div class="highlight-box" style="border-left-color: #8e24aa;">
+                  • Tested NLP, ASR, Flow, Dialog across Apple ecosystem
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="parallax-container valign-wrapper parallax-articles" style="min-height: 250px;">
+      <div class="section no-pad-bot" style="width: 100%;">
+        <div class="container">
+          <div class="row center">
+            <h2 class="header col s12 white-text" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7); font-weight: 700;">Articles & Writing</h2>
+            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Technical publications and best practices</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="articles" class="section">
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card gradient-card">
+              <div class="card-content">
+                <h5>
+                  <b>How to integrate Hasura GraphQL hooks into your E2E tests with Cypress</b>
+                </h5>
+                <p class="grey-text">
+                  A 2025 article that shows how to use Hasura + Cypress commands to keep tests
+                  isolated and deterministic.
+                </p>
+                <a
+                  class="btn-small teal"
+                  href="https://medium.com/@marcelocosta_72783/how-to-integrate-hasura-graphql-hooks-into-your-e2e-tests-with-cypress-284e5bfc6d81"
+                  target="_blank"
+                  >Read on Medium</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m6">
+            <div class="card gradient-card">
+              <div class="card-content">
+                <h5><b>Speeding up Cypress tests with Auth0 login (LinkedIn post)</b></h5>
+                <p class="grey-text">
+                  A LinkedIn post describing tips and shortcuts to speed up authenticated E2E tests.
+                  (LinkedIn requires sign-in to view)
+                </p>
+                <a
+                  class="btn-small teal"
+                  href="https://www.linkedin.com/feed/update/urn:li:activity:7212129450073677825/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7212129450073677825%29"
+                  target="_blank"
+                  >View on LinkedIn</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div id="juicebox-container" class="juicebox-container"></div>
+      </div>
+    </div>
+
+    <div class="parallax-container valign-wrapper parallax-fundamentals" style="min-height: 250px;">
+      <div class="section no-pad-bot" style="width: 100%;">
+        <div class="container">
+          <div class="row center">
+            <h2 class="header col s12 white-text" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7); font-weight: 700;">Request my CV</h2>
+            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Send a quick request and I'll share my CV by email</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Request my CV: contact form -->
+    <section
+      id="request-cv"
+      class="section"
+      style="padding: 48px 0; background: linear-gradient(180deg, #fff, #fbfdff)"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m8 offset-m2">
+            <div class="card gradient-card">
+              <div class="card-content">
+                <form id="cv-form" onsubmit="return sendCVRequest(event)">
+                   <div class="row">
+                    <div class="input-field col s12">
+                      <input id="cv-email" type="text" required />
+                      <label for="cv-email">Your Email</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="cv-name" type="text" required />
+                      <label for="cv-name">Your Name</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="cv-subject" type="text" required />
+                      <label for="cv-subject">Subject</label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <textarea
+                        id="cv-message"
+                        class="materialize-textarea"
+                        rows="4"
+                        required
+                      ></textarea>
+                      <label for="cv-message">Message</label>
+                    </div>
+                  </div>
+
+                  <div class="row" style="align-items: center">
+                    <div class="col s12 m6">
+                      <button type="submit" class="btn-large waves-effect waves-light teal">
+                        Send request
+                      </button>
+                    </div>
+                    <div class="col s12 m6">
+                      <div id="cv-confirm" style="color: #2e7d32; font-weight: 600; display: none">
+                        Mail client opened — if it didn't, email marceloadsc@gmail.com
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section" style="padding: 60px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 dark">Thanks for the visit! ☺</h5>
-          <p>Feel free to send me an e-mail or connect with me in any social media on top.</p>
-          <p>Marcelo Costa</p>
+          <div class="col s12">
+            <h3 class="white-text">Thank you for exploring my testing portfolio</h3>
+            <p class="flow-text white-text">Ready to build robust, scalable testing solutions together</p>
+            <div style="margin-top: 30px;">
+              <a href="https://www.linkedin.com/in/marceloc/" target="_blank" class="btn-large white teal-text waves-effect" style="margin: 10px; border-radius: 25px;">
+                <i class="fab fa-linkedin left"></i>Let's Connect
+              </a>
+            </div>
+            <p class="white-text" style="margin-top: 20px;">© 2025 Marcelo Costa | Senior QA Engineer & Test Automation Specialist</p>
+          </div>
         </div>
       </div>
     </div>
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
-  });
-  </script>
-  <!--START JUICEBOX EMBED-->
-  <script src="jbcore/juicebox.js"></script>
-  <script>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems);
+      });
+    </script>
+    <!--START JUICEBOX EMBED-->
+    <script src="jbcore/juicebox.js"></script>
+    <script>
       const juiceboxConfig = {
         scaleToFit: false,
         enableKeyboardControls: true,
         showOpenButton: true,
       };
 
-      new juicebox({
-        containerId: "juicebox-container",
-        galleryWidth: "1280",
-        galleryHeight: "720",
-        backgroundColor: "#222222",
-        }, juiceboxConfig);
-  </script>
-  <script>
-    function downloadFile() {
-      window.open("https://www.dropbox.com/scl/fi/m8xsfhlkk6zye20vz7fvc/Marcelo-s-Resume-Q3-2023.pdf?rlkey=nfcbts87e9gv4o0nrjq4v57yc&dl=0");
-    }
-  </script>
-</body>
+      new juicebox(
+        {
+          containerId: 'juicebox-container',
+          galleryWidth: '1280',
+          galleryHeight: '720',
+          backgroundColor: '#222222',
+        },
+        juiceboxConfig
+      );
+    </script>
+    <script>
+      function sendCVRequest(e) {
+        e.preventDefault();
+        var name = document.getElementById('cv-name').value.trim();
+        var subject = document.getElementById('cv-subject').value.trim();
+        var message = document.getElementById('cv-message').value.trim();
+
+        if (!name || !subject || !message) {
+          alert('Please fill all fields before sending the request.');
+          return false;
+        }
+
+        var mailto =
+          'mailto:marceloadsc@gmail.com' +
+          '?subject=' +
+          encodeURIComponent(subject) +
+          '&body=' +
+          encodeURIComponent(
+            'Name: ' + name + '\n\n' + message + '\n\n-- Sent from portfolio site'
+          );
+
+        // Try to open the user's mail client
+        window.location.href = mailto;
+
+        // Show the confirmation hint for user feedback
+        var confirmEl = document.getElementById('cv-confirm');
+        if (confirmEl) {
+          confirmEl.style.display = 'block';
+        }
+
+        return false;
+      }
+    </script>
+  </body>
 </html>

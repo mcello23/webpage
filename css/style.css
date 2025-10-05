@@ -284,30 +284,16 @@ p#manual-tests {
 }
 .portfolio-hero .parallax {
   /* Pure CSS gradient as the hero 'image' (no external image file) */
-  background-image: linear-gradient(
-      135deg,
-      #26a69a 0%,
-      #4db6ac 40%,
-      #00796b 70%,
-      #00251a 100%
-    ),
-    radial-gradient(
-      circle at 10% 20%,
-      rgba(255, 255, 255, 0.03) 0px,
-      transparent 2px
-    ),
-    radial-gradient(
-      circle at 80% 80%,
-      rgba(255, 255, 255, 0.03) 0px,
-      transparent 2px
-    );
+  background-image: linear-gradient(135deg, #26a69a 0%, #4db6ac 40%, #00796b 70%, #00251a 100%),
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0px, transparent 2px),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0px, transparent 2px);
   background-size: cover;
   background-position: center;
   min-height: 420px; /* ensure hero has a comfortable height */
 }
 .portfolio-hero::before {
   /* subtle overlay to keep text readable while preserving the pure gradient background */
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -331,7 +317,7 @@ p#manual-tests {
 /* subtle animated pattern to give depth on larger screens */
 @media (min-width: 992px) {
   .portfolio-hero::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background-image: repeating-linear-gradient(
@@ -362,23 +348,14 @@ p#manual-tests {
 .hero-playwright {
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(
-      135deg,
-      #21a0a0 0%,
-      #1e8e8e 40%,
-      #175e5e 70%
-    ),
-    radial-gradient(
-      circle at 20% 30%,
-      rgba(255, 255, 255, 0.03) 0px,
-      transparent 2px
-    );
+  background-image: linear-gradient(135deg, #21a0a0 0%, #1e8e8e 40%, #175e5e 70%),
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0px, transparent 2px);
   background-size: cover;
   background-position: center;
   color: rgba(255, 255, 255, 0.95);
 }
 .hero-playwright::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -402,16 +379,8 @@ p#manual-tests {
       #4facfe 75%,
       #00f2fe 100%
     ),
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(255, 255, 255, 0.05) 0px,
-      transparent 3px
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(255, 255, 255, 0.04) 0px,
-      transparent 2px
-    );
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.05) 0px, transparent 3px),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.04) 0px, transparent 2px);
   background-size: 200% 200%;
   background-position: center;
   animation: gradient-shift 12s ease infinite;
@@ -427,7 +396,7 @@ p#manual-tests {
   }
 }
 .hero-playwright-alt::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -445,3 +414,352 @@ p#manual-tests {
    - Use `hero-playwright-alt` to swap to the purple/indigo variant.
    Example: <div class="parallax-container hero-playwright-alt"> ... </div>
 */
+
+/* ============================================
+   RESPONSIVE DESIGN - Mobile First Approach
+   ============================================ */
+
+/* Mobile devices (portrait phones, less than 576px) */
+@media only screen and (max-width: 575px) {
+  /* Navigation */
+  nav {
+    height: auto;
+    min-height: 56px;
+  }
+
+  nav .brand-logo {
+    font-size: 1.2rem !important;
+    padding-left: 8px !important;
+    max-width: 60%;
+  }
+
+  .nav-btn {
+    font-size: 0.75rem !important;
+    padding: 6px 10px !important;
+    margin: 2px !important;
+  }
+
+  .nav-btn i {
+    font-size: 14px !important;
+    margin-right: 2px !important;
+  }
+
+  .social-icon {
+    padding: 4px !important;
+    margin: 0 2px !important;
+  }
+
+  .social-icon i {
+    font-size: 18px !important;
+  }
+
+  /* Hero section */
+  .portfolio-hero .parallax {
+    min-height: 280px !important;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.6rem !important;
+  }
+
+  h3 {
+    font-size: 1.4rem !important;
+  }
+
+  h4 {
+    font-size: 1.2rem !important;
+    line-height: 1.8 !important;
+  }
+
+  h5 {
+    font-size: 1.1rem !important;
+  }
+
+  .flow-text {
+    font-size: 1rem !important;
+  }
+
+  /* Profile image */
+  img.circle.responsive-img {
+    max-width: 120px !important;
+  }
+
+  /* Skill tags */
+  .skill-tag {
+    font-size: 0.75rem !important;
+    padding: 6px 12px !important;
+    margin: 3px !important;
+  }
+
+  /* Intro cards */
+  .intro-card {
+    padding: 20px !important;
+    margin: 20px 0 !important;
+  }
+
+  .stat-item {
+    min-width: 100% !important;
+    margin-bottom: 10px;
+  }
+
+  .stat-item strong {
+    font-size: 1.4rem !important;
+  }
+
+  /* Grid adjustments */
+  .col.s12 {
+    padding: 0 10px !important;
+  }
+
+  .container {
+    width: 95% !important;
+  }
+
+  /* Section padding */
+  .section {
+    padding: 30px 0 !important;
+  }
+
+  section[style*='padding: 60px'] {
+    padding: 30px 0 !important;
+  }
+
+  /* Experience cards */
+  .gradient-card {
+    margin-bottom: 20px !important;
+    padding: 15px !important;
+  }
+
+  /* Footer */
+  .section[style*='padding: 60px'] h3 {
+    font-size: 1.3rem !important;
+  }
+
+  .btn-large {
+    font-size: 0.9rem !important;
+    padding: 0 16px !important;
+    height: 48px !important;
+    line-height: 48px !important;
+  }
+
+  /* Images */
+  .image-desc,
+  .image-cyp,
+  .image-amz,
+  .image-quix,
+  .image-js,
+  .image-py,
+  .image-sel {
+    width: 100% !important;
+    float: none !important;
+    margin: 10px auto !important;
+    display: block !important;
+  }
+
+  /* Parallax containers */
+  .parallax-container {
+    min-height: 250px !important;
+  }
+
+  /* Lists */
+  ul[style*='font-size'] {
+    font-size: 0.95rem !important;
+  }
+
+  /* Hide overly complex animations on mobile for performance */
+  .portfolio-hero::after {
+    display: none !important;
+  }
+}
+
+/* Small devices (landscape phones, 576px to 767px) */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  nav .brand-logo {
+    font-size: 1.4rem !important;
+  }
+
+  .nav-btn {
+    font-size: 0.85rem !important;
+    padding: 8px 12px !important;
+  }
+
+  h1 {
+    font-size: 2.4rem !important;
+  }
+
+  h2 {
+    font-size: 1.9rem !important;
+  }
+
+  h3 {
+    font-size: 1.6rem !important;
+  }
+
+  h4 {
+    font-size: 1.3rem !important;
+  }
+
+  .skill-tag {
+    font-size: 0.85rem !important;
+    padding: 8px 14px !important;
+  }
+
+  .intro-card {
+    padding: 25px !important;
+  }
+
+  .stat-item {
+    min-width: 45% !important;
+  }
+
+  img.circle.responsive-img {
+    max-width: 140px !important;
+  }
+
+  .container {
+    width: 90% !important;
+  }
+
+  .section {
+    padding: 40px 0 !important;
+  }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  nav .brand-logo {
+    font-size: 1.6rem !important;
+  }
+
+  .nav-btn {
+    font-size: 0.9rem !important;
+    padding: 10px 16px !important;
+  }
+
+  h1 {
+    font-size: 2.8rem !important;
+  }
+
+  h2 {
+    font-size: 2.2rem !important;
+  }
+
+  h3 {
+    font-size: 1.8rem !important;
+  }
+
+  .skill-tag {
+    font-size: 0.9rem !important;
+    padding: 9px 16px !important;
+  }
+
+  .intro-card {
+    padding: 30px !important;
+  }
+
+  .stat-item {
+    min-width: 30% !important;
+  }
+
+  img.circle.responsive-img {
+    max-width: 160px !important;
+  }
+
+  .image-desc,
+  .image-cyp,
+  .image-js,
+  .image-py,
+  .image-sel {
+    width: 45% !important;
+  }
+
+  .image-amz,
+  .image-quix {
+    width: 60% !important;
+  }
+}
+
+/* Large devices (desktops, 992px to 1199px) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    width: 85% !important;
+  }
+
+  .stat-item {
+    min-width: 200px !important;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 80% !important;
+    max-width: 1200px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media only screen and (max-height: 500px) and (orientation: landscape) {
+  .portfolio-hero .parallax {
+    min-height: 200px !important;
+  }
+
+  .parallax-container {
+    min-height: 180px !important;
+  }
+
+  nav {
+    position: relative !important;
+  }
+
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .section {
+    padding: 20px 0 !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  nav {
+    display: none;
+  }
+
+  .parallax-container {
+    background: #fff !important;
+  }
+
+  .section {
+    page-break-inside: avoid;
+  }
+
+  a[href]:after {
+    content: ' (' attr(href) ')';
+  }
+}
+
+/* Accessibility - Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .skill-tag,
+  .gradient-card,
+  .btn-large {
+    border: 2px solid currentColor !important;
+  }
+}

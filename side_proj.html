@@ -3,25 +3,12 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Marcelo's Website</title>
+    <title>Marcelo Costa - SDET Portfolio</title>
 
     <!-- CSS  -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="css/materialize.css"
-      type="text/css"
-      rel="stylesheet"
-      media="screen,projection"
-    />
-    <link
-      href="css/style.css"
-      type="text/css"
-      rel="stylesheet"
-      media="screen,projection"
-    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
       rel="stylesheet"
@@ -29,75 +16,267 @@
     <link href="./css/prism.css" rel="stylesheet" />
   </head>
   <body>
-    <nav>
-      <div class="nav-wrapper">
-        <ul class="right hide-on-med-and-down">
+    <nav
+      style="
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        height: 80px;
+      "
+    >
+      <div
+        class="nav-wrapper"
+        style="
+          padding: 0 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 100%;
+          position: relative;
+        "
+      >
+        <!-- Left: Brand Logo -->
+        <a
+          href="index.html"
+          class="brand-logo"
+          style="
+            font-size: 1.15rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            line-height: 80px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+          "
+        >
+          <i
+            class="material-icons"
+            style="
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 20px;
+            "
+            >folder_open</i
+          >
+          <span style="display: inline-block">Marcelo Costa - SDET Portfolio</span>
+        </a>
+
+        <!-- Center: Main Navigation Buttons -->
+        <ul
+          class="center-nav hide-on-med-and-down"
+          style="
+            display: flex;
+            gap: 72px;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            list-style: none;
+            align-items: center;
+          "
+        >
           <li>
             <a
-              href="https://mcello23.github.io/webpage/"
-              class="material-icons house-logo"
-              ><i class="material-icons">home</i></a
+              href="side_proj.html"
+              class="nav-btn"
+              style="
+                padding: 8px 20px;
+                border-radius: 8px;
+                background: linear-gradient(135deg, #5c6bc0, #3f51b5);
+                border: 0;
+                color: #fff;
+                transition: all 0.25s ease;
+                display: inline-flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 0.85rem;
+                letter-spacing: 0.3px;
+              "
+              ><i
+                class="material-icons"
+                style="font-size: 18px; margin-right: 6px; color: rgba(255, 255, 255, 0.95)"
+                >extension</i
+              >Side Projects</a
             >
           </li>
           <li>
-            <a href="https://github.com/mcello23" aria-label="github-link"
-              ><i class="material-icons fab fa-github"></i
+            <a
+              href="frameworks.html"
+              class="nav-btn"
+              style="
+                padding: 8px 20px;
+                border-radius: 8px;
+                background: linear-gradient(135deg, #b66a50, #9b4b2f);
+                border: 0;
+                color: #fff;
+                transition: all 0.25s ease;
+                display: inline-flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 0.85rem;
+                letter-spacing: 0.3px;
+              "
+              ><i
+                class="material-icons"
+                style="font-size: 18px; margin-right: 6px; color: rgba(255, 255, 255, 0.95)"
+                >code</i
+              >Frameworks</a
+            >
+          </li>
+          <li>
+            <a
+              href="#modal1"
+              class="modal-trigger nav-btn"
+              style="
+                padding: 8px 20px;
+                border-radius: 8px;
+                background: linear-gradient(135deg, #ff9800, #f57c00);
+                border: 0;
+                color: #fff;
+                transition: all 0.25s ease;
+                display: inline-flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 0.85rem;
+                letter-spacing: 0.3px;
+              "
+              ><i
+                class="material-icons"
+                style="font-size: 18px; margin-right: 6px; color: rgba(255, 255, 255, 0.95)"
+                >card_membership</i
+              >Certificates</a
+            >
+          </li>
+        </ul>
+
+        <!-- Right: Social Icons -->
+        <ul
+          class="hide-on-med-and-down"
+          style="
+            display: flex;
+            gap: 12px;
+            margin: 0;
+            list-style: none;
+            align-items: center;
+            margin-left: auto;
+          "
+        >
+          <li>
+            <a
+              href="https://github.com/mcello23"
+              aria-label="github-link"
+              class="social-icon"
+              style="
+                transition: all 0.25s ease;
+                display: flex;
+                align-items: center;
+                padding: 6px;
+                border-radius: 0;
+                background: transparent;
+                color: inherit;
+                text-decoration: none;
+              "
+              ><i class="fab fa-github" style="font-size: 22px; color: inherit"></i
             ></a>
           </li>
           <li>
             <a
               href="https://www.linkedin.com/in/marceloc/"
               aria-label="linkedin-link"
-              ><i class="material-icons fab fa-linkedin"></i
+              class="social-icon"
+              style="
+                transition: all 0.25s ease;
+                display: flex;
+                align-items: center;
+                padding: 6px;
+                border-radius: 0;
+                background: transparent;
+                color: inherit;
+                text-decoration: none;
+              "
+              ><i class="fab fa-linkedin" style="font-size: 22px; color: inherit"></i
             ></a>
           </li>
           <li>
             <a
-              href="mailto:marceloadsc@gmail.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F"
-              aria-label="email-link"
-              ><i class="material-icons">mail_outline</i></a
-            >
+              href="https://discord.com/users/mcello.654"
+              aria-label="discord-link"
+              class="social-icon"
+              style="
+                transition: all 0.25s ease;
+                display: flex;
+                align-items: center;
+                padding: 6px;
+                border-radius: 0;
+                background: transparent;
+                color: inherit;
+                text-decoration: none;
+              "
+              ><i class="fab fa-discord" style="font-size: 22px; color: inherit"></i
+            ></a>
           </li>
         </ul>
       </div>
     </nav>
-    <div id="index-banner" class="parallax-container">
-      <div class="section no-pad-bot">
-        <div class="container">
-          <br /><br />
-          <h2 class="header center teal-text text-lighten-5">Portfolio</h2>
-          <div class="row center hide-on-med-and-down">
-            <a
-              href="frameworks.html"
-              id="download-button1"
-              class="btn-large waves-effect waves-light teal lighten-1 pad"
-              >Frameworks</a
-            >
-            <a
-              href="side_proj.html"
-              id="download-button2"
-              class="btn-large waves-effect waves-light teal lighten-1 pad"
-              >Side Projects</a
-            >
-            <a
-              href="#modal1"
-              id="download-button3"
-              class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger"
-              >Certificates</a
-            >
-          </div>
-          <h3 class="header center-align teal-text text-lighten-5">
-            Marcelo Costa
-          </h3>
-        </div>
-      </div>
-      <div class="parallax">
-        <img
-          src="./backgrounds/background10_snes_controller.jpg"
-          alt="Unsplashed background img 1"
-        />
-      </div>
-    </div>
+    <style>
+      .brand-logo:hover {
+        transform: translateX(-5px);
+        opacity: 0.8;
+      }
+
+      .nav-btn:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+      }
+
+      .nav-btn[href='frameworks.html']:hover {
+        background: linear-gradient(135deg, #b66a50, #9b4b2f) !important;
+        color: white !important;
+        border-color: #9b4b2f;
+      }
+
+      .nav-btn[href='side_proj.html']:hover {
+        background: linear-gradient(135deg, #5c6bc0, #3f51b5) !important;
+        color: white !important;
+        border-color: #3f51b5;
+      }
+
+      .nav-btn[href='#modal1']:hover {
+        background: linear-gradient(135deg, #ff9800, #f57c00) !important;
+        color: white !important;
+        border-color: #f57c00;
+      }
+
+      .nav-btn:active {
+        transform: translateY(0px) scale(1.02);
+      }
+
+      /* Social icons hover effects */
+      .social-icon:hover {
+        transform: translateX(-5px);
+        opacity: 0.85;
+      }
+
+      /* subtle hover tints for colorless icons */
+      .social-icon[aria-label='github-link']:hover {
+        background: rgba(51, 51, 51, 0.06) !important;
+        color: #222 !important;
+      }
+
+      .social-icon[aria-label='linkedin-link']:hover {
+        background: rgba(0, 119, 181, 0.06) !important;
+        color: #0a66c2 !important;
+      }
+
+      .social-icon[aria-label='discord-link']:hover {
+        background: rgba(88, 101, 242, 0.06) !important; /* subtle Discord blur */
+        color: #5865f2 !important;
+      }
+    </style>
+    <div style="margin-top: 80px"></div>
     <div class="container center-align">
       <br />
       <br />
@@ -117,20 +296,16 @@
         <div class="row">
           <div class="center-align">
             <p class="text-accent-2 waves-green left-align">
-              I developed an innovative AI-powered test plan generator that
-              leverages <b>OpenAI's GPT-4</b> to create comprehensive,
-              structured test plans for software projects. This tool bridges the
-              gap between manual test planning and automated testing by
-              intelligently generating detailed test cases based on project
-              requirements.
+              I developed an innovative AI-powered test plan generator that leverages
+              <b>OpenAI's GPT-4</b> to create comprehensive, structured test plans for software
+              projects. This tool bridges the gap between manual test planning and automated testing
+              by intelligently generating detailed test cases based on project requirements.
             </p>
             <p class="text-accent-2 waves-green left-align">
-              The application features both a <b>CLI interface</b> and a
-              <b>web interface</b>, built with <b>Node.js</b> and
-              <b>TypeScript</b>. It generates test plans with detailed test
-              cases, including preconditions, steps, expected results,
-              priorities, and time estimates. The output can be exported in both
-              JSON and Markdown formats.
+              The application features both a <b>CLI interface</b> and a <b>web interface</b>, built
+              with <b>Node.js</b> and <b>TypeScript</b>. It generates test plans with detailed test
+              cases, including preconditions, steps, expected results, priorities, and time
+              estimates. The output can be exported in both JSON and Markdown formats.
             </p>
             <img
               class="image-js center-align"
@@ -222,15 +397,31 @@ export class TestPlanGenerator {
         </div>
       </div>
     </div>
-    <div class="section no-pad-bot">
+    <div
+      class="section"
+      style="padding: 60px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    >
       <div class="container">
         <div class="row center">
-          <h5 class="header col s12 dark">Thanks for the visit! ☺</h5>
-          <p>
-            Feel free to send me an e-mail or connect with me in any social
-            media on top.
-          </p>
-          <p>Marcelo Costa</p>
+          <div class="col s12">
+            <h3 class="white-text">Thank you for exploring my testing portfolio</h3>
+            <p class="flow-text white-text">
+              Ready to build robust, scalable testing solutions together
+            </p>
+            <div style="margin-top: 30px">
+              <a
+                href="https://www.linkedin.com/in/marceloc/"
+                target="_blank"
+                class="btn-large white teal-text waves-effect"
+                style="margin: 10px; border-radius: 25px"
+              >
+                <i class="fab fa-linkedin left"></i>Let's Connect
+              </a>
+            </div>
+            <p class="white-text" style="margin-top: 20px">
+              © 2025 Marcelo Costa | Senior QA Engineer & Test Automation Specialist
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -241,8 +432,8 @@ export class TestPlanGenerator {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./js/prism.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var elems = document.querySelectorAll(".modal");
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
         var instances = M.Modal.init(elems);
       });
     </script>
@@ -257,13 +448,14 @@ export class TestPlanGenerator {
 
       new juicebox(
         {
-          containerId: "juicebox-container",
-          galleryWidth: "1280",
-          galleryHeight: "720",
-          backgroundColor: "#222222",
+          containerId: 'juicebox-container',
+          galleryWidth: '1280',
+          galleryHeight: '720',
+          backgroundColor: '#222222',
         },
         juiceboxConfig
       );
     </script>
+    *** End Patch
   </body>
 </html>

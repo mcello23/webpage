@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Marcelo's Website</title>
+  <title>Marcelo Costa - SDET Portfolio</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -154,24 +154,98 @@
   </style>
 </head>
 <body>
-  <nav style="position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <div class="nav-wrapper" style="padding: 0 20px;">
-      <a href="#" class="brand-logo" style="font-size: 1.3rem; font-weight: 500;">
-        <i class="material-icons left" style="margin-right: 8px;">folder_open</i>
-        Marcelo Costa - Portfolio
+  <nav style="position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.1); height: 80px;">
+    <div class="nav-wrapper" style="padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 100%; position: relative;">
+      <!-- Left: Brand Logo -->
+      <a href="index.html" class="brand-logo" style="font-size: 1.15rem; font-weight: 500; transition: all 0.3s ease; line-height: 80px; display: inline-flex; align-items: center; gap: 8px;">
+        <i class="material-icons" style="display: inline-flex; align-items: center; justify-content: center; font-size: 20px;">folder_open</i>
+        <span style="display: inline-block;">Marcelo Costa - SDET Portfolio</span>
       </a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="frameworks.html" style="padding: 0 15px;">Frameworks</a></li>
-        <li><a href="side_proj.html" style="padding: 0 15px;">Side Projects</a></li>
-        <li><a href="#modal1" class="modal-trigger" style="padding: 0 15px;">Certificates</a></li>
-        <li><a href="https://mcello23.github.io/webpage/" aria-label="home-link"><i class="material-icons">home</i></a></li>
-        <li><a href="https://github.com/mcello23" aria-label="github-link"><i class="material-icons fab fa-github"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link"><i class="material-icons fab fa-linkedin"></i></a></li>
-        <li><a href="mailto:marceloadsc@gmail.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F" aria-label="email-link"><i class="material-icons">mail_outline</i></a></li>
+      
+      <!-- Center: Main Navigation Buttons -->
+      <ul class="center-nav hide-on-med-and-down" style="display: flex; gap: 72px; margin: 0; position: absolute; left: 50%; transform: translateX(-50%); list-style: none; align-items: center;">
+        <li>
+          <a href="side_proj.html" class="nav-btn" style="padding: 8px 20px; border-radius: 8px; background: linear-gradient(135deg,#5c6bc0,#3f51b5); border: 0; color: #fff; transition: all 0.25s ease; display: inline-flex; align-items: center; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.3px;"><i class="material-icons" style="font-size: 18px; margin-right: 6px; color: rgba(255,255,255,0.95);">extension</i>Side Projects</a>
+        </li>
+        <li>
+          <a href="frameworks.html" class="nav-btn" style="padding: 8px 20px; border-radius: 8px; background: linear-gradient(135deg,#b66a50,#9b4b2f); border: 0; color: #fff; transition: all 0.25s ease; display: inline-flex; align-items: center; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.3px;"><i class="material-icons" style="font-size: 18px; margin-right: 6px; color: rgba(255,255,255,0.95);">code</i>Frameworks</a>
+        </li>
+        <li>
+          <a href="#modal1" class="modal-trigger nav-btn" style="padding: 8px 20px; border-radius: 8px; background: linear-gradient(135deg,#ff9800,#f57c00); border: 0; color: #fff; transition: all 0.25s ease; display: inline-flex; align-items: center; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.3px;"><i class="material-icons" style="font-size: 18px; margin-right: 6px; color: rgba(255,255,255,0.95);">card_membership</i>Certificates</a>
+        </li>
+      </ul>
+
+      <!-- Right: Social Icons -->
+      <ul class="hide-on-med-and-down" style="display: flex; gap: 12px; margin: 0; list-style: none; align-items: center; margin-left: auto;">
+        <li>
+          <a href="https://github.com/mcello23" aria-label="github-link" class="social-icon" style="transition: all 0.25s ease; display: flex; align-items: center; padding: 6px; border-radius: 0; background: transparent; color: inherit; text-decoration: none;"><i class="fab fa-github" style="font-size: 22px; color: inherit;"></i></a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link" class="social-icon" style="transition: all 0.25s ease; display: flex; align-items: center; padding: 6px; border-radius: 0; background: transparent; color: inherit; text-decoration: none;"><i class="fab fa-linkedin" style="font-size: 22px; color: inherit;"></i></a>
+        </li>
+        <li>
+          <a href="https://discord.com/users/mcello.654" aria-label="discord-link" class="social-icon" style="transition: all 0.25s ease; display: flex; align-items: center; padding: 6px; border-radius: 0; background: transparent; color: inherit; text-decoration: none;"><i class="fab fa-discord" style="font-size: 22px; color: inherit;"></i></a>
+        </li>
       </ul>
     </div>
   </nav>
-  <div style="margin-top: 64px;"></div>
+  
+  <style>
+    .brand-logo:hover {
+      transform: translateX(-5px);
+      opacity: 0.8;
+    }
+    
+    .nav-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
+    }
+    
+    .nav-btn[href="frameworks.html"]:hover {
+      background: linear-gradient(135deg, #b66a50, #9b4b2f) !important;
+      color: white !important;
+      border-color: #9b4b2f;
+    }
+    
+    .nav-btn[href="side_proj.html"]:hover {
+      background: linear-gradient(135deg, #5c6bc0, #3f51b5) !important;
+      color: white !important;
+      border-color: #3f51b5;
+    }
+    
+    .nav-btn[href="#modal1"]:hover {
+      background: linear-gradient(135deg, #ff9800, #f57c00) !important;
+      color: white !important;
+      border-color: #f57c00;
+    }
+    
+    .nav-btn:active {
+      transform: translateY(0px) scale(1.02);
+    }
+    
+    /* Social icons hover effects */
+    .social-icon:hover {
+      transform: translateX(-5px);
+      opacity: 0.85;
+    }
+
+    /* subtle hover tints for colorless icons */
+    .social-icon[aria-label="github-link"]:hover {
+      background: rgba(51, 51, 51, 0.06) !important;
+      color: #222 !important;
+    }
+
+    .social-icon[aria-label="linkedin-link"]:hover {
+      background: rgba(0, 119, 181, 0.06) !important;
+      color: #0a66c2 !important;
+    }
+
+    .social-icon[aria-label="discord-link"]:hover {
+      background: rgba(88, 101, 242, 0.06) !important; /* subtle Discord blur */
+      color: #5865f2 !important;
+    }
+  </style>
+  <div style="margin-top: 80px;"></div>
 
   <div id="modal1" class="modal">
     <div class="modal-content">
@@ -647,14 +721,14 @@ jobs:
     <div class="container">
       <div class="row center">
         <div class="col s12">
-          <h3 class="white-text">Thanks for exploring my testing portfolio! 🎯</h3>
+          <h3 class="white-text">Thank you for exploring my testing portfolio</h3>
           <p class="flow-text white-text">Ready to build robust, scalable testing solutions together</p>
           <div style="margin-top: 30px;">
-            <a href="mailto:marceloadsc@gmail.com" class="btn-large white teal-text waves-effect" style="margin: 10px; border-radius: 25px;">
-              <i class="material-icons left">email</i>Let's Connect
+            <a href="https://www.linkedin.com/in/marceloc/" target="_blank" class="btn-large white teal-text waves-effect" style="margin: 10px; border-radius: 25px;">
+              <i class="fab fa-linkedin left"></i>Let's Connect
             </a>
           </div>
-          <p class="white-text" style="margin-top: 20px;">Marcelo Costa | QA Engineer & Test Automation Specialist</p>
+          <p class="white-text" style="margin-top: 20px;">© 2025 Marcelo Costa | Senior QA Engineer & Test Automation Specialist</p>
         </div>
       </div>
     </div>
