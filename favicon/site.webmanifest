@@ -1,0 +1,25 @@
+{
+  "name": "Marcelo Costa SDET Portfolio",
+  "short_name": "SDET Portfolio",
+  "icons": [
+    {
+      "src": "/favicon/favicon-16x16.svg",
+      "sizes": "16x16",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon/favicon-32x32.svg",
+      "sizes": "32x32",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#3F51B5",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

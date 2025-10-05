@@ -16,12 +16,7 @@
     "no-unused-vars": ["warn"],
     "no-undef": "error"
   },
-  "ignorePatterns": [
-    "**/js/materialize*.js",
-    "**/css/materialize*.css",
-    "**/jbcore/**",
-    "*.html"
-  ],
+  "ignorePatterns": ["**/js/materialize*.js", "**/css/materialize*.css", "**/jbcore/**", "*.html"],
   "overrides": [
     {
       "files": ["*.html"],

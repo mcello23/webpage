@@ -3,6 +3,11 @@
    Desktop-first responsive design
    ======================================== */
 
+/* Ensure navbar.css takes highest priority */
+html body nav.main-nav {
+  z-index: 1000 !important;
+}
+
 /* BASE STYLES - Desktop Default (≥992px) */
 .main-nav {
   position: fixed;
@@ -180,7 +185,7 @@
 }
 
 /* Tablet - Small (≤767px) */
-@media (max-width: 767px) {
+@media (max-width: 767px) and (min-width: 576px) {
   .main-nav {
     height: 68px;
   }
@@ -199,12 +204,13 @@
   }
 
   .center-nav {
-    gap: 32px;
+    gap: 12px;
   }
 
   .nav-btn {
     padding: 7px 14px;
     font-size: 0.85rem;
+    white-space: nowrap;
   }
 
   .nav-btn i {
@@ -218,60 +224,83 @@
 }
 
 /* Mobile - Standard (≤575px) */
-@media (max-width: 575px) {
-  .main-nav {
-    height: auto;
-    padding: 12px 0;
+@media only screen and (max-width: 575px) {
+  body nav.main-nav {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 8px 0 !important;
   }
 
-  .nav-wrapper {
-    flex-direction: column;
-    gap: 12px;
-    padding: 0 12px;
+  body nav.main-nav .nav-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 8px !important;
+    position: relative !important;
+    gap: 12px !important;
   }
 
-  .brand-logo {
-    line-height: normal;
-    font-size: 0.95rem;
+  body nav.main-nav .brand-logo {
+    line-height: normal !important;
+    font-size: 0.95rem !important;
+    padding: 8px !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
-  .brand-logo span {
-    display: inline; /* Show text again on very small screens */
+  body nav.main-nav .brand-logo span {
+    display: inline !important; /* Show text again on very small screens */
+    font-size: 0.9rem !important;
   }
 
-  .brand-logo i {
-    font-size: 20px;
+  body nav.main-nav .brand-logo i {
+    font-size: 18px !important;
   }
 
   /* Center nav becomes vertical stack */
-  .center-nav {
-    position: static;
-    transform: none;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
+  body nav.main-nav ul.center-nav {
+    position: static !important;
+    transform: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin: 8px 0 0 0 !important;
+    padding: 0 !important;
   }
 
-  .center-nav li {
-    width: 100%;
+  body nav.main-nav ul.center-nav li {
+    width: 100% !important;
+    display: block !important;
   }
 
-  .nav-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 10px 16px;
-    font-size: 0.9rem;
+  body nav.main-nav .nav-btn {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding: 10px 16px !important;
+    font-size: 0.85rem !important;
+    text-align: center !important;
+    margin: 4px 0 !important;
+    box-sizing: border-box !important;
   }
 
-  .nav-btn i {
-    font-size: 18px;
-    margin-right: 6px;
+  body nav.main-nav .nav-btn i {
+    font-size: 18px !important;
+    margin-right: 6px !important;
   }
 
   /* Social icons stay horizontal but centered */
-  .social-nav {
-    margin-left: 0;
-    justify-content: center;
+  body nav.main-nav ul.social-nav {
+    margin-left: 0 !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 4px 0 !important;
+    display: flex !important;
   }
 }
 
