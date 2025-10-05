@@ -1,133 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Marcelo's Website</title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marcelo's Website</title>
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-  <nav>
-    <div class="nav-wrapper">
-      <ul class="right hide-on-med-and-down">
-        <li><a href="https://mcello23.github.io/webpage/" class="material-icons house-logo"><i class="material-icons">home</i></a></li>
-        <li><a href="https://github.com/mcello23" aria-label="github-link"><i class="material-icons fab fa-github"></i></a></li>
-        <li><a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link"><i class="material-icons fab fa-linkedin"></i></a></li>
-        <li><a href="mailto:marceloadsc@gmail.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F" aria-label="email-link"><i class="material-icons">mail_outline</i></a></li>
-      </ul>
-    </div>
-  </nav>
-  <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <br><br>
-        <h2 class="header center teal-text text-lighten-5">Portfolio</h2>
-        <div class="row center hide-on-med-and-down">
-          <a href="frameworks.html" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1 pad">Frameworks</a>
-          <a href="side_proj.html" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
-          <a href="#modal1" id="download-button3" class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger">Certificates</a>
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="css/materialize.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="css/style.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="./css/prism.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a
+              href="https://mcello23.github.io/webpage/"
+              class="material-icons house-logo"
+              ><i class="material-icons">home</i></a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/mcello23" aria-label="github-link"
+              ><i class="material-icons fab fa-github"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/marceloc/"
+              aria-label="linkedin-link"
+              ><i class="material-icons fab fa-linkedin"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="mailto:marceloadsc@gmail.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F"
+              aria-label="email-link"
+              ><i class="material-icons">mail_outline</i></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="index-banner" class="parallax-container">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <br /><br />
+          <h2 class="header center teal-text text-lighten-5">Portfolio</h2>
+          <div class="row center hide-on-med-and-down">
+            <a
+              href="frameworks.html"
+              id="download-button1"
+              class="btn-large waves-effect waves-light teal lighten-1 pad"
+              >Frameworks</a
+            >
+            <a
+              href="side_proj.html"
+              id="download-button2"
+              class="btn-large waves-effect waves-light teal lighten-1 pad"
+              >Side Projects</a
+            >
+            <a
+              href="#modal1"
+              id="download-button3"
+              class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger"
+              >Certificates</a
+            >
+          </div>
+          <h3 class="header center-align teal-text text-lighten-5">
+            Marcelo Costa
+          </h3>
         </div>
-        <h3 class="header center-align teal-text text-lighten-5">Marcelo Costa</h3>
-
+      </div>
+      <div class="parallax">
+        <img
+          src="./backgrounds/background10_snes_controller.jpg"
+          alt="Unsplashed background img 1"
+        />
       </div>
     </div>
-    <div class="parallax"><img src="./backgrounds/background10_snes_controller.jpg" alt="Unsplashed background img 1"></div>
-  </div>
-  <div class="container"><br>
-    <div class="section">
-      <div class="row">
-        <div class="center-align">
-          <h4 class="mdi-content-send dark center-align"><b>Creating a game called Doom in... Python!</b></h4><br>
-          <!--Profile image-->
-          <img class="left-aligned image-desc-doom" src="https://raw.githubusercontent.com/mcello23/DoomGamePython/master/screenshots/0.gif" alt="personal-picture">
-          <p class="text-accent-2 waves-green left-align">As someone that worked with video games for more than 10 years (started as a media member, then a PR and finally a QA tester), It was always
-            one of my goals to learn programming to create something. Even though I haven't reached an amazing programming level, I followed a tutorial provided by StanislavPetrovV.
-            The objective here was to not only push a videogame program but to train and understand how powerful Python can be. The code autor is StanislavPetrovV, and this is merely
-            a Python practice. Down here I explain how the game functions as it was built.</p>
-            <h4 class="mdi-content-send dark left-align"><b>How it works?</b></h4>
-            <p class="text-accent-2 waves-green left-align">The game runs in PyGame engine in a total of 12 py files. It features only one level with a bunch of enemies. The interesting was using Python logic to
-              design enemy AI and gameplay mechanics. Once my gameplay was working, I've added game assets, such as the character models, textures, and sounds.
-              Python's logic controls the various elements of the game, such as the player character, enemies, and other objects. Finally, I've tested and debugged the game to ensure it is functioning properly and is enjoyable to play.
-            </p><br><br><br><br><br>
+    <div class="container center-align">
+      <br />
+      <br />
+      <h3 class="title-frame dark center-align" id="title-ai">
+        <b>AI Test Plan Generator</b>
+      </h3>
+      <h4 class="mdi-content-send dark center-align" id="title-ai2">
+        <b>Using OpenAI GPT-4, Node.js & TypeScript</b>
+      </h4>
+      <div class="section">
+        <img
+          class="image-cyp right-align"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/512px-OpenAI_Logo.svg.png"
+          alt="openai-logo"
+          style="width: 100px"
+        /><br />
+        <div class="row">
+          <div class="center-align">
+            <p class="text-accent-2 waves-green left-align">
+              I developed an innovative AI-powered test plan generator that
+              leverages <b>OpenAI's GPT-4</b> to create comprehensive,
+              structured test plans for software projects. This tool bridges the
+              gap between manual test planning and automated testing by
+              intelligently generating detailed test cases based on project
+              requirements.
+            </p>
+            <p class="text-accent-2 waves-green left-align">
+              The application features both a <b>CLI interface</b> and a
+              <b>web interface</b>, built with <b>Node.js</b> and
+              <b>TypeScript</b>. It generates test plans with detailed test
+              cases, including preconditions, steps, expected results,
+              priorities, and time estimates. The output can be exported in both
+              JSON and Markdown formats.
+            </p>
+            <img
+              class="image-js center-align"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png"
+              alt="typescript-logo"
+              style="width: 80px"
+            />
+            <p class="text-accent-2 waves-green left-align">
+              <b> Key Features: </b>
+            </p>
+            <p class="text-accent-2 waves-green left-align">
+              • AI-powered test case generation using GPT-4
+            </p>
+            <p class="text-accent-2 waves-green left-align">
+              • Support for multiple testing types (unit, integration, e2e)
+            </p>
+            <p class="text-accent-2 waves-green left-align">
+              • Multi-platform support (web, mobile, API, desktop)
+            </p>
+            <p class="text-accent-2 waves-green left-align">
+              • Export to JSON and Markdown formats
+            </p>
+            <br /><br />
             <div class="row center">
-              <a id="download-button4" class="btn-large waves-effect waves-light teal lighten-1 left-align" onclick="downloadFile()">Download the Doom game</a>
-              <a href="https://github.com/mcello23/DoomGamePython" id="download-button5" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
-              <a href="https://youtu.be/ECqUrT7IdqQ" id="download-button6" class="btn-large waves-effect waves-light teal lighten-1 pad right-align">Video Tutorial</a><br><br><br><br>
+              <a
+                href="https://github.com/mcello23/ai-test-plan-generator"
+                id="download-button-ai"
+                class="btn-large waves-effect waves-light teal lighten-1 pad center-align"
+                >Check out my GitHub project</a
+              >
+            </div>
+            <br /><br />
+            <h4 class="mdi-content-send dark center-align">
+              <b>TypeScript Code Example:</b>
+            </h4>
+            <br />
+            <div class="code-container" data-bgcolor="black">
+              <pre>
+            <code class="language-typescript">
+export class TestPlanGenerator {
+  private openai: OpenAI;
+
+  constructor(apiKey: string) {
+    this.openai = new OpenAI({
+      apiKey: apiKey,
+    });
+  }
+
+  async generateTestPlan(input: TestPlanInput): Promise&lt;TestPlan&gt; {
+    const prompt = this.buildPrompt(input);
+    
+    try {
+      const response = await this.openai.chat.completions.create({
+        model: 'gpt-4',
+        messages: [
+          {
+            role: 'system',
+            content: 'You are an expert QA engineer and test architect. Generate comprehensive, structured test plans in JSON format.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        max_tokens: 3000,
+        temperature: 0.7,
+      });
+
+      const content = response.choices[0].message.content;
+      const testPlan = JSON.parse(content) as TestPlan;
+      
+      return this.enhanceTestPlan(testPlan, input);
+    } catch (error) {
+      console.error('Error generating test plan:', error);
+      throw new Error('Failed to generate test plan');
+    }
+  }
+}
+            </code>
+          </pre>
             </div>
           </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <div id="juicebox-container" class="juicebox-container"></div>
-    </div>
-  </div>
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h1 class="header col s12 dark center-align">Tetris in</h1>
-          <h2 class="header col s12 dark center-align">Python</h2>
+      <br /><br /><br /><br />
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <div id="juicebox-container" class="juicebox-container"></div>
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="./backgrounds/background7_tetris.jpg" alt="Unsplashed background img 2"></div>
-  </div>
-  <div class="container"><br>
-    <div class="section">
-      <div class="row">
-        <div class="center-align">
-          <h4 class="mdi-content-send dark center-align"><b>Coming soon!</b></h4>
-      </div>
-    </div>
-  </div>
-  </div>
     <div class="section no-pad-bot">
       <div class="container">
         <div class="row center">
           <h5 class="header col s12 dark">Thanks for the visit! ☺</h5>
-          <p>Feel free to send me an e-mail or connect with me in any social media on top.</p>
+          <p>
+            Feel free to send me an e-mail or connect with me in any social
+            media on top.
+          </p>
           <p>Marcelo Costa</p>
         </div>
       </div>
     </div>
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
-  });
-  </script>
-  <!--START JUICEBOX EMBED-->
-  <script src="jbcore/juicebox.js"></script>
-  <script>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/prism.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".modal");
+        var instances = M.Modal.init(elems);
+      });
+    </script>
+    <!--START JUICEBOX EMBED-->
+    <script src="jbcore/juicebox.js"></script>
+    <script>
       const juiceboxConfig = {
         scaleToFit: false,
         enableKeyboardControls: true,
         showOpenButton: true,
       };
 
-      new juicebox({
-        containerId: "juicebox-container",
-        galleryWidth: "1280",
-        galleryHeight: "720",
-        backgroundColor: "#222222",
-        }, juiceboxConfig);
-  </script>
-  <script>
-    function downloadFile() {
-      window.open("https://github.com/mcello23/DoomGamePython/archive/refs/heads/master.zip");
-    }
-  </script>
-</body>
+      new juicebox(
+        {
+          containerId: "juicebox-container",
+          galleryWidth: "1280",
+          galleryHeight: "720",
+          backgroundColor: "#222222",
+        },
+        juiceboxConfig
+      );
+    </script>
+  </body>
 </html>

@@ -11,6 +11,142 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
   <link href="./css/prism.css" rel="stylesheet">
+  
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-10px) rotate(1deg); }
+      66% { transform: translateY(-5px) rotate(-1deg); }
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(45deg); }
+      to { transform: rotate(405deg); }
+    }
+    
+    @keyframes spin-slow {
+      from { transform: rotate(15deg); }
+      to { transform: rotate(375deg); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+    
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(20px); }
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    @keyframes rotate {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+    }
+    
+    @keyframes matrix {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(40px); }
+    }
+    
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+      50% { box-shadow: 0 0 30px rgba(255,255,255,0.4), 0 0 40px rgba(255,255,255,0.2); }
+    }
+    
+    @keyframes shift {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(10px, -10px); }
+      50% { transform: translate(-5px, 5px); }
+      75% { transform: translate(-10px, -5px); }
+    }
+    
+    @keyframes dash {
+      0% { stroke-dasharray: 0, 300; }
+      50% { stroke-dasharray: 150, 150; }
+      100% { stroke-dasharray: 300, 0; }
+    }
+    
+    @keyframes wobble {
+      0%, 100% { transform: rotate(45deg) skew(15deg) scale(1); }
+      25% { transform: rotate(50deg) skew(10deg) scale(1.1); }
+      75% { transform: rotate(40deg) skew(20deg) scale(0.9); }
+    }
+    
+    /* Enhanced gradient card styles */
+    .gradient-card {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .gradient-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .gradient-card:hover::before {
+      opacity: 1;
+    }
+    
+    .gradient-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Specific gradient themes for different card types */
+    .gradient-card.teal-theme {
+      background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+    }
+    
+    .gradient-card.pink-theme {
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+    }
+    
+    .gradient-card.green-theme {
+      background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+    }
+    
+    .gradient-card.indigo-theme {
+      background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+    }
+    
+    .gradient-card.orange-theme {
+      background: linear-gradient(135deg, #fff3e0 0%, #ffcc80 100%);
+    }
+    
+    .gradient-card.blue-theme {
+      background: linear-gradient(135deg, #e3f2fd 0%, #90caf9 100%);
+    }
+    
+    /* Enhanced highlight boxes */
+    .highlight-box {
+      background: rgba(255,255,255,0.9) !important;
+      backdrop-filter: blur(10px);
+      border-radius: 8px !important;
+      transition: all 0.3s ease;
+    }
+    
+    .highlight-box:hover {
+      background: rgba(255,255,255,0.95) !important;
+      transform: translateX(5px);
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -37,363 +173,448 @@
     </div>
     <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 1"></div>
   </div>
-    <div id="modal1" class="modal">
-      <div class="modal-content">
-        <div id="juicebox-container" class="juicebox-container"></div>
-      </div>
-    </div>
-  <div class="container center-align"><br>
-    <br><h3 class="title-frame dark center-align" id="title-cyp"><b>Amazon Automation</b></h3>
-      <h4 class="mdi-content-send dark center-align" id="title-cyp2"><b>Using Cypress</b></h4>
-        <div class="section"><img class="image-cyp right-align" src="./images/cypress-logo.jpeg" alt="cypress-logo"><br>
-          <div class="row">
-            <div class="center-align">
-              <img class="image-amz center-align" src="https://technicallyautonomous.com/wp-content/uploads/2021/05/iphone-x-homepage-view.png" alt="amazon-website">
-              <p class="text-accent-2 waves-green left-align">I have recently created a compact and efficient test suite using the Cypress testing framework. The suite runs through the Amazon website and verifies the contents of the shopping cart in various ways. The test suite was written using <b>JavaScript</b>, a high-level programming language that is widely used for web development.
-              </p>
-              <p class="text-accent-2 waves-green left-align">
-              In order to run the test suite, you will need to have Cypress installed, as well as Node.js and NPM. A web browser will also be required. If you would like more information on how to set up and run the test suite, please follow the link provided, where I have detailed all the necessary steps. 
-              </p><img class="image-js center-align" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="javascript-logo">
-              <p class="text-accent-2 waves-green left-align"><b>
-              The test suite contains three distinct test cases:
-              </b></p>
-              <p class="text-accent-2 waves-green left-align">
-              1. Verify Amazon's Title Webpage.
-              </p>
-              <p class="text-accent-2 waves-green left-align">
-              2. Search For a Nespresso Coffee Machine And Assert It In The Cart.
-              </p>
-              <p class="text-accent-2 waves-green left-align">
-              3. Search For A Specific Nespresso Machine And Assert It In The Cart In A Different Way.
-              </p><br><br>
-              <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite</b></h4>
-              <h5 class="mdi-content-send dark center-align"><b>Runs and asserts in 51 seconds:</b></h5><br>
-            </div>
 
-          <video id="video-amz" class="video container center-align" controls preload="metadata">
-          <source src="./videos/testing_amazon.cy.js.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-          </video><br><br><br><br>
-          <div class="row center">
-            <a id="download-button6" class="btn-large waves-effect waves-light teal lighten-1 left-align" onclick="downloadFile()">Download the Test Suite</a>
-            <a href="https://github.com/mcello23/cypress-amazon" id="download-button7" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
-          </div><br><br>
-    <h4 class="mdi-content-send dark center-align"><b>Code Explained:</b></h4><br>
-    <div class="code-container" data-bgcolor="black">
-      <pre>
-        <code class="language-javascript">
-          describe('Amazon', function() {
-            beforeEach(function() {
-             //Visits the Amazon Spain webpage:
-             cy.visit('https://www.amazon.es/')
-             //Clicks on the continue without accepting cookies for better visualization of the exercise:
-             cy.get('#sp-cc-rejectall-container').click()
-           })
-           it('Verifies the title of the Webpage', function() {
-             cy.title().should('be.equal', 'Amazon.es: compra online de electrónica, libros, deporte, hogar, moda y mucho más.') //Assertion of the Amazon webpage by its title, not the h1, the <head></head>
-         })
-           it('Searches for a Nespresso product and adds it to the cart', function() {
-
-             cy.get('#twotabsearchtextbox').type('Cafetera Nespresso') //Here, it finds the search bar and clicks on it and writes 'Cafetera Nespresso'
-             cy.get('#nav-search-submit-button').click() //It looks for the search icon and clicks on it
-             cy.get('[data-asin="B00G5YOVZA"] > .sg-col-inner > .s-widget-container > .s-card-container > .a-spacing-base > .s-product-image-container > .rush-component > .a-link-normal > .a-section > .s-image').scrollIntoView().click() //Here I'm telling Cypress to look for a specific coffee machine by its ID, and it scrolls down until it finds and then clicks on it
-             cy.get('#add-to-cart-button-ubb').click() //It looks for the 'Add to cart' button and clicks on it
-             cy.get('#sw-gtc > .a-button-inner > .a-button-text').click() //It looks for the 'View this in cart' button and clicks on it
-             //Assertion
-             cy.get('h1').contains('Cesta') //And finally the assertion, when we enter the 'Cart' page, there's an element called 'Cesta' in the page, which it looks for it by it's ID and it verifies that it contains the text 'Cesta' and it assures that it passes.
-           })
-           //Here, I want to do the same test case in a different way
-           it('Searches for a specific Nespresso SNE900 product, adds it to the cart and validates it', function() {
-
-             cy.get('#twotabsearchtextbox').type('NESPRESSO SNE900') //Here, it finds the search bar and clicks on it and writes 'NESPRESSO SNE900'
-             cy.get('#nav-search-submit-button').click() //It looks for the search icon and clicks on it
-             cy.get('[data-asin="B08LDSF6XP"] > .sg-col-inner > .s-widget-container > .s-card-container > :nth-child(1) > .puis-padding-left-small > .s-title-instructions-style > .a-size-mini > .a-link-normal > .a-size-base-plus').click() //Since there's 23 results, I tell cypress to click on the model of the coffee machine by the ID that I've passed on
-             cy.get('#add-to-cart-button').click() //It looks for the 'Add to cart' button and clicks on it
-             cy.get('#attachSiNoCoverage').click() //It looks for the 'No, thank you' in the Extra Warranty slider and clicks on it
-             cy.get('#sw-gtc > .a-button-inner > .a-button-text').click() //It looks for the 'View this in cart' button and clicks on it
-             //Assertion
-             cy.get('.a-color-base > .a-truncate > .a-truncate-cut').contains('NESPRESSO SNE900') //Here the assertion is slightly different than in the last test case, it looks 'NESPRESSO SNE900' is in the child element inside the cart. It finds it and it passes the test.
-           })
-
-           })
-           </code>
-          </pre>
-        </div>
-        </div>
-       </div>
-      </div><br><br><br><br>
-      <div class="parallax-container valign-wrapper">
-        <div class="section no-pad-bot">
-          <div class="container">
-            <div class="row center">
-              <h2 class="header col s12 dark center-align">Cucumber and Appium</h2>
-            </div>
-          </div>
-        </div>
-        <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
-      </div>
-      <div class="container center-align"><br>
-        <br><h3 class="title-frame dark center-align" id="title-cyp3"><b>Android Automation</b></h3>
-          <h4 class="mdi-content-send dark center-align" id="title-cyp4"><b>Using Cucumber, Appium and Ruby</b></h4>
-            <img class="image-cyp right-align" src="./images/cucumber-logo.png" alt="cucumber-logo"><br>
-              <div class="row">
-                <div class="center-align">
-                  <img class="image-amz center-align" src="./images/simulated_android_app.jpg" alt="amazon-website">
-                  <p class="text-accent-2 waves-green left-align">
-                    This is a test made for Android using <b>Android Studio</b> for a simulated device in which I used a real life app called "Unit Converter", available <a href="https://play.google.com/store/apps/details?id=com.ba.universalconverter&hl=en_IE&gl=US">here</a>.
-                    I've created a total of 14 test cases in which they're really simple to read and test the Main menu of the app, the Home screen and the Gestures.
-                    To develop this test I used <b>Cucumber</b> test engine with <b>Gherkin</b> language, executing through <b>Ruby</b> environment, with <b>Appium</b> driver in a simulated Android device.
-                  </p>
-                  <img class="image-cyp right-align" src="./images/appium-logo.png" alt="cypress-logo">
-                  <p class="text-accent-2 waves-green left-align">
-                    I've installed the app inside an Android simulated device, using "adb install" command in terminal.
-                    Then, I created the feature file of each section I wanted to test, in which I detailed the steps of execution through Ruby language.
-                    I also created tags, hooks, detailed the environment in Ruby, which you can see it in my GitHub link down below.
-                  </p>
-                  <p class="text-accent-2 waves-green left-align"><b>
-                  Here are some of the test cases I've written:
-                  </b></p>
-                  <img class="image-cyp right-align" src="images/ruby-logo.png" alt="ruby-logo">
-                  <p class="text-accent-2 waves-green left-align">
-                    Show all button should be enabled at launch;
-                  </p>
-                  <p class="text-accent-2 waves-green left-align">
-                    When I tap on menu icon, I should see left side menu;
-                  </p>
-                  <p class="text-accent-2 waves-green left-align">
-                    User able to select values from unit pickers;
-                  </p>
-                  <p class="text-accent-2 waves-green left-align">
-                    User able to swipe to open Calculator.
-                  </p><br><br>
-                  <h4 class="mdi-content-send dark center-align"><b>Video of the Test Suite</b></h4>
-                  <h5 class="mdi-content-send dark center-align"><b>Runs and asserts 14 screnarios in 4 minutes:</b></h5><br>
-                </div>
-              <video id="video-cucumber" class="video container center-align" controls preload="metadata">
-              <source src="./videos/Appium and Cucumber Testing in Android.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-              </video><br><br><br><br>
-              <div class="row center">
-                <a href="https://github.com/mcello23/android_automation" id="download-button9" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
-              </div><br><br>
-        <h4 class="mdi-content-send dark center-align"><b>Gherkin code:</b></h4><br>
-        <div class="code-container" data-bgcolor="black">
-          <pre>
-            <code class="language-gherkin">
-              @home_screen
-              Feature: Tests for Home Screen Functionality
-              
-                Background:
-                  Given I land on home screen
-              
-                @default
-                Scenario: Default values on home screen is Foot and Centimeter
-                  Then  Left Unit picker value should be "Foot"
-                  And Right unit picker value should be "Centimeter"
-              
-                Scenario: Show all button should be enabled at launch
-                  Then Show All button should be disabled
-                  When I type "1" on application keyboard
-                  Then Show All button should be enabled
-              
-              
-                Scenario Outline: Verify default conversion
-                  When I type "<target>" on application keyboard
-                  Then I should see results as "<result>"
-              
-              Examples:
-                  |target|result   |
-                  |1     |30.48    |
-                  |2     |60.96    |
-                  |3     |91.44    |
-                  |9     |274.32   |
-                  |1011  |30 815.28|
-              
-              
-                Scenario: User able to add current conversion to Favorites list
-                  Then I press on Add to Favorites icon
-                  When I press on menu icon
-                  Then I press on Favorite conversions
-                  And I verify "Length" added to Favorite conversions list
-              
-                Scenario: User able to search by existing Conversion type
-                  Then I press on search icon
-                  Then I type "Temperature" in search field
-                  And I press return button on soft keyboard
-                  Then I see "Temperature" as a current unit converter
-                  Then Left Unit picker value should be "Celsius"
-                  And Right unit picker value should be "Fahrenheit"
-              
-                Scenario Outline: User able to select values from unit pickers
-                  Then I select "<unit_type>" from left unit picker
-                  When I type "<amount>" on application keyboard
-                  Then I should see results as "<result>"
-              
-                  Examples:
-                    | unit_type | amount | result |
-                    | Inch      |1       | 2.54   |
-                    | Link      |1       | 20.1168|
-              
-                  Scenario: User able to convert values
-                    When I press on menu icon
-                    Then I select "Volume" from menu
-                    Then I select "Cup" from right unit picker
-                    When I type "1" on application keyboard
-                    Then I should see results as "15.1416"
-              
-              
-                Scenario: User able to switch values
-                  Then Left Unit picker value should be "Foot"
-                  And Right unit picker value should be "Centimeter"
-                  When I press on switch unit button
-                  Then Left Unit picker value should be "Centimeter"
-                  And Right unit picker value should be "Foot"
-              
-                  Scenario: User able to cleanup conversion history
-                    When I press on menu icon
-                    Then I select "History" from menu
-                    Then I see "History" as a current unit converter
-                    Then I should see text "No history right now"
-                    When I press on menu icon
-                    Then I select "Length" from menu
-                    When I type "1" on application keyboard
-                    When I press on menu icon
-                    Then I select "History" from menu
-                    And I verify that 1st result in history list is "Length"
-                    When I press delete from history at 1st row
-                    Then I should see text "No history right now"
-                </code>
-              </pre>
-            </div>
-          </div>
-          </div><br><br><br>
-          <div class="parallax-container valign-wrapper">
-            <div class="section no-pad-bot">
-              <div class="container">
-                <div class="row center">
-                  <h2 class="header col s12 dark center-align">Selenium</h2>
-                </div>
-              </div>
-            </div>
-            <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
-          </div>
-      <div class="container"><br>
-        <h3 class="mdi-content-send dark center-align"><b>Quix Automation</b></h3>
-        <h4 class="mdi-content-send dark center-align"><b>Using Selenium</b></h4>
-      <div class="section">
-        <img class="image-sel right-align" src="https://ewig5qf9cgn.exactdn.com/wp-content/uploads/2020/08/Selenium-SI_Hex-1.svg" alt="selenium-logo">
-        <div class="row">
-          <img class="image-quix left-align" src="./images/quix_webiste.jpg" alt="quix-webiste">
-          <div class="center-align">
-            <p class="text-accent-2 waves-green left-align">
-              I created a small test suite in which I test some aspects of a website called <a href="https://www.quix.io/">Quix</a>, a data streaming page.
-              While the test suite might seem basic, the objective was to show <b>negative</b> and <b>positive</b> test cases, this means that some had to pass and others to fail in order to show the correct behaviour.
-              The test was made with <b>Selenium IDE</b> and the code is written in <b>Python</b>.
-            </p>
-            <p class="text-accent-2 waves-green left-align"><b>
-              Here are some of the test cases I've written:
-              </b></p>
-              <p class="text-accent-2 waves-green left-align">
-                Login Quix;
-              </p>
-              <img class="image-py right-align" src="https://logos-world.net/wp-content/uploads/2021/10/Python-Symbol.png" alt="python-logo">
-              <p class="text-accent-2 waves-green left-align">
-                Case Sensitive Broken;
-              </p>
-              <p class="text-accent-2 waves-green left-align">
-                Alphabetical Selector Broken;
-              </p>
-              <p class="text-accent-2 waves-green left-align">
-                Unable to Edit Code.
-              </p><br><br>
-          </div>
-          <div class="row">
-          <div class="left-align">
-              <p id="manual-tests" class="text-accent-2 waves-green left-align"><i>...plus manual tests!</i></p>
-            <br>
-        </div>
-        </div>
-      </div>
-    </div>
-      <br>
-      <h4 class="mdi-content-send dark center-align"><b>Screenshot</b></h4>
-      <h5 class="mdi-content-send dark center-align"><b>Test suite execution</b></h5><br>
-      <img class="image-selenium center-aligned" src="./images/selenium_screenshot.jpg" alt="selenium-test"><br>
-      <div class="row center">
-        <a href="https://github.com/mcello23/Quix_Testing" id="download-button5" class="btn-large waves-effect waves-light teal lighten-1 pad center-align">Check out my GitHub project</a>
-      </div><br><br><br>
-    <h4 class="mdi-content-send dark center-align"><b>Code Example:</b></h4><br>
-    <div class="code-container" data-bgcolor="black">
-      <pre>
-        <code class="language-python">
-          import pytest
-          import time
-          import json
-          from selenium import webdriver
-          from selenium.webdriver.common.by import By
-          from selenium.webdriver.common.action_chains import ActionChains
-          from selenium.webdriver.support import expected_conditions
-          from selenium.webdriver.support.wait import WebDriverWait
-          from selenium.webdriver.common.keys import Keys
-          from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
-          class Test3CaseSensitive():
-            def setup_method(self, method):
-              self.driver = webdriver.Chrome()
-              self.vars = {}
-
-            def teardown_method(self, method):
-              self.driver.quit()
-
-            def test_3CaseSensitive(self):
-              # Test name: 3-CaseSensitive
-              # Step # | name | target | value
-              # 1 | open | webiste
-              self.driver.get("https://www.quix.io/")
-              # 2 | setWindowSize | 2044x1392 | 
-              self.driver.set_window_size(2044, 1392)
-              # 3 | click | css=.mat-list-item:nth-child(2) > .mat-list-item-content | 
-              self.driver.find_element(By.CSS_SELECTOR, ".mat-list-item:nth-child(2) > .mat-list-item-content").click()
-              # 4 | click | css=div > .text-truncate:nth-child(1) | 
-              self.driver.find_element(By.CSS_SELECTOR, "div > .text-truncate:nth-child(1)").click()
-              # 5 | click | css=.mat-list-item:nth-child(2) > .mat-list-item-content | 
-              self.driver.find_element(By.CSS_SELECTOR, ".mat-list-item:nth-child(2) > .mat-list-item-content").click()
-              # 6 | click | id=mat-input-0 | 
-              self.driver.find_element(By.ID, "mat-input-0").click()
-              # 7 | type | id=mat-input-0 | transformation
-              self.driver.find_element(By.ID, "mat-input-0").send_keys("transformation")
-              # 8 | click | css=.w-100:nth-child(2) | 
-              self.driver.find_element(By.CSS_SELECTOR, ".w-100:nth-child(2)").click()
-              # 9 | assertText | id=mat-input-0 | RESULTS
-              assert self.driver.find_element(By.ID, "mat-input-0").text == "RESULTS"
-        </code>
-      </pre>
-    </div>
-  </div><br><br><br>
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h2 class="header col s12 dark">Other Frameworks</h2>
-        </div>
-      </div>
-    </div>
-      <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 2"></div>
-  </div>
-  <div class="container"><br>
-    <div class="section">
-      <div class="row">
-        <div class="center-align">
-          <h4 class="mdi-content-send dark center-align"><b>Like Xray, Robot Framework... coming soon!</b></h4><br><br>
-        </div>
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div id="juicebox-container" class="juicebox-container"></div>
     </div>
   </div>
-  <div class="section no-pad-bot">
+
+  <div class="section" style="padding: 60px 0;">
     <div class="container">
       <div class="row center">
-        <h5 class="header col s12 dark">Thanks for the visit! ☺</h5>
-        <p>Feel free to send me an e-mail or connect with me in any social media on top.</p>
-        <p>Marcelo Costa</p>
+        <h2 class="header col s12 dark" style="margin-bottom: 40px;">Enterprise Testing Frameworks & Automation</h2>
+        <p class="flow-text grey-text text-darken-2">Comprehensive testing solutions with advanced CI/CD integration, automated reporting, and enterprise-grade validation</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="parallax-container valign-wrapper" style="min-height: 30vh; background: linear-gradient(135deg, #26a69a 0%, #004d40 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: 
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 2px, transparent 2px),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 2px, transparent 2px),
+      radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 50px 50px, 70px 70px, 30px 30px;
+      animation: float 20s ease-in-out infinite;">
+    </div>
+    <div style="position: absolute; top: 10%; left: 10%; width: 100px; height: 100px; border: 2px solid rgba(255,255,255,0.2); transform: rotate(45deg); animation: spin 30s linear infinite;"></div>
+    <div style="position: absolute; top: 60%; right: 15%; width: 60px; height: 60px; border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; animation: pulse 4s ease-in-out infinite;"></div>
+    <div class="section no-pad-bot" style="position: relative; z-index: 10;">
+      <div class="container">
+        <div class="row center">
+          <h2 class="header col s12 white-text text-lighten-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">🎭 Advanced Playwright Testing</h2>
+          <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Cross-browser • Visual Regression • API Validation</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container" style="padding: 80px 0;"><br>
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <div class="card-panel teal lighten-5" style="border-left: 5px solid #26a69a;">
+          <h3 class="center-align teal-text text-darken-2"><b>🏢 Identity Verification Platform</b></h3>
+          <h4 class="center-align grey-text text-darken-1"><b>Enterprise-Grade E2E Testing with TypeScript</b></h4>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card gradient-card teal-theme" style="border-left: 4px solid #26a69a;">
+          <div class="card-content">
+            <span class="card-title teal-text text-darken-2"><i class="material-icons left">verified</i><b>Advanced Testing Capabilities</b></span>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #4db6ac; border-radius: 4px;">
+              <i class="material-icons tiny teal-text">security</i>
+              <span class="highlight-text"><b>Authentication:</b> OAuth2, SAML, JWT validation</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #4db6ac; border-radius: 4px;">
+              <i class="material-icons tiny teal-text">bar_chart</i>
+              <span class="highlight-text"><b>Real-time Data:</b> WebSocket testing, live updates</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #4db6ac; border-radius: 4px;">
+              <i class="material-icons tiny teal-text">theater_comedy</i>
+              <span class="highlight-text"><b>Multi-persona:</b> Role workflows, journey mapping</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #4db6ac; border-radius: 4px;">
+              <i class="material-icons tiny teal-text">language</i>
+              <span class="highlight-text"><b>i18n:</b> Unicode, RTL languages, localization</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #4db6ac; border-radius: 4px;">
+              <i class="material-icons tiny teal-text">smartphone</i>
+              <span class="highlight-text"><b>Responsive:</b> Mobile viewports, touch interactions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col s12 m6">
+        <div class="card gradient-card pink-theme" style="border-left: 4px solid #e91e63;">
+          <div class="card-content">
+            <span class="card-title pink-text text-darken-2"><i class="material-icons left">settings</i><b>External Dependencies & Tools</b></span>
+            <p><strong>🎲 Faker.js Integration:</strong> Deterministic random data, locale-specific generators, seeded randomness</p>
+            <p><strong>🌐 API Orchestration:</strong> RESTful & GraphQL testing, request chaining, data dependency management</p>
+            <p><strong>📸 Visual AI Testing:</strong> Percy integration, cross-browser screenshots, AI-powered diff detection</p>
+            <p><strong>📈 Performance Monitoring:</strong> Lighthouse integration, Core Web Vitals, resource timing validation</p>
+            <p><strong>� Database Integration:</strong> Direct DB queries, test data seeding, state verification</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row center" style="margin-top: 40px;">
+      <a href="https://github.com/mcello23/playwright-demonstration" 
+         class="btn-large waves-effect waves-light teal lighten-1 pulse" 
+         style="padding: 0 40px; border-radius: 25px;">
+        <i class="material-icons left">code</i>Explore Repository
+      </a>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey lighten-4">
+          <h4 class="center-align teal-text"><i class="material-icons left">code</i><b>Test Data Factory Pattern</b></h4>
+          <div class="code-container" data-bgcolor="black" style="border-radius: 10px; overflow: hidden;">
+            <pre>
+              <code class="language-typescript">
+// Generate test data with Faker.js
+const testUser = {
+  email: faker.internet.email(),
+  name: faker.person.fullName(),
+  company: faker.company.name()
+};
+
+// API-first testing approach
+const response = await request.post('/api/users', { data: testUser });
+expect(response.ok()).toBeTruthy();
+
+// Validate UI reflects API changes
+await expect(page.locator(`text=${testUser.name}`)).toBeVisible();
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+
+  <div class="parallax-container valign-wrapper" style="min-height: 30vh; background: linear-gradient(135deg, #4caf50 0%, #1b5e20 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: 
+      linear-gradient(45deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(-45deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      animation: slide 15s linear infinite;">
+    </div>
+    <div style="position: absolute; top: 20%; left: 20%; width: 0; height: 0; border-left: 30px solid transparent; border-right: 30px solid transparent; border-bottom: 50px solid rgba(255,255,255,0.1); animation: bounce 5s ease-in-out infinite;"></div>
+    <div style="position: absolute; bottom: 20%; right: 20%; width: 80px; height: 80px; background: rgba(255,255,255,0.1); clip-path: polygon(50% 0%, 0% 100%, 100% 100%); animation: rotate 8s ease-in-out infinite;"></div>
+    <div style="position: absolute; top: 50%; left: 5%; width: 40px; height: 40px; background: rgba(255,255,255,0.1); transform: rotate(45deg); animation: float 6s ease-in-out infinite;"></div>
+    <div class="section no-pad-bot" style="position: relative; z-index: 10;">
+      <div class="container">
+        <div class="row center">
+          <h2 class="header col s12 white-text text-lighten-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">🌿 Enterprise Cypress Testing</h2>
+          <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">BDD • GraphQL • Docker • CI/CD</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container" style="padding: 80px 0;"><br>
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <div class="card-panel green lighten-5" style="border-left: 5px solid #4caf50;">
+          <h3 class="center-align green-text text-darken-2"><b>🏦 KYB Platform Automation</b></h3>
+          <h4 class="center-align grey-text text-darken-1"><b>Behavior-Driven Development with Real-World Integration</b></h4>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card gradient-card green-theme" style="border-left: 4px solid #4caf50;">
+          <div class="card-content">
+            <span class="card-title green-text text-darken-2"><i class="material-icons left">business</i><b>Enterprise Business Logic Testing</b></span>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">description</i>
+              <span class="highlight-text"><b>Document Lifecycle:</b> e-signatures, compliance audits</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">groups</i>
+              <span class="highlight-text"><b>User Management:</b> Bulk ops, roles, audit logging</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">gavel</i>
+              <span class="highlight-text"><b>Regulatory:</b> KYB/KYC, AML compliance flows</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">email</i>
+              <span class="highlight-text"><b>Communication:</b> MailSlurp, Twilio SMS integration</span>
+            </div>
+            <p><strong>� Financial Operations:</strong> Payment processing, transaction validation, currency conversion</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col s12 m6">
+        <div class="card gradient-card green-theme hoverable">
+          <div class="card-content">
+            <span class="card-title green-text"><i class="material-icons left">cloud</i>Advanced Integration & Dependencies</span>
+            <p><strong>🎲 Test Data Libraries:</strong> Faker.js, Chance.js, custom factories, deterministic seeding</p>
+            <p><strong>🔄 GraphQL & REST:</strong> Hasura subscriptions, Apollo client testing, schema validation</p>
+            <p><strong>🚩 Feature Management:</strong> LaunchDarkly, PostHog analytics, A/B testing scenarios</p>
+            <p><strong>� Containerized Testing:</strong> Docker Compose, database seeding, service orchestration</p>
+            <p><strong>📊 Advanced Reporting:</strong> Allure integration, custom dashboards, failure analysis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row center" style="margin-top: 40px;">
+      <a href="https://github.com/mcello23/cypress-automation-real-proj" 
+         class="btn-large waves-effect waves-light green lighten-1 pulse" 
+         style="padding: 0 40px; border-radius: 25px;">
+        <i class="material-icons left">integration_instructions</i>View Enterprise Project
+      </a>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey lighten-4">
+          <h4 class="center-align green-text"><i class="material-icons left">integration_instructions</i><b>BDD Scenario Pattern</b></h4>
+          <div class="code-container" data-bgcolor="black" style="border-radius: 10px; overflow: hidden;">
+            <pre>
+              <code class="language-gherkin">
+Feature: Company Registration Flow
+  As a business administrator
+  I want to register companies with dynamic data
+  So that I can validate complex business workflows
+
+  Scenario: Successful company onboarding
+    Given I have generated test data with Faker.js
+    When I submit the company registration form
+    Then the company should appear in the dashboard
+    And the GraphQL subscription should update in real-time
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+
+  <div class="parallax-container valign-wrapper" style="min-height: 30vh; background: linear-gradient(135deg, #2196f3 0%, #0d47a1 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: 
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 40px);
+      animation: matrix 25s linear infinite;">
+    </div>
+    <div style="position: absolute; top: 15%; right: 10%; width: 120px; height: 120px; border: 3px solid rgba(255,255,255,0.2); border-radius: 10px; transform: rotate(15deg); animation: spin-slow 40s linear infinite;"></div>
+    <div style="position: absolute; bottom: 25%; left: 8%; width: 60px; height: 60px; background: rgba(255,255,255,0.1); clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%); animation: pulse 3s ease-in-out infinite;"></div>
+    <div style="position: absolute; top: 40%; left: 75%; width: 20px; height: 20px; background: rgba(255,255,255,0.15); border-radius: 50%; box-shadow: 0 0 20px rgba(255,255,255,0.2); animation: glow 4s ease-in-out infinite;"></div>
+    <div class="section no-pad-bot" style="position: relative; z-index: 10;">
+      <div class="container">
+        <div class="row center">
+          <h2 class="header col s12 white-text text-lighten-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">🔐 Identity Platform Builder</h2>
+          <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">GitHub Actions • Docker • Nightly Testing</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container" style="padding: 80px 0;"><br>
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <div class="card-panel blue lighten-5" style="border-left: 5px solid #2196f3;">
+          <h3 class="center-align blue-text text-darken-2"><b>🏗️ Enterprise Builder Platform</b></h3>
+          <h4 class="center-align grey-text text-darken-1"><b>Advanced CI/CD with Automated Deployment Pipelines</b></h4>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card gradient-card indigo-theme" style="border-left: 4px solid #3f51b5;">
+          <div class="card-content">
+            <span class="card-title indigo-text text-darken-2"><i class="material-icons left">design_services</i><b>Complex Platform Testing</b></span>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #5c6bc0; border-radius: 4px;">
+              <i class="material-icons tiny indigo-text">palette</i>
+              <span class="highlight-text"><b>Dynamic UI:</b> Component libs, theme validation</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #5c6bc0; border-radius: 4px;">
+              <i class="material-icons tiny indigo-text">settings</i>
+              <span class="highlight-text"><b>SDK Testing:</b> Multi-language, API contracts</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #5c6bc0; border-radius: 4px;">
+              <i class="material-icons tiny indigo-text">devices</i>
+              <span class="highlight-text"><b>Cross-platform:</b> Mobile, desktop, web</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #5c6bc0; border-radius: 4px;">
+              <i class="material-icons tiny indigo-text">link</i>
+              <span class="highlight-text"><b>Integrations:</b> OAuth, payments, CRM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col s12 m6">
+        <div class="card gradient-card orange-theme" style="border-left: 4px solid #ff9800;">
+          <div class="card-content">
+            <span class="card-title orange-text text-darken-2"><i class="material-icons left">rocket_launch</i><b>Advanced Testing Infrastructure</b></span>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #ffb74d; border-radius: 4px;">
+              <i class="material-icons tiny orange-text">casino</i>
+              <span class="highlight-text"><b>Test Generation:</b> Faker.js, property-based tests</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #ffb74d; border-radius: 4px;">
+              <i class="material-icons tiny orange-text">precision_manufacturing</i>
+              <span class="highlight-text"><b>CI/CD:</b> Matrix builds, parallel execution</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #ffb74d; border-radius: 4px;">
+              <i class="material-icons tiny orange-text">speed</i>
+              <span class="highlight-text"><b>Performance:</b> Lighthouse CI, bundle analysis</span>
+            </div>
+            
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #ffb74d; border-radius: 4px;">
+              <i class="material-icons tiny orange-text">analytics</i>
+              <span class="highlight-text"><b>Monitoring:</b> Custom dashboards, metrics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row center" style="margin-top: 40px;">
+      <a href="https://github.com/mcello23/cypress-demonstration-repo" 
+         class="btn-large waves-effect waves-light blue lighten-1 pulse" 
+         style="padding: 0 40px; border-radius: 25px;">
+        <i class="material-icons left">auto_awesome</i>Explore CI/CD Pipeline
+      </a>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey lighten-4">
+          <h4 class="center-align blue-text"><i class="material-icons left">api</i><b>CI/CD Pipeline Integration</b></h4>
+          <div class="code-container" data-bgcolor="black" style="border-radius: 10px; overflow: hidden;">
+            <pre>
+              <code class="language-yaml">
+# .github/workflows/e2e-tests.yml
+name: Enterprise E2E Testing Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+        environment: [staging, production]
+    
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Playwright tests
+        run: npx playwright test --project=${{ matrix.browser }}
+        env:
+          TEST_ENV: ${{ matrix.environment }}
+              </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+
+  <div class="parallax-container valign-wrapper" style="min-height: 30vh; background: linear-gradient(135deg, #ff9800 0%, #e65100 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 3px, transparent 3px),
+      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.08) 2px, transparent 2px),
+      linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.05) 50%, transparent 52%);
+      background-size: 60px 60px, 40px 40px, 80px 80px;
+      animation: shift 18s ease-in-out infinite;">
+    </div>
+    <div style="position: absolute; top: 25%; left: 15%; width: 80px; height: 80px; border: 2px dashed rgba(255,255,255,0.3); border-radius: 50%; animation: dash 12s linear infinite;"></div>
+    <div style="position: absolute; bottom: 30%; right: 12%; width: 0; height: 0; border-style: solid; border-width: 0 25px 43.3px 25px; border-color: transparent transparent rgba(255,255,255,0.15) transparent; animation: float 7s ease-in-out infinite;"></div>
+    <div style="position: absolute; top: 60%; left: 70%; width: 50px; height: 50px; background: rgba(255,255,255,0.1); transform: rotate(45deg) skew(15deg); animation: wobble 9s ease-in-out infinite;"></div>
+    <div class="section no-pad-bot" style="position: relative; z-index: 10;">
+      <div class="container">
+        <div class="row center">
+          <h2 class="header col s12 white-text text-lighten-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">🚀 Coming Soon</h2>
+          <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">More Enterprise Testing Solutions</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container" style="padding: 80px 0;">
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <div class="card-panel orange lighten-5" style="border-left: 5px solid #ff9800;">
+          <h3 class="center-align orange-text text-darken-2"><b>🔧 Expanding Testing Arsenal</b></h3>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="card gradient-card orange-theme hoverable">
+          <div class="card-content center-align">
+            <span class="card-title orange-text"><i class="material-icons large">bug_report</i></span>
+            <h5><b>Xray Integration</b></h5>
+            <p>Enterprise test management with Jira integration and comprehensive traceability</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col s12 m4">
+        <div class="card gradient-card blue-theme hoverable">
+          <div class="card-content center-align">
+            <span class="card-title blue-text"><i class="material-icons large">precision_manufacturing</i></span>
+            <h5><b>Robot Framework</b></h5>
+            <p>Keyword-driven testing with extensive libraries and cross-platform automation</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col s12 m4">
+        <div class="card gradient-card teal-theme hoverable">
+          <div class="card-content center-align">
+            <span class="card-title teal-text"><i class="material-icons large">speed</i></span>
+            <h5><b>K6 Performance</b></h5>
+            <p>Modern load testing with JavaScript, CI/CD integration, and cloud scalability</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="section" style="padding: 60px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="container">
+      <div class="row center">
+        <div class="col s12">
+          <h3 class="white-text">Thanks for exploring my testing portfolio! 🎯</h3>
+          <p class="flow-text white-text">Ready to build robust, scalable testing solutions together</p>
+          <div style="margin-top: 30px;">
+            <a href="mailto:marceloadsc@gmail.com" class="btn-large white teal-text waves-effect" style="margin: 10px; border-radius: 25px;">
+              <i class="material-icons left">email</i>Let's Connect
+            </a>
+          </div>
+          <p class="white-text" style="margin-top: 20px;">Marcelo Costa | QA Engineer & Test Automation Specialist</p>
+        </div>
       </div>
     </div>
   </div>
@@ -429,22 +650,6 @@
         backgroundColor: "#222222",
         }, juiceboxConfig);
   </script>
-  <script>
-    function downloadFile() {
-      window.open("https://github.com/mcello23/cypress-amazon/archive/refs/heads/master.zip");
-    }
-  </script>
-  <script>
-    var videoContainers = document.querySelectorAll(".video-amz", ".video-cucumber", ".video-selenium");
-    for (var i = 0; i < videoContainers.length; i++) {
-      var video = videoContainers[i].querySelector("video");
-      video.addEventListener("play", function() {
-        videoContainers[i].classList.add("playing");
-      });
-      video.addEventListener("pause", function() {
-        videoContainers[i].classList.remove("playing");
-      });
-      }
-  </script>
+
 </body>
 </html>
