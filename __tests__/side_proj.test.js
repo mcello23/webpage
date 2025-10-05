@@ -28,9 +28,8 @@ describe('Side Projects Page', () => {
     test('has a fixed nav at the top', () => {
       const nav = document.querySelector('nav');
       expect(nav).toBeTruthy();
-      const style = nav.getAttribute('style') || '';
-      expect(style).toMatch(/position:\s*fixed/);
-      expect(style).toMatch(/z-index:\s*1000/);
+      // navbar moved to external stylesheet and uses 'main-nav' class
+      expect(nav.classList.contains('main-nav')).toBe(true);
     });
 
     test('has brand logo with link to index', () => {

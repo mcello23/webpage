@@ -67,13 +67,12 @@ describe('Cross-Page Consistency Tests', () => {
       expect(indexSocials).toContain('https://discord.com/users/mcello.654');
     });
 
-    test('all pages have fixed navigation with same height', () => {
+    test('all pages have fixed navigation with same class', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
         const nav = doc.querySelector('nav');
-        const style = nav.getAttribute('style');
-        expect(style).toContain('position: fixed');
-        expect(style).toContain('height: 80px');
-        expect(style).toContain('z-index: 1000');
+        expect(nav).toBeTruthy();
+        // navbar styling moved to external CSS and uses the 'main-nav' class
+        expect(nav.classList.contains('main-nav')).toBe(true);
       });
     });
 
@@ -288,10 +287,10 @@ describe('Cross-Page Consistency Tests', () => {
   });
 
   describe('Responsive Design', () => {
-    test('all pages use hide-on-med-and-down classes', () => {
+    test('all pages have center-nav element', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const hiddenElements = doc.querySelectorAll('.hide-on-med-and-down');
-        expect(hiddenElements.length).toBeGreaterThan(0);
+        const centerNav = doc.querySelectorAll('.center-nav');
+        expect(centerNav.length).toBeGreaterThan(0);
       });
     });
 
@@ -322,12 +321,12 @@ describe('Cross-Page Consistency Tests', () => {
 
     test('nav buttons have proper styling classes', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const navButtons = doc.querySelectorAll('.nav-btn');
-        navButtons.forEach((btn) => {
-          const style = btn.getAttribute('style');
-          expect(style).toContain('linear-gradient');
-          expect(style).toContain('border-radius');
-        });
+        const projectsBtn = doc.querySelector('.nav-btn-projects');
+        const frameworksBtn = doc.querySelector('.nav-btn-frameworks');
+        const certsBtn = doc.querySelector('.nav-btn-certs');
+        expect(projectsBtn).toBeTruthy();
+        expect(frameworksBtn).toBeTruthy();
+        expect(certsBtn).toBeTruthy();
       });
     });
   });

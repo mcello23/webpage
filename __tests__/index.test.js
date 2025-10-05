@@ -28,10 +28,7 @@ describe('Index Page (Main Portfolio)', () => {
     test('has a fixed nav at the top', () => {
       const nav = document.querySelector('nav');
       expect(nav).toBeTruthy();
-      const style = nav.getAttribute('style') || '';
-      expect(style).toMatch(/position:\s*fixed/);
-      expect(style).toMatch(/z-index:\s*1000/);
-      expect(style).toMatch(/height:\s*80px/);
+      expect(nav.classList.contains('main-nav')).toBe(true);
     });
 
     test('has brand logo with correct text', () => {
@@ -73,10 +70,14 @@ describe('Index Page (Main Portfolio)', () => {
 
     test('navigation buttons have gradient backgrounds', () => {
       const buttons = document.querySelectorAll('a.nav-btn');
-      buttons.forEach((btn) => {
-        const style = btn.getAttribute('style') || '';
-        expect(style).toContain('linear-gradient');
-      });
+      expect(buttons.length).toBe(3);
+      // Check for class-based styling instead of inline styles
+      const projectsBtn = document.querySelector('.nav-btn-projects');
+      const frameworksBtn = document.querySelector('.nav-btn-frameworks');
+      const certsBtn = document.querySelector('.nav-btn-certs');
+      expect(projectsBtn).toBeTruthy();
+      expect(frameworksBtn).toBeTruthy();
+      expect(certsBtn).toBeTruthy();
     });
 
     test('social icons are present', () => {

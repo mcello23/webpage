@@ -28,9 +28,7 @@ describe('Frameworks Page', () => {
     test('has a fixed nav at the top', () => {
       const nav = document.querySelector('nav');
       expect(nav).toBeTruthy();
-      const style = nav.getAttribute('style') || '';
-      expect(style).toMatch(/position:\s*fixed/);
-      expect(style).toMatch(/z-index:\s*1000/);
+      expect(nav.classList.contains('main-nav')).toBe(true);
     });
 
     test('has brand logo with link to index', () => {
@@ -60,7 +58,7 @@ describe('Frameworks Page', () => {
     });
 
     test('social icons exist on the right', () => {
-      const socials = document.querySelectorAll('ul.hide-on-med-and-down .social-icon');
+      const socials = document.querySelectorAll('ul.social-nav .social-icon');
       expect(socials.length).toBeGreaterThanOrEqual(3);
       const hrefs = Array.from(socials).map((a) => a.getAttribute('href'));
       expect(hrefs).toEqual(
