@@ -78,6 +78,11 @@
       75% { transform: rotate(40deg) skew(20deg) scale(0.9); }
     }
     
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
     /* Enhanced gradient card styles */
     .gradient-card {
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -149,30 +154,24 @@
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-wrapper">
+  <nav style="position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <div class="nav-wrapper" style="padding: 0 20px;">
+      <a href="#" class="brand-logo" style="font-size: 1.3rem; font-weight: 500;">
+        <i class="material-icons left" style="margin-right: 8px;">folder_open</i>
+        Marcelo Costa - Portfolio
+      </a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="https://mcello23.github.io/webpage/" class="material-icons house-logo"><i class="material-icons">home</i></a></li>
+        <li><a href="frameworks.html" style="padding: 0 15px;">Frameworks</a></li>
+        <li><a href="side_proj.html" style="padding: 0 15px;">Side Projects</a></li>
+        <li><a href="#modal1" class="modal-trigger" style="padding: 0 15px;">Certificates</a></li>
+        <li><a href="https://mcello23.github.io/webpage/" aria-label="home-link"><i class="material-icons">home</i></a></li>
         <li><a href="https://github.com/mcello23" aria-label="github-link"><i class="material-icons fab fa-github"></i></a></li>
         <li><a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link"><i class="material-icons fab fa-linkedin"></i></a></li>
         <li><a href="mailto:marceloadsc@gmail.com?subject=Hello&body=Hi%2C%20how%20are%20you%3F" aria-label="email-link"><i class="material-icons">mail_outline</i></a></li>
       </ul>
     </div>
   </nav>
-  <div id="index-banner" class="parallax-container">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <h2 class="header center teal-text text-lighten-5">Portfolio</h2>
-        <div class="row center">
-          <a href="frameworks.html" id="download-button1" class="btn-large waves-effect waves-light teal lighten-1 pad">Frameworks</a>
-          <a href="side_proj.html" id="download-button2" class="btn-large waves-effect waves-light teal lighten-1 pad">Side Projects</a>
-          <a href="#modal1" id="download-button3" class="btn-large waves-effect waves-light teal lighten-1 pad modal-trigger">Certificates</a>
-        </div>
-        <h3 class="header center teal-text text-lighten-5">Marcelo Costa</h3>
-      </div>
-    </div>
-    <div class="parallax"><img src="./backgrounds/background5_rams.jpg" alt="Unsplashed background img 1"></div>
-  </div>
+  <div style="margin-top: 64px;"></div>
 
   <div id="modal1" class="modal">
     <div class="modal-content">
@@ -189,7 +188,7 @@
     </div>
   </div>
 
-  <div class="parallax-container valign-wrapper" style="min-height: 30vh; background: linear-gradient(135deg, #26a69a 0%, #004d40 100%); position: relative; overflow: hidden;">
+  <div class="parallax-container valign-wrapper hero-playwright">
     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: 
       radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 2px, transparent 2px),
       radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 2px, transparent 2px),
@@ -257,11 +256,26 @@
         <div class="card gradient-card pink-theme" style="border-left: 4px solid #e91e63;">
           <div class="card-content">
             <span class="card-title pink-text text-darken-2"><i class="material-icons left">settings</i><b>External Dependencies & Tools</b></span>
-            <p><strong>🎲 Faker.js Integration:</strong> Deterministic random data, locale-specific generators, seeded randomness</p>
-            <p><strong>🌐 API Orchestration:</strong> RESTful & GraphQL testing, request chaining, data dependency management</p>
-            <p><strong>📸 Visual AI Testing:</strong> Percy integration, cross-browser screenshots, AI-powered diff detection</p>
-            <p><strong>📈 Performance Monitoring:</strong> Lighthouse integration, Core Web Vitals, resource timing validation</p>
-            <p><strong>� Database Integration:</strong> Direct DB queries, test data seeding, state verification</p>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #f06292; border-radius: 4px;">
+              <i class="material-icons tiny pink-text">casino</i>
+              <span class="highlight-text"><b>Faker.js Integration:</b> Deterministic random data, locale-specific generators, seeded randomness</span>
+            </div>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #f06292; border-radius: 4px;">
+              <i class="material-icons tiny pink-text">public</i>
+              <span class="highlight-text"><b>API Orchestration:</b> RESTful & GraphQL testing, request chaining, data dependency management</span>
+            </div>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #f06292; border-radius: 4px;">
+              <i class="material-icons tiny pink-text">photo_camera</i>
+              <span class="highlight-text"><b>Visual AI Testing:</b> Percy integration, cross-browser screenshots, AI-powered diff detection</span>
+            </div>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #f06292; border-radius: 4px;">
+              <i class="material-icons tiny pink-text">speed</i>
+              <span class="highlight-text"><b>Performance Monitoring:</b> Lighthouse integration, Core Web Vitals, resource timing validation</span>
+            </div>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #f06292; border-radius: 4px;">
+              <i class="material-icons tiny pink-text">storage</i>
+              <span class="highlight-text"><b>Database Integration:</b> Direct DB queries, test data seeding, state verification</span>
+            </div>
           </div>
         </div>
       </div>
@@ -357,7 +371,10 @@ await expect(page.locator(`text=${testUser.name}`)).toBeVisible();
               <i class="material-icons tiny green-text">email</i>
               <span class="highlight-text"><b>Communication:</b> MailSlurp, Twilio SMS integration</span>
             </div>
-            <p><strong>� Financial Operations:</strong> Payment processing, transaction validation, currency conversion</p>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">attach_money</i>
+              <span class="highlight-text"><b>Financial Operations:</b> Payment processing, transaction validation, currency conversion</span>
+            </div>
           </div>
         </div>
       </div>
@@ -366,11 +383,26 @@ await expect(page.locator(`text=${testUser.name}`)).toBeVisible();
         <div class="card gradient-card green-theme hoverable">
           <div class="card-content">
             <span class="card-title green-text"><i class="material-icons left">cloud</i>Advanced Integration & Dependencies</span>
-            <p><strong>🎲 Test Data Libraries:</strong> Faker.js, Chance.js, custom factories, deterministic seeding</p>
-            <p><strong>🔄 GraphQL & REST:</strong> Hasura subscriptions, Apollo client testing, schema validation</p>
-            <p><strong>🚩 Feature Management:</strong> LaunchDarkly, PostHog analytics, A/B testing scenarios</p>
-            <p><strong>� Containerized Testing:</strong> Docker Compose, database seeding, service orchestration</p>
-            <p><strong>📊 Advanced Reporting:</strong> Allure integration, custom dashboards, failure analysis</p>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">casino</i>
+              <span class="highlight-text"><b>Test Data Libraries:</b> Faker.js, Chance.js, custom factories, deterministic seeding</span>
+            </div>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">sync_alt</i>
+              <span class="highlight-text"><b>GraphQL & REST:</b> Hasura subscriptions, Apollo client testing, schema validation</span>
+            </div>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">flag</i>
+              <span class="highlight-text"><b>Feature Management:</b> LaunchDarkly, PostHog analytics, A/B testing scenarios</span>
+            </div>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">dns</i>
+              <span class="highlight-text"><b>Containerized Testing:</b> Docker Compose, database seeding, service orchestration</span>
+            </div>
+            <div class="highlight-box" style="background: rgba(255,255,255,0.8); padding: 8px; margin: 8px 0; border-left: 3px solid #66bb6a; border-radius: 4px;">
+              <i class="material-icons tiny green-text">insert_chart</i>
+              <span class="highlight-text"><b>Advanced Reporting:</b> Allure integration, custom dashboards, failure analysis</span>
+            </div>
           </div>
         </div>
       </div>
@@ -575,7 +607,10 @@ jobs:
           <div class="card-content center-align">
             <span class="card-title orange-text"><i class="material-icons large">bug_report</i></span>
             <h5><b>Xray Integration</b></h5>
-            <p>Enterprise test management with Jira integration and comprehensive traceability</p>
+            <div class="highlight-box" style="display: inline-block; text-align: left; max-width: 320px; background: rgba(255,255,255,0.95); padding: 10px; margin: 12px auto; border-left: 4px solid #ffb74d; border-radius: 6px;">
+              <i class="material-icons tiny orange-text">bug_report</i>
+              <span class="highlight-text"><b>Enterprise test management:</b> Jira integration and comprehensive traceability</span>
+            </div>
           </div>
         </div>
       </div>
@@ -585,7 +620,10 @@ jobs:
           <div class="card-content center-align">
             <span class="card-title blue-text"><i class="material-icons large">precision_manufacturing</i></span>
             <h5><b>Robot Framework</b></h5>
-            <p>Keyword-driven testing with extensive libraries and cross-platform automation</p>
+            <div class="highlight-box" style="display: inline-block; text-align: left; max-width: 320px; background: rgba(255,255,255,0.95); padding: 10px; margin: 12px auto; border-left: 4px solid #64b5f6; border-radius: 6px;">
+              <i class="material-icons tiny blue-text">build</i>
+              <span class="highlight-text"><b>Keyword-driven testing:</b> Extensive libraries and cross-platform automation</span>
+            </div>
           </div>
         </div>
       </div>
@@ -595,7 +633,10 @@ jobs:
           <div class="card-content center-align">
             <span class="card-title teal-text"><i class="material-icons large">speed</i></span>
             <h5><b>K6 Performance</b></h5>
-            <p>Modern load testing with JavaScript, CI/CD integration, and cloud scalability</p>
+            <div class="highlight-box" style="display: inline-block; text-align: left; max-width: 320px; background: rgba(255,255,255,0.95); padding: 10px; margin: 12px auto; border-left: 4px solid #4db6ac; border-radius: 6px;">
+              <i class="material-icons tiny teal-text">speed</i>
+              <span class="highlight-text"><b>Load testing:</b> JavaScript-based, CI/CD ready, cloud scalable</span>
+            </div>
           </div>
         </div>
       </div>
