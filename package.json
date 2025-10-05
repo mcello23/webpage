@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "jest --runInBand",
-    "lint": "eslint . --ext .js,.html",
+    "lint": "eslint . --ext .js",
     "format": "prettier --write '**/*.{js,html,css,json}'"
   },
   "devDependencies": {

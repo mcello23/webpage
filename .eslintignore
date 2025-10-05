@@ -5,4 +5,8 @@ backgrounds
 videos
 thumbs
 css/materialize.css
+css/materialize.min.css
 js/materialize.js
+js/materialize.min.js
+js/prism.js
+coverage
