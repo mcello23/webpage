@@ -423,34 +423,85 @@ p#manual-tests {
 @media only screen and (max-width: 575px) {
   /* Navigation */
   nav {
-    height: auto;
-    min-height: 56px;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 8px 0 !important;
+  }
+
+  nav .nav-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 8px !important;
+    position: relative !important;
   }
 
   nav .brand-logo {
-    font-size: 1.2rem !important;
-    padding-left: 8px !important;
-    max-width: 60%;
+    font-size: 1rem !important;
+    padding: 8px !important;
+    line-height: 1.4 !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  nav .brand-logo span {
+    font-size: 0.9rem !important;
+  }
+
+  nav .brand-logo i {
+    font-size: 16px !important;
+  }
+
+  /* Show navigation on mobile - override hide-on-med-and-down */
+  nav .hide-on-med-and-down {
+    display: flex !important;
+    flex-direction: column !important;
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    width: 100% !important;
+    gap: 6px !important;
+    margin: 8px 0 0 0 !important;
+    padding: 0 !important;
+  }
+
+  nav .center-nav {
+    order: 1 !important;
+  }
+
+  nav ul:last-child {
+    order: 2 !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    margin-top: 6px !important;
   }
 
   .nav-btn {
-    font-size: 0.75rem !important;
-    padding: 6px 10px !important;
-    margin: 2px !important;
+    font-size: 0.8rem !important;
+    padding: 10px 16px !important;
+    margin: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
   }
 
   .nav-btn i {
-    font-size: 14px !important;
-    margin-right: 2px !important;
+    font-size: 16px !important;
+    margin-right: 4px !important;
   }
 
   .social-icon {
-    padding: 4px !important;
-    margin: 0 2px !important;
+    padding: 8px !important;
+    margin: 0 4px !important;
   }
 
   .social-icon i {
-    font-size: 18px !important;
+    font-size: 20px !important;
   }
 
   /* Hero section */
@@ -578,13 +629,51 @@ p#manual-tests {
 
 /* Small devices (landscape phones, 576px to 767px) */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
+  /* Navigation - still needs mobile-friendly layout */
+  nav .nav-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 10px !important;
+  }
+
   nav .brand-logo {
-    font-size: 1.4rem !important;
+    font-size: 1.1rem !important;
+    text-align: center !important;
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding: 10px !important;
+  }
+
+  /* Show navigation on small screens */
+  nav .hide-on-med-and-down {
+    display: flex !important;
+    flex-direction: column !important;
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    width: 100% !important;
+    gap: 8px !important;
+    margin: 10px 0 0 0 !important;
+  }
+
+  nav .center-nav {
+    order: 1 !important;
+  }
+
+  nav ul:last-child {
+    order: 2 !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    margin-top: 8px !important;
   }
 
   .nav-btn {
     font-size: 0.85rem !important;
-    padding: 8px 12px !important;
+    padding: 12px 16px !important;
+    width: 100% !important;
+    justify-content: center !important;
   }
 
   h1 {
@@ -631,13 +720,26 @@ p#manual-tests {
 
 /* Medium devices (tablets, 768px to 991px) */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  /* Navigation - show elements but in adjusted layout */
+  nav .hide-on-med-and-down {
+    display: flex !important;
+  }
+
+  nav .center-nav {
+    gap: 20px !important;
+  }
+
   nav .brand-logo {
-    font-size: 1.6rem !important;
+    font-size: 1.3rem !important;
   }
 
   .nav-btn {
-    font-size: 0.9rem !important;
-    padding: 10px 16px !important;
+    font-size: 0.8rem !important;
+    padding: 8px 14px !important;
+  }
+
+  .nav-btn i {
+    font-size: 16px !important;
   }
 
   h1 {
