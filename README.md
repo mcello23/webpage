@@ -7,7 +7,7 @@
 
 ## 🌐 Live Demo
 
-Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)]
+Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
 ## ✨ Features
 
