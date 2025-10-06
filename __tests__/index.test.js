@@ -63,8 +63,8 @@ describe('Index Page (Main Portfolio)', () => {
     test('navigation buttons have correct hrefs', () => {
       const buttons = document.querySelectorAll('a.nav-btn');
       const hrefs = Array.from(buttons).map((btn) => btn.getAttribute('href'));
-      expect(hrefs).toContain('side_proj.html');
-      expect(hrefs).toContain('frameworks.html');
+      expect(hrefs).toContain('pages/side_proj.html');
+      expect(hrefs).toContain('pages/frameworks.html');
       expect(hrefs).toContain('#');
     });
 
@@ -110,8 +110,15 @@ describe('Index Page (Main Portfolio)', () => {
     test('has profile image', () => {
       const profileImg = document.querySelector('img.circle.responsive-img');
       expect(profileImg).toBeTruthy();
-      expect(profileImg.getAttribute('src')).toBe('./DSC_9554.jpg');
+      expect(profileImg.getAttribute('src')).toBe('assets/DSC_9554.jpg');
       expect(profileImg.getAttribute('alt')).toBe('Marcelo Costa');
+    });
+
+    test('profile image file exists', () => {
+      const fs = require('fs');
+      const path = require('path');
+      const imgPath = path.resolve(__dirname, '..', 'assets', 'DSC_9554.jpg');
+      expect(fs.existsSync(imgPath)).toBe(true);
     });
 
     test('displays correct name', () => {
@@ -439,6 +446,78 @@ describe('Index Page (Main Portfolio)', () => {
     test('certificate modal loads certificates.css stylesheet', () => {
       const certStyles = document.querySelector('link[href*="certificates.css"]');
       expect(certStyles).toBeTruthy();
+    });
+
+    test('certificate images exist in images folder', () => {
+      const fs = require('fs');
+      const path = require('path');
+
+      // Check that certificate images folder exists
+      const imagesPath = path.resolve(__dirname, '..', 'images');
+      expect(fs.existsSync(imagesPath)).toBe(true);
+
+      // Check for key certificate images
+      const certificateFiles = [
+        'ISTQB.jpg',
+        'Selenium WebDriver e Java.jpg',
+        'cyp-inter.jpg',
+        'cucumber_appium.jpg',
+        'GitHub.jpg',
+      ];
+
+      certificateFiles.forEach((file) => {
+        const filePath = path.join(imagesPath, file);
+        expect(fs.existsSync(filePath)).toBe(true);
+      });
+    });
+
+    test('certificates.js is properly loaded and accessible', () => {
+      const certScript = document.querySelector('script[src="js/certificates.js"]');
+      expect(certScript).toBeTruthy();
+      expect(certScript.getAttribute('src')).toBe('js/certificates.js');
+    });
+
+    test('certificate thumbnails exist in thumbs folder', () => {
+      const fs = require('fs');
+      const path = require('path');
+
+      const thumbsPath = path.resolve(__dirname, '..', 'thumbs');
+      expect(fs.existsSync(thumbsPath)).toBe(true);
+
+      // Check for key thumbnail images (note: some have different casing)
+      const thumbFiles = [
+        'ISTQB.jpg',
+        'GitHub.jpg',
+        'Agile.jpg', // Capital A
+      ];
+
+      thumbFiles.forEach((file) => {
+        const filePath = path.join(thumbsPath, file);
+        expect(fs.existsSync(filePath)).toBe(true);
+      });
+    });
+
+    test('certificates.js contains 16 certificates', () => {
+      const fs = require('fs');
+      const path = require('path');
+      const certJsPath = path.resolve(__dirname, '..', 'js', 'certificates.js');
+      const certJsContent = fs.readFileSync(certJsPath, 'utf8');
+
+      // Count certificate objects (id: 1 through id: 16)
+      const certMatches = certJsContent.match(/id:\s*\d+/g);
+      expect(certMatches).toBeTruthy();
+      expect(certMatches.length).toBeGreaterThanOrEqual(16);
+    });
+
+    test('certificates.js has path detection for subfolder support', () => {
+      const fs = require('fs');
+      const path = require('path');
+      const certJsPath = path.resolve(__dirname, '..', 'js', 'certificates.js');
+      const certJsContent = fs.readFileSync(certJsPath, 'utf8');
+
+      // Verify path detection function
+      expect(certJsContent).toContain('getBasePath');
+      expect(certJsContent).toContain('window.location.pathname');
     });
   });
 

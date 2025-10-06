@@ -18,7 +18,7 @@ describe('Frameworks Page', () => {
   let document;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, '..', 'frameworks.html');
+    const htmlPath = path.resolve(__dirname, '..', 'pages', 'frameworks.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     dom = new JSDOM(html);
     document = dom.window.document;
@@ -34,7 +34,7 @@ describe('Frameworks Page', () => {
     test('has brand logo with link to index', () => {
       const brand = document.querySelector('a.brand-logo');
       expect(brand).toBeTruthy();
-      expect(brand.getAttribute('href')).toBe('index.html');
+      expect(brand.getAttribute('href')).toBe('../index.html');
       expect(brand.textContent).toContain('Marcelo Costa - SDET Portfolio');
     });
 
@@ -119,8 +119,9 @@ describe('Frameworks Page', () => {
       expect(cssLinks.length).toBeGreaterThan(0);
 
       const hrefs = Array.from(cssLinks).map((link) => link.getAttribute('href'));
-      expect(hrefs).toContain('css/materialize.css');
-      expect(hrefs).toContain('css/style.css');
+      // frameworks.html is in pages/ folder, so uses ../ paths
+      expect(hrefs).toContain('../css/materialize.css');
+      expect(hrefs).toContain('../css/style.css');
     });
 
     test('has Material Icons link', () => {

@@ -1,6 +1,13 @@
 // Modern Certificate Gallery Data
 // Each certificate can have a LinkedIn credential URL if available
 
+// Detect if we're in a subfolder (like pages/) and adjust paths
+const getBasePath = () => {
+  const path = window.location.pathname;
+  // If we're in a subfolder (contains /pages/), add ../ prefix
+  return path.includes('/pages/') ? '../' : '';
+};
+
 const certificates = [
   {
     id: 1,
@@ -204,6 +211,7 @@ class CertificateModal {
   }
 
   generateCertificateGrid() {
+    const basePath = getBasePath();
     return this.certificates
       .map(
         (cert) => `
@@ -211,7 +219,7 @@ class CertificateModal {
         cert.id
       }" onclick="window.certificateModal.openCertificate(${cert.id - 1})">
         <div class="cert-card-image">
-          <img src="${cert.thumb}" alt="${cert.title}" loading="lazy">
+          <img src="${basePath}${cert.thumb}" alt="${cert.title}" loading="lazy">
           <div class="cert-card-overlay">
             <i class="material-icons">visibility</i>
             <span>View Certificate</span>
@@ -305,12 +313,13 @@ class CertificateModal {
 
   updateViewer() {
     const cert = certificates[this.currentIndex];
+    const basePath = getBasePath();
 
-    document.getElementById('certImage').src = cert.image;
+    document.getElementById('certImage').src = basePath + cert.image;
     document.getElementById('certTitle').textContent = cert.title;
     document.getElementById('certCategory').textContent = cert.category;
     document.getElementById('currentCert').textContent = this.currentIndex + 1;
-    document.getElementById('viewFullBtn').href = cert.image;
+    document.getElementById('viewFullBtn').href = basePath + cert.image;
 
     const linkedinBtn = document.getElementById('linkedinBtn');
     if (cert.linkedinUrl) {

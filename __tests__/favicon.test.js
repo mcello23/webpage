@@ -3,7 +3,7 @@ const path = require('path');
 const { JSDOM } = require('jsdom');
 
 describe('Favicon Configuration - All HTML Pages', () => {
-  const htmlFiles = ['index.html', 'frameworks.html', 'side_proj.html', 'responsive-tester.html'];
+  const htmlFiles = ['index.html', 'pages/frameworks.html', 'pages/side_proj.html', 'pages/responsive-tester.html'];
 
   htmlFiles.forEach((htmlFile) => {
     describe(`Favicon in ${htmlFile}`, () => {
@@ -328,7 +328,7 @@ describe('Favicon Configuration - All HTML Pages', () => {
 
   describe('Cross-Page Favicon Consistency', () => {
     test('all pages use the same favicon setup', () => {
-      const files = ['index.html', 'frameworks.html', 'side_proj.html', 'responsive-tester.html'];
+      const files = ['index.html', 'pages/frameworks.html', 'pages/side_proj.html', 'pages/responsive-tester.html'];
 
       const faviconSetups = files.map((file) => {
         const htmlPath = path.resolve(__dirname, '..', file);
@@ -360,7 +360,7 @@ describe('Favicon Configuration - All HTML Pages', () => {
     });
 
     test('all pages have the same number of favicon-related links', () => {
-      const files = ['index.html', 'frameworks.html', 'side_proj.html', 'responsive-tester.html'];
+      const files = ['index.html', 'pages/frameworks.html', 'pages/side_proj.html', 'pages/responsive-tester.html'];
 
       const counts = files.map((file) => {
         const htmlPath = path.resolve(__dirname, '..', file);

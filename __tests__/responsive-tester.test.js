@@ -7,7 +7,7 @@ describe('Responsive Breakpoint Tester Page', () => {
   let document;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, '..', 'responsive-tester.html');
+    const htmlPath = path.resolve(__dirname, '..', 'pages/responsive-tester.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     dom = new JSDOM(html, {
       runScripts: 'dangerously',

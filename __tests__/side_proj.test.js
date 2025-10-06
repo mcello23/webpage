@@ -18,7 +18,7 @@ describe('Side Projects Page', () => {
   let document;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, '..', 'side_proj.html');
+    const htmlPath = path.resolve(__dirname, '..', 'pages', 'side_proj.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     dom = new JSDOM(html);
     document = dom.window.document;
@@ -35,7 +35,8 @@ describe('Side Projects Page', () => {
     test('has brand logo with link to index', () => {
       const brand = document.querySelector('a.brand-logo');
       expect(brand).toBeTruthy();
-      expect(brand.getAttribute('href')).toBe('index.html');
+      // side_proj.html is in pages/ folder, so uses ../index.html
+      expect(brand.getAttribute('href')).toBe('../index.html');
       expect(brand.textContent).toContain('Marcelo Costa - SDET Portfolio');
     });
 
@@ -57,6 +58,7 @@ describe('Side Projects Page', () => {
     test('navigation buttons have correct hrefs', () => {
       const buttons = document.querySelectorAll('a.nav-btn');
       const hrefs = Array.from(buttons).map((btn) => btn.getAttribute('href'));
+      // side_proj.html links to itself and frameworks.html (both in pages/)
       expect(hrefs).toContain('side_proj.html');
       expect(hrefs).toContain('frameworks.html');
       expect(hrefs).toContain('#');
@@ -266,9 +268,9 @@ describe('Side Projects Page', () => {
       expect(cssLinks.length).toBeGreaterThan(0);
 
       const hrefs = Array.from(cssLinks).map((link) => link.getAttribute('href'));
-      expect(hrefs).toContain('css/materialize.css');
-      expect(hrefs).toContain('css/style.css');
-      expect(hrefs).toContain('./css/prism.css');
+      expect(hrefs).toContain('../css/materialize.css');
+      expect(hrefs).toContain('../css/style.css');
+      expect(hrefs).toContain('../css/prism.css');
     });
 
     test('has Material Icons link', () => {

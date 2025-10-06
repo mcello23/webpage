@@ -9,10 +9,13 @@ describe('Cross-Page Consistency Tests', () => {
   beforeAll(() => {
     const indexHtml = fs.readFileSync(path.resolve(__dirname, '..', 'index.html'), 'utf8');
     const frameworksHtml = fs.readFileSync(
-      path.resolve(__dirname, '..', 'frameworks.html'),
+      path.resolve(__dirname, '..', 'pages', 'frameworks.html'),
       'utf8'
     );
-    const sideProjHtml = fs.readFileSync(path.resolve(__dirname, '..', 'side_proj.html'), 'utf8');
+    const sideProjHtml = fs.readFileSync(
+      path.resolve(__dirname, '..', 'pages', 'side_proj.html'),
+      'utf8'
+    );
 
     indexDom = new JSDOM(indexHtml);
     frameworksDom = new JSDOM(frameworksHtml);
@@ -37,7 +40,11 @@ describe('Cross-Page Consistency Tests', () => {
     test('all pages have the same navigation buttons', () => {
       const getNavButtons = (doc) => {
         const buttons = doc.querySelectorAll('.nav-btn');
-        return Array.from(buttons).map((btn) => btn.getAttribute('href'));
+        // Normalize paths by removing both ../ and pages/ prefixes for comparison
+        return Array.from(buttons).map((btn) => {
+          const href = btn.getAttribute('href');
+          return href ? href.replace('../', '').replace('pages/', '') : href;
+        });
       };
 
       const indexButtons = getNavButtons(indexDoc);
@@ -81,9 +88,10 @@ describe('Cross-Page Consistency Tests', () => {
       const frameworksBrand = frameworksDoc.querySelector('.brand-logo').getAttribute('href');
       const sideProjBrand = sideProjDoc.querySelector('.brand-logo').getAttribute('href');
 
+      // index.html links to itself, other pages link to ../index.html
       expect(indexBrand).toBe('index.html');
-      expect(frameworksBrand).toBe('index.html');
-      expect(sideProjBrand).toBe('index.html');
+      expect(frameworksBrand).toBe('../index.html');
+      expect(sideProjBrand).toBe('../index.html');
     });
   });
 
@@ -145,10 +153,14 @@ describe('Cross-Page Consistency Tests', () => {
     });
 
     test('all pages load style.css', () => {
-      [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const styleCSS = doc.querySelector('link[href="css/style.css"]');
-        expect(styleCSS).toBeTruthy();
-      });
+      // index.html uses css/style.css, pages use ../css/style.css
+      const indexStyle = indexDoc.querySelector('link[href="css/style.css"]');
+      const frameworksStyle = frameworksDoc.querySelector('link[href="../css/style.css"]');
+      const sideProjStyle = sideProjDoc.querySelector('link[href="../css/style.css"]');
+
+      expect(indexStyle).toBeTruthy();
+      expect(frameworksStyle).toBeTruthy();
+      expect(sideProjStyle).toBeTruthy();
     });
 
     test('all pages load Material Icons', () => {
@@ -180,6 +192,52 @@ describe('Cross-Page Consistency Tests', () => {
         const certStyles = doc.querySelector('link[href*="certificates.css"]');
         expect(certStyles).toBeTruthy();
       });
+    });
+
+    test('all pages load certificates.js script with correct path', () => {
+      const indexScript = indexDoc.querySelector('script[src*="certificates.js"]');
+      const frameworksScript = frameworksDoc.querySelector('script[src*="certificates.js"]');
+      const sideProjScript = sideProjDoc.querySelector('script[src*="certificates.js"]');
+
+      expect(indexScript).toBeTruthy();
+      expect(frameworksScript).toBeTruthy();
+      expect(sideProjScript).toBeTruthy();
+
+      // index.html uses js/certificates.js, other pages use ../js/certificates.js
+      expect(indexScript.getAttribute('src')).toBe('js/certificates.js');
+      expect(frameworksScript.getAttribute('src')).toBe('../js/certificates.js');
+      expect(sideProjScript.getAttribute('src')).toBe('../js/certificates.js');
+    });
+
+    test('certificate images folder exists and is accessible', () => {
+      const fs = require('fs');
+      const path = require('path');
+
+      const imagesPath = path.resolve(__dirname, '..', 'images');
+      const thumbsPath = path.resolve(__dirname, '..', 'thumbs');
+
+      expect(fs.existsSync(imagesPath)).toBe(true);
+      expect(fs.existsSync(thumbsPath)).toBe(true);
+
+      // Verify key certificate images exist
+      const testImages = ['ISTQB.jpg', 'Selenium WebDriver e Java.jpg', 'GitHub.jpg'];
+
+      testImages.forEach((img) => {
+        const imgPath = path.join(imagesPath, img);
+        expect(fs.existsSync(imgPath)).toBe(true);
+      });
+    });
+
+    test('certificates.js includes path detection for subfolders', () => {
+      const fs = require('fs');
+      const path = require('path');
+      const certJsPath = path.resolve(__dirname, '..', 'js', 'certificates.js');
+      const certJsContent = fs.readFileSync(certJsPath, 'utf8');
+
+      // Verify the path detection function exists
+      expect(certJsContent).toContain('getBasePath');
+      expect(certJsContent).toContain('/pages/');
+      expect(certJsContent).toContain('../');
     });
   });
 
