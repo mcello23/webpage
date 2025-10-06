@@ -3,16 +3,90 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Marcelo Costa - SDET Portfolio</title>
-    
+    <title>Marcelo Costa - SDET Portfolio | Cypress & Playwright Expert</title>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Marcelo Costa - Senior QA Engineer & SDET specializing in E2E test automation with Cypress, Playwright, TypeScript. Reduced test execution by 98%, optimized CI/CD pipelines at Board International, Facephi, Nespresso IoT."
+    />
+    <meta
+      name="keywords"
+      content="SDET, QA Engineer, Cypress, Playwright, TypeScript, JavaScript, Test Automation, E2E Testing, CI/CD, Azure DevOps, GitHub Actions, Marcelo Costa"
+    />
+    <meta name="author" content="Marcelo Costa" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mcello23.github.io/webpage/" />
+    <meta
+      property="og:title"
+      content="Marcelo Costa - SDET Portfolio | Cypress & Playwright Expert"
+    />
+    <meta
+      property="og:description"
+      content="Senior QA Engineer with 5,000+ E2E tests maintained daily. Achieved 98% test time reduction and 67% suite optimization. Expert in Cypress, Playwright, TypeScript & CI/CD."
+    />
+    <meta property="og:image" content="https://mcello23.github.io/webpage/assets/DSC_9554.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://mcello23.github.io/webpage/" />
+    <meta
+      property="twitter:title"
+      content="Marcelo Costa - SDET Portfolio | Cypress & Playwright Expert"
+    />
+    <meta
+      property="twitter:description"
+      content="Senior QA Engineer with 5,000+ E2E tests maintained daily. Expert in Cypress, Playwright, TypeScript & CI/CD."
+    />
+    <meta
+      property="twitter:image"
+      content="https://mcello23.github.io/webpage/assets/DSC_9554.jpg"
+    />
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Marcelo Costa",
+        "jobTitle": "Senior QA Engineer & SDET",
+        "url": "https://mcello23.github.io/webpage/",
+        "image": "https://mcello23.github.io/webpage/assets/DSC_9554.jpg",
+        "description": "Senior QA Engineer specializing in E2E test automation with Cypress, Playwright, and TypeScript. Achieved 98% test time reduction and optimized CI/CD pipelines.",
+        "alumniOf": "Board International, Facephi Biometrics, Nespresso IoT, Apple",
+        "knowsAbout": [
+          "Cypress",
+          "Playwright",
+          "TypeScript",
+          "JavaScript",
+          "Test Automation",
+          "CI/CD",
+          "Azure DevOps",
+          "GitHub Actions"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/marceloc/",
+          "https://github.com/mcello23",
+          "https://medium.com/@marcelocosta_72783"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Madrid",
+          "addressCountry": "Spain"
+        }
+      }
+    </script>
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <meta name="theme-color" content="#3F51B5">
-    
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <meta name="theme-color" content="#3F51B5" />
+
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
@@ -34,14 +108,23 @@
         </a>
 
         <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
+        <button
+          class="mobile-menu-toggle"
+          type="button"
+          onclick="toggleMobileMenu()"
+          aria-label="Toggle navigation"
+        >
           <i class="material-icons">menu</i>
         </button>
 
         <!-- Center: Main Navigation Buttons -->
         <ul class="center-nav" id="mobileMenu">
           <li class="mobile-home-link">
-            <a href="index.html" class="mobile-home-btn" style="background: linear-gradient(135deg, #4db6ac, #26a69a);">
+            <a
+              href="index.html"
+              class="mobile-home-btn"
+              style="background: linear-gradient(135deg, #4db6ac, #26a69a)"
+            >
               <i class="material-icons">home</i>Home
             </a>
           </li>
@@ -56,7 +139,11 @@
             </a>
           </li>
           <li>
-            <a href="#" onclick="window.certificateModal && window.certificateModal.open(); return false;" class="nav-btn nav-btn-certs">
+            <a
+              href="#"
+              onclick="window.certificateModal && window.certificateModal.open(); return false;"
+              class="nav-btn nav-btn-certs"
+            >
               <i class="material-icons">card_membership</i>Certificates
             </a>
           </li>
@@ -70,12 +157,20 @@
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link" class="social-icon">
+            <a
+              href="https://www.linkedin.com/in/marceloc/"
+              aria-label="linkedin-link"
+              class="social-icon"
+            >
               <i class="fab fa-linkedin"></i>
             </a>
           </li>
           <li>
-            <a href="https://discord.com/users/mcello.654" aria-label="discord-link" class="social-icon">
+            <a
+              href="https://discord.com/users/mcello.654"
+              aria-label="discord-link"
+              class="social-icon"
+            >
               <i class="fab fa-discord"></i>
             </a>
           </li>
@@ -199,18 +294,47 @@
         font-size: 1.6rem;
         font-weight: 700;
       }
+
+      /* Screen reader only class for accessibility */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
     </style>
     <div style="margin-top: 80px"></div>
-    
+
     <div class="container">
       <div class="section">
         <div class="row">
           <div class="col s12">
-            <div class="center-align" style="margin-bottom: 30px;">
-              <img class="circle responsive-img" src="assets/DSC_9554.jpg" alt="Marcelo Costa" style="max-width: 180px; border: 5px solid #667eea; box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);" />
-              <h2 style="margin-top: 20px; font-weight: 700; color: #2c3e50;">Marcelo Costa</h2>
-              <h4 style="color: #667eea; font-weight: 600; line-height: 1.6;">SDET | AI Enthusiast | Cypress Ambassador | Playwright | TypeScript + JavaScript | E2E Test + CI/CD | DevOps</h4>
-              <p style="color: #666; font-size: 1.1rem;">Madrid, Spain &#127466;&#127480; | Trilingual: English • Portuguese • Spanish</p>
+            <div class="center-align" style="margin-bottom: 30px">
+              <img
+                class="circle responsive-img"
+                src="assets/DSC_9554.jpg"
+                alt="Marcelo Costa - Senior QA Engineer and SDET specializing in test automation"
+                style="
+                  max-width: 180px;
+                  border: 5px solid #667eea;
+                  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+                "
+              />
+              <h1 style="margin-top: 20px; font-weight: 700; color: #2c3e50; font-size: 2.5rem">
+                Marcelo Costa
+              </h1>
+              <h2 style="color: #667eea; font-weight: 600; line-height: 1.6; font-size: 1.5rem">
+                SDET | AI Enthusiast | Cypress Ambassador | Playwright | TypeScript + JavaScript |
+                E2E Test + CI/CD | DevOps
+              </h2>
+              <p style="color: #666; font-size: 1.1rem">
+                Madrid, Spain &#127466;&#127480; | Trilingual: English • Portuguese • Spanish
+              </p>
             </div>
 
             <div class="intro-card">
@@ -239,15 +363,21 @@
               <h3>🎯 What I Do</h3>
               <div class="row">
                 <div class="col s12 m6">
-                  <ul style="line-height: 2; font-size: 1.05rem;">
-                    <li><strong>E2E Test Automation:</strong> Cypress, Playwright, TypeScript/JavaScript</li>
-                    <li><strong>Performance Tuning:</strong> Webpack optimization, race condition fixes</li>
+                  <ul style="line-height: 2; font-size: 1.05rem">
+                    <li>
+                      <strong>E2E Test Automation:</strong> Cypress, Playwright,
+                      TypeScript/JavaScript
+                    </li>
+                    <li>
+                      <strong>Performance Tuning:</strong> Webpack optimization, race condition
+                      fixes
+                    </li>
                     <li><strong>CI/CD Pipelines:</strong> Azure DevOps, GitHub Actions, ArgoCD</li>
                     <li><strong>Mobile Testing:</strong> Appium, XCTest, Selenium, WebdriverIO</li>
                   </ul>
                 </div>
                 <div class="col s12 m6">
-                  <ul style="line-height: 2; font-size: 1.05rem;">
+                  <ul style="line-height: 2; font-size: 1.05rem">
                     <li><strong>BDD Frameworks:</strong> Cucumber/Gherkin for readable tests</li>
                     <li><strong>API Testing:</strong> Postman, GraphQL, REST validation</li>
                     <li><strong>Team Leadership:</strong> Mentoring, sprint presentations, KPIs</li>
@@ -257,59 +387,575 @@
               </div>
             </div>
 
+            <!-- Recent 2025 Achievements -->
+            <div
+              class="intro-card"
+              style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white"
+            >
+              <h3 style="color: white">🎯 2025 Achievements at Board International</h3>
+              <div class="row">
+                <div class="col s12">
+                  <ul
+                    style="
+                      line-height: 2.2;
+                      font-size: 1.1rem;
+                      list-style-type: none;
+                      padding-left: 0;
+                    "
+                  >
+                    <li
+                      style="
+                        background: rgba(255, 255, 255, 0.15);
+                        padding: 15px;
+                        margin: 10px 0;
+                        border-radius: 8px;
+                        border-left: 4px solid white;
+                      "
+                    >
+                      <strong>⚡ Performance Revolution:</strong> Achieved 98% reduction in test
+                      startup time through webpack optimization — tests now load instantly instead
+                      of 60 seconds
+                    </li>
+                    <li
+                      style="
+                        background: rgba(255, 255, 255, 0.15);
+                        padding: 15px;
+                        margin: 10px 0;
+                        border-radius: 8px;
+                        border-left: 4px solid white;
+                      "
+                    >
+                      <strong>🔧 Developer Experience:</strong> Implemented Step Decorators that
+                      reduced debugging time from hours to seconds, dramatically improving team
+                      productivity
+                    </li>
+                    <li
+                      style="
+                        background: rgba(255, 255, 255, 0.15);
+                        padding: 15px;
+                        margin: 10px 0;
+                        border-radius: 8px;
+                        border-left: 4px solid white;
+                      "
+                    >
+                      <strong>📊 Scale & Reliability:</strong> Successfully maintaining and
+                      optimizing 5,000+ E2E tests daily across Azure DevOps CI/CD pipelines
+                    </li>
+                    <li
+                      style="
+                        background: rgba(255, 255, 255, 0.15);
+                        padding: 15px;
+                        margin: 10px 0;
+                        border-radius: 8px;
+                        border-left: 4px solid white;
+                      "
+                    >
+                      <strong>🚀 Continuous Improvement:</strong> Leading ongoing CI/CD pipeline
+                      enhancements and test infrastructure modernization initiatives
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                style="
+                  text-align: center;
+                  margin-top: 20px;
+                  padding-top: 20px;
+                  border-top: 1px solid rgba(255, 255, 255, 0.3);
+                "
+              >
+                <p style="font-size: 1.1rem; font-weight: 600">
+                  Currently driving test automation excellence at a global enterprise software
+                  leader
+                </p>
+              </div>
+            </div>
+
             <div class="intro-card">
               <h3>💻 Tech Stack</h3>
               <div class="center-align">
-                <span class="skill-tag">TypeScript</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Cypress (E2E)</span>
-                <span class="skill-tag">Playwright (E2E)</span>
-                <span class="skill-tag">GitHub Actions (YML CI/CD)</span>
-                <span class="skill-tag">Azure DevOps (YML CI/CD)</span>
-                <span class="skill-tag">API Stubbing/Interception</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">Mock Testing</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">Cucumber/Gherkin (BDD Syntax)</span>
-                <span class="skill-tag">Nightly Builds (Implementation)</span>
-                <span class="skill-tag">Automated Reporting (Allure/Mochawesome/Mocha-Junit)</span>
-                <span class="skill-tag">Postman/Bruno</span>
-                <span class="skill-tag">Mobile Automation (Appium/Selenium/XCTest/Android Studio/Webdriver IO)</span>
-                <span class="skill-tag">DBs in SQL/Postgres/GraphQL</span>
+                <!-- Languages -->
+                <div style="margin-bottom: 30px">
+                  <h5
+                    style="text-align: left; color: #667eea; font-weight: 600; margin-bottom: 15px"
+                  >
+                    <i class="material-icons" style="vertical-align: middle">code</i> Languages
+                  </h5>
+                  <span class="skill-tag" title="TypeScript - Strongly typed JavaScript superset">
+                    <i class="fab fa-js" style="margin-right: 5px"></i>TypeScript
+                  </span>
+                  <span class="skill-tag" title="JavaScript - Core language for web automation">
+                    <i class="fab fa-js-square" style="margin-right: 5px"></i>JavaScript
+                  </span>
+                  <span class="skill-tag" title="Node.js - JavaScript runtime for test frameworks">
+                    <i class="fab fa-node-js" style="margin-right: 5px"></i>Node.js
+                  </span>
+                </div>
+
+                <!-- E2E Testing Frameworks -->
+                <div style="margin-bottom: 30px">
+                  <h5
+                    style="text-align: left; color: #43a047; font-weight: 600; margin-bottom: 15px"
+                  >
+                    <i class="material-icons" style="vertical-align: middle">bug_report</i> E2E
+                    Testing Frameworks
+                  </h5>
+                  <span
+                    class="skill-tag"
+                    style="background: linear-gradient(135deg, #17202c, #69d3a7)"
+                    title="Cypress - Fast, reliable E2E testing"
+                  >
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >speed</i
+                    >Cypress
+                  </span>
+                  <span
+                    class="skill-tag"
+                    style="background: linear-gradient(135deg, #2d5f3f, #45a872)"
+                    title="Playwright - Cross-browser automation"
+                  >
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >theater_comedy</i
+                    >Playwright
+                  </span>
+                  <span class="skill-tag" title="Cucumber/Gherkin - BDD syntax for readable tests">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >description</i
+                    >Cucumber/Gherkin
+                  </span>
+                </div>
+
+                <!-- CI/CD & DevOps -->
+                <div style="margin-bottom: 30px">
+                  <h5
+                    style="text-align: left; color: #1e88e5; font-weight: 600; margin-bottom: 15px"
+                  >
+                    <i class="material-icons" style="vertical-align: middle">settings</i> CI/CD &
+                    DevOps
+                  </h5>
+                  <span
+                    class="skill-tag"
+                    style="background: linear-gradient(135deg, #0078d4, #50a0e0)"
+                    title="Azure DevOps - CI/CD pipelines with YAML"
+                  >
+                    <i class="fab fa-microsoft" style="margin-right: 5px"></i>Azure DevOps
+                  </span>
+                  <span
+                    class="skill-tag"
+                    style="background: linear-gradient(135deg, #2088ff, #79b8ff)"
+                    title="GitHub Actions - Automated workflows"
+                  >
+                    <i class="fab fa-github" style="margin-right: 5px"></i>GitHub Actions
+                  </span>
+                  <span
+                    class="skill-tag"
+                    style="background: linear-gradient(135deg, #326ce5, #5b8def)"
+                    title="Docker - Containerization for test environments"
+                  >
+                    <i class="fab fa-docker" style="margin-right: 5px"></i>Docker
+                  </span>
+                  <span class="skill-tag" title="ArgoCD - GitOps continuous delivery">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >cloud_sync</i
+                    >ArgoCD
+                  </span>
+                </div>
+
+                <!-- API & Testing Tools -->
+                <div style="margin-bottom: 30px">
+                  <h5
+                    style="text-align: left; color: #fb8c00; font-weight: 600; margin-bottom: 15px"
+                  >
+                    <i class="material-icons" style="vertical-align: middle">api</i> API & Testing
+                    Tools
+                  </h5>
+                  <span class="skill-tag" title="GraphQL - Modern API query language">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >graphic_eq</i
+                    >GraphQL
+                  </span>
+                  <span class="skill-tag" title="Postman - API testing and development">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >send</i
+                    >Postman/Bruno
+                  </span>
+                  <span class="skill-tag" title="API Stubbing & Interception for isolated tests">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >block</i
+                    >API Stubbing
+                  </span>
+                  <span class="skill-tag" title="Mock Testing - Isolated component testing">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >widgets</i
+                    >Mock Testing
+                  </span>
+                </div>
+
+                <!-- Mobile & Database -->
+                <div style="margin-bottom: 30px">
+                  <h5
+                    style="text-align: left; color: #8e24aa; font-weight: 600; margin-bottom: 15px"
+                  >
+                    <i class="material-icons" style="vertical-align: middle">devices</i> Mobile &
+                    Database
+                  </h5>
+                  <span class="skill-tag" title="Appium - Mobile automation framework">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >smartphone</i
+                    >Appium
+                  </span>
+                  <span class="skill-tag" title="Selenium - Browser automation">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >web</i
+                    >Selenium
+                  </span>
+                  <span class="skill-tag" title="WebDriverIO - Next-gen browser automation">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >drive_eta</i
+                    >WebDriverIO
+                  </span>
+                  <span class="skill-tag" title="SQL/PostgreSQL/GraphQL databases">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >storage</i
+                    >SQL/Postgres
+                  </span>
+                </div>
+
+                <!-- Reporting & Version Control -->
+                <div>
+                  <h5
+                    style="text-align: left; color: #c62828; font-weight: 600; margin-bottom: 15px"
+                  >
+                    <i class="material-icons" style="vertical-align: middle">assessment</i>
+                    Reporting & Version Control
+                  </h5>
+                  <span class="skill-tag" title="Allure - Beautiful test reporting">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >insert_chart</i
+                    >Allure Reports
+                  </span>
+                  <span class="skill-tag" title="Mochawesome - Mocha test reporter">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >bar_chart</i
+                    >Mochawesome
+                  </span>
+                  <span
+                    class="skill-tag"
+                    style="background: linear-gradient(135deg, #f34f29, #ff7f50)"
+                    title="Git - Version control system"
+                  >
+                    <i class="fab fa-git-alt" style="margin-right: 5px"></i>Git
+                  </span>
+                  <span class="skill-tag" title="Nightly Builds - Automated scheduled test runs">
+                    <i
+                      class="material-icons"
+                      style="font-size: 1rem; margin-right: 5px; vertical-align: middle"
+                      >nights_stay</i
+                    >Nightly Builds
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Recent Experience with Parallax -->
-    <div class="parallax-container valign-wrapper parallax-experience" style="min-height: 300px;">
-      <div class="section no-pad-bot" style="width: 100%;">
+
+    <!-- Selected Automation Projects Section -->
+    <div
+      class="parallax-container valign-wrapper"
+      style="min-height: 300px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+    >
+      <div class="section no-pad-bot" style="width: 100%">
         <div class="container">
           <div class="row center">
-            <h2 class="header col s12 white-text" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7); font-weight: 700;">Recent Experience</h2>
-            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Last 4 roles — SDET & QA Manager</p>
+            <h2
+              class="header col s12 white-text"
+              style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); font-weight: 700"
+            >
+              Selected Automation Projects
+            </h2>
+            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8)">
+              Real-world test automation and CI/CD implementations
+            </p>
           </div>
         </div>
       </div>
     </div>
 
-    <section id="experience" class="section" style="padding: 60px 0;">
+    <section
+      id="projects"
+      class="section"
+      style="padding: 60px 0; background: #f9fafb"
+      aria-labelledby="projects-heading"
+    >
       <div class="container">
+        <h2 id="projects-heading" class="sr-only">Selected Automation Projects</h2>
+        <div class="row">
+          <!-- Project 1: E2E Biometric Validation -->
+          <div class="col s12 m6 l4">
+            <div class="card gradient-card" style="height: 100%">
+              <div class="card-content">
+                <span
+                  class="card-title"
+                  style="color: #17202c; font-weight: 700; font-size: 1.3rem"
+                >
+                  <i class="fab fa-github" style="vertical-align: middle; margin-right: 8px"></i>
+                  E2E Biometric Validation
+                </span>
+                <p style="color: #888; font-size: 0.9rem; margin-bottom: 15px">
+                  Open Source Project | 2024-2025
+                </p>
+                <p style="line-height: 1.8">
+                  Enterprise-grade identity platform testing suite featuring automated nightly
+                  regression tests with Docker containerization. Implements BDD with Cucumber,
+                  comprehensive E2E coverage for biometric authentication flows, custom Cypress
+                  commands for API interactions, and automated GitHub Pages deployment of test
+                  reports with Mochawesome.
+                </p>
+                <div style="margin-top: 20px">
+                  <span
+                    class="skill-tag"
+                    style="
+                      font-size: 0.75rem;
+                      padding: 5px 12px;
+                      background: linear-gradient(135deg, #17202c, #69d3a7);
+                    "
+                    >Cypress</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >Cucumber/BDD</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >Docker</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >Mochawesome</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px">CI/CD</span>
+                </div>
+                <div class="highlight-box" style="margin-top: 15px; border-left-color: #17202c">
+                  <strong>Impact:</strong> Automated nightly testing with live reports | Scalable
+                  test infrastructure
+                </div>
+              </div>
+              <div class="card-action">
+                <a
+                  class="btn waves-effect waves-light"
+                  style="background: #24292e; width: 100%"
+                  href="https://github.com/mcello23/cypress-demonstration-repo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fab fa-github left"></i>View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Biometrics Suite Validation -->
+          <div class="col s12 m6 l4">
+            <div class="card gradient-card" style="height: 100%">
+              <div class="card-content">
+                <span
+                  class="card-title"
+                  style="color: #2d5f3f; font-weight: 700; font-size: 1.3rem"
+                >
+                  <i class="fab fa-github" style="vertical-align: middle; margin-right: 8px"></i>
+                  Biometrics Suite Validation
+                </span>
+                <p style="color: #888; font-size: 0.9rem; margin-bottom: 15px">
+                  Open Source Project | 2024-2025
+                </p>
+                <p style="line-height: 1.8">
+                  Advanced Playwright framework for identity verification testing with sophisticated
+                  authentication flows (Cognito OIDC + Keycloak IDP). Features parallel test
+                  sharding, automated Allure report generation and deployment to GitHub Pages,
+                  API/UI comprehensive testing, and TypeScript-based modular architecture with
+                  reusable utilities.
+                </p>
+                <div style="margin-top: 20px">
+                  <span
+                    class="skill-tag"
+                    style="
+                      font-size: 0.75rem;
+                      padding: 5px 12px;
+                      background: linear-gradient(135deg, #2d5f3f, #45a872);
+                    "
+                    >Playwright</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >TypeScript</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >Allure</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >Sharding</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >OIDC/Keycloak</span
+                  >
+                </div>
+                <div class="highlight-box" style="margin-top: 15px; border-left-color: #2d5f3f">
+                  <strong>Impact:</strong> Multi-browser testing with automated report deployment |
+                  Complex auth flows
+                </div>
+              </div>
+              <div class="card-action">
+                <a
+                  class="btn waves-effect waves-light"
+                  style="background: #24292e; width: 100%"
+                  href="https://github.com/mcello23/playwright-demonstration"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fab fa-github left"></i>View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: KYB/KYC Validation Platform -->
+          <div class="col s12 m6 l4">
+            <div class="card gradient-card" style="height: 100%">
+              <div class="card-content">
+                <span
+                  class="card-title"
+                  style="color: #667eea; font-weight: 700; font-size: 1.3rem"
+                >
+                  <i class="fab fa-github" style="vertical-align: middle; margin-right: 8px"></i>
+                  KYB/KYC Validation Platform
+                </span>
+                <p style="color: #888; font-size: 0.9rem; margin-bottom: 15px">
+                  Open Source Project | 2024-2025
+                </p>
+                <p style="line-height: 1.8">
+                  Production-grade Know Your Business/Customer testing framework with Cypress Cloud
+                  parallel execution and recording. Integrates MailSlurp for email verification
+                  workflows, implements comprehensive Allure reporting with automatic generation and
+                  deployment, includes Docker containerization, and features advanced test
+                  categorization with smoke/regression tagging.
+                </p>
+                <div style="margin-top: 20px">
+                  <span
+                    class="skill-tag"
+                    style="
+                      font-size: 0.75rem;
+                      padding: 5px 12px;
+                      background: linear-gradient(135deg, #17202c, #69d3a7);
+                    "
+                    >Cypress</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >Cucumber/BDD</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >MailSlurp</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >Allure</span
+                  >
+                  <span class="skill-tag" style="font-size: 0.75rem; padding: 5px 12px"
+                    >Parallel Testing</span
+                  >
+                </div>
+                <div class="highlight-box" style="margin-top: 15px; border-left-color: #667eea">
+                  <strong>Impact:</strong> Email workflow automation | Cloud-based parallel
+                  execution | Live reporting
+                </div>
+              </div>
+              <div class="card-action">
+                <a
+                  class="btn waves-effect waves-light"
+                  style="background: #24292e; width: 100%"
+                  href="https://github.com/mcello23/cypress-automation-real-proj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fab fa-github left"></i>View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Experience with Parallax -->
+    <div class="parallax-container valign-wrapper parallax-experience" style="min-height: 300px">
+      <div class="section no-pad-bot" style="width: 100%">
+        <div class="container">
+          <div class="row center">
+            <h2
+              class="header col s12 white-text"
+              style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); font-weight: 700"
+            >
+              Recent Experience
+            </h2>
+            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8)">
+              Last 4 roles — SDET & QA Manager
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section
+      id="experience"
+      class="section"
+      style="padding: 60px 0"
+      aria-labelledby="experience-heading"
+    >
+      <div class="container">
+        <h2 id="experience-heading" class="sr-only">Recent Experience</h2>
         <div class="row">
           <div class="col s12 m6 l3">
             <div class="card gradient-card">
               <div class="card-content">
                 <span class="card-title"><b>Board International</b></span>
-                <p class="grey-text text-darken-1" style="font-size:0.9rem;"><i>Senior QA Engineer</i><br>May 2025 - Present | Madrid, Spain</p>
-                <div class="highlight-box" style="border-left-color: #1e88e5;">
-                  • Daily reviews of 5K+ E2E tests in Azure DevOps (Cypress + TypeScript)
+                <p class="grey-text text-darken-1" style="font-size: 0.9rem">
+                  <i>Senior QA Engineer</i><br />May 2025 – Present | Madrid, Spain
+                </p>
+                <div class="highlight-box" style="border-left-color: #1e88e5">
+                  • Maintaining 5,000+ E2E tests daily in Azure DevOps (Cypress + TypeScript)
                 </div>
-                <div class="highlight-box" style="border-left-color: #1e88e5;">
-                  • Reduced test execution from 60s to instant via webpack refactoring
+                <div class="highlight-box" style="border-left-color: #1e88e5">
+                  • Achieved 98% test startup reduction (60s → instant) via webpack refactoring
                 </div>
-                <div class="highlight-box" style="border-left-color: #1e88e5;">
-                  • Step Decorators improved debugging from hours to seconds
+                <div class="highlight-box" style="border-left-color: #1e88e5">
+                  • Step Decorators: debugging time from hours → seconds
+                </div>
+                <div class="highlight-box" style="border-left-color: #1e88e5">
+                  • Leading CI/CD pipeline optimization and test infrastructure improvements
                 </div>
               </div>
             </div>
@@ -319,14 +965,16 @@
             <div class="card gradient-card">
               <div class="card-content">
                 <span class="card-title"><b>Facephi Biometrics</b></span>
-                <p class="grey-text text-darken-1" style="font-size:0.9rem;"><i>Senior QA Engineer</i><br>Feb 2024 - Apr 2025 | Madrid, Spain</p>
-                <div class="highlight-box" style="border-left-color: #43a047;">
+                <p class="grey-text text-darken-1" style="font-size: 0.9rem">
+                  <i>Senior QA Engineer</i><br />Feb 2024 - Apr 2025 | Madrid, Spain
+                </p>
+                <div class="highlight-box" style="border-left-color: #43a047">
                   • Created greenfield E2E tests (Cypress/Playwright with TypeScript)
                 </div>
-                <div class="highlight-box" style="border-left-color: #43a047;">
+                <div class="highlight-box" style="border-left-color: #43a047">
                   • Reduced E2E execution time from 25 min to 8 min (same tests)
                 </div>
-                <div class="highlight-box" style="border-left-color: #43a047;">
+                <div class="highlight-box" style="border-left-color: #43a047">
                   • Document ID + selfie testing: 1h manual → 1 min automated
                 </div>
               </div>
@@ -337,14 +985,16 @@
             <div class="card gradient-card">
               <div class="card-content">
                 <span class="card-title"><b>Nespresso IoT (Nestlé)</b></span>
-                <p class="grey-text text-darken-1" style="font-size:0.9rem;"><i>QA Manager</i><br>Feb 2023 - Feb 2024 | Madrid, Spain</p>
-                <div class="highlight-box" style="border-left-color: #fb8c00;">
+                <p class="grey-text text-darken-1" style="font-size: 0.9rem">
+                  <i>QA Manager</i><br />Feb 2023 - Feb 2024 | Madrid, Spain
+                </p>
+                <div class="highlight-box" style="border-left-color: #fb8c00">
                   • Managed team of 8 (manual + automation) for IoT Vertuo machines
                 </div>
-                <div class="highlight-box" style="border-left-color: #fb8c00;">
+                <div class="highlight-box" style="border-left-color: #fb8c00">
                   • Established bug reporting guidelines, KPIs, and expanded docs
                 </div>
-                <div class="highlight-box" style="border-left-color: #fb8c00;">
+                <div class="highlight-box" style="border-left-color: #fb8c00">
                   • Negative test validation reduced customer issues by 30%
                 </div>
               </div>
@@ -355,14 +1005,16 @@
             <div class="card gradient-card">
               <div class="card-content">
                 <span class="card-title"><b>Apple (Siri)</b></span>
-                <p class="grey-text text-darken-1" style="font-size:0.9rem;"><i>Automation Tester & Team Lead</i><br>Oct 2020 - Feb 2023 | Madrid, Spain</p>
-                <div class="highlight-box" style="border-left-color: #8e24aa;">
+                <p class="grey-text text-darken-1" style="font-size: 0.9rem">
+                  <i>Automation Tester & Team Lead</i><br />Oct 2020 - Feb 2023 | Madrid, Spain
+                </p>
+                <div class="highlight-box" style="border-left-color: #8e24aa">
                   • Worked with UST framework (Swift/Xcode) for Siri testing
                 </div>
-                <div class="highlight-box" style="border-left-color: #8e24aa;">
+                <div class="highlight-box" style="border-left-color: #8e24aa">
                   • Trained team of 3, managed tasks and reviewed bugs
                 </div>
-                <div class="highlight-box" style="border-left-color: #8e24aa;">
+                <div class="highlight-box" style="border-left-color: #8e24aa">
                   • Tested NLP, ASR, Flow, Dialog across Apple ecosystem
                 </div>
               </div>
@@ -372,53 +1024,204 @@
       </div>
     </section>
 
-    <div class="parallax-container valign-wrapper parallax-articles" style="min-height: 250px;">
-      <div class="section no-pad-bot" style="width: 100%;">
+    <div class="parallax-container valign-wrapper parallax-articles" style="min-height: 250px">
+      <div class="section no-pad-bot" style="width: 100%">
         <div class="container">
           <div class="row center">
-            <h2 class="header col s12 white-text" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7); font-weight: 700;">Articles & Writing</h2>
-            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Technical publications and best practices</p>
+            <h2
+              class="header col s12 white-text"
+              style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); font-weight: 700"
+            >
+              Articles & Writing
+            </h2>
+            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8)">
+              Technical publications and best practices
+            </p>
           </div>
         </div>
       </div>
     </div>
 
-    <section id="articles" class="section">
+    <section
+      id="articles"
+      class="section"
+      style="padding: 60px 0; background: #f9fafb"
+      aria-labelledby="articles-heading"
+    >
+      <div class="container">
+        <h2 id="articles-heading" class="sr-only">Articles & Writing</h2>
         <div class="row">
-          <div class="col s12 m6">
-            <div class="card gradient-card">
+          <!-- Article 1: Hasura GraphQL -->
+          <div class="col s12 m6 l4">
+            <div class="card gradient-card" style="height: 100%">
+              <div class="card-image">
+                <div
+                  style="
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    padding: 60px 20px;
+                    text-align: center;
+                  "
+                >
+                  <i class="material-icons" style="font-size: 80px; color: white">code</i>
+                  <h5 class="white-text" style="margin-top: 10px; font-weight: 600">
+                    GraphQL + Cypress
+                  </h5>
+                </div>
+              </div>
               <div class="card-content">
-                <h5>
-                  <b>How to integrate Hasura GraphQL hooks into your E2E tests with Cypress</b>
+                <h5 style="font-weight: 700; color: #2c3e50; font-size: 1.2rem">
+                  How to integrate Hasura GraphQL hooks into your E2E tests
                 </h5>
-                <p class="grey-text">
-                  A 2025 article that shows how to use Hasura + Cypress commands to keep tests
-                  isolated and deterministic.
+                <p class="grey-text" style="margin: 15px 0; line-height: 1.7">
+                  A 2025 technical article demonstrating how to use Hasura + Cypress custom commands
+                  to keep tests isolated and deterministic. Includes code examples and best
+                  practices.
                 </p>
+                <div style="margin-top: 15px">
+                  <span
+                    class="skill-tag"
+                    style="
+                      font-size: 0.75rem;
+                      padding: 5px 12px;
+                      background: linear-gradient(135deg, #43a047, #2e7d32);
+                    "
+                    >GraphQL</span
+                  >
+                  <span
+                    class="skill-tag"
+                    style="
+                      font-size: 0.75rem;
+                      padding: 5px 12px;
+                      background: linear-gradient(135deg, #43a047, #2e7d32);
+                    "
+                    >Hasura</span
+                  >
+                  <span
+                    class="skill-tag"
+                    style="
+                      font-size: 0.75rem;
+                      padding: 5px 12px;
+                      background: linear-gradient(135deg, #43a047, #2e7d32);
+                    "
+                    >Cypress</span
+                  >
+                </div>
+              </div>
+              <div class="card-action">
                 <a
-                  class="btn-small teal"
+                  class="btn waves-effect waves-light teal"
                   href="https://medium.com/@marcelocosta_72783/how-to-integrate-hasura-graphql-hooks-into-your-e2e-tests-with-cypress-284e5bfc6d81"
                   target="_blank"
-                  >Read on Medium</a
+                  rel="noopener noreferrer"
+                  style="width: 100%"
                 >
+                  <i class="fab fa-medium left"></i>Read on Medium
+                </a>
               </div>
             </div>
           </div>
 
-          <div class="col s12 m6">
-            <div class="card gradient-card">
+          <!-- Article 2: Auth0 Login -->
+          <div class="col s12 m6 l4">
+            <div class="card gradient-card" style="height: 100%">
+              <div class="card-image">
+                <div
+                  style="
+                    background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+                    padding: 60px 20px;
+                    text-align: center;
+                  "
+                >
+                  <i class="material-icons" style="font-size: 80px; color: white">lock_open</i>
+                  <h5 class="white-text" style="margin-top: 10px; font-weight: 600">
+                    Auth0 + Cypress
+                  </h5>
+                </div>
+              </div>
               <div class="card-content">
-                <h5><b>Speeding up Cypress tests with Auth0 login (LinkedIn post)</b></h5>
-                <p class="grey-text">
-                  A LinkedIn post describing tips and shortcuts to speed up authenticated E2E tests.
-                  (LinkedIn requires sign-in to view)
+                <h5 style="font-weight: 700; color: #2c3e50; font-size: 1.2rem">
+                  Speeding up Cypress tests with Auth0 login optimization
+                </h5>
+                <p class="grey-text" style="margin: 15px 0; line-height: 1.7">
+                  LinkedIn post sharing practical tips and shortcuts to accelerate authenticated E2E
+                  tests. Strategies for token caching and session management.
                 </p>
+                <div style="margin-top: 15px">
+                  <span
+                    class="skill-tag"
+                    style="
+                      font-size: 0.75rem;
+                      padding: 5px 12px;
+                      background: linear-gradient(135deg, #1e88e5, #1565c0);
+                    "
+                    >Auth0</span
+                  >
+                  <span
+                    class="skill-tag"
+                    style="
+                      font-size: 0.75rem;
+                      padding: 5px 12px;
+                      background: linear-gradient(135deg, #1e88e5, #1565c0);
+                    "
+                    >Cypress</span
+                  >
+                  <span
+                    class="skill-tag"
+                    style="
+                      font-size: 0.75rem;
+                      padding: 5px 12px;
+                      background: linear-gradient(135deg, #1e88e5, #1565c0);
+                    "
+                    >Performance</span
+                  >
+                </div>
+              </div>
+              <div class="card-action">
                 <a
-                  class="btn-small teal"
+                  class="btn waves-effect waves-light"
+                  style="background: #0077b5; width: 100%"
                   href="https://www.linkedin.com/feed/update/urn:li:activity:7212129450073677825/?updateEntityUrn=urn%3Ali%3Afs_feedUpdate%3A%28V2%2Curn%3Ali%3Aactivity%3A7212129450073677825%29"
                   target="_blank"
-                  >View on LinkedIn</a
+                  rel="noopener noreferrer"
                 >
+                  <i class="fab fa-linkedin left"></i>View on LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Placeholder for More Articles -->
+          <div class="col s12 m6 l4">
+            <div
+              class="card gradient-card"
+              style="
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+              "
+            >
+              <div class="card-content center-align">
+                <i
+                  class="material-icons"
+                  style="font-size: 100px; color: #667eea; margin-bottom: 20px"
+                  >article</i
+                >
+                <h5 style="font-weight: 700; color: #2c3e50">More Articles Coming Soon</h5>
+                <p class="grey-text" style="margin: 15px 0; line-height: 1.7">
+                  Stay tuned for more technical articles on test automation, CI/CD best practices,
+                  and modern testing frameworks.
+                </p>
+                <a
+                  class="btn waves-effect waves-light"
+                  style="background: #00ab6c; margin-top: 15px"
+                  href="https://medium.com/@marcelocosta_72783"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fab fa-medium left"></i>Follow on Medium
+                </a>
               </div>
             </div>
           </div>
@@ -429,12 +1232,19 @@
     <!-- Certificate Modal Container -->
     <div id="certificateModal" class="cert-modal"></div>
 
-    <div class="parallax-container valign-wrapper parallax-fundamentals" style="min-height: 250px;">
-      <div class="section no-pad-bot" style="width: 100%;">
+    <div class="parallax-container valign-wrapper parallax-fundamentals" style="min-height: 250px">
+      <div class="section no-pad-bot" style="width: 100%">
         <div class="container">
           <div class="row center">
-            <h2 class="header col s12 white-text" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7); font-weight: 700;">Request my CV</h2>
-            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Send a quick request and I'll share my CV by email</p>
+            <h2
+              class="header col s12 white-text"
+              style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); font-weight: 700"
+            >
+              Request my CV
+            </h2>
+            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8)">
+              Send a quick request and I'll share my CV by email
+            </p>
           </div>
         </div>
       </div>
@@ -453,10 +1263,15 @@
               <div class="card-content">
                 <form id="cv-form" onsubmit="return sendCVRequest(event)">
                   <!-- Hidden field for Web3Forms access key -->
-                  <input type="hidden" name="access_key" id="access_key" value="9b0257eb-d6be-4449-9eeb-af664f2bec38">
-                  <input type="hidden" name="subject" value="CV Request from Portfolio">
-                  <input type="hidden" name="from_name" value="Portfolio CV Request">
-                  
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    id="access_key"
+                    value="9b0257eb-d6be-4449-9eeb-af664f2bec38"
+                  />
+                  <input type="hidden" name="subject" value="CV Request from Portfolio" />
+                  <input type="hidden" name="from_name" value="Portfolio CV Request" />
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input id="cv-email" name="email" type="email" required />
@@ -492,17 +1307,24 @@
 
                   <div class="row" style="align-items: center">
                     <div class="col s12 m6">
-                      <button type="submit" id="submit-btn" class="btn-large waves-effect waves-light teal">
+                      <button
+                        type="submit"
+                        id="submit-btn"
+                        class="btn-large waves-effect waves-light teal"
+                      >
                         <span id="btn-text">Send request</span>
-                        <span id="btn-loading" style="display: none;">Sending...</span>
+                        <span id="btn-loading" style="display: none">Sending...</span>
                       </button>
                     </div>
                     <div class="col s12 m6">
-                      <div id="cv-confirm" style="display: none; font-weight: 600; margin-top: 10px;">
-                        <span id="success-msg" style="color: #2e7d32; display: none;">
+                      <div
+                        id="cv-confirm"
+                        style="display: none; font-weight: 600; margin-top: 10px"
+                      >
+                        <span id="success-msg" style="color: #2e7d32; display: none">
                           ✓ Request sent successfully! I'll respond to you shortly.
                         </span>
-                        <span id="error-msg" style="color: #c62828; display: none;">
+                        <span id="error-msg" style="color: #c62828; display: none">
                           ✗ Failed to send. Please try again or contact me directly on LinkedIn.
                         </span>
                       </div>
@@ -515,18 +1337,30 @@
         </div>
       </div>
     </section>
-    <div class="section" style="padding: 60px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div
+      class="section"
+      style="padding: 60px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    >
       <div class="container">
         <div class="row center">
           <div class="col s12">
             <h3 class="white-text">Thank you for exploring my testing portfolio</h3>
-            <p class="flow-text white-text">Ready to build robust, scalable testing solutions together</p>
-            <div style="margin-top: 30px;">
-              <a href="https://www.linkedin.com/in/marceloc/" target="_blank" class="btn-large white teal-text waves-effect" style="margin: 10px; border-radius: 25px;">
+            <p class="flow-text white-text">
+              Ready to build robust, scalable testing solutions together
+            </p>
+            <div style="margin-top: 30px">
+              <a
+                href="https://www.linkedin.com/in/marceloc/"
+                target="_blank"
+                class="btn-large white teal-text waves-effect"
+                style="margin: 10px; border-radius: 25px"
+              >
                 <i class="fab fa-linkedin left"></i>Let's Connect
               </a>
             </div>
-            <p class="white-text" style="margin-top: 20px;">© 2025 Marcelo Costa | Senior QA Engineer & Test Automation Specialist</p>
+            <p class="white-text" style="margin-top: 20px">
+              © 2025 Marcelo Costa | Senior QA Engineer & Test Automation Specialist
+            </p>
           </div>
         </div>
       </div>
@@ -540,7 +1374,7 @@
     <script>
       async function sendCVRequest(e) {
         e.preventDefault();
-        
+
         const form = document.getElementById('cv-form');
         const submitBtn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
@@ -548,10 +1382,10 @@
         const confirmEl = document.getElementById('cv-confirm');
         const successMsg = document.getElementById('success-msg');
         const errorMsg = document.getElementById('error-msg');
-        
+
         // Get form data
         const formData = new FormData(form);
-        
+
         // Validate fields
         const name = document.getElementById('cv-name').value.trim();
         const email = document.getElementById('cv-email').value.trim();
@@ -573,7 +1407,7 @@
           // Send to Web3Forms API
           const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            body: formData
+            body: formData,
           });
 
           const data = await response.json();
@@ -584,11 +1418,11 @@
             errorMsg.style.display = 'none';
             confirmEl.style.display = 'block';
             form.reset();
-            
+
             // Re-initialize Materialize labels (they stick after reset)
             setTimeout(() => {
               const labels = form.querySelectorAll('label');
-              labels.forEach(label => label.classList.remove('active'));
+              labels.forEach((label) => label.classList.remove('active'));
             }, 100);
           } else {
             throw new Error('Submission failed');
