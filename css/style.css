@@ -657,3 +657,60 @@ p#manual-tests {
     border: 2px solid currentColor !important;
   }
 }
+
+
+/* ========================================
+   RESPONSIVE ENHANCEMENTS FOR MOBILE
+   Works with Materialize, not against it
+   ======================================== */
+
+/* Ensure images are responsive on mobile */
+@media only screen and (max-width: 600px) {
+  .image-cyp,
+  .image-amz,
+  .image-quix,
+  .image-js,
+  .image-py,
+  .image-sel,
+  .image-desc-doom {
+    float: none !important;
+    display: block;
+    margin: 20px auto !important;
+    max-width: 90%;
+  }
+  
+  .parallax-container {
+    min-height: 200px;
+  }
+  
+  .intro-card {
+    padding: 25px 20px !important;
+  }
+  
+  .intro-stats {
+    flex-direction: column;
+  }
+  
+  .stat-item {
+    width: 100% !important;
+  }
+}
+
+/* Tablet improvements */
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+  .parallax-container {
+    min-height: 250px;
+  }
+}
+
+/* Ensure cards have proper spacing */
+.card {
+  margin-bottom: 20px;
+}
+
+/* Make sure row has proper clearfix */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}

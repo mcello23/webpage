@@ -20,7 +20,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
       rel="stylesheet"
     />
-    <link href="css/navbar.css?v=3" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/navbar.css?v=5" type="text/css" rel="stylesheet" media="screen,projection" />
+  </head>
   <body>
     <nav class="main-nav">
       <div class="nav-wrapper">
@@ -30,8 +31,18 @@
           <span>Marcelo Costa - SDET Portfolio</span>
         </a>
 
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
+          <i class="material-icons">menu</i>
+        </button>
+
         <!-- Center: Main Navigation Buttons -->
-        <ul class="center-nav">
+        <ul class="center-nav" id="mobileMenu">
+          <li class="mobile-home-link">
+            <a href="index.html" class="mobile-home-btn" style="background: linear-gradient(135deg, #4db6ac, #26a69a);">
+              <i class="material-icons">home</i>Home
+            </a>
+          </li>
           <li>
             <a href="side_proj.html" class="nav-btn nav-btn-projects">
               <i class="material-icons">extension</i>Side Projects
@@ -69,6 +80,12 @@
         </ul>
       </div>
     </nav>
+    <script>
+      function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        menu.classList.toggle('active');
+      }
+    </script>
     <style>
       /* Small, reusable card styles used across pages */
       .gradient-card {
