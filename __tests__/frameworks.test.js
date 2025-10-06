@@ -54,7 +54,7 @@ describe('Frameworks Page', () => {
       const hrefs = Array.from(buttons).map((btn) => btn.getAttribute('href'));
       expect(hrefs).toContain('side_proj.html');
       expect(hrefs).toContain('frameworks.html');
-      expect(hrefs).toContain('#modal1');
+      expect(hrefs).toContain('#');
     });
 
     test('social icons exist on the right', () => {
@@ -197,21 +197,21 @@ describe('Frameworks Page', () => {
       expect(prismScript).toBeTruthy();
     });
 
-    test('loads Juicebox for modal gallery', () => {
-      const juiceboxScript = document.querySelector('script[src*="juicebox"]');
-      expect(juiceboxScript).toBeTruthy();
+    test('loads certificates.js for modern certificate modal', () => {
+      const certScript = document.querySelector('script[src*="certificates.js"]');
+      expect(certScript).toBeTruthy();
     });
   });
 
-  describe('Modal', () => {
-    test('has modal for certificates', () => {
-      const modal = document.querySelector('#modal1.modal');
+  describe('Certificate Modal', () => {
+    test('has modern certificate modal container', () => {
+      const modal = document.querySelector('#certificateModal.cert-modal');
       expect(modal).toBeTruthy();
     });
 
-    test('modal has juicebox container', () => {
-      const juiceboxContainer = document.querySelector('#juicebox-container');
-      expect(juiceboxContainer).toBeTruthy();
+    test('certificate modal loads certificates.css stylesheet', () => {
+      const certStyles = document.querySelector('link[href*="certificates.css"]');
+      expect(certStyles).toBeTruthy();
     });
   });
 

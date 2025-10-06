@@ -59,7 +59,7 @@ describe('Side Projects Page', () => {
       const hrefs = Array.from(buttons).map((btn) => btn.getAttribute('href'));
       expect(hrefs).toContain('side_proj.html');
       expect(hrefs).toContain('frameworks.html');
-      expect(hrefs).toContain('#modal1');
+      expect(hrefs).toContain('#');
     });
 
     test('social icons are present and correctly linked', () => {
@@ -202,16 +202,16 @@ describe('Side Projects Page', () => {
     });
   });
 
-  describe('Modal', () => {
-    test('has certificates modal', () => {
-      const modal = document.querySelector('#modal1');
+  describe('Certificate Modal', () => {
+    test('has modern certificate modal container', () => {
+      const modal = document.querySelector('#certificateModal');
       expect(modal).toBeTruthy();
-      expect(modal.classList.contains('modal')).toBe(true);
+      expect(modal.classList.contains('cert-modal')).toBe(true);
     });
 
-    test('modal has juicebox container', () => {
-      const container = document.querySelector('#juicebox-container');
-      expect(container).toBeTruthy();
+    test('certificate modal loads certificates.css stylesheet', () => {
+      const certStyles = document.querySelector('link[href*="certificates.css"]');
+      expect(certStyles).toBeTruthy();
     });
   });
 
@@ -231,17 +231,9 @@ describe('Side Projects Page', () => {
       expect(prismScript).toBeTruthy();
     });
 
-    test('loads Juicebox for modal', () => {
-      const juiceboxScript = document.querySelector('script[src*="juicebox"]');
-      expect(juiceboxScript).toBeTruthy();
-    });
-
-    test('has modal initialization script', () => {
-      const scripts = Array.from(document.querySelectorAll('script'))
-        .map((s) => s.textContent)
-        .join('');
-      expect(scripts).toContain('DOMContentLoaded');
-      expect(scripts).toContain('Modal.init');
+    test('loads certificates.js for modern certificate modal', () => {
+      const certScript = document.querySelector('script[src*="certificates.js"]');
+      expect(certScript).toBeTruthy();
     });
   });
 

@@ -128,19 +128,10 @@ describe('Cross-Page Consistency Tests', () => {
       });
     });
 
-    test('all pages load Juicebox', () => {
+    test('all pages load certificates.js', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const juicebox = doc.querySelector('script[src*="juicebox"]');
-        expect(juicebox).toBeTruthy();
-      });
-    });
-
-    test('all pages have Juicebox configuration', () => {
-      [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const scripts = Array.from(doc.querySelectorAll('script'))
-          .map((s) => s.textContent)
-          .join('');
-        expect(scripts).toContain('juiceboxConfig');
+        const certScript = doc.querySelector('script[src*="certificates.js"]');
+        expect(certScript).toBeTruthy();
       });
     });
   });
@@ -175,29 +166,19 @@ describe('Cross-Page Consistency Tests', () => {
     });
   });
 
-  describe('Modal Consistency', () => {
-    test('all pages have modal with id modal1', () => {
+  describe('Certificate Modal Consistency', () => {
+    test('all pages have modern certificate modal', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const modal = doc.querySelector('#modal1');
+        const modal = doc.querySelector('#certificateModal');
         expect(modal).toBeTruthy();
-        expect(modal.classList.contains('modal')).toBe(true);
+        expect(modal.classList.contains('cert-modal')).toBe(true);
       });
     });
 
-    test('all pages have juicebox container in modal', () => {
+    test('all pages load certificates.css stylesheet', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const container = doc.querySelector('#modal1 #juicebox-container');
-        expect(container).toBeTruthy();
-      });
-    });
-
-    test('all pages initialize modals with DOMContentLoaded', () => {
-      [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const scripts = Array.from(doc.querySelectorAll('script'))
-          .map((s) => s.textContent)
-          .join('');
-        expect(scripts).toContain('DOMContentLoaded');
-        expect(scripts).toContain('Modal.init');
+        const certStyles = doc.querySelector('link[href*="certificates.css"]');
+        expect(certStyles).toBeTruthy();
       });
     });
   });
@@ -308,14 +289,12 @@ describe('Cross-Page Consistency Tests', () => {
   });
 
   describe('Navigation Behavior', () => {
-    test('certificates button triggers modal on all pages', () => {
+    test('certificates button opens modern modal on all pages', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const modalTrigger = doc.querySelector('a[href="#modal1"]');
-        expect(modalTrigger).toBeTruthy();
-        expect(
-          modalTrigger.classList.contains('modal-trigger') ||
-            modalTrigger.textContent.includes('Certificates')
-        ).toBe(true);
+        const certsBtn = doc.querySelector('.nav-btn-certs');
+        expect(certsBtn).toBeTruthy();
+        expect(certsBtn.textContent).toContain('Certificates');
+        expect(certsBtn.getAttribute('onclick')).toContain('certificateModal.open()');
       });
     });
 

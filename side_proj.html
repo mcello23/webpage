@@ -23,6 +23,7 @@
     />
     <link href="./css/prism.css" rel="stylesheet" />
     <link href="css/navbar.css?v=5" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/certificates.css" type="text/css" rel="stylesheet" media="screen,projection" />
   </head>
   <body>
     <nav class="main-nav">
@@ -63,7 +64,11 @@
             </a>
           </li>
           <li>
-            <a href="#modal1" class="modal-trigger nav-btn nav-btn-certs">
+            <a
+              href="#"
+              onclick="window.certificateModal && window.certificateModal.open(); return false;"
+              class="nav-btn nav-btn-certs"
+            >
               <i class="material-icons">card_membership</i>Certificates
             </a>
           </li>
@@ -219,11 +224,9 @@ export class TestPlanGenerator {
         </div>
       </div>
       <br /><br /><br /><br />
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <div id="juicebox-container" class="juicebox-container"></div>
-        </div>
-      </div>
+
+      <!-- Certificate Modal Container -->
+      <div id="certificateModal" class="cert-modal"></div>
     </div>
     <div
       class="section"
@@ -258,32 +261,8 @@ export class TestPlanGenerator {
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/certificates.js"></script>
     <script src="./js/prism.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.modal');
-        var instances = M.Modal.init(elems);
-      });
-    </script>
-    <!--START JUICEBOX EMBED-->
-    <script src="jbcore/juicebox.js"></script>
-    <script>
-      const juiceboxConfig = {
-        scaleToFit: false,
-        enableKeyboardControls: true,
-        showOpenButton: true,
-      };
-
-      new juicebox(
-        {
-          containerId: 'juicebox-container',
-          galleryWidth: '1280',
-          galleryHeight: '720',
-          backgroundColor: '#222222',
-        },
-        juiceboxConfig
-      );
-    </script>
     *** End Patch
   </body>
 </html>
