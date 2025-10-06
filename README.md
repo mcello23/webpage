@@ -1,45 +1,51 @@
-# Marcelo Costa - SDET Portfolio
+# Marcelo Costa – QA / SDET Portfolio
 
-[![Tests](https://img.shields.io/badge/tests-355%20passing-brightgreen)](/__tests__)
+[![Tests](https://img.shields.io/badge/tests-425%20passing-brightgreen)](/__tests__)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-> A modern, responsive portfolio website showcasing software testing expertise, automation frameworks, and professional certifications.
+Modern, performance‑oriented and accessibility‑aware portfolio highlighting large scale E2E automation, test architecture, and delivery impact (Cypress, Playwright, CI/CD).
 
 ## 🌐 Live Demo
 
 Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
-## ✨ Features
+## ✨ Highlights
 
-### 🎯 Core Features
+### Core
 
-- **Responsive Design** - Fully responsive across mobile, tablet, and desktop devices
-- **Modern UI/UX** - Clean, professional design with smooth animations
-- **Dark Theme** - Eye-friendly dark color scheme with purple gradient accents
-- **Fast Performance** - Optimized for quick loading and smooth interactions
-- **SEO Optimized** - Proper meta tags and semantic HTML
+- Fully responsive (mobile → desktop) with progressive enhancement.
+- Accessible navigation (ARIA, keyboard friendly modals, semantic structure).
+- SEO + rich snippets (JSON‑LD Person schema, meta & Open Graph tags).
+- Performance conscious: minimal blocking assets, gradients over large images, no heavy SPA framework.
+- Consistent visual system (CSS variables + utility patterns).
 
-### 📜 Certificate Gallery
+### Certificate Gallery (Custom, Vanilla JS)
 
-- **Modern Modal System** - Custom-built certificate viewer (replaced Juicebox)
-- **Grid & Viewer Modes** - Browse all certificates or view individually
-- **Keyboard Navigation** - Navigate with arrow keys, Escape, and Backspace
-- **LinkedIn Integration** - Direct links to LinkedIn Learning certificates
-- **16 Professional Certifications** - ISTQB, Selenium, Cypress, Python, and more
+- Replaced external gallery tooling with a lean modal + grid implementation.
+- Keyboard support: ArrowLeft / ArrowRight, Escape, Backspace to return to grid.
+- Lazy thumbnail loading + category badges + optional LinkedIn credential link.
+- Works from nested pages using dynamic base path resolution.
 
-### 🧪 Testing Frameworks Showcase
+### Testing & Quality Signals
 
-- Detailed explanations of testing frameworks and tools
-- Code examples with syntax highlighting (Prism.js)
-- Visual demonstrations of automation capabilities
-- Real-world implementation examples
+- 425 Jest tests (DOM structure, accessibility attributes, link integrity, cross‑page consistency, favicon assets, responsive nav behavior).
+- Regex + structural assertions to detect regressions in navigation, Calendly CTA, and modal wiring.
+- Style presence tests guard against accidental CSS regression (e.g., mobile menu compact design rules).
 
-### 🚀 Side Projects
+### Side Projects & Frameworks Sections
 
-- Portfolio of automation projects
-- GitHub repository links
-- Technology stack demonstrations
-- Practical application examples
+- Showcases real automation repos (Playwright, Cypress) with contextual tech tags.
+- Parallax / gradient sections delineate content zones without JS overhead.
+
+### Accessibility
+
+- High‑contrast actionable elements, focusable interactive regions.
+- Explicit aria-labels for icon‑only CTAs (Calendly booking, social links).
+- Uses role="list" semantics for custom tag libraries; screen‑reader only headings preserve document outline.
+
+### Calendly CTA (Intentional Mismatch Explained)
+
+The booking links use the event slug `/30min` while retaining the visible & aria wording “Book 15‑min call”. This is intentional per product/branding guidance; tests enforce both the 30min slug and 15‑minute wording so future refactors don’t “fix” it. Update instructions below.
 
 ## 📁 Project Structure
 
@@ -52,9 +58,7 @@ webpage/
 │   ├── responsive-tester.html # Responsive design tester
 │   └── test-modal.html     # Certificate modal test page
 │
-├── assets/                 # Images and media files
-│   ├── Certificados/       # Certificate images (full-size)
-│   └── DSC_9554.jpg        # Profile photo
+├── assets/                 # Misc assets (profile photo, large supporting images)
 │
 ├── css/                    # Stylesheets
 │   ├── certificates.css    # Certificate modal styles
@@ -70,7 +74,7 @@ webpage/
 │   └── prism.js            # Code syntax highlighting
 │
 ├── images/                 # Certificate images (full-size)
-│   └── [16 certificate JPGs]
+│   └── *.jpg
 │
 ├── thumbs/                 # Certificate thumbnails
 │   └── [16 thumbnail JPGs]
@@ -81,39 +85,39 @@ webpage/
 │   ├── apple-touch-icon.png
 │   └── site.webmanifest
 │
-└── __tests__/              # Jest test suites
-    ├── index.test.js
-    ├── frameworks.test.js
-    ├── side_proj.test.js
-    ├── cross-page.test.js
-    ├── favicon.test.js
-    └── responsive-tester.test.js
+└── __tests__/              # Jest test suites (425 assertions across 8 suites)
+   ├── index.test.js
+   ├── frameworks.test.js
+   ├── side_proj.test.js
+   ├── cross-page.test.js
+   ├── favicon.test.js
+   ├── responsive-tester.test.js
+   ├── booking.test.js
+   └── navbar-improvements.test.js
 ```
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
-### Frontend
+### Frontend / UI
 
-- **HTML5** - Semantic markup
-- **CSS3** - Modern styling with Grid and Flexbox
-- **JavaScript (ES6+)** - Vanilla JS, no jQuery dependency for modal
-- **Materialize CSS** - Responsive framework
-- **Font Awesome** - Icon library
-- **Google Fonts** - Material Icons
-- **Prism.js** - Syntax highlighting for code blocks
+- HTML5 semantic layout
+- CSS3 (Flexbox, Grid, custom gradients, utility classes)
+- Vanilla JavaScript (no SPA framework)
+- Materialize CSS (layout helpers + parallax basics)
+- Font Awesome + Google Material Icons
+- Prism.js (syntax highlighting for framework/code samples)
 
-### Testing
+### Tooling & Quality
 
-- **Jest** - JavaScript testing framework
-- **JSDOM** - DOM testing environment
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
+- Jest + JSDOM for DOM & structural tests
+- ESLint (with html plugin) & Prettier formatting
+- Sharp (dev dependency; image processing capability if needed)
 
-### Build & Deploy
+### Delivery
 
-- **npm** - Package management
-- **GitHub Pages** - Static site hosting
-- **Git** - Version control
+- npm scripts (no bundler required)
+- GitHub Pages hosting
+- Git version control workflow
 
 ## 🚀 Quick Start
 
@@ -175,18 +179,14 @@ npm test -- --testPathPattern=cross-page
 npm test -- --testPathPattern=favicon
 ```
 
-### Test Coverage
+### Coverage Focus
 
-- **355 Total Tests** - Comprehensive coverage
-- **6 Test Suites** - Organized by page/feature
-- **100% Passing** - All tests green
-- Coverage includes:
-  - Page structure and HTML validity
-  - Navigation consistency across pages
-  - Certificate modal functionality
-  - Favicon implementation
-  - CSS and JavaScript loading
-  - Responsive design features
+- Navigation & cross‑page structural consistency
+- Favicon & manifest integrity
+- Certificate gallery markup hooks
+- Calendly CTA semantics + security attributes
+- Responsive navigation (mobile compact menu rules)
+- Styling contract tests (presence of gradients, transitions)
 
 ## 📝 Development
 
@@ -200,85 +200,49 @@ npm run format    # Run Prettier
 
 ### Adding Certificates
 
-To add new certificates to the modal:
+1. Place full-size image in `images/` (use compressed JPG where possible).
+2. Create a proportional thumbnail in `thumbs/` (≈ 300–400px width).
+3. Append an object to `certificates` array in `js/certificates.js` (increment id):
+   ```js
+   {
+      id: 17,
+      title: 'New Certificate Name',
+      image: 'images/new-cert.jpg',
+      thumb: 'thumbs/new-cert.jpg',
+      linkedinUrl: null, // or full credential URL
+      category: 'Automation'
+   }
+   ```
+4. Tests automatically validate modal container presence; no test update needed unless you assert specific count.
 
-1. Add full-size image to `/images/`
-2. Add thumbnail to `/thumbs/`
-3. Update `js/certificates.js`:
+### Calendly Configuration
 
-```javascript
-{
-  id: 17,
-  title: 'New Certificate Name',
-  image: 'images/new-cert.jpg',
-  thumb: 'thumbs/new-cert.jpg',
-  linkedinUrl: 'https://www.linkedin.com/learning/certificates/YOUR_ID',
-  category: 'Testing' // or 'Automation', 'Python', etc.
-}
-```
+Booking link appears in header social CTA + footer CTA:
 
-### Customization
+- URL (event slug): `https://calendly.com/marceloadsc/30min`
+- Visible text: `Book 15-min call`
+- aria-label: `Book a 15-minute call`
 
-#### Colors
+If you change the event slug:
 
-Edit `css/style.css` and `css/certificates.css`:
+1. Update all occurrences in: `index.html`, `pages/frameworks.html`, `pages/side_proj.html`.
+2. Adjust tests in `__tests__/booking.test.js` (regex patterns) if slug differs.
+3. Preserve wording unless brand copy direction changes (tests will fail if mismatched).
 
-- Primary gradient: `#667eea` → `#764ba2`
-- Background: `#1e1e1e` → `#2d2d2d`
+## 🎨 Design & UX
 
-#### Navigation
+- Mobile‑first layout with progressive scaling.
+- Distinct content bands (parallax containers) for scannability.
+- Gradient theming with consistent brand variables (`--brand-1`, `--brand-2`).
+- Icon + text pairing for clarity; icon‑only CTAs get ARIA labeling.
+- Certificate modal splits grid vs. detail view for reduced cognitive load.
 
-Edit navigation links in all HTML files:
+## 📊 Performance Considerations
 
-```html
-<a href="pages/your-page.html" class="nav-btn">
-  <i class="material-icons">icon_name</i>Your Page
-</a>
-```
-
-## 🎨 Features Breakdown
-
-### Certificate Modal
-
-- **No External Dependencies** - Custom-built, no Juicebox
-- **Smooth Animations** - CSS transitions and transforms
-- **Responsive Grid** - Adapts to screen size
-- **Keyboard Accessible** - Full keyboard navigation
-- **Touch-Friendly** - Works great on mobile devices
-
-### Navigation
-
-- **Sticky Header** - Navbar stays at top when scrolling
-- **Mobile Menu** - Hamburger menu for small screens
-- **Active State** - Highlights current page
-- **Smooth Scroll** - Smooth scrolling to sections
-
-### Responsive Design
-
-- **Mobile-First** - Built for mobile, enhanced for desktop
-- **Breakpoints** -
-  - Mobile: < 600px
-  - Tablet: 600px - 992px
-  - Desktop: > 992px
-- **Flexible Layouts** - CSS Grid and Flexbox
-- **Responsive Images** - Lazy loading and srcset
-
-## 📊 Performance
-
-### Optimizations
-
-- Minified CSS and JavaScript
-- Lazy loading for images
-- CSS animations (GPU accelerated)
-- Minimal external dependencies
-- Optimized image sizes
-
-### Metrics
-
-- Fast page load times
-- Smooth 60fps animations
-- Responsive across all devices
-- SEO-friendly structure
+- Local (unminified) CSS left readable; could be minified if desired.
+- Limited external blocking requests (fonts + icons + Materialize CDN).
+- Gradients over large hero bitmaps keep transfer size low.
+- Opportunity: inline critical CSS + defer non-critical styles (not yet required for current scale).
 
 ## 🔧 Troubleshooting
 
@@ -312,11 +276,7 @@ npm test
 
 ## 📱 Browser Support
 
-- ✅ Chrome (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+Modern evergreen browsers (Chrome, Firefox, Edge, Safari, iOS/Android). No IE support.
 
 ## 📄 License
 
@@ -324,11 +284,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👤 Author
 
-**Marcelo Costa**
+**Marcelo Costa** – Senior QA Engineer | SDET
 
-- Portfolio: [Your Website]
-- LinkedIn: [linkedin.com/in/marceloc](https://www.linkedin.com/in/marceloc/)
-- GitHub: [@mcello23](https://github.com/mcello23)
+- LinkedIn: https://www.linkedin.com/in/marceloc/
+- GitHub: https://github.com/mcello23
 
 ## 🙏 Acknowledgments
 
@@ -337,34 +296,29 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Prism.js** - Syntax highlighting
 - **Jest** - Testing framework
 
-## 📈 Changelog
+## 📈 Changelog (Key Items)
 
-### v2.0.0 (October 2025)
+### Current (2025 Q4)
 
-- ✅ Replaced Juicebox with custom certificate modal
-- ✅ Removed 1.4MB of deprecated code
-- ✅ Added keyboard navigation to modal
-- ✅ Implemented LinkedIn certificate integration
-- ✅ Reorganized project structure
-- ✅ Added comprehensive test coverage (355 tests)
-- ✅ Created responsive design tester
-- ✅ Updated to modern vanilla JavaScript
+- Custom certificate modal (replaces previous gallery dependency).
+- Navigation redesign with compact mobile menu & added CTA tests.
+- Expanded test suite to 425 assertions (added booking + navbar improvements).
+- Accessibility refinements (ARIA roles, labels, list semantics, sr-only headings).
+- Calendly slug migration (/15min → /30min) with preserved 15‑minute wording.
 
-### v1.0.0 (Initial Release)
+### Earlier
 
-- Initial portfolio website
-- Basic structure and content
-- Juicebox gallery integration
+- Initial responsive structure & content sections.
+- Base automation project listings & framework highlights.
 
-## 🗺️ Roadmap
+## 🗺️ Roadmap (Future Ideas)
 
-- [ ] Add dark/light theme toggle
-- [ ] Implement blog section
-- [ ] Add contact form backend
-- [ ] Create admin panel for certificate management
-- [ ] Add more automation project showcases
-- [ ] Implement i18n for multiple languages
+- Theme toggle (light/dark).
+- Inline Calendly popup widget (progressive enhancement).
+- Blog / article feed integration.
+- i18n (EN + PT/ES) for broader reach.
+- Automated image optimization pipeline (Sharp script) + critical CSS extraction.
 
 ---
 
-**Built with ❤️ by Marcelo Costa | © 2025 All Rights Reserved**
+**Built with care by Marcelo Costa | © 2025**
