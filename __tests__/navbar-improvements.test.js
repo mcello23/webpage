@@ -81,7 +81,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
       const bookCTA = doc.querySelector('.cta-link.book-call');
 
       expect(bookCTA).toBeTruthy();
-      expect(bookCTA.getAttribute('aria-label')).toBe('Book a 15-minute call');
+      expect(bookCTA.getAttribute('aria-label')).toBe('Book a 15-minute call'); // Text unchanged
       expect(bookCTA.getAttribute('target')).toBe('_blank');
       expect(bookCTA.getAttribute('rel')).toBe('noopener noreferrer');
 
@@ -91,7 +91,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
       expect(icon).toBeTruthy();
       expect(icon.textContent.trim()).toBe('schedule');
       expect(span).toBeTruthy();
-      expect(span.textContent.trim()).toBe('Book 15-min call');
+      expect(span.textContent.trim()).toBe('Book 15-min call'); // Visible text unchanged
     });
 
     test.each([

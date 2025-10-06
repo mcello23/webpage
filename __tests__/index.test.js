@@ -384,7 +384,7 @@ describe('Index Page (Main Portfolio)', () => {
     test('form has submit button', () => {
       const submitBtn = document.querySelector('button[type="submit"]');
       expect(submitBtn).toBeTruthy();
-      expect(submitBtn.textContent).toContain('Send request');
+      expect(submitBtn.textContent).toContain('Send message');
     });
 
     test('has confirmation message element', () => {
