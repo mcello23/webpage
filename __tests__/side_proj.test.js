@@ -37,7 +37,7 @@ describe('Side Projects Page', () => {
       expect(brand).toBeTruthy();
       // side_proj.html is in pages/ folder, so uses ../index.html
       expect(brand.getAttribute('href')).toBe('../index.html');
-      expect(brand.textContent).toContain('Marcelo Costa - SDET Portfolio');
+      expect(brand.textContent).toContain('Marcelo Costa — SDET');
     });
 
     test('center nav has three main buttons', () => {
@@ -65,27 +65,24 @@ describe('Side Projects Page', () => {
     });
 
     test('social icons are present and correctly linked', () => {
-      const githubLink = document.querySelector('[aria-label="github-link"]');
-      const linkedinLink = document.querySelector('[aria-label="linkedin-link"]');
-      const discordLink = document.querySelector('[aria-label="discord-link"]');
+      const githubLink = document.querySelector('[aria-label="GitHub"]');
+      const linkedinLink = document.querySelector('[aria-label="LinkedIn"]');
 
       expect(githubLink).toBeTruthy();
       expect(linkedinLink).toBeTruthy();
-      expect(discordLink).toBeTruthy();
 
       expect(githubLink.getAttribute('href')).toBe('https://github.com/mcello23');
       expect(linkedinLink.getAttribute('href')).toBe('https://www.linkedin.com/in/marceloc/');
-      expect(discordLink.getAttribute('href')).toBe('https://discord.com/users/mcello.654');
+      // Discord removed in navbar update
     });
 
     test('has Font Awesome social icons', () => {
       const githubIcon = document.querySelector('.fa-github');
       const linkedinIcon = document.querySelector('.fa-linkedin');
-      const discordIcon = document.querySelector('.fa-discord');
 
       expect(githubIcon).toBeTruthy();
       expect(linkedinIcon).toBeTruthy();
-      expect(discordIcon).toBeTruthy();
+      // Discord icon removed in navbar update
     });
   });
 
@@ -187,7 +184,7 @@ describe('Side Projects Page', () => {
   describe('Footer', () => {
     test('has professional footer', () => {
       const pageText = document.body.textContent;
-      expect(pageText).toContain('Thank you for exploring my testing portfolio');
+      expect(pageText).toContain('Thanks for exploring my testing portfolio');
       expect(pageText).toContain('© 2025 Marcelo Costa');
       expect(pageText).toContain('Senior QA Engineer');
     });

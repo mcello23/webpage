@@ -164,68 +164,109 @@
   </style>
 </head>
 <body>
-  <nav class="main-nav">
+  <nav class="main-nav" role="navigation" aria-label="Primary">
     <div class="nav-wrapper">
-      <a href="../index.html" class="brand-logo">
-        <i class="material-icons">folder_open</i>
-        <span>Marcelo Costa - SDET Portfolio</span>
+      <!-- Left: Brand -->
+      <a href="../index.html" class="brand-logo" aria-label="Home">
+        <i class="material-icons" aria-hidden="true">folder_open</i>
+        <span>Marcelo Costa — SDET</span>
       </a>
-      
-      <!-- Mobile Menu Toggle -->
-      <button class="mobile-menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
-        <i class="material-icons">menu</i>
+
+      <!-- Mobile toggle -->
+      <button
+        class="mobile-menu-toggle"
+        type="button"
+        onclick="toggleMobileMenu()"
+        aria-label="Toggle navigation"
+        aria-controls="mobileMenu"
+        aria-expanded="false"
+      >
+        <i class="material-icons" aria-hidden="true">menu</i>
       </button>
-      
+
+      <!-- Center nav -->
       <ul class="center-nav" id="mobileMenu">
         <li class="mobile-home-link">
-          <a href="../index.html" class="mobile-home-btn" style="background: linear-gradient(135deg, #4db6ac, #26a69a);">
-            <i class="material-icons">home</i>Home
+          <a
+            href="../index.html"
+            class="mobile-home-btn"
+            style="background: linear-gradient(135deg, #4db6ac, #26a69a)"
+          >
+            <i class="material-icons" aria-hidden="true">home</i> Home
           </a>
         </li>
         <li>
           <a href="side_proj.html" class="nav-btn nav-btn-projects">
-            <i class="material-icons">extension</i>Side Projects
+            <i class="material-icons" aria-hidden="true">extension</i> Side Projects
           </a>
         </li>
         <li>
           <a href="frameworks.html" class="nav-btn nav-btn-frameworks">
-            <i class="material-icons">code</i>Frameworks
+            <i class="material-icons" aria-hidden="true">code</i> Frameworks
           </a>
         </li>
         <li>
-          <a href="#" onclick="window.certificateModal && window.certificateModal.open(); return false;" class="nav-btn nav-btn-certs">
-            <i class="material-icons">card_membership</i>Certificates
+          <a
+            href="#"
+            onclick="window.certificateModal && window.certificateModal.open(); return false;"
+            class="nav-btn nav-btn-certs"
+          >
+            <i class="material-icons" aria-hidden="true">card_membership</i> Certificates
           </a>
         </li>
       </ul>
 
+      <!-- Right: Social + CTAs -->
       <ul class="social-nav">
         <li>
-          <a href="https://github.com/mcello23" aria-label="github-link" class="social-icon">
-            <i class="fab fa-github"></i>
+          <a
+            href="https://calendly.com/marcelocosta_72783/15min"
+            class="cta-link book-call"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Book a 15-minute call"
+          >
+            <i class="material-icons" aria-hidden="true">schedule</i>
+            <span>Book 15-min call</span>
+          </a>
+        </li>
+        <li class="nav-separator"></li>
+        <li>
+          <a
+            href="https://github.com/mcello23"
+            aria-label="GitHub"
+            class="social-icon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-github" aria-hidden="true"></i>
           </a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/marceloc/" aria-label="linkedin-link" class="social-icon">
-            <i class="fab fa-linkedin"></i>
-          </a>
-        </li>
-        <li>
-          <a href="https://discord.com/users/mcello.654" aria-label="discord-link" class="social-icon">
-            <i class="fab fa-discord"></i>
+          <a
+            href="https://www.linkedin.com/in/marceloc/"
+            aria-label="LinkedIn"
+            class="social-icon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-linkedin" aria-hidden="true"></i>
           </a>
         </li>
       </ul>
     </div>
   </nav>
-  
+
   <script>
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
+      const toggle = document.querySelector('.mobile-menu-toggle');
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
       menu.classList.toggle('active');
+      toggle.setAttribute('aria-expanded', String(!expanded));
     }
   </script>
-  
+
   <div style="margin-top: 80px;"></div>
 
   <!-- Certificate Modal Container -->
@@ -699,11 +740,17 @@ jobs:
     <div class="container">
       <div class="row center">
         <div class="col s12">
-          <h3 class="white-text">Thank you for exploring my testing portfolio</h3>
+          <h3 class="white-text">Thanks for exploring my testing portfolio</h3>
           <p class="flow-text white-text">Ready to build robust, scalable testing solutions together</p>
           <div style="margin-top: 30px;">
-            <a href="https://www.linkedin.com/in/marceloc/" target="_blank" class="btn-large white teal-text waves-effect" style="margin: 10px; border-radius: 25px;">
-              <i class="fab fa-linkedin left"></i>Let's Connect
+            <a href="https://www.linkedin.com/in/marceloc/" target="_blank" rel="noopener noreferrer" class="btn-large white teal-text waves-effect" style="margin: 10px; border-radius: 25px;">
+              <i class="fab fa-linkedin left" aria-hidden="true"></i>Let's Connect
+            </a>
+            <a href="https://calendly.com/marcelocosta_72783/15min" target="_blank" rel="noopener noreferrer" class="btn-large white teal-text waves-effect" style="margin: 10px; border-radius: 25px;">
+              <i class="material-icons left" aria-hidden="true">event</i>Book 15-min Call
+            </a>
+            <a href="../index.html#contact" class="btn-large white teal-text waves-effect" style="margin: 10px; border-radius: 25px;">
+              <i class="material-icons left" aria-hidden="true">email</i>Send Message
             </a>
           </div>
           <p class="white-text" style="margin-top: 20px;">© 2025 Marcelo Costa | Senior QA Engineer & Test Automation Specialist</p>

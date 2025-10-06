@@ -35,7 +35,7 @@ describe('Frameworks Page', () => {
       const brand = document.querySelector('a.brand-logo');
       expect(brand).toBeTruthy();
       expect(brand.getAttribute('href')).toBe('../index.html');
-      expect(brand.textContent).toContain('Marcelo Costa - SDET Portfolio');
+      expect(brand.textContent).toContain('Marcelo Costa — SDET');
     });
 
     test('center nav has three main buttons', () => {
@@ -59,7 +59,7 @@ describe('Frameworks Page', () => {
 
     test('social icons exist on the right', () => {
       const socials = document.querySelectorAll('ul.social-nav .social-icon');
-      expect(socials.length).toBeGreaterThanOrEqual(3);
+      expect(socials.length).toBeGreaterThanOrEqual(2); // GitHub and LinkedIn
       const hrefs = Array.from(socials).map((a) => a.getAttribute('href'));
       expect(hrefs).toEqual(
         expect.arrayContaining([
@@ -70,23 +70,21 @@ describe('Frameworks Page', () => {
     });
 
     test('social icons have proper aria labels', () => {
-      const githubLink = document.querySelector('[aria-label="github-link"]');
-      const linkedinLink = document.querySelector('[aria-label="linkedin-link"]');
-      const discordLink = document.querySelector('[aria-label="discord-link"]');
+      const githubLink = document.querySelector('[aria-label="GitHub"]');
+      const linkedinLink = document.querySelector('[aria-label="LinkedIn"]');
 
       expect(githubLink).toBeTruthy();
       expect(linkedinLink).toBeTruthy();
-      expect(discordLink).toBeTruthy();
+      // Discord removed in navbar update
     });
 
     test('has Font Awesome icons for social links', () => {
       const githubIcon = document.querySelector('.fa-github');
       const linkedinIcon = document.querySelector('.fa-linkedin');
-      const discordIcon = document.querySelector('.fa-discord');
 
       expect(githubIcon).toBeTruthy();
       expect(linkedinIcon).toBeTruthy();
-      expect(discordIcon).toBeTruthy();
+      // Discord icon removed in navbar update
     });
   });
 
@@ -166,7 +164,7 @@ describe('Frameworks Page', () => {
   describe('Footer', () => {
     test('has professional footer', () => {
       const pageText = document.body.textContent;
-      expect(pageText).toContain('Thank you');
+      expect(pageText).toContain('Thanks for exploring');
       expect(pageText).toContain('© 2025 Marcelo Costa');
     });
 

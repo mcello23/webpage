@@ -32,9 +32,9 @@ describe('Cross-Page Consistency Tests', () => {
       const frameworksBrand = frameworksDoc.querySelector('.brand-logo').textContent;
       const sideProjBrand = sideProjDoc.querySelector('.brand-logo').textContent;
 
-      expect(indexBrand).toContain('Marcelo Costa - SDET Portfolio');
-      expect(frameworksBrand).toContain('Marcelo Costa - SDET Portfolio');
-      expect(sideProjBrand).toContain('Marcelo Costa - SDET Portfolio');
+      expect(indexBrand).toContain('Marcelo Costa — SDET');
+      expect(frameworksBrand).toContain('Marcelo Costa — SDET');
+      expect(sideProjBrand).toContain('Marcelo Costa — SDET');
     });
 
     test('all pages have the same navigation buttons', () => {
@@ -71,7 +71,7 @@ describe('Cross-Page Consistency Tests', () => {
       expect(indexSocials).toEqual(sideProjSocials);
       expect(indexSocials).toContain('https://github.com/mcello23');
       expect(indexSocials).toContain('https://www.linkedin.com/in/marceloc/');
-      expect(indexSocials).toContain('https://discord.com/users/mcello.654');
+      // Note: Discord was removed from index.html in latest update
     });
 
     test('all pages have fixed navigation with same class', () => {
@@ -115,9 +115,9 @@ describe('Cross-Page Consistency Tests', () => {
       const frameworksFooter = frameworksDoc.body.textContent;
       const sideProjFooter = sideProjDoc.body.textContent;
 
-      expect(indexFooter).toContain('Thank you');
-      expect(frameworksFooter).toContain('Thank you');
-      expect(sideProjFooter).toContain('Thank you');
+      expect(indexFooter).toContain('Thanks for exploring');
+      expect(frameworksFooter).toContain('Thanks for exploring');
+      expect(sideProjFooter).toContain('Thanks for exploring');
     });
   });
 
@@ -242,14 +242,15 @@ describe('Cross-Page Consistency Tests', () => {
   });
 
   describe('Meta Tags Consistency', () => {
-    test('all pages have the same title', () => {
+    test('all pages have the same title pattern', () => {
       const indexTitle = indexDoc.querySelector('title').textContent;
       const frameworksTitle = frameworksDoc.querySelector('title').textContent;
       const sideProjTitle = sideProjDoc.querySelector('title').textContent;
 
-      expect(indexTitle).toBe('Marcelo Costa - SDET Portfolio');
-      expect(frameworksTitle).toBe('Marcelo Costa - SDET Portfolio');
-      expect(sideProjTitle).toBe('Marcelo Costa - SDET Portfolio');
+      // Updated titles have different formats, just check they contain Marcelo Costa
+      expect(indexTitle).toContain('Marcelo Costa');
+      expect(frameworksTitle).toContain('Marcelo Costa');
+      expect(sideProjTitle).toContain('Marcelo Costa');
     });
 
     test('all pages have viewport meta tag', () => {
@@ -262,9 +263,17 @@ describe('Cross-Page Consistency Tests', () => {
 
     test('all pages have UTF-8 charset', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const charset = doc.querySelector('meta[http-equiv="Content-Type"]');
-        expect(charset).toBeTruthy();
-        expect(charset.getAttribute('content')).toContain('UTF-8');
+        // Check for charset meta tag (can be in different formats)
+        const charsetMeta =
+          doc.querySelector('meta[http-equiv="Content-Type"]') ||
+          doc.querySelector('meta[charset]');
+        expect(charsetMeta).toBeTruthy();
+
+        if (charsetMeta.hasAttribute('content')) {
+          expect(charsetMeta.getAttribute('content')).toContain('UTF-8');
+        } else {
+          expect(charsetMeta.getAttribute('charset')).toBe('utf-8');
+        }
       });
     });
 
@@ -302,13 +311,12 @@ describe('Cross-Page Consistency Tests', () => {
   describe('Accessibility Features', () => {
     test('all pages have descriptive aria labels for social links', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const githubLink = doc.querySelector('[aria-label="github-link"]');
-        const linkedinLink = doc.querySelector('[aria-label="linkedin-link"]');
-        const discordLink = doc.querySelector('[aria-label="discord-link"]');
+        const githubLink = doc.querySelector('[aria-label="GitHub"]');
+        const linkedinLink = doc.querySelector('[aria-label="LinkedIn"]');
 
         expect(githubLink).toBeTruthy();
         expect(linkedinLink).toBeTruthy();
-        expect(discordLink).toBeTruthy();
+        // Discord removed from index.html, so it's optional
       });
     });
 
