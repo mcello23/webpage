@@ -60,7 +60,6 @@ html body nav.main-nav {
   font-size: 1.15rem;
   font-weight: 500;
   transition: all 0.3s ease;
-  line-height: 80px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -73,6 +72,13 @@ html body nav.main-nav {
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  line-height: 1;
+}
+
+.brand-logo span {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
 }
 
 .brand-logo:hover {
@@ -652,5 +658,66 @@ a[aria-label='discord-link']:hover {
 
   .nav-btn i {
     font-size: 14px;
+  }
+}
+
+/* ========================================
+   Below 900p (less than 1600px width) - Hide brand text and booking call text
+   VERSION: 6.0 - Added booking call text hiding at 900p or lower
+   ======================================== */
+@media screen and (min-width: 992px) and (max-width: 1599px) {
+  .brand-logo span {
+    display: none !important;
+  }
+
+  .brand-logo i {
+    display: inline-flex !important;
+  }
+
+  /* Hide "Book 15-min call" text at 900p or lower */
+  .cta-link.book-call span {
+    display: none !important;
+  }
+
+  /* Keep the icon visible */
+  .cta-link.book-call i {
+    display: inline-flex !important;
+  }
+}
+
+/* ========================================
+   At 900p and above (1600px+ width) - Show brand text and booking call text
+   VERSION: 6.0 - Nuclear override at 900p threshold, shows booking call text
+   ======================================== */
+@media screen and (min-width: 1600px) {
+  /* Override parent container */
+  .brand-logo {
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+  }
+
+  /* Show the text span */
+  .brand-logo span {
+    display: inline !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+    max-width: none !important;
+  }
+
+  /* Show the icon */
+  .brand-logo i {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Show "Book 15-min call" text at 900p or higher */
+  .cta-link.book-call span {
+    display: inline !important;
   }
 }

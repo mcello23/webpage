@@ -38,11 +38,11 @@ describe('Index Page (Main Portfolio)', () => {
       expect(brand.textContent).toContain('Marcelo Costa');
     });
 
-    test('brand logo has folder icon', () => {
+    test('brand logo has home icon', () => {
       const brand = document.querySelector('a.brand-logo');
       const icon = brand.querySelector('.material-icons');
       expect(icon).toBeTruthy();
-      expect(icon.textContent).toContain('folder_open');
+      expect(icon.textContent).toContain('home');
     });
 
     test('center nav has three main buttons', () => {
