@@ -24,6 +24,52 @@ describe('Side Projects Page', () => {
     document = dom.window.document;
   });
 
+  describe('Page Introduction', () => {
+    test('has introduction section', () => {
+      const introSection = document.querySelector('.section');
+      expect(introSection).toBeTruthy();
+    });
+
+    test('has main page heading', () => {
+      const heading = document.querySelector('h2.header');
+      expect(heading).toBeTruthy();
+      expect(heading.textContent).toContain('Side Projects');
+    });
+
+    test('has descriptive subtitle', () => {
+      const subtitle = document.querySelector('p.flow-text');
+      expect(subtitle).toBeTruthy();
+      expect(subtitle.textContent).toContain('automation');
+    });
+  });
+
+  describe('Project Separators', () => {
+    test('has parallax containers for visual separation', () => {
+      const parallaxContainers = document.querySelectorAll('.parallax-container');
+      expect(parallaxContainers.length).toBeGreaterThanOrEqual(2);
+    });
+
+    test('AI Test Plan separator has correct styling', () => {
+      const aiSeparator = document.querySelector('.hero-ai');
+      expect(aiSeparator).toBeTruthy();
+      expect(aiSeparator.classList.contains('parallax-container')).toBe(true);
+    });
+
+    test('Python Music Downloader separator has correct styling', () => {
+      const pythonSeparator = document.querySelector('.hero-playwright-alt');
+      expect(pythonSeparator).toBeTruthy();
+      expect(pythonSeparator.classList.contains('parallax-container')).toBe(true);
+    });
+
+    test('separators have animated decorative elements', () => {
+      const parallaxContainers = document.querySelectorAll('.parallax-container');
+      parallaxContainers.forEach((container) => {
+        const decorativeElements = container.querySelectorAll('div[style*="position: absolute"]');
+        expect(decorativeElements.length).toBeGreaterThan(0);
+      });
+    });
+  });
+
   describe('Navigation Bar', () => {
     test('has a fixed nav at the top', () => {
       const nav = document.querySelector('nav');
@@ -87,10 +133,9 @@ describe('Side Projects Page', () => {
   });
 
   describe('AI Test Plan Generator Project', () => {
-    test('has project main heading', () => {
-      const heading = document.querySelector('#title-ai');
-      expect(heading).toBeTruthy();
-      expect(heading.textContent).toContain('AI Test Plan Generator');
+    test('has project main heading in separator', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('AI Test Plan Generator');
     });
 
     test('has subtitle with technologies', () => {
@@ -129,17 +174,17 @@ describe('Side Projects Page', () => {
     test('lists key features', () => {
       const content = document.body.textContent;
       expect(content).toContain('Key Features');
-      expect(content).toContain('AI-powered test case generation');
-      expect(content).toContain('multiple testing types');
-      expect(content).toContain('Multi-platform support');
-      expect(content).toContain('Export to JSON and Markdown');
+      expect(content).toContain('AI-Powered Intelligence');
+      expect(content).toContain('Multiple Testing Types');
+      expect(content).toContain('Multi-Platform Support');
+      expect(content).toContain('Flexible Export Options');
     });
 
     test('mentions testing types', () => {
       const content = document.body.textContent;
       expect(content).toContain('unit');
       expect(content).toContain('integration');
-      expect(content).toContain('e2e');
+      expect(content).toContain('E2E testing');
     });
 
     test('mentions platform support', () => {
@@ -155,29 +200,62 @@ describe('Side Projects Page', () => {
       expect(repoLink).toBeTruthy();
       expect(repoLink.textContent).toContain('GitHub project');
     });
+  });
 
-    test('has TypeScript code example', () => {
-      const codeBlock = document.querySelector('code.language-typescript');
-      expect(codeBlock).toBeTruthy();
+  describe('Python Music Downloader Project', () => {
+    test('has project title', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('Python Music Downloader');
     });
 
-    test('code example includes TestPlanGenerator class', () => {
-      const codeBlock = document.querySelector('code.language-typescript');
-      expect(codeBlock.textContent).toContain('TestPlanGenerator');
-      expect(codeBlock.textContent).toContain('generateTestPlan');
+    test('has subtitle', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('YouTube to MP3');
+      expect(content).toContain('yt-dlp');
     });
 
-    test('code example shows OpenAI integration', () => {
-      const codeBlock = document.querySelector('code.language-typescript');
-      expect(codeBlock.textContent).toContain('openai');
-      expect(codeBlock.textContent).toContain('gpt-4');
-      expect(codeBlock.textContent).toContain('chat.completions.create');
+    test('describes the project functionality', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('YouTube');
+      expect(content).toContain('MP3');
+      expect(content).toContain('automation');
     });
 
-    test('code example demonstrates async/await', () => {
-      const codeBlock = document.querySelector('code.language-typescript');
-      expect(codeBlock.textContent).toContain('async');
-      expect(codeBlock.textContent).toContain('await');
+    test('mentions key technologies', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('yt-dlp');
+      expect(content).toContain('youtubesearchpython');
+      expect(content).toContain('FFmpeg');
+    });
+
+    test('lists key features', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('Key Features');
+      expect(content).toContain('Smart YouTube Search');
+      expect(content).toContain('High-Quality Audio');
+      expect(content).toContain('Batch Processing');
+      expect(content).toContain('FFmpeg Integration');
+    });
+
+    test('mentions audio quality', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('192 kbps');
+    });
+
+    test('has GitHub repository link', () => {
+      const repoLink = document.querySelector('a[href*="python-music-download"]');
+      expect(repoLink).toBeTruthy();
+      expect(repoLink.textContent).toContain('GitHub project');
+    });
+
+    test('has Python logo image', () => {
+      const pythonLogo = document.querySelector('img[alt="python-logo"]');
+      expect(pythonLogo).toBeTruthy();
+    });
+
+    test('has YouTube logo image', () => {
+      const youtubeLogo = document.querySelector('img[alt="youtube-logo"]');
+      expect(youtubeLogo).toBeTruthy();
     });
   });
 
@@ -320,31 +398,15 @@ describe('Side Projects Page', () => {
     });
 
     test('headings have proper classes', () => {
-      const mainHeading = document.querySelector('#title-ai');
-      expect(mainHeading.classList.contains('title-frame')).toBe(true);
-      expect(mainHeading.classList.contains('dark')).toBe(true);
+      const subtitle = document.querySelector('#title-ai2');
+      expect(subtitle).toBeTruthy();
+      expect(subtitle.classList.contains('mdi-content-send')).toBe(true);
+      expect(subtitle.classList.contains('dark')).toBe(true);
     });
 
     test('has descriptive paragraphs', () => {
       const paragraphs = document.querySelectorAll('p.text-accent-2');
       expect(paragraphs.length).toBeGreaterThan(0);
-    });
-  });
-
-  describe('Code Examples', () => {
-    test('has code container', () => {
-      const codeContainer = document.querySelector('.code-container');
-      expect(codeContainer).toBeTruthy();
-    });
-
-    test('uses Prism for syntax highlighting', () => {
-      const codeBlock = document.querySelector('code[class*="language-"]');
-      expect(codeBlock).toBeTruthy();
-    });
-
-    test('code block is TypeScript', () => {
-      const codeBlock = document.querySelector('code.language-typescript');
-      expect(codeBlock).toBeTruthy();
     });
   });
 
