@@ -197,8 +197,10 @@ describe('Gradient Colors and Styling', () => {
     });
 
     test('Mock Testing has red gradient with box-shadow', () => {
-      const mockTag = Array.from(document.querySelectorAll('.skill-tag')).find((tag) =>
-        tag.textContent.includes('Mock Testing')
+      const normalize = (s) => s.replace(/\s+/g, ' ').trim();
+      const tags = document.querySelectorAll('.skill-tag');
+      const mockTag = Array.from(tags).find((tag) =>
+        normalize(tag.textContent).includes('Mock Testing')
       );
       expect(mockTag).toBeTruthy();
       const style = mockTag.getAttribute('style');
