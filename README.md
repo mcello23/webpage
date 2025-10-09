@@ -1,6 +1,6 @@
 # Marcelo Costa – QA / SDET Portfolio
 
-[![Tests](https://img.shields.io/badge/tests-714%20passing-brightgreen)](/__tests__)
+[![Tests](https://img.shields.io/badge/tests-746%20passing-brightgreen)](/__tests__)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Modern, performance‑oriented and accessibility‑aware portfolio highlighting large scale E2E automation, test architecture, and delivery impact (Cypress, Playwright, CI/CD).
@@ -28,7 +28,7 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
 ### Testing & Quality Signals
 
-- **714 Jest tests** across 14 test suites covering:
+- **746 Jest tests** across 14 test suites covering:
   - DOM structure & accessibility attributes
   - Link integrity & cross-page consistency
   - Favicon assets & manifest validation
@@ -36,6 +36,8 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
   - Certificate data validation (33 individual certificate tests)
   - Gradient colors & visual consistency
   - Booking CTA & modal wiring
+  - Articles & Writing section validation (URLs, text, images, tags, icons)
+  - Tech Stack section validation (Shell & Environment, all technologies)
 - Regex + structural assertions to detect regressions in navigation, Calendly CTA, and modal wiring.
 - Style presence tests guard against accidental CSS regression (e.g., mobile menu compact design rules).
 - Comprehensive certificate validation: structure, paths, LinkedIn URLs, categories.

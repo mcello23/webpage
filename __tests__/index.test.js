@@ -236,6 +236,43 @@ describe('Index Page (Main Portfolio)', () => {
       expect(skillTags.length).toBeGreaterThan(15); // At least 16 items
     });
 
+    test('has Shell & Environment section', () => {
+      const shellHeading = Array.from(document.querySelectorAll('h5')).find((h) =>
+        h.textContent.includes('Shell & Environment')
+      );
+      expect(shellHeading).toBeTruthy();
+    });
+
+    test('Shell & Environment section has terminal icon', () => {
+      const shellHeading = Array.from(document.querySelectorAll('h5')).find((h) =>
+        h.textContent.includes('Shell & Environment')
+      );
+      expect(shellHeading).toBeTruthy();
+      const icon = shellHeading.querySelector('.material-icons');
+      expect(icon).toBeTruthy();
+      expect(icon.textContent).toContain('terminal');
+    });
+
+    test('includes Bash/Zsh in tech stack', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('Bash/Zsh');
+    });
+
+    test('includes WSL in tech stack', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('WSL');
+    });
+
+    test('Shell & Environment appears before Languages section', () => {
+      const allH5 = Array.from(document.querySelectorAll('h5'));
+      const shellIndex = allH5.findIndex((h) => h.textContent.includes('Shell & Environment'));
+      const languagesIndex = allH5.findIndex((h) => h.textContent.includes('Languages'));
+
+      expect(shellIndex).toBeGreaterThan(-1);
+      expect(languagesIndex).toBeGreaterThan(-1);
+      expect(shellIndex).toBeLessThan(languagesIndex);
+    });
+
     test('includes core technologies', () => {
       const content = document.body.textContent;
       expect(content).toContain('TypeScript');
@@ -345,6 +382,271 @@ describe('Index Page (Main Portfolio)', () => {
       const links = Array.from(document.querySelectorAll('a'));
       const linkedinLink = links.find((a) => a.textContent.includes('View on LinkedIn'));
       expect(linkedinLink).toBeTruthy();
+    });
+
+    test('displays Dev.to article link', () => {
+      const links = Array.from(document.querySelectorAll('a'));
+      const devtoLink = links.find((a) => a.textContent.includes('Read on Dev.to'));
+      expect(devtoLink).toBeTruthy();
+    });
+
+    test('GraphQL article has correct title', () => {
+      const articlesSection = document.querySelector('#articles');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
+      const graphqlHeading = Array.from(articleHeadings).find((h) =>
+        h.textContent.includes('Hasura GraphQL')
+      );
+      expect(graphqlHeading).toBeTruthy();
+      expect(graphqlHeading.textContent).toContain(
+        'How to integrate Hasura GraphQL hooks into your E2E tests'
+      );
+    });
+
+    test('GraphQL article has correct description', () => {
+      const content = document.body.textContent;
+      expect(content).toContain(
+        'Use Hasura + custom Cypress commands to keep tests isolated and deterministic'
+      );
+    });
+
+    test('GraphQL article has correct tags', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let graphqlCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="hasura-graphql"]');
+        if (link) {
+          graphqlCard = card;
+        }
+      });
+
+      expect(graphqlCard).toBeTruthy();
+      const tags = graphqlCard.querySelectorAll('.skill-tag');
+      const tagTexts = Array.from(tags).map((tag) => tag.textContent.trim());
+
+      expect(tagTexts).toContain('GraphQL');
+      expect(tagTexts).toContain('Hasura');
+      expect(tagTexts).toContain('Cypress');
+    });
+
+    test('GraphQL article has code icon', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let graphqlCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="hasura-graphql"]');
+        if (link) {
+          graphqlCard = card;
+        }
+      });
+
+      const icon = graphqlCard.querySelector('.card-image .material-icons');
+      expect(icon).toBeTruthy();
+      expect(icon.textContent).toContain('code');
+    });
+
+    test('Auth0 article has correct title', () => {
+      const articlesSection = document.querySelector('#articles');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
+      const auth0Heading = Array.from(articleHeadings).find((h) => h.textContent.includes('Auth0'));
+      expect(auth0Heading).toBeTruthy();
+      expect(auth0Heading.textContent).toContain(
+        'Speeding up Cypress tests with Auth0 login optimization'
+      );
+    });
+
+    test('Auth0 article has correct description', () => {
+      const content = document.body.textContent;
+      expect(content).toContain(
+        'Token caching and session strategies to accelerate authenticated E2E tests'
+      );
+    });
+
+    test('Auth0 article has correct tags', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let auth0Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="auth0-login"]');
+        if (link) {
+          auth0Card = card;
+        }
+      });
+
+      expect(auth0Card).toBeTruthy();
+      const tags = auth0Card.querySelectorAll('.skill-tag');
+      const tagTexts = Array.from(tags).map((tag) => tag.textContent.trim());
+
+      expect(tagTexts).toContain('Auth0');
+      expect(tagTexts).toContain('Cypress');
+      expect(tagTexts).toContain('Performance');
+    });
+
+    test('Auth0 article has lock_open icon', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let auth0Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="auth0-login"]');
+        if (link) {
+          auth0Card = card;
+        }
+      });
+
+      const icon = auth0Card.querySelector('.card-image .material-icons');
+      expect(icon).toBeTruthy();
+      expect(icon.textContent).toContain('lock_open');
+    });
+
+    test('Cyprompt article has correct title', () => {
+      const articlesSection = document.querySelector('#articles');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
+      const cypromptHeading = Array.from(articleHeadings).find((h) =>
+        h.textContent.includes('cy.prompt()')
+      );
+      expect(cypromptHeading).toBeTruthy();
+      expect(cypromptHeading.textContent).toContain(
+        'How Cypress Will Revolutionize AI in Testing with cy.prompt()'
+      );
+    });
+
+    test('Cyprompt article has correct description', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('transforming the future of test automation');
+    });
+
+    test('Cyprompt article has correct tags', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let cypromptCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="cyprompt"]');
+        if (link) {
+          cypromptCard = card;
+        }
+      });
+
+      expect(cypromptCard).toBeTruthy();
+      const tags = cypromptCard.querySelectorAll('.skill-tag');
+      const tagTexts = Array.from(tags).map((tag) => tag.textContent.trim());
+
+      expect(tagTexts).toContain('AI Testing');
+      expect(tagTexts).toContain('Cypress');
+      expect(tagTexts).toContain('Cyprompt');
+    });
+
+    test('Cyprompt article has psychology icon', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let cypromptCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="cyprompt"]');
+        if (link) {
+          cypromptCard = card;
+        }
+      });
+
+      const icon = cypromptCard.querySelector('.card-image .material-icons');
+      expect(icon).toBeTruthy();
+      expect(icon.textContent).toContain('psychology');
+    });
+
+    test('More Articles Coming Soon card exists', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let moreArticlesCard = null;
+      cards.forEach((card) => {
+        const heading = card.querySelector('h5');
+        if (heading && heading.textContent.includes('More Articles Coming Soon')) {
+          moreArticlesCard = card;
+        }
+      });
+
+      expect(moreArticlesCard).toBeTruthy();
+    });
+
+    test('More Articles card has article icon', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let moreArticlesCard = null;
+      cards.forEach((card) => {
+        const heading = card.querySelector('h5');
+        if (heading && heading.textContent.includes('More Articles Coming Soon')) {
+          moreArticlesCard = card;
+        }
+      });
+
+      const icon = moreArticlesCard.querySelector('.material-icons');
+      expect(icon).toBeTruthy();
+      expect(icon.textContent).toContain('article');
+    });
+
+    test('More Articles card has Medium follow button', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let moreArticlesCard = null;
+      cards.forEach((card) => {
+        const heading = card.querySelector('h5');
+        if (heading && heading.textContent.includes('More Articles Coming Soon')) {
+          moreArticlesCard = card;
+        }
+      });
+
+      const mediumBtn = Array.from(moreArticlesCard.querySelectorAll('a')).find((a) =>
+        a.textContent.includes('Medium')
+      );
+      expect(mediumBtn).toBeTruthy();
+      expect(mediumBtn.getAttribute('href')).toBe('https://medium.com/@marcelocosta_72783');
+    });
+
+    test('More Articles card has Dev.to follow button', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let moreArticlesCard = null;
+      cards.forEach((card) => {
+        const heading = card.querySelector('h5');
+        if (heading && heading.textContent.includes('More Articles Coming Soon')) {
+          moreArticlesCard = card;
+        }
+      });
+
+      const devtoBtn = Array.from(moreArticlesCard.querySelectorAll('a')).find((a) =>
+        a.textContent.includes('Dev.to')
+      );
+      expect(devtoBtn).toBeTruthy();
+      expect(devtoBtn.getAttribute('href')).toBe('https://dev.to/marcelo_sqe');
+    });
+
+    test('All article cards have gradient backgrounds', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cardImages = articlesSection.querySelectorAll('.card-image > div');
+
+      expect(cardImages.length).toBeGreaterThanOrEqual(3);
+
+      cardImages.forEach((cardImage) => {
+        const style = cardImage.getAttribute('style');
+        expect(style).toContain('gradient');
+      });
+    });
+
+    test('All article external links open in new tab', () => {
+      const articlesSection = document.querySelector('#articles');
+      const externalLinks = articlesSection.querySelectorAll('a[href^="http"]');
+
+      externalLinks.forEach((link) => {
+        expect(link.getAttribute('target')).toBe('_blank');
+        expect(link.getAttribute('rel')).toBe('noopener noreferrer');
+      });
     });
   });
 

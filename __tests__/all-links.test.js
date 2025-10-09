@@ -152,6 +152,110 @@ describe('All Pages - Link Validation', () => {
       const mediumLink = document.querySelector('a[href="https://medium.com/@marcelocosta_72783"]');
       expect(mediumLink).toBeTruthy();
     });
+
+    test('Cyprompt AI Dev.to article link should be correct', () => {
+      const cypromptLink = document.querySelector(
+        'a[href*="how-cypress-will-revolutionize-the-use-of-ai-in-testing-with-cyprompt"]'
+      );
+      expect(cypromptLink).toBeTruthy();
+      expect(cypromptLink.getAttribute('href')).toContain('dev.to');
+      expect(cypromptLink.getAttribute('href')).toContain('marcelo_sqe');
+    });
+
+    test('Dev.to article should have proper attributes', () => {
+      const cypromptLink = document.querySelector(
+        'a[href*="how-cypress-will-revolutionize-the-use-of-ai-in-testing-with-cyprompt"]'
+      );
+      expect(cypromptLink.getAttribute('target')).toBe('_blank');
+      expect(cypromptLink.getAttribute('rel')).toBe('noopener noreferrer');
+    });
+
+    test('Dev.to article should contain Dev icon', () => {
+      const cypromptLink = document.querySelector(
+        'a[href*="how-cypress-will-revolutionize-the-use-of-ai-in-testing-with-cyprompt"]'
+      );
+      const devIcon = cypromptLink.querySelector('.fa-dev');
+      expect(devIcon).toBeTruthy();
+    });
+
+    test('Dev.to profile link should be correct', () => {
+      const devToLink = document.querySelector('a[href="https://dev.to/marcelo_sqe"]');
+      expect(devToLink).toBeTruthy();
+      expect(devToLink.getAttribute('target')).toBe('_blank');
+      expect(devToLink.getAttribute('rel')).toBe('noopener noreferrer');
+    });
+
+    test('Cyprompt article card should have correct tags', () => {
+      const articleSection = document.querySelector('#articles');
+      const articleCards = articleSection.querySelectorAll('.gradient-card');
+
+      // Find the Cyprompt article card (look for Dev.to link)
+      let cypromptCard = null;
+      articleCards.forEach((card) => {
+        const link = card.querySelector('a[href*="dev.to"]');
+        if (link && link.getAttribute('href').includes('cyprompt')) {
+          cypromptCard = card;
+        }
+      });
+
+      expect(cypromptCard).toBeTruthy();
+
+      // Validate tags
+      const tags = cypromptCard.querySelectorAll('.skill-tag');
+      expect(tags.length).toBe(3);
+
+      const tagTexts = Array.from(tags).map((tag) => tag.textContent.trim());
+      expect(tagTexts).toContain('AI Testing');
+      expect(tagTexts).toContain('Cypress');
+      expect(tagTexts).toContain('Cyprompt');
+    });
+
+    test('Cyprompt article should have psychology icon', () => {
+      const articleSection = document.querySelector('#articles');
+      const articleCards = articleSection.querySelectorAll('.gradient-card');
+
+      // Find the Cyprompt article card
+      let cypromptCard = null;
+      articleCards.forEach((card) => {
+        const link = card.querySelector('a[href*="dev.to"]');
+        if (link && link.getAttribute('href').includes('cyprompt')) {
+          cypromptCard = card;
+        }
+      });
+
+      const psychologyIcon = cypromptCard.querySelector('.material-icons');
+      expect(psychologyIcon).toBeTruthy();
+      expect(psychologyIcon.textContent.trim()).toBe('psychology');
+    });
+
+    test('Cyprompt article should have correct heading', () => {
+      const articleSection = document.querySelector('#articles');
+      const articleCards = articleSection.querySelectorAll('.gradient-card');
+
+      // Find the Cyprompt article card
+      let cypromptCard = null;
+      articleCards.forEach((card) => {
+        const link = card.querySelector('a[href*="dev.to"]');
+        if (link && link.getAttribute('href').includes('cyprompt')) {
+          cypromptCard = card;
+        }
+      });
+
+      const heading = cypromptCard.querySelector('.card-content h5');
+      expect(heading.textContent).toContain(
+        'How Cypress Will Revolutionize AI in Testing with cy.prompt()'
+      );
+    });
+
+    test('All article cards should have equal height styling', () => {
+      const articleSection = document.querySelector('#articles');
+      const articleCards = articleSection.querySelectorAll('.gradient-card');
+
+      articleCards.forEach((card) => {
+        const style = card.getAttribute('style');
+        expect(style).toContain('height: 100%');
+      });
+    });
   });
 
   describe('index.html - Resource Links', () => {
