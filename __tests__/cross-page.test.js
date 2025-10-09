@@ -214,7 +214,7 @@ describe('Cross-Page Consistency Tests', () => {
       const path = require('path');
 
       const imagesPath = path.resolve(__dirname, '..', 'images');
-      const thumbsPath = path.resolve(__dirname, '..', 'thumbs');
+      const thumbsPath = path.resolve(__dirname, '..', 'images', 'thumbs');
 
       expect(fs.existsSync(imagesPath)).toBe(true);
       expect(fs.existsSync(thumbsPath)).toBe(true);

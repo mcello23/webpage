@@ -106,14 +106,14 @@ describe('Index Page (Main Portfolio)', () => {
     test('has profile image', () => {
       const profileImg = document.querySelector('img.circle.responsive-img');
       expect(profileImg).toBeTruthy();
-      expect(profileImg.getAttribute('src')).toBe('assets/DSC_9554.jpg');
+      expect(profileImg.getAttribute('src')).toBe('images/assets/DSC_9554.jpg');
       expect(profileImg.getAttribute('alt')).toContain('Marcelo Costa');
     });
 
     test('profile image file exists', () => {
       const fs = require('fs');
       const path = require('path');
-      const imgPath = path.resolve(__dirname, '..', 'assets', 'DSC_9554.jpg');
+      const imgPath = path.resolve(__dirname, '..', 'images', 'assets', 'DSC_9554.jpg');
       expect(fs.existsSync(imgPath)).toBe(true);
     });
 
@@ -462,14 +462,14 @@ describe('Index Page (Main Portfolio)', () => {
       const fs = require('fs');
       const path = require('path');
 
-      const thumbsPath = path.resolve(__dirname, '..', 'thumbs');
+      const thumbsPath = path.resolve(__dirname, '..', 'images', 'thumbs');
       expect(fs.existsSync(thumbsPath)).toBe(true);
 
       // Check for key thumbnail images (note: some have different casing)
       const thumbFiles = [
         'ISTQB.jpg',
         'GitHub.jpg',
-        'Agile.jpg', // Capital A
+        'agile.jpg', // lowercase (fixed from cleanup)
       ];
 
       thumbFiles.forEach((file) => {

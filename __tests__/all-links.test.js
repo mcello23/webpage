@@ -435,29 +435,32 @@ describe('All Pages - Link Validation', () => {
       certificatesData = jsContent;
     });
 
-    test('Cypress Basic certificate should have LinkedIn URL', () => {
+    test('Cypress Basic certificate should have Udemy URL', () => {
       expect(certificatesData).toContain(
-        'https://www.linkedin.com/learning/certificates/b1bf6ead-40d6-4942-9166-59de03c1f975'
+        'https://udemy-certificate.s3.amazonaws.com/image/UC-b1bf6ead-40d6-4942-9166-59de03c1f975.jpg'
       );
+      expect(certificatesData).toContain('Automation Test with Cypress - Basics');
     });
 
     test('should contain ISTQB certificate data', () => {
-      expect(certificatesData).toContain('ISTQB Foundation Training');
+      expect(certificatesData).toContain('Certified ISTQB Agile Tester Foundation Level');
       expect(certificatesData).toContain('images/ISTQB.jpg');
     });
 
     test('should contain Selenium certificate data', () => {
-      expect(certificatesData).toContain('Selenium WebDriver and Java');
+      expect(certificatesData).toContain('Automation Selenium WebDriver + Java');
       expect(certificatesData).toContain('images/Selenium WebDriver e Java.jpg');
     });
 
     test('should contain Cypress Intermediary certificate', () => {
-      expect(certificatesData).toContain('Cypress Intermediary Course');
+      expect(certificatesData).toContain('Automation Test with Cypress - Intermediary');
       expect(certificatesData).toContain('images/cyp-inter.jpg');
     });
 
     test('should contain Cypress Full Course certificate', () => {
-      expect(certificatesData).toContain('Cypress Automation: Full Course with Frameworks');
+      expect(certificatesData).toContain(
+        'Cypress - Modern Automation Testing from Scratch + Frameworks'
+      );
     });
 
     test('should contain Appium certificate', () => {
@@ -472,17 +475,19 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('should contain Agile certificate', () => {
-      expect(certificatesData).toContain('Agile and Scrum Methodology');
+      expect(certificatesData).toContain('Agile Management with Scrum');
       expect(certificatesData).toContain('images/agile.jpg');
     });
 
     test('should contain Python certificates', () => {
       expect(certificatesData).toContain('Python for Beginners');
-      expect(certificatesData).toContain('The Python Bible Course');
+      expect(certificatesData).toContain('The Python Bible');
     });
 
     test('should contain HTML/CSS certificate', () => {
-      expect(certificatesData).toContain('HTML and CSS Course');
+      expect(certificatesData).toContain(
+        'Web Design for Beginners: Real World Coding in HTML & CSS'
+      );
     });
 
     test('should contain Swift certificate', () => {
@@ -495,8 +500,8 @@ describe('All Pages - Link Validation', () => {
       expect(certificatesData).toContain('images/GitHub.jpg');
     });
 
-    test('should contain Git Crash Course certificate', () => {
-      expect(certificatesData).toContain('Git Crash Course');
+    test('should contain GitHub Intensive Course certificate', () => {
+      expect(certificatesData).toContain('GitHub Intensive Course');
     });
 
     test('should contain Regular Expressions certificate', () => {
@@ -504,7 +509,7 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('should contain Software Tester certificate', () => {
-      expect(certificatesData).toContain('Software Tester - Becoming an Expert');
+      expect(certificatesData).toContain('Software Testing: Becoming an Expert');
     });
 
     test('certificate images should reference correct paths', () => {
