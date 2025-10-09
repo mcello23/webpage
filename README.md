@@ -1,6 +1,6 @@
 # Marcelo Costa – QA / SDET Portfolio
 
-[![Tests](https://img.shields.io/badge/tests-425%20passing-brightgreen)](/__tests__)
+[![Tests](https://img.shields.io/badge/tests-714%20passing-brightgreen)](/__tests__)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Modern, performance‑oriented and accessibility‑aware portfolio highlighting large scale E2E automation, test architecture, and delivery impact (Cypress, Playwright, CI/CD).
@@ -28,9 +28,17 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
 ### Testing & Quality Signals
 
-- 425 Jest tests (DOM structure, accessibility attributes, link integrity, cross‑page consistency, favicon assets, responsive nav behavior).
+- **714 Jest tests** across 14 test suites covering:
+  - DOM structure & accessibility attributes
+  - Link integrity & cross-page consistency
+  - Favicon assets & manifest validation
+  - Responsive navigation behavior
+  - Certificate data validation (33 individual certificate tests)
+  - Gradient colors & visual consistency
+  - Booking CTA & modal wiring
 - Regex + structural assertions to detect regressions in navigation, Calendly CTA, and modal wiring.
 - Style presence tests guard against accidental CSS regression (e.g., mobile menu compact design rules).
+- Comprehensive certificate validation: structure, paths, LinkedIn URLs, categories.
 
 ### Side Projects & Frameworks Sections
 
@@ -58,8 +66,6 @@ webpage/
 │   ├── responsive-tester.html # Responsive design tester
 │   └── test-modal.html     # Certificate modal test page
 │
-├── assets/                 # Misc assets (profile photo, large supporting images)
-│
 ├── css/                    # Stylesheets
 │   ├── certificates.css    # Certificate modal styles
 │   ├── materialize.css     # Materialize framework
@@ -68,16 +74,17 @@ webpage/
 │   └── style.css           # Main stylesheet
 │
 ├── js/                     # JavaScript files
-│   ├── certificates.js     # Certificate modal logic
+│   ├── certificates.js     # Certificate modal logic (33 certificates)
 │   ├── init.js             # Materialize initialization
 │   ├── materialize.js      # Materialize framework
 │   └── prism.js            # Code syntax highlighting
 │
-├── images/                 # Certificate images (full-size)
-│   └── *.jpg
-│
-├── thumbs/                 # Certificate thumbnails
-│   └── [16 thumbnail JPGs]
+├── images/                 # Image assets
+│   ├── assets/             # Profile & supporting images
+│   │   └── DSC_9554.jpg    # Profile photo
+│   ├── thumbs/             # Certificate thumbnails (300px standardized)
+│   │   └── *.jpg           # 33 optimized thumbnails
+│   └── *.jpg               # Certificate images (full-size, 33 total)
 │
 ├── favicon/                # Favicon files
 │   ├── favicon-16x16.png
@@ -85,7 +92,12 @@ webpage/
 │   ├── apple-touch-icon.png
 │   └── site.webmanifest
 │
-└── __tests__/              # Jest test suites (425 assertions across 8 suites)
+├── utils/                  # Utility scripts
+│   └── certificates/
+│       ├── certificate-helper.html  # Certificate modal dev tool
+│       └── regenerate-thumbnails.sh # Thumbnail standardization script
+│
+└── __tests__/              # Jest test suites (714 tests across 14 suites)
    ├── index.test.js
    ├── frameworks.test.js
    ├── side_proj.test.js
@@ -93,7 +105,13 @@ webpage/
    ├── favicon.test.js
    ├── responsive-tester.test.js
    ├── booking.test.js
-   └── navbar-improvements.test.js
+   ├── booking-responsive.test.js
+   ├── navbar-improvements.test.js
+   ├── navbar-responsive-icon.test.js
+   ├── gradient-colors.test.js
+   ├── all-links.test.js
+   ├── certificates.test.js  # 50 tests for all 33 certificates
+   └── contact-form.test.js
 ```
 
 ## 🛠️ Tech Stack
@@ -183,10 +201,13 @@ npm test -- --testPathPattern=favicon
 
 - Navigation & cross‑page structural consistency
 - Favicon & manifest integrity
-- Certificate gallery markup hooks
+- Certificate gallery markup hooks & data validation
+- All 33 certificates individually tested (structure, paths, URLs, categories)
 - Calendly CTA semantics + security attributes
 - Responsive navigation (mobile compact menu rules)
 - Styling contract tests (presence of gradients, transitions)
+- Link integrity across all pages
+- Contact form structure and attributes
 
 ## 📝 Development
 
@@ -201,19 +222,24 @@ npm run format    # Run Prettier
 ### Adding Certificates
 
 1. Place full-size image in `images/` (use compressed JPG where possible).
-2. Create a proportional thumbnail in `thumbs/` (≈ 300–400px width).
+2. The thumbnail will be auto-generated using the standardization script (see below).
 3. Append an object to `certificates` array in `js/certificates.js` (increment id):
    ```js
    {
-      id: 17,
+      id: 34,
       title: 'New Certificate Name',
       image: 'images/new-cert.jpg',
-      thumb: 'thumbs/new-cert.jpg',
+      thumb: 'images/thumbs/new-cert.jpg',
       linkedinUrl: null, // or full credential URL
       category: 'Automation'
    }
    ```
-4. Tests automatically validate modal container presence; no test update needed unless you assert specific count.
+4. Run the thumbnail regeneration script to ensure consistent quality:
+   ```bash
+   cd utils/certificates
+   bash regenerate-thumbnails.sh
+   ```
+5. Tests automatically validate all certificate data (structure, paths, URLs, categories).
 
 ### Calendly Configuration
 
@@ -242,7 +268,40 @@ If you change the event slug:
 - Local (unminified) CSS left readable; could be minified if desired.
 - Limited external blocking requests (fonts + icons + Materialize CDN).
 - Gradients over large hero bitmaps keep transfer size low.
+- **Optimized thumbnail images**: All 33 certificate thumbnails standardized to 300px width for consistent quality and performance.
+- ImageMagick-based thumbnail generation with quality 85 and unsharp filter for optimal clarity.
 - Opportunity: inline critical CSS + defer non-critical styles (not yet required for current scale).
+
+## 🖼️ Image Optimization
+
+### Thumbnail Standardization
+
+All certificate thumbnails are maintained at a consistent 300px width for optimal display quality. To regenerate thumbnails after adding new certificates:
+
+```bash
+cd utils/certificates
+bash regenerate-thumbnails.sh
+```
+
+**What the script does:**
+
+- Processes all certificate images from `images/*.jpg`
+- Generates 300px width thumbnails maintaining aspect ratio
+- Applies quality 85 compression for size/quality balance
+- Adds unsharp filter (0x0.5) for post-resize clarity
+- Strips metadata to reduce file size
+- Outputs detailed statistics on completion
+
+**Requirements:**
+
+- ImageMagick installed (`sudo apt-get install imagemagick` on Ubuntu/Debian)
+
+**Results:**
+
+- Consistent thumbnail dimensions (300x223, 300x225, or 300x232 pixels)
+- File sizes: 8KB - 24KB per thumbnail
+- No pixelation when displayed in certificate cards
+- Professional, consistent visual quality across all certificates
 
 ## 🔧 Troubleshooting
 
@@ -261,9 +320,10 @@ If you change the event slug:
 
 ### Images Not Loading
 
-- Check file paths are correct
-- Verify images exist in `/images/` and `/thumbs/`
+- Check file paths are correct (all assets now in `images/` subdirectories)
+- Verify images exist in `/images/`, `/images/assets/`, and `/images/thumbs/`
 - Check browser console for 404 errors
+- Ensure thumbnail paths use `images/thumbs/` prefix
 
 ### Tests Failing
 
@@ -298,11 +358,30 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📈 Changelog (Key Items)
 
+### October 2025
+
+- **Project restructuring**: Consolidated all images into `images/` directory with subdirectories:
+  - `images/assets/` for profile and supporting images
+  - `images/thumbs/` for certificate thumbnails
+  - Root `images/` for full-size certificate images
+- **Comprehensive test expansion**: Grew test suite from 425 to **714 tests** across 14 suites
+  - Added `certificates.test.js` with 50 tests validating all 33 certificates
+  - Individual validation tests for each certificate (structure, paths, URLs, categories)
+  - Added `gradient-colors.test.js`, `all-links.test.js`, `contact-form.test.js`
+  - Enhanced cross-page and responsive testing
+- **Image quality improvements**:
+  - Created thumbnail standardization script (`regenerate-thumbnails.sh`)
+  - Regenerated all 33 thumbnails to consistent 300px width
+  - Fixed pixelation issues from inconsistent thumbnail sizes (85px → 300px)
+  - Standardized file sizes (8KB - 24KB) with quality 85 compression
+  - Applied unsharp filter for optimal post-resize clarity
+- **Path updates**: Updated all file references across HTML, CSS, JS, and test files
+- **Documentation**: Enhanced README with detailed structure, tooling, and maintenance guides
+
 ### Current (2025 Q4)
 
 - Custom certificate modal (replaces previous gallery dependency).
 - Navigation redesign with compact mobile menu & added CTA tests.
-- Expanded test suite to 425 assertions (added booking + navbar improvements).
 - Accessibility refinements (ARIA roles, labels, list semantics, sr-only headings).
 - Calendly slug migration (/15min → /30min) with preserved 15‑minute wording.
 
@@ -317,7 +396,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Inline Calendly popup widget (progressive enhancement).
 - Blog / article feed integration.
 - i18n (EN + PT/ES) for broader reach.
-- Automated image optimization pipeline (Sharp script) + critical CSS extraction.
+- ~~Automated image optimization pipeline (Sharp script) + critical CSS extraction.~~ ✅ **Completed: ImageMagick-based thumbnail standardization**
 
 ---
 
