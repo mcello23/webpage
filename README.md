@@ -28,7 +28,7 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
 ### Testing & Quality Signals
 
-- **746 Jest tests** across 14 test suites covering:
+- **755 Jest tests** across 14 test suites covering:
   - DOM structure & accessibility attributes
   - Link integrity & cross-page consistency
   - Favicon assets & manifest validation
