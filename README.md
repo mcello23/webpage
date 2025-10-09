@@ -1,6 +1,6 @@
 # Marcelo Costa – QA / SDET Portfolio
 
-[![Tests](https://img.shields.io/badge/tests-746%20passing-brightgreen)](/__tests__)
+[![Tests](https://img.shields.io/badge/tests-755%20passing-brightgreen)](/__tests__)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Modern, performance‑oriented and accessibility‑aware portfolio highlighting large scale E2E automation, test architecture, and delivery impact (Cypress, Playwright, CI/CD).
