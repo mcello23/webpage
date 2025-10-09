@@ -285,7 +285,7 @@ cd utils/certificates
 bash regenerate-thumbnails.sh
 ```
 
-**What the script does:** 
+**What the script does:**
 
 - Processes all certificate images from `images/*.jpg`
 - Generates 300px width thumbnails maintaining aspect ratio
