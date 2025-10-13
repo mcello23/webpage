@@ -1,6 +1,6 @@
 # Marcelo Costa – QA / SDET Portfolio
 
-[![Tests](https://img.shields.io/badge/tests-755%20passing-brightgreen)](/__tests__)
+[![Tests](https://img.shields.io/badge/tests-788%20passing-brightgreen)](/__tests__)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Modern, performance‑oriented and accessibility‑aware portfolio highlighting large scale E2E automation, test architecture, and delivery impact (Cypress, Playwright, CI/CD).
@@ -28,7 +28,7 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
 ### Testing & Quality Signals
 
-- **755 Jest tests** across 14 test suites covering:
+- **788 Jest tests** across 14 test suites covering:
   - DOM structure & accessibility attributes
   - Link integrity & cross-page consistency
   - Favicon assets & manifest validation

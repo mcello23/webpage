@@ -280,7 +280,7 @@ a[aria-label='discord-link']:hover {
   color: #000; /* make menu icon black */
   cursor: pointer;
   padding: 8px;
-  margin-left: auto;
+  margin-right: auto; /* Keep it to the left */
 }
 
 .mobile-menu-toggle i {
@@ -402,6 +402,8 @@ a[aria-label='discord-link']:hover {
   .mobile-menu-toggle {
     position: relative;
     z-index: 1300;
+    order: -1; /* Force to be first */
+    margin-right: auto; /* Push everything else to the right */
   }
 
   /* Override social icon hover for mobile - keep centered */
@@ -508,8 +510,9 @@ a[aria-label='discord-link']:hover {
 
   /* Mobile menu toggle positioned top-left */
   .mobile-menu-toggle {
-    order: 1;
+    order: -1; /* Force to be first */
     margin: 0;
+    margin-right: auto; /* Push everything else to the right */
     padding: 4px;
     font-size: 26px;
   }
@@ -522,8 +525,8 @@ a[aria-label='discord-link']:hover {
   /* Social icons stay on right, smaller */
   .social-nav {
     gap: 8px;
-    order: 2;
-    margin-left: auto;
+    order: 10; /* Ensure it's last, after toggle */
+    margin-left: 0;
     align-items: center; /* Align with toggle button */
   }
 
