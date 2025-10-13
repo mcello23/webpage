@@ -13,7 +13,7 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
 ### Core
 
-- Fully responsive (mobile → desktop) with progressive enhancement set.
+- Fully responsive (mobile → desktop) with progressive enhancement.
 - Accessible navigation (ARIA, keyboard friendly modals, semantic structure).
 - SEO + rich snippets (JSON‑LD Person schema, meta & Open Graph tags).
 - Performance conscious: minimal blocking assets, gradients over large images, no heavy SPA framework.
