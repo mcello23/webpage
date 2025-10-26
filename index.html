@@ -30,8 +30,8 @@
       content="Scalable E2E automation with Cypress & Playwright. 5,000+ E2E tests maintained daily. Impact: 98% startup reduction, 25→8 min suite time."
     />
     <meta
-      property="og:image"
-      content="https://mcello23.github.io/webpage/images/assets/DSC_9554.jpg"
+  property="og:image"
+  content="https://mcello23.github.io/webpage/images/assets/DSC_9554-optimized.webp"
     />
     <meta property="og:image:alt" content="Marcelo Costa - Senior QA Engineer" />
     <meta property="og:updated_time" content="2025-10-06T00:00:00Z" />
@@ -46,7 +46,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://mcello23.github.io/webpage/images/assets/DSC_9554.jpg"
+      content="https://mcello23.github.io/webpage/images/assets/DSC_9554-optimized.webp"
     />
 
     <!-- JSON-LD (Person) -->
@@ -57,7 +57,7 @@
         "name": "Marcelo Costa",
         "jobTitle": "Senior QA Engineer & SDET",
         "url": "https://mcello23.github.io/webpage/",
-        "image": "https://mcello23.github.io/webpage/images/assets/DSC_9554.jpg",
+  "image": "https://mcello23.github.io/webpage/images/assets/DSC_9554-optimized.webp",
         "description": "Senior QA Engineer specializing in E2E automation (Cypress/Playwright), TypeScript and CI/CD integration.",
         "worksFor": [
           { "@type": "Organization", "name": "Board International" },
@@ -100,15 +100,16 @@
     <link rel="manifest" href="favicon/site.webmanifest" />
 
     <!-- Fonts Preconnect (perf) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
     <!-- CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link href="css/materialize.css" rel="stylesheet" media="screen,projection" />
-    <link href="css/style.css" rel="stylesheet" media="screen,projection" />
-    <link href="css/navbar.css?v=16" rel="stylesheet" media="screen,projection" />
-    <link href="css/certificates.css" rel="stylesheet" media="screen,projection" />
+  <link href="css/materialize.css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" rel="stylesheet" media="print" onload="this.media='screen,projection'" />
+  <link href="css/navbar.css?v=16" rel="stylesheet" media="print" onload="this.media='screen,projection'" />
+  <link href="css/certificates.css" rel="stylesheet" media="print" onload="this.media='screen,projection'" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
       rel="stylesheet"
@@ -387,12 +388,14 @@
             <div class="center-align" style="margin-bottom: 30px">
               <img
                 class="circle responsive-img"
-                src="images/assets/DSC_9554.jpg"
+                src="images/assets/DSC_9554-optimized.webp"
+                srcset="images/assets/DSC_9554-optimized.webp 1x, images/assets/DSC_9554.jpg 2x"
                 alt="Portrait of Marcelo Costa"
-                width="360"
-                height="360"
+                width="170"
+                height="155"
                 loading="lazy"
                 decoding="async"
+                fetchpriority="high"
                 style="
                   max-width: 180px;
                   border: 5px solid #667eea;

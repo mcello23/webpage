@@ -1,6 +1,6 @@
 # Marcelo Costa – QA / SDET Portfolio
 
-[![Tests](https://img.shields.io/badge/tests-788%20passing-brightgreen)](/__tests__)
+[![Tests](https://img.shields.io/badge/tests-800%2B%20passing-brightgreen)](/__tests__)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Modern, performance‑oriented and accessibility‑aware portfolio highlighting large scale E2E automation, test architecture, and delivery impact (Cypress, Playwright, CI/CD).
@@ -28,7 +28,7 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
 ### Testing & Quality Signals
 
-- **788 Jest tests** across 14 test suites covering:
+- **800+ Jest tests** across 16 test suites covering:
   - DOM structure & accessibility attributes
   - Link integrity & cross-page consistency
   - Favicon assets & manifest validation
@@ -99,7 +99,8 @@ webpage/
 │       ├── certificate-helper.html  # Certificate modal dev tool
 │       └── regenerate-thumbnails.sh # Thumbnail standardization script
 │
-└── __tests__/              # Jest test suites (714 tests across 14 suites)
+└── __tests__/              # Jest test suites (800+ tests across 16+ suites)
+   ├── unit-performance-optimizations.test.js # Unit tests for performance optimizations
    ├── index.test.js
    ├── frameworks.test.js
    ├── side_proj.test.js
@@ -130,8 +131,21 @@ webpage/
 ### Tooling & Quality
 
 - Jest + JSDOM for DOM & structural tests
+- Cheerio for HTML parsing in tests
 - ESLint (with html plugin) & Prettier formatting
 - Sharp (dev dependency; image processing capability if needed)
+- ImageMagick (for image/WebP optimization)
+- Dependabot (automated dependency updates)
+# 🆕 Recent Improvements
+
+- Added automated performance/unit tests for cache, CSS loading, image optimization, font-display, fetchpriority, and preconnect (see `unit-performance-optimizations.test.js`).
+- Profile image now uses optimized WebP with JPG fallback.
+- Static cache headers via `_headers` for better repeat-visit performance.
+- Non-blocking CSS loading for faster rendering.
+- Font loading improved with `font-display: swap`.
+- LCP image prioritized with `fetchpriority`.
+- Preconnect for CDN resources.
+- Dependabot enabled for weekly dependency updates.
 
 ### Delivery
 

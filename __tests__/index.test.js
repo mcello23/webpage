@@ -106,7 +106,8 @@ describe('Index Page (Main Portfolio)', () => {
     test('has profile image', () => {
       const profileImg = document.querySelector('img.circle.responsive-img');
       expect(profileImg).toBeTruthy();
-      expect(profileImg.getAttribute('src')).toBe('images/assets/DSC_9554.jpg');
+      // Accepts the new optimized image as main src
+      expect(profileImg.getAttribute('src')).toBe('images/assets/DSC_9554-optimized.webp');
       expect(profileImg.getAttribute('alt')).toContain('Marcelo Costa');
     });
 
