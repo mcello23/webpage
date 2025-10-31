@@ -17,7 +17,7 @@ module.exports = {
       },
     ],
   },
-  transformIgnorePatterns: ['/node_modules/(?!(jsdom|parse5|parse5-parser-stream)).+\\.js$'],
+  transformIgnorePatterns: ['/node_modules/(?!(jsdom|parse5)/).+\\.js$'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
