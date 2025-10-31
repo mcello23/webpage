@@ -1,6 +1,6 @@
 # Marcelo Costa – QA / SDET Portfolio
 
-[![Tests](https://img.shields.io/badge/tests-800%2B%20passing-brightgreen)](/__tests__)
+[![Tests](https://img.shields.io/badge/tests-811%2B%20passing-brightgreen)](/__tests__)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Modern, performance‑oriented and accessibility‑aware portfolio highlighting large scale E2E automation, test architecture, and delivery impact (Cypress, Playwright, CI/CD).
@@ -136,6 +136,7 @@ webpage/
 - Sharp (dev dependency; image processing capability if needed)
 - ImageMagick (for image/WebP optimization)
 - Dependabot (automated dependency updates)
+
 # 🆕 Recent Improvements
 
 - Added automated performance/unit tests for cache, CSS loading, image optimization, font-display, fetchpriority, and preconnect (see `unit-performance-optimizations.test.js`).

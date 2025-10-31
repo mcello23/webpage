@@ -189,11 +189,11 @@ describe('All Pages - Link Validation', () => {
       const articleSection = document.querySelector('#articles');
       const articleCards = articleSection.querySelectorAll('.gradient-card');
 
-      // Find the Cyprompt article card (look for Dev.to link)
+      // Find the Cyprompt article card (look for the specific article about revolutionizing AI)
       let cypromptCard = null;
       articleCards.forEach((card) => {
-        const link = card.querySelector('a[href*="dev.to"]');
-        if (link && link.getAttribute('href').includes('cyprompt')) {
+        const link = card.querySelector('a[href*="how-cypress-will-revolutionize"]');
+        if (link) {
           cypromptCard = card;
         }
       });
@@ -217,8 +217,8 @@ describe('All Pages - Link Validation', () => {
       // Find the Cyprompt article card
       let cypromptCard = null;
       articleCards.forEach((card) => {
-        const link = card.querySelector('a[href*="dev.to"]');
-        if (link && link.getAttribute('href').includes('cyprompt')) {
+        const link = card.querySelector('a[href*="how-cypress-will-revolutionize"]');
+        if (link) {
           cypromptCard = card;
         }
       });
@@ -235,8 +235,8 @@ describe('All Pages - Link Validation', () => {
       // Find the Cyprompt article card
       let cypromptCard = null;
       articleCards.forEach((card) => {
-        const link = card.querySelector('a[href*="dev.to"]');
-        if (link && link.getAttribute('href').includes('cyprompt')) {
+        const link = card.querySelector('a[href*="how-cypress-will-revolutionize"]');
+        if (link) {
           cypromptCard = card;
         }
       });

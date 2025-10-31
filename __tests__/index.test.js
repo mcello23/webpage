@@ -526,7 +526,7 @@ describe('Index Page (Main Portfolio)', () => {
 
       let cypromptCard = null;
       cards.forEach((card) => {
-        const link = card.querySelector('a[href*="cyprompt"]');
+        const link = card.querySelector('a[href*="how-cypress-will-revolutionize"]');
         if (link) {
           cypromptCard = card;
         }
@@ -547,7 +547,7 @@ describe('Index Page (Main Portfolio)', () => {
 
       let cypromptCard = null;
       cards.forEach((card) => {
-        const link = card.querySelector('a[href*="cyprompt"]');
+        const link = card.querySelector('a[href*="how-cypress-will-revolutionize"]');
         if (link) {
           cypromptCard = card;
         }
@@ -556,6 +556,182 @@ describe('Index Page (Main Portfolio)', () => {
       const icon = cypromptCard.querySelector('.card-image .material-icons');
       expect(icon).toBeTruthy();
       expect(icon.textContent).toContain('psychology');
+    });
+
+    test('Article 4 (cy.prompt() Tips) has correct title', () => {
+      const articlesSection = document.querySelector('#articles');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
+      const article4Heading = Array.from(articleHeadings).find((h) =>
+        h.textContent.includes('How to get most out of cy.prompt()')
+      );
+      expect(article4Heading).toBeTruthy();
+      expect(article4Heading.textContent).toContain('How to get most out of cy.prompt()');
+    });
+
+    test('Article 4 has correct description', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('6 tips and tricks to maximize your AI-powered testing');
+      expect(content).toContain('Learn best practices for leveraging this new AI tool');
+    });
+
+    test('Article 4 has correct link to Dev.to', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let article4Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="how-to-get-most-out-of-cyprompt"]');
+        if (link) {
+          article4Card = card;
+        }
+      });
+
+      expect(article4Card).toBeTruthy();
+      const link = article4Card.querySelector('a[href*="how-to-get-most-out-of-cyprompt"]');
+      expect(link).toBeTruthy();
+      expect(link.getAttribute('href')).toBe(
+        'https://dev.to/cypress/how-to-get-most-out-of-cyprompt-6-tips-and-tricks-for-your-new-ai-tool-425l'
+      );
+      expect(link.getAttribute('target')).toBe('_blank');
+      expect(link.getAttribute('rel')).toBe('noopener noreferrer');
+    });
+
+    test('Article 4 has correct tags', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let article4Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="how-to-get-most-out-of-cyprompt"]');
+        if (link) {
+          article4Card = card;
+        }
+      });
+
+      expect(article4Card).toBeTruthy();
+      const tags = article4Card.querySelectorAll('.skill-tag');
+      const tagTexts = Array.from(tags).map((tag) => tag.textContent.trim());
+
+      expect(tagTexts).toContain('AI Tips');
+      expect(tagTexts).toContain('cy.prompt()');
+      expect(tagTexts).toContain('Best Practices');
+      expect(tags.length).toBe(3);
+    });
+
+    test('Article 4 has lightbulb icon', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let article4Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="how-to-get-most-out-of-cyprompt"]');
+        if (link) {
+          article4Card = card;
+        }
+      });
+
+      expect(article4Card).toBeTruthy();
+      const icon = article4Card.querySelector('.card-image .material-icons');
+      expect(icon).toBeTruthy();
+      expect(icon.textContent).toContain('lightbulb');
+    });
+
+    test('Article 4 has gradient card styling', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let article4Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="how-to-get-most-out-of-cyprompt"]');
+        if (link) {
+          article4Card = card;
+        }
+      });
+
+      expect(article4Card).toBeTruthy();
+      expect(article4Card.classList.contains('gradient-card')).toBe(true);
+      expect(article4Card.classList.contains('card')).toBe(true);
+    });
+
+    test('Article 4 has red/coral gradient background in card image', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let article4Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="how-to-get-most-out-of-cyprompt"]');
+        if (link) {
+          article4Card = card;
+        }
+      });
+
+      expect(article4Card).toBeTruthy();
+      const gradientDiv = article4Card.querySelector('.card-image div[style*="background"]');
+      expect(gradientDiv).toBeTruthy();
+      expect(gradientDiv.getAttribute('style')).toContain('linear-gradient');
+      expect(gradientDiv.getAttribute('style')).toContain('#ff6b6b');
+      expect(gradientDiv.getAttribute('style')).toContain('#ee5a6f');
+    });
+
+    test('Article 4 has correct header text in card image', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let article4Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="how-to-get-most-out-of-cyprompt"]');
+        if (link) {
+          article4Card = card;
+        }
+      });
+
+      expect(article4Card).toBeTruthy();
+      const headerText = article4Card.querySelector('.card-image h5');
+      expect(headerText).toBeTruthy();
+      expect(headerText.textContent.trim()).toBe('cy.prompt() Tips');
+      expect(headerText.classList.contains('white-text')).toBe(true);
+    });
+
+    test('Article 4 button has Dev.to branding', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let article4Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="how-to-get-most-out-of-cyprompt"]');
+        if (link) {
+          article4Card = card;
+        }
+      });
+
+      expect(article4Card).toBeTruthy();
+      const button = article4Card.querySelector('.card-action a');
+      expect(button).toBeTruthy();
+      expect(button.textContent).toContain('Read on Dev.to');
+
+      const icon = button.querySelector('.fa-dev');
+      expect(icon).toBeTruthy();
+    });
+
+    test('Article 4 tags have correct gradient styling', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let article4Card = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="how-to-get-most-out-of-cyprompt"]');
+        if (link) {
+          article4Card = card;
+        }
+      });
+
+      expect(article4Card).toBeTruthy();
+      const tags = article4Card.querySelectorAll('.skill-tag');
+
+      tags.forEach((tag) => {
+        const style = tag.getAttribute('style');
+        expect(style).toContain('background: linear-gradient(135deg, #ff6b6b, #ee5a6f)');
+      });
     });
 
     test('More Articles Coming Soon card exists', () => {
