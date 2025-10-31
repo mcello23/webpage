@@ -1,6 +1,6 @@
 # Marcelo Costa – QA / SDET Portfolio
 
-[![Tests](https://img.shields.io/badge/tests-804%2B%20passing-brightgreen)](/__tests__)
+[![Tests](https://img.shields.io/badge/tests-937%2B%20passing-brightgreen)](/__tests__)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Modern, performance‑oriented and accessibility‑aware portfolio highlighting large scale E2E automation, test architecture, and delivery impact (Cypress, Playwright, CI/CD).
@@ -28,7 +28,7 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
 ### Testing & Quality Signals
 
-- **800+ Jest tests** across 16 test suites covering:
+- **900+ Jest tests** across 16 test suites covering:
   - DOM structure & accessibility attributes
   - Link integrity & cross-page consistency
   - Favicon assets & manifest validation
@@ -99,7 +99,7 @@ webpage/
 │       ├── certificate-helper.html  # Certificate modal dev tool
 │       └── regenerate-thumbnails.sh # Thumbnail standardization script
 │
-└── __tests__/              # Jest test suites (800+ tests across 16+ suites)
+└── __tests__/              # Jest test suites (900+ tests across 16+ suites)
    ├── unit-performance-optimizations.test.js # Unit tests for performance optimizations
    ├── index.test.js
    ├── frameworks.test.js

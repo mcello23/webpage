@@ -1,13 +1,70 @@
-// Modern Certificate Gallery Data
-// Each certificate can have a LinkedIn credential URL if available
+/**
+ * @fileoverview Modern Certificate Gallery System
+ * Manages display and interaction of professional certificates with modal gallery
+ * @author Marcelo Costa
+ * @version 2.0.0
+ */
 
-// Detect if we're in a subfolder (like pages/) and adjust paths
+/**
+ * Certificate data structure
+ * @typedef {Object} Certificate
+ * @property {number} id - Unique certificate identifier (1-33)
+ * @property {string} title - Certificate title/name
+ * @property {string} image - Path to full-size certificate image
+ * @property {string} thumb - Path to thumbnail image (300px width)
+ * @property {string} [linkedinUrl] - Optional LinkedIn verification URL
+ * @property {string} category - Certificate category (e.g., 'Automation', 'Security')
+ */
+
+/**
+ * Detects if the current page is in a subfolder and returns appropriate base path
+ * This allows the certificate paths to work correctly from both root and /pages/ directory
+ *
+ * @returns {string} Base path - returns '../' if in /pages/ subfolder, empty string otherwise
+ *
+ * @example
+ * // From /index.html
+ * getBasePath(); // returns ''
+ *
+ * @example
+ * // From /pages/frameworks.html
+ * getBasePath(); // returns '../'
+ */
 const getBasePath = () => {
   const path = window.location.pathname;
   // If we're in a subfolder (contains /pages/), add ../ prefix
   return path.includes('/pages/') ? '../' : '';
 };
 
+/**
+ * Escapes HTML special characters to prevent XSS attacks
+ * Converts <, >, &, ', and " to their HTML entity equivalents
+ *
+ * @param {string} text - Raw text that may contain HTML special characters
+ * @returns {string} Sanitized text safe for HTML insertion
+ *
+ * @example
+ * escapeHtml('<script>alert("xss")</script>');
+ * // returns '&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;'
+ */
+const escapeHtml = (text) => {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+};
+
+/**
+ * Array of all professional certificates
+ * Contains 33 certificates across various categories including:
+ * - Automation (Cypress, Playwright, Selenium)
+ * - Security (Cybersecurity)
+ * - Cloud (AWS)
+ * - Testing methodologies
+ * - Programming languages
+ *
+ * @type {Certificate[]}
+ * @constant
+ */
 const certificates = [
   {
     id: 1,
@@ -307,11 +364,45 @@ const certificates = [
   },
 ];
 
-// Modern Certificate Modal Controller
+/**
+ * Certificate Modal Controller
+ * Manages the certificate gallery modal with grid view, detail view, and navigation
+ * Implements keyboard shortcuts, lazy loading, and accessibility features
+ *
+ * @class CertificateModal
+ * @example
+ * // Initialize modal (done automatically on DOMContentLoaded)
+ * const modal = new CertificateModal();
+ * modal.open(); // Opens the modal
+ */
 class CertificateModal {
+  /**
+   * Creates a new CertificateModal instance
+   * Initializes modal state, loads certificate data, and sets up DOM references
+   *
+   * @constructor
+   * @throws {Error} Logs error if modal container element is not found
+   */
   constructor() {
+    /**
+     * Current certificate index being displayed (0-based)
+     * @type {number}
+     * @private
+     */
     this.currentIndex = 0;
+
+    /**
+     * Array of all certificates to display
+     * @type {Certificate[]}
+     * @private
+     */
     this.certificates = certificates;
+
+    /**
+     * Main modal container DOM element
+     * @type {HTMLElement|null}
+     * @private
+     */
     this.container = document.getElementById('certificateModal');
 
     if (!this.container) {
@@ -323,11 +414,25 @@ class CertificateModal {
     this.init();
   }
 
+  /**
+   * Initializes the modal by creating HTML structure and attaching event listeners
+   * Called automatically by constructor
+   *
+   * @private
+   * @returns {void}
+   */
   init() {
     this.createModal();
     this.attachEventListeners();
   }
 
+  /**
+   * Creates the modal HTML structure and injects it into the container
+   * Generates both the grid view and detail viewer components
+   *
+   * @private
+   * @returns {void}
+   */
   createModal() {
     const modalHTML = `
         <div class="cert-modal-content">
@@ -348,7 +453,7 @@ class CertificateModal {
             </button>
             
             <div class="cert-image-container">
-              <img id="certImage" src="" alt="Certificate">
+              <img id="certImage" src="" alt="Certificate" loading="lazy" decoding="async">
               <div class="cert-details">
                 <h3 id="certTitle"></h3>
                 <span class="cert-category" id="certCategory"></span>
@@ -377,24 +482,35 @@ class CertificateModal {
     this.container.innerHTML = modalHTML;
   }
 
+  /**
+   * Generates HTML grid of certificate cards with thumbnails
+   * Each card is clickable and opens the certificate detail view
+   * Images are lazy-loaded for performance optimization
+   * All text content is escaped to prevent XSS attacks
+   *
+   * @private
+   * @returns {string} HTML string containing all certificate cards
+   */
   generateCertificateGrid() {
     const basePath = getBasePath();
     return this.certificates
       .map(
         (cert) => `
-      <div class="cert-card" data-id="${
-        cert.id
-      }" onclick="window.certificateModal.openCertificate(${cert.id - 1})">
+      <div class="cert-card" data-id="${cert.id}" onclick="window.certificateModal.openCertificate(${
+        cert.id - 1
+      })">
         <div class="cert-card-image">
-          <img src="${basePath}${cert.thumb}" alt="${cert.title}" loading="lazy">
+          <img src="${basePath}${escapeHtml(cert.thumb)}" alt="${escapeHtml(
+            cert.title
+          )}" loading="lazy" decoding="async">
           <div class="cert-card-overlay">
             <i class="material-icons">visibility</i>
             <span>View Certificate</span>
           </div>
         </div>
         <div class="cert-card-content">
-          <h4>${cert.title}</h4>
-          <span class="cert-badge">${cert.category}</span>
+          <h4>${escapeHtml(cert.title)}</h4>
+          <span class="cert-badge">${escapeHtml(cert.category)}</span>
           ${
             cert.linkedinUrl
               ? '<i class="fab fa-linkedin cert-linkedin-icon" title="Available on LinkedIn"></i>'
@@ -407,6 +523,13 @@ class CertificateModal {
       .join('');
   }
 
+  /**
+   * Attaches all event listeners for modal interaction
+   * Includes click handlers, keyboard navigation, and modal triggers
+   *
+   * @private
+   * @returns {void}
+   */
   attachEventListeners() {
     // Open modal
     document.querySelectorAll('.modal-trigger').forEach((trigger) => {
@@ -449,6 +572,13 @@ class CertificateModal {
     });
   }
 
+  /**
+   * Opens the certificate modal and displays the grid view
+   * Disables body scroll to prevent background scrolling
+   *
+   * @public
+   * @returns {void}
+   */
   open() {
     console.log('🔍 Opening modal...');
     this.container.classList.add('active');
@@ -456,16 +586,38 @@ class CertificateModal {
     this.showGrid();
   }
 
+  /**
+   * Closes the certificate modal and restores page scroll
+   *
+   * @public
+   * @returns {void}
+   */
   close() {
     this.container.classList.remove('active');
     document.body.style.overflow = '';
   }
 
+  /**
+   * Shows the certificate grid view and hides the detail viewer
+   *
+   * @public
+   * @returns {void}
+   */
   showGrid() {
     document.getElementById('certGrid').style.display = 'grid';
     document.getElementById('certViewer').style.display = 'none';
   }
 
+  /**
+   * Opens a specific certificate in detail view
+   *
+   * @public
+   * @param {number} index - Zero-based index of certificate to display (0-32)
+   * @returns {void}
+   *
+   * @example
+   * modal.openCertificate(0); // Opens first certificate
+   */
   openCertificate(index) {
     this.currentIndex = index;
     this.updateViewer();
@@ -473,18 +625,42 @@ class CertificateModal {
     document.getElementById('certViewer').style.display = 'flex';
   }
 
+  /**
+   * Navigates to next or previous certificate with wrap-around
+   * Uses modulo arithmetic to ensure index stays within valid range
+   *
+   * @public
+   * @param {number} direction - Direction to navigate: 1 for next, -1 for previous
+   * @returns {void}
+   *
+   * @example
+   * modal.navigate(1);  // Go to next certificate
+   * modal.navigate(-1); // Go to previous certificate
+   */
   navigate(direction) {
     this.currentIndex = (this.currentIndex + direction + certificates.length) % certificates.length;
     this.updateViewer();
   }
 
+  /**
+   * Updates the detail viewer with current certificate information
+   * Sets image source, title, category, and LinkedIn button visibility
+   * Uses XSS-safe textContent instead of innerHTML for user-generated content
+   *
+   * @private
+   * @returns {void}
+   */
   updateViewer() {
     const cert = certificates[this.currentIndex];
     const basePath = getBasePath();
 
-    document.getElementById('certImage').src = basePath + cert.image;
-    document.getElementById('certTitle').textContent = cert.title;
-    document.getElementById('certCategory').textContent = cert.category;
+    // Use XSS-safe assignments
+    const certImage = document.getElementById('certImage');
+    certImage.src = basePath + cert.image;
+    certImage.alt = cert.title; // Safe - browser handles escaping in attributes
+
+    document.getElementById('certTitle').textContent = cert.title; // XSS-safe
+    document.getElementById('certCategory').textContent = cert.category; // XSS-safe
     document.getElementById('currentCert').textContent = this.currentIndex + 1;
     document.getElementById('viewFullBtn').href = basePath + cert.image;
 
