@@ -22,7 +22,7 @@ describe('Booking Call Responsive Behavior', () => {
   describe('HTML Structure Verification', () => {
     let dom, document;
 
-    beforeEach(() => {
+    beforeAll(() => {
       dom = new JSDOM(htmlContent, {
         url: 'http://localhost',
         pretendToBeVisual: true,
@@ -197,7 +197,7 @@ describe('Booking Call Responsive Behavior', () => {
     describe('Desktop Resolution (>= 1600px)', () => {
       let dom, document, window;
 
-      beforeEach(() => {
+      beforeAll(() => {
         dom = new JSDOM(htmlContent, {
           url: 'http://localhost',
           pretendToBeVisual: true,
@@ -242,7 +242,7 @@ describe('Booking Call Responsive Behavior', () => {
     describe('Tablet Resolution (992px - 1599px)', () => {
       let dom, document, window;
 
-      beforeEach(() => {
+      beforeAll(() => {
         dom = new JSDOM(htmlContent, {
           url: 'http://localhost',
           pretendToBeVisual: true,
@@ -284,7 +284,7 @@ describe('Booking Call Responsive Behavior', () => {
     describe('Mobile Resolution (< 992px)', () => {
       let dom, document, window;
 
-      beforeEach(() => {
+      beforeAll(() => {
         dom = new JSDOM(htmlContent, {
           url: 'http://localhost',
           pretendToBeVisual: true,
@@ -358,29 +358,26 @@ describe('Booking Call Responsive Behavior', () => {
   });
 
   describe('Integration with Other Page Files', () => {
+    let frameworksHtml, sideProjHtml;
+
+    beforeAll(() => {
+      frameworksHtml = fs.readFileSync(path.join(__dirname, '../pages/frameworks.html'), 'utf8');
+      sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
+    });
+
     test('frameworks.html should have updated cache version v16', () => {
-      const frameworksHtml = fs.readFileSync(
-        path.join(__dirname, '../pages/frameworks.html'),
-        'utf8'
-      );
       expect(frameworksHtml).toContain('navbar.css?v=16');
     });
 
     test('side_proj.html should have updated cache version v16', () => {
-      const sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
       expect(sideProjHtml).toContain('navbar.css?v=16');
     });
 
     test('frameworks.html should have booking call link', () => {
-      const frameworksHtml = fs.readFileSync(
-        path.join(__dirname, '../pages/frameworks.html'),
-        'utf8'
-      );
       expect(frameworksHtml).toContain('Book 15-min call');
     });
 
     test('side_proj.html should have booking call link', () => {
-      const sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
       expect(sideProjHtml).toContain('Book 15-min call');
     });
   });
@@ -388,7 +385,7 @@ describe('Booking Call Responsive Behavior', () => {
   describe('Accessibility Considerations', () => {
     let dom, document;
 
-    beforeEach(() => {
+    beforeAll(() => {
       dom = new JSDOM(htmlContent, {
         url: 'http://localhost',
         pretendToBeVisual: true,

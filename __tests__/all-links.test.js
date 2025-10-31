@@ -16,13 +16,36 @@ const path = require('path');
 const { JSDOM } = require('jsdom');
 
 describe('All Pages - Link Validation', () => {
+  // Cache all documents once to avoid repeated JSDOM initialization
+  let indexDoc, frameworksDoc, sideProjDoc, responsiveTesterDoc, testBrandDoc, testModalDoc;
+
+  beforeAll(() => {
+    const indexHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+    const frameworksHtml = fs.readFileSync(
+      path.join(__dirname, '../pages/frameworks.html'),
+      'utf8'
+    );
+    const sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
+    const responsiveTesterHtml = fs.readFileSync(
+      path.join(__dirname, '../pages/responsive-tester.html'),
+      'utf8'
+    );
+    const testBrandHtml = fs.readFileSync(path.join(__dirname, '../pages/test-brand.html'), 'utf8');
+    const testModalHtml = fs.readFileSync(path.join(__dirname, '../pages/test-modal.html'), 'utf8');
+
+    indexDoc = new JSDOM(indexHtml).window.document;
+    frameworksDoc = new JSDOM(frameworksHtml).window.document;
+    sideProjDoc = new JSDOM(sideProjHtml).window.document;
+    responsiveTesterDoc = new JSDOM(responsiveTesterHtml).window.document;
+    testBrandDoc = new JSDOM(testBrandHtml).window.document;
+    testModalDoc = new JSDOM(testModalHtml).window.document;
+  });
+
   describe('index.html - Navigation Links', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = indexDoc;
     });
 
     test('brand logo should link to index.html', () => {
@@ -57,9 +80,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = indexDoc;
     });
 
     test('Calendly booking link should be correct', () => {
@@ -96,9 +117,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = indexDoc;
     });
 
     test('Hasura GraphQL Medium article link should be correct', () => {
@@ -231,9 +250,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = indexDoc;
     });
 
     test('Material Icons font link should be present', () => {
@@ -271,9 +288,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/frameworks.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = frameworksDoc;
     });
 
     test('brand logo should link back to index', () => {
@@ -301,9 +316,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/frameworks.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = frameworksDoc;
     });
 
     test('Playwright demonstration link should be correct', () => {
@@ -332,9 +345,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/frameworks.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = frameworksDoc;
     });
 
     test('should have Calendly booking links', () => {
@@ -357,9 +368,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = sideProjDoc;
     });
 
     test('brand logo should link back to index', () => {
@@ -387,9 +396,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = sideProjDoc;
     });
 
     test('AI Test Plan Generator link should be correct', () => {
@@ -409,9 +416,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = sideProjDoc;
     });
 
     test('should have GitHub social link', () => {
@@ -434,9 +439,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/responsive-tester.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = responsiveTesterDoc;
     });
 
     test('should have link to test index page', () => {
@@ -459,9 +462,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/test-brand.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = testBrandDoc;
     });
 
     test('should have booking call link placeholder', () => {
@@ -475,9 +476,7 @@ describe('All Pages - Link Validation', () => {
     let document;
 
     beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/test-modal.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
+      document = testModalDoc;
     });
 
     test('should have Material Icons link', () => {
@@ -593,9 +592,9 @@ describe('All Pages - Link Validation', () => {
 
   describe('All Pages - Link Security Attributes', () => {
     const pages = [
-      { name: 'index.html', path: '../index.html' },
-      { name: 'frameworks.html', path: '../pages/frameworks.html' },
-      { name: 'side_proj.html', path: '../pages/side_proj.html' },
+      { name: 'index.html', doc: () => indexDoc },
+      { name: 'frameworks.html', doc: () => frameworksDoc },
+      { name: 'side_proj.html', doc: () => sideProjDoc },
     ];
 
     pages.forEach((page) => {
@@ -603,9 +602,7 @@ describe('All Pages - Link Validation', () => {
         let document;
 
         beforeAll(() => {
-          const html = fs.readFileSync(path.join(__dirname, page.path), 'utf8');
-          const dom = new JSDOM(html);
-          document = dom.window.document;
+          document = page.doc();
         });
 
         test('external links should have target="_blank"', () => {
@@ -645,9 +642,9 @@ describe('All Pages - Link Validation', () => {
 
   describe('All Pages - Link Accessibility', () => {
     const pages = [
-      { name: 'index.html', path: '../index.html' },
-      { name: 'frameworks.html', path: '../pages/frameworks.html' },
-      { name: 'side_proj.html', path: '../pages/side_proj.html' },
+      { name: 'index.html', doc: () => indexDoc },
+      { name: 'frameworks.html', doc: () => frameworksDoc },
+      { name: 'side_proj.html', doc: () => sideProjDoc },
     ];
 
     pages.forEach((page) => {
@@ -655,9 +652,7 @@ describe('All Pages - Link Validation', () => {
         let document;
 
         beforeAll(() => {
-          const html = fs.readFileSync(path.join(__dirname, page.path), 'utf8');
-          const dom = new JSDOM(html);
-          document = dom.window.document;
+          document = page.doc();
         });
 
         test('brand logo should have aria-label', () => {

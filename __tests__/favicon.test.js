@@ -10,19 +10,29 @@ describe('Favicon Configuration - All HTML Pages', () => {
     'pages/responsive-tester.html',
   ];
 
+  // Cache all DOMs at once to avoid repeated JSDOM initialization
+  let documents = {};
+
+  beforeAll(() => {
+    htmlFiles.forEach((htmlFile) => {
+      const htmlPath = path.resolve(__dirname, '..', htmlFile);
+      const html = fs.readFileSync(htmlPath, 'utf8');
+      const dom = new JSDOM(html);
+      documents[htmlFile] = {
+        document: dom.window.document,
+        isSubdirectory: htmlFile.includes('/'),
+      };
+    });
+  });
+
   htmlFiles.forEach((htmlFile) => {
     describe(`Favicon in ${htmlFile}`, () => {
-      let dom;
       let document;
       let isSubdirectory;
 
       beforeAll(() => {
-        const htmlPath = path.resolve(__dirname, '..', htmlFile);
-        const html = fs.readFileSync(htmlPath, 'utf8');
-        dom = new JSDOM(html);
-        document = dom.window.document;
-        // Check if file is in a subdirectory
-        isSubdirectory = htmlFile.includes('/');
+        document = documents[htmlFile].document;
+        isSubdirectory = documents[htmlFile].isSubdirectory;
       });
 
       describe('PNG Favicons (Browser Compatibility)', () => {
@@ -351,21 +361,30 @@ describe('Favicon Configuration - All HTML Pages', () => {
   describe('Cross-Page Favicon Consistency', () => {
     test('all pages use the same favicon setup', () => {
       const files = [
-        'index.html',
-        'pages/frameworks.html',
-        'pages/side_proj.html',
-        'pages/responsive-tester.html',
+        { name: 'index.html', doc: documents['index.html'].document, isInSubdir: false },
+        {
+          name: 'pages/frameworks.html',
+          doc: documents['pages/frameworks.html'].document,
+          isInSubdir: true,
+        },
+        {
+          name: 'pages/side_proj.html',
+          doc: documents['pages/side_proj.html'].document,
+          isInSubdir: true,
+        },
+        {
+          name: 'pages/responsive-tester.html',
+          doc: documents['pages/responsive-tester.html'].document,
+          isInSubdir: true,
+        },
       ];
 
       const faviconSetups = files.map((file) => {
-        const htmlPath = path.resolve(__dirname, '..', file);
-        const html = fs.readFileSync(htmlPath, 'utf8');
-        const dom = new JSDOM(html);
-        const doc = dom.window.document;
-        const isInSubdir = file.includes('/');
+        const doc = file.doc;
+        const isInSubdir = file.isInSubdir;
 
         return {
-          file,
+          file: file.name,
           isInSubdir,
           png32: doc.querySelector('link[rel="icon"][sizes="32x32"]')?.getAttribute('href'),
           png16: doc.querySelector('link[rel="icon"][sizes="16x16"]')?.getAttribute('href'),
@@ -398,21 +417,19 @@ describe('Favicon Configuration - All HTML Pages', () => {
 
     test('all pages have the same number of favicon-related links', () => {
       const files = [
-        'index.html',
-        'pages/frameworks.html',
-        'pages/side_proj.html',
-        'pages/responsive-tester.html',
+        { name: 'index.html', doc: documents['index.html'].document },
+        { name: 'pages/frameworks.html', doc: documents['pages/frameworks.html'].document },
+        { name: 'pages/side_proj.html', doc: documents['pages/side_proj.html'].document },
+        {
+          name: 'pages/responsive-tester.html',
+          doc: documents['pages/responsive-tester.html'].document,
+        },
       ];
 
       const counts = files.map((file) => {
-        const htmlPath = path.resolve(__dirname, '..', file);
-        const html = fs.readFileSync(htmlPath, 'utf8');
-        const dom = new JSDOM(html);
-        const doc = dom.window.document;
-
         return {
-          file,
-          count: doc.querySelectorAll(
+          file: file.name,
+          count: file.doc.querySelectorAll(
             'link[rel="icon"], link[rel="apple-touch-icon"], link[rel="manifest"]'
           ).length,
         };
