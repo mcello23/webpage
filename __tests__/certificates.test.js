@@ -103,7 +103,7 @@ describe('Certificate Data Validation', () => {
           try {
             const url = new URL(cert.linkedinUrl);
             sources.add(url.hostname);
-          } catch (e) {
+          } catch {
             // Invalid URL, skip
           }
         }

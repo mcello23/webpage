@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -386,6 +386,7 @@
         container.appendChild(card);
       });
 
+      // eslint-disable-next-line no-unused-vars -- Function is called from onclick attribute in HTML
       function generateCode() {
         const imageMapping = {
           // ✅ ALL CERTIFICATES DOWNLOADED - Ready to use!
@@ -424,7 +425,10 @@
             image: 'images/UC-67a4c481-8909-4c08-8517-23921c6bd2e9.jpg',
             thumb: 'images/thumbs/UC-67a4c481-8909-4c08-8517-23921c6bd2e9.jpg',
           }, // ✓ DOWNLOADED
-          15: { image: 'images/selenium-linkedin.jpg', thumb: 'images/thumbs/selenium-linkedin.jpg' }, // ✓ DOWNLOADED
+          15: {
+            image: 'images/selenium-linkedin.jpg',
+            thumb: 'images/thumbs/selenium-linkedin.jpg',
+          }, // ✓ DOWNLOADED
           16: { image: 'images/test-automation.jpg', thumb: 'images/thumbs/test-automation.jpg' }, // ✓ DOWNLOADED
           17: { image: 'images/difficult-people.jpg', thumb: 'images/thumbs/difficult-people.jpg' }, // ✓ DOWNLOADED
           18: {
@@ -719,7 +723,7 @@ document.addEventListener('DOMContentLoaded', () => {
         output.innerHTML = `<div class="output">${code}</div>`;
 
         // Count URLs added
-        const urlCount = certificates.filter((cert, i) => {
+        const urlCount = certificates.filter((cert) => {
           const url = document.getElementById(`url-${cert.id}`).value.trim();
           return url !== '';
         }).length;
