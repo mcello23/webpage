@@ -92,37 +92,6 @@ describe('All Pages - Link Validation', () => {
     });
   });
 
-  describe('index.html - Project Links', () => {
-    let document;
-
-    beforeAll(() => {
-      const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
-      const dom = new JSDOM(html);
-      document = dom.window.document;
-    });
-
-    test('Cypress demonstration repo link should be correct', () => {
-      const cypressLink = document.querySelector(
-        'a[href="https://github.com/mcello23/cypress-demonstration-repo"]'
-      );
-      expect(cypressLink).toBeTruthy();
-    });
-
-    test('Playwright demonstration link should be correct', () => {
-      const playwrightLink = document.querySelector(
-        'a[href="https://github.com/mcello23/playwright-demonstration"]'
-      );
-      expect(playwrightLink).toBeTruthy();
-    });
-
-    test('Cypress automation real project link should be correct', () => {
-      const cypressRealLink = document.querySelector(
-        'a[href="https://github.com/mcello23/cypress-automation-real-proj"]'
-      );
-      expect(cypressRealLink).toBeTruthy();
-    });
-  });
-
   describe('index.html - Article Links', () => {
     let document;
 

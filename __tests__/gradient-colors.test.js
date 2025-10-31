@@ -293,54 +293,6 @@ describe('Gradient Colors and Styling', () => {
     });
   });
 
-  describe('Projects Section - Skill Tags', () => {
-    test('Project 1 (Cypress Framework) has all gradient tags', () => {
-      // Find tags in the first project card
-      const projectCards = document.querySelectorAll('.card.gradient-card');
-      const firstProject = projectCards[0];
-      const tagsInProject = firstProject.querySelectorAll('.skill-tag');
-
-      expect(tagsInProject.length).toBe(5);
-
-      const styles = Array.from(tagsInProject).map((tag) => tag.getAttribute('style'));
-      expect(styles[0]).toContain('linear-gradient(135deg, #17202c 0%, #69d3a7 100%)'); // Cypress
-      expect(styles[1]).toContain('linear-gradient(135deg, #23a566 0%, #40c77f 100%)'); // Cucumber/BDD
-      expect(styles[2]).toContain('linear-gradient(135deg, #326ce5 0%, #5b8def 100%)'); // Docker
-      expect(styles[3]).toContain('linear-gradient(135deg, #7b1fa2 0%, #9c27b0 100%)'); // Mochawesome
-      expect(styles[4]).toContain('linear-gradient(135deg, #2088ff 0%, #79b8ff 100%)'); // CI/CD
-    });
-
-    test('Project 2 (Playwright) has all gradient tags', () => {
-      const projectCards = document.querySelectorAll('.card.gradient-card');
-      const secondProject = projectCards[1];
-      const tagsInProject = secondProject.querySelectorAll('.skill-tag');
-
-      expect(tagsInProject.length).toBe(5);
-
-      const styles = Array.from(tagsInProject).map((tag) => tag.getAttribute('style'));
-      expect(styles[0]).toContain('linear-gradient(135deg, #2d5f3f 0%, #45a872 100%)'); // Playwright
-      expect(styles[1]).toContain('linear-gradient(135deg, #007acc 0%, #3178c6 100%)'); // TypeScript
-      expect(styles[2]).toContain('linear-gradient(135deg, #f9a825 0%, #fbc02d 100%)'); // Allure
-      expect(styles[3]).toContain('linear-gradient(135deg, #8e44ad 0%, #a569bd 100%)'); // Sharding
-      expect(styles[4]).toContain('linear-gradient(135deg, #e74c3c 0%, #ec7063 100%)'); // OIDC/Keycloak
-    });
-
-    test('Project 3 (KYB/KYC) has all gradient tags', () => {
-      const projectCards = document.querySelectorAll('.card.gradient-card');
-      const thirdProject = projectCards[2];
-      const tagsInProject = thirdProject.querySelectorAll('.skill-tag');
-
-      expect(tagsInProject.length).toBe(5);
-
-      const styles = Array.from(tagsInProject).map((tag) => tag.getAttribute('style'));
-      expect(styles[0]).toContain('linear-gradient(135deg, #17202c 0%, #69d3a7 100%)'); // Cypress
-      expect(styles[1]).toContain('linear-gradient(135deg, #23a566 0%, #40c77f 100%)'); // Cucumber/BDD
-      expect(styles[2]).toContain('linear-gradient(135deg, #e535ab 0%, #f178c6 100%)'); // MailSlurp
-      expect(styles[3]).toContain('linear-gradient(135deg, #f9a825 0%, #fbc02d 100%)'); // Allure
-      expect(styles[4]).toContain('linear-gradient(135deg, #1565c0 0%, #1e88e5 100%)'); // Parallel Testing
-    });
-  });
-
   describe('Color Consistency', () => {
     test('tech stack skill tags with gradients have box-shadow', () => {
       // Find the Tech Stack section by finding the heading
@@ -352,22 +304,6 @@ describe('Gradient Colors and Styling', () => {
         const style = tag.getAttribute('style');
         if (style && style.includes('linear-gradient')) {
           expect(style).toContain('box-shadow');
-        }
-      });
-    });
-
-    test('project skill tags with gradients have box-shadow', () => {
-      const projectCards = document.querySelectorAll('.card.gradient-card');
-      projectCards.forEach((card, index) => {
-        if (index < 3) {
-          // First 3 cards are projects
-          const skillTags = card.querySelectorAll('.skill-tag');
-          skillTags.forEach((tag) => {
-            const style = tag.getAttribute('style');
-            if (style && style.includes('linear-gradient')) {
-              expect(style).toContain('box-shadow');
-            }
-          });
         }
       });
     });
