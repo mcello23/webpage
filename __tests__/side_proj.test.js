@@ -81,8 +81,8 @@ describe('Side Projects Page', () => {
     test('has brand logo with link to index', () => {
       const brand = document.querySelector('a.brand-logo');
       expect(brand).toBeTruthy();
-      // side_proj.html is in pages/ folder, so uses ../index.html
-      expect(brand.getAttribute('href')).toBe('../index.html');
+      // Using Jekyll pretty URLs now, all pages link to root
+      expect(brand.getAttribute('href')).toBe('/');
       expect(brand.textContent).toContain('Marcelo Costa — SDET');
     });
 
@@ -104,9 +104,9 @@ describe('Side Projects Page', () => {
     test('navigation buttons have correct hrefs', () => {
       const buttons = document.querySelectorAll('a.nav-btn');
       const hrefs = Array.from(buttons).map((btn) => btn.getAttribute('href'));
-      // side_proj.html links to itself and frameworks.html (both in pages/)
-      expect(hrefs).toContain('side_proj.html');
-      expect(hrefs).toContain('frameworks.html');
+      // Using Jekyll pretty URLs
+      expect(hrefs).toContain('/pages/side_proj');
+      expect(hrefs).toContain('/pages/frameworks');
       expect(hrefs).toContain('#');
     });
 

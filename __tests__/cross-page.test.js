@@ -88,10 +88,10 @@ describe('Cross-Page Consistency Tests', () => {
       const frameworksBrand = frameworksDoc.querySelector('.brand-logo').getAttribute('href');
       const sideProjBrand = sideProjDoc.querySelector('.brand-logo').getAttribute('href');
 
-      // index.html links to itself, other pages link to ../index.html
-      expect(indexBrand).toBe('index.html');
-      expect(frameworksBrand).toBe('../index.html');
-      expect(sideProjBrand).toBe('../index.html');
+      // All pages now link to root with Jekyll pretty URLs
+      expect(indexBrand).toBe('/');
+      expect(frameworksBrand).toBe('/');
+      expect(sideProjBrand).toBe('/');
     });
   });
 

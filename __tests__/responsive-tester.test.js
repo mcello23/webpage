@@ -292,21 +292,21 @@ describe('Responsive Breakpoint Tester Page', () => {
 
     test('has link to main page', () => {
       const links = Array.from(document.querySelectorAll('.test-links a'));
-      const mainPageLink = links.find((link) => link.getAttribute('href') === 'index.html');
+      const mainPageLink = links.find((link) => link.getAttribute('href') === '/');
       expect(mainPageLink).toBeTruthy();
       expect(mainPageLink.textContent).toContain('Main Page');
     });
 
     test('has link to frameworks page', () => {
       const links = Array.from(document.querySelectorAll('.test-links a'));
-      const frameworksLink = links.find((link) => link.getAttribute('href') === 'frameworks.html');
+      const frameworksLink = links.find((link) => link.getAttribute('href') === '/pages/frameworks');
       expect(frameworksLink).toBeTruthy();
       expect(frameworksLink.textContent).toContain('Frameworks');
     });
 
     test('has link to projects page', () => {
       const links = Array.from(document.querySelectorAll('.test-links a'));
-      const projectsLink = links.find((link) => link.getAttribute('href') === 'side_proj.html');
+      const projectsLink = links.find((link) => link.getAttribute('href') === '/pages/side_proj');
       expect(projectsLink).toBeTruthy();
       expect(projectsLink.textContent).toContain('Projects');
     });

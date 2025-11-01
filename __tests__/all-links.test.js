@@ -50,23 +50,23 @@ describe('All Pages - Link Validation', () => {
 
     test('brand logo should link to index.html', () => {
       const brandLogo = document.querySelector('.brand-logo');
-      expect(brandLogo.getAttribute('href')).toBe('index.html');
+      expect(brandLogo.getAttribute('href')).toBe('/');
     });
 
     test('mobile home link should link to index.html', () => {
-      const mobileHomeLink = document.querySelector('.mobile-home-link a[href="index.html"]');
+      const mobileHomeLink = document.querySelector('.mobile-home-link a[href="/"]');
       expect(mobileHomeLink).toBeTruthy();
-      expect(mobileHomeLink.getAttribute('href')).toBe('index.html');
+      expect(mobileHomeLink.getAttribute('href')).toBe('/');
     });
 
     test('projects nav button should link to side_proj.html', () => {
       const projectsLink = document.querySelector('.nav-btn-projects');
-      expect(projectsLink.getAttribute('href')).toBe('pages/side_proj.html');
+      expect(projectsLink.getAttribute('href')).toBe('/pages/side_proj');
     });
 
     test('frameworks nav button should link to frameworks.html', () => {
       const frameworksLink = document.querySelector('.nav-btn-frameworks');
-      expect(frameworksLink.getAttribute('href')).toBe('pages/frameworks.html');
+      expect(frameworksLink.getAttribute('href')).toBe('/pages/frameworks');
     });
 
     test('certificates button should have # anchor', () => {
@@ -293,21 +293,21 @@ describe('All Pages - Link Validation', () => {
 
     test('brand logo should link back to index', () => {
       const brandLogo = document.querySelector('.brand-logo');
-      expect(brandLogo.getAttribute('href')).toBe('../index.html');
+      expect(brandLogo.getAttribute('href')).toBe('/');
     });
 
     test('mobile home link should link to index', () => {
-      const mobileHomeLink = document.querySelector('.mobile-home-link a[href="../index.html"]');
+      const mobileHomeLink = document.querySelector('.mobile-home-link a[href="/"]');
       expect(mobileHomeLink).toBeTruthy();
     });
 
     test('projects link should go to side_proj.html', () => {
-      const projectsLink = document.querySelector('a[href="side_proj.html"]');
+      const projectsLink = document.querySelector('a[href="/pages/side_proj"]');
       expect(projectsLink).toBeTruthy();
     });
 
     test('frameworks link should be self-referential', () => {
-      const frameworksLink = document.querySelector('a[href="frameworks.html"]');
+      const frameworksLink = document.querySelector('a[href="/pages/frameworks"]');
       expect(frameworksLink).toBeTruthy();
     });
   });
@@ -359,7 +359,7 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('should have contact anchor link', () => {
-      const contactLink = document.querySelector('a[href="../index.html#contact"]');
+      const contactLink = document.querySelector('a[href="/#contact"]');
       expect(contactLink).toBeTruthy();
     });
   });
@@ -373,21 +373,21 @@ describe('All Pages - Link Validation', () => {
 
     test('brand logo should link back to index', () => {
       const brandLogo = document.querySelector('.brand-logo');
-      expect(brandLogo.getAttribute('href')).toBe('../index.html');
+      expect(brandLogo.getAttribute('href')).toBe('/');
     });
 
     test('home link should link to index', () => {
-      const homeLink = document.querySelector('.mobile-home-link a[href="../index.html"]');
+      const homeLink = document.querySelector('.mobile-home-link a[href="/"]');
       expect(homeLink).toBeTruthy();
     });
 
     test('projects link should be self-referential', () => {
-      const projectsLink = document.querySelector('a[href="side_proj.html"]');
+      const projectsLink = document.querySelector('a[href="/pages/side_proj"]');
       expect(projectsLink).toBeTruthy();
     });
 
     test('frameworks link should go to frameworks.html', () => {
-      const frameworksLink = document.querySelector('a[href="frameworks.html"]');
+      const frameworksLink = document.querySelector('a[href="/pages/frameworks"]');
       expect(frameworksLink).toBeTruthy();
     });
   });
@@ -407,7 +407,7 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('should have contact link to main page', () => {
-      const contactLink = document.querySelector('a[href="../index.html#contact"]');
+      const contactLink = document.querySelector('a[href="/#contact"]');
       expect(contactLink).toBeTruthy();
     });
   });
@@ -443,17 +443,17 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('should have link to test index page', () => {
-      const indexLink = document.querySelector('a[href="index.html"]');
+      const indexLink = document.querySelector('a[href="/"]');
       expect(indexLink).toBeTruthy();
     });
 
     test('should have link to test frameworks page', () => {
-      const frameworksLink = document.querySelector('a[href="frameworks.html"]');
+      const frameworksLink = document.querySelector('a[href="/pages/frameworks"]');
       expect(frameworksLink).toBeTruthy();
     });
 
     test('should have link to test projects page', () => {
-      const projectsLink = document.querySelector('a[href="side_proj.html"]');
+      const projectsLink = document.querySelector('a[href="/pages/side_proj"]');
       expect(projectsLink).toBeTruthy();
     });
   });
