@@ -44,10 +44,10 @@
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
     document.head.appendChild(script);
 
-    // Initialize dataLayer and gtag
+    // Initialize dataLayer and gtag (canonical pattern)
     window.dataLayer = window.dataLayer || [];
-    function gtag(...args) {
-      window.dataLayer.push(args);
+    function gtag() {
+      window.dataLayer.push(arguments);
     }
     window.gtag = gtag;
 
@@ -55,9 +55,10 @@
     gtag('config', GA_MEASUREMENT_ID, {
       anonymize_ip: true, // Anonymize IPs for privacy
       cookie_flags: 'SameSite=Lax;Secure', // Secure cookies
+      debug_mode: true, // Enable DebugView in GA4
     });
 
-    console.log('Google Analytics initialized');
+    console.log('Google Analytics initialized with debug mode');
   }
 
   /**

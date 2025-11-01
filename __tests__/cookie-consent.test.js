@@ -7,7 +7,7 @@ describe('Cookie Consent System', () => {
     // Reset DOM
     document.body.innerHTML = '';
     document.head.innerHTML = '';
-    
+
     // Reset cookies
     document.cookie.split(';').forEach((c) => {
       document.cookie = c
@@ -144,7 +144,7 @@ describe('Cookie Consent System', () => {
         setTimeout(() => {
           expect(window.dataLayer).toBeDefined();
           expect(window.gtag).toBeDefined();
-          expect(console.log).toHaveBeenCalledWith('Google Analytics initialized');
+          expect(console.log).toHaveBeenCalledWith('Google Analytics initialized with debug mode');
           done();
         }, 100);
       }, 100);
