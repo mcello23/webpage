@@ -82,7 +82,7 @@ describe('Side Projects Page', () => {
       const brand = document.querySelector('a.brand-logo');
       expect(brand).toBeTruthy();
       // Using Jekyll pretty URLs now, all pages link to root
-      expect(brand.getAttribute('href')).toBe('/');
+      expect(brand.getAttribute('href')).toBe('/webpage/');
       expect(brand.textContent).toContain('Marcelo Costa — SDET');
     });
 

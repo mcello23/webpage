@@ -34,7 +34,7 @@ describe('Index Page (Main Portfolio)', () => {
     test('has brand logo with correct text', () => {
       const brand = document.querySelector('.brand-logo');
       expect(brand).toBeTruthy();
-      expect(brand.getAttribute('href')).toBe('/');
+      expect(brand.getAttribute('href')).toBe('/webpage/');
       expect(brand.textContent).toContain('Marcelo Costa');
     });
 

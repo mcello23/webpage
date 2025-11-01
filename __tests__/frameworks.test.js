@@ -34,7 +34,7 @@ describe('Frameworks Page', () => {
     test('has brand logo with link to index', () => {
       const brand = document.querySelector('a.brand-logo');
       expect(brand).toBeTruthy();
-      expect(brand.getAttribute('href')).toBe('/');
+      expect(brand.getAttribute('href')).toBe('/webpage/');
       expect(brand.textContent).toContain('Marcelo Costa — SDET');
     });
 

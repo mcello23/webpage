@@ -6,9 +6,6 @@
  * - pages/frameworks/index.html
  * - pages/side_proj/index.html
  * - pages/responsive-tester.html
- * - pages/test-modal.html
- * - pages/test-brand.html
- * - Certificate modal links
  */
 
 const fs = require('fs');
@@ -17,7 +14,7 @@ const { JSDOM } = require('jsdom');
 
 describe('All Pages - Link Validation', () => {
   // Cache all documents once to avoid repeated JSDOM initialization
-  let indexDoc, frameworksDoc, sideProjDoc, responsiveTesterDoc, testBrandDoc, testModalDoc;
+  let indexDoc, frameworksDoc, sideProjDoc, responsiveTesterDoc;
 
   beforeAll(() => {
     const indexHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
@@ -30,15 +27,11 @@ describe('All Pages - Link Validation', () => {
       path.join(__dirname, '../pages/responsive-tester.html'),
       'utf8'
     );
-    const testBrandHtml = fs.readFileSync(path.join(__dirname, '../pages/test-brand.html'), 'utf8');
-    const testModalHtml = fs.readFileSync(path.join(__dirname, '../pages/test-modal.html'), 'utf8');
 
     indexDoc = new JSDOM(indexHtml).window.document;
     frameworksDoc = new JSDOM(frameworksHtml).window.document;
     sideProjDoc = new JSDOM(sideProjHtml).window.document;
     responsiveTesterDoc = new JSDOM(responsiveTesterHtml).window.document;
-    testBrandDoc = new JSDOM(testBrandHtml).window.document;
-    testModalDoc = new JSDOM(testModalHtml).window.document;
   });
 
   describe('index.html - Navigation Links', () => {
@@ -50,13 +43,13 @@ describe('All Pages - Link Validation', () => {
 
     test('brand logo should link to index.html', () => {
       const brandLogo = document.querySelector('.brand-logo');
-      expect(brandLogo.getAttribute('href')).toBe('/');
+      expect(brandLogo.getAttribute('href')).toBe('/webpage/');
     });
 
     test('mobile home link should link to index.html', () => {
-      const mobileHomeLink = document.querySelector('.mobile-home-link a[href="/"]');
+      const mobileHomeLink = document.querySelector('.mobile-home-link a[href="/webpage/"]');
       expect(mobileHomeLink).toBeTruthy();
-      expect(mobileHomeLink.getAttribute('href')).toBe('/');
+      expect(mobileHomeLink.getAttribute('href')).toBe('/webpage/');
     });
 
     test('projects nav button should link to side_proj.html', () => {
@@ -293,11 +286,11 @@ describe('All Pages - Link Validation', () => {
 
     test('brand logo should link back to index', () => {
       const brandLogo = document.querySelector('.brand-logo');
-      expect(brandLogo.getAttribute('href')).toBe('/');
+      expect(brandLogo.getAttribute('href')).toBe('/webpage/');
     });
 
     test('mobile home link should link to index', () => {
-      const mobileHomeLink = document.querySelector('.mobile-home-link a[href="/"]');
+      const mobileHomeLink = document.querySelector('.mobile-home-link a[href="/webpage/"]');
       expect(mobileHomeLink).toBeTruthy();
     });
 
@@ -373,11 +366,11 @@ describe('All Pages - Link Validation', () => {
 
     test('brand logo should link back to index', () => {
       const brandLogo = document.querySelector('.brand-logo');
-      expect(brandLogo.getAttribute('href')).toBe('/');
+      expect(brandLogo.getAttribute('href')).toBe('/webpage/');
     });
 
     test('home link should link to index', () => {
-      const homeLink = document.querySelector('.mobile-home-link a[href="/"]');
+      const homeLink = document.querySelector('.mobile-home-link a[href="/webpage/"]');
       expect(homeLink).toBeTruthy();
     });
 
@@ -455,47 +448,6 @@ describe('All Pages - Link Validation', () => {
     test('should have link to test projects page', () => {
       const projectsLink = document.querySelector('a[href="/webpage/pages/side_proj/"]');
       expect(projectsLink).toBeTruthy();
-    });
-  });
-
-  describe('pages/test-brand.html - Links', () => {
-    let document;
-
-    beforeAll(() => {
-      document = testBrandDoc;
-    });
-
-    test('should have booking call link placeholder', () => {
-      const bookingLink = document.querySelector('a.cta-link.book-call');
-      expect(bookingLink).toBeTruthy();
-      expect(bookingLink.getAttribute('href')).toBe('#');
-    });
-  });
-
-  describe('pages/test-modal.html - Resource Links', () => {
-    let document;
-
-    beforeAll(() => {
-      document = testModalDoc;
-    });
-
-    test('should have Material Icons link', () => {
-      const materialLink = Array.from(document.querySelectorAll('link')).find(
-        (link) => link.href && link.href.includes('Material+Icons')
-      );
-      expect(materialLink).toBeTruthy();
-    });
-
-    test('should have Font Awesome link', () => {
-      const faLink = Array.from(document.querySelectorAll('link')).find(
-        (link) => link.href && link.href.includes('font-awesome')
-      );
-      expect(faLink).toBeTruthy();
-    });
-
-    test('should have certificates CSS link', () => {
-      const certsLink = document.querySelector('link[href="../css/certificates.css"]');
-      expect(certsLink).toBeTruthy();
     });
   });
 

@@ -88,10 +88,10 @@ describe('Cross-Page Consistency Tests', () => {
       const frameworksBrand = frameworksDoc.querySelector('.brand-logo').getAttribute('href');
       const sideProjBrand = sideProjDoc.querySelector('.brand-logo').getAttribute('href');
 
-      // All pages now link to root with Jekyll pretty URLs
-      expect(indexBrand).toBe('/');
-      expect(frameworksBrand).toBe('/');
-      expect(sideProjBrand).toBe('/');
+      // All pages now link to /webpage/ with proper GitHub Pages project paths
+      expect(indexBrand).toBe('/webpage/');
+      expect(frameworksBrand).toBe('/webpage/');
+      expect(sideProjBrand).toBe('/webpage/');
     });
   });
 
