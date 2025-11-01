@@ -18,7 +18,7 @@ describe('Side Projects Page', () => {
   let document;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, '..', 'pages', 'side_proj.html');
+    const htmlPath = path.resolve(__dirname, '..', 'pages', 'side_proj', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     dom = new JSDOM(html);
     document = dom.window.document;
@@ -343,9 +343,9 @@ describe('Side Projects Page', () => {
       expect(cssLinks.length).toBeGreaterThan(0);
 
       const hrefs = Array.from(cssLinks).map((link) => link.getAttribute('href'));
-      expect(hrefs).toContain('../css/materialize.css');
-      expect(hrefs).toContain('../css/style.css');
-      expect(hrefs).toContain('../css/prism.css');
+      expect(hrefs).toContain('../../css/materialize.css');
+      expect(hrefs).toContain('../../css/style.css');
+      expect(hrefs).toContain('../../css/prism.css');
     });
 
     test('has Material Icons link', () => {

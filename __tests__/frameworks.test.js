@@ -18,7 +18,7 @@ describe('Frameworks Page', () => {
   let document;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, '..', 'pages', 'frameworks.html');
+    const htmlPath = path.resolve(__dirname, '..', 'pages', 'frameworks', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     dom = new JSDOM(html);
     document = dom.window.document;
@@ -117,9 +117,9 @@ describe('Frameworks Page', () => {
       expect(cssLinks.length).toBeGreaterThan(0);
 
       const hrefs = Array.from(cssLinks).map((link) => link.getAttribute('href'));
-      // frameworks.html is in pages/ folder, so uses ../ paths
-      expect(hrefs).toContain('../css/materialize.css');
-      expect(hrefs).toContain('../css/style.css');
+      // frameworks/index.html is in pages/frameworks/ folder, so uses ../../ paths
+      expect(hrefs).toContain('../../css/materialize.css');
+      expect(hrefs).toContain('../../css/style.css');
     });
 
     test('has Material Icons link', () => {

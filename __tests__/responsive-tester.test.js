@@ -299,7 +299,9 @@ describe('Responsive Breakpoint Tester Page', () => {
 
     test('has link to frameworks page', () => {
       const links = Array.from(document.querySelectorAll('.test-links a'));
-      const frameworksLink = links.find((link) => link.getAttribute('href') === '/pages/frameworks');
+      const frameworksLink = links.find(
+        (link) => link.getAttribute('href') === '/pages/frameworks'
+      );
       expect(frameworksLink).toBeTruthy();
       expect(frameworksLink.textContent).toContain('Frameworks');
     });

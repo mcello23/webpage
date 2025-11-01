@@ -3,8 +3,8 @@
  *
  * Tests all href links across all HTML pages including:
  * - index.html
- * - pages/frameworks.html
- * - pages/side_proj.html
+ * - pages/frameworks/index.html
+ * - pages/side_proj/index.html
  * - pages/responsive-tester.html
  * - pages/test-modal.html
  * - pages/test-brand.html
@@ -22,10 +22,10 @@ describe('All Pages - Link Validation', () => {
   beforeAll(() => {
     const indexHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
     const frameworksHtml = fs.readFileSync(
-      path.join(__dirname, '../pages/frameworks.html'),
+      path.join(__dirname, '../pages/frameworks/index.html'),
       'utf8'
     );
-    const sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
+    const sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj/index.html'), 'utf8');
     const responsiveTesterHtml = fs.readFileSync(
       path.join(__dirname, '../pages/responsive-tester.html'),
       'utf8'
@@ -284,7 +284,7 @@ describe('All Pages - Link Validation', () => {
     });
   });
 
-  describe('pages/frameworks.html - Navigation Links', () => {
+  describe('pages/frameworks/index.html - Navigation Links', () => {
     let document;
 
     beforeAll(() => {
@@ -312,7 +312,7 @@ describe('All Pages - Link Validation', () => {
     });
   });
 
-  describe('pages/frameworks.html - Project Links', () => {
+  describe('pages/frameworks/index.html - Project Links', () => {
     let document;
 
     beforeAll(() => {
@@ -341,7 +341,7 @@ describe('All Pages - Link Validation', () => {
     });
   });
 
-  describe('pages/frameworks.html - External Links', () => {
+  describe('pages/frameworks/index.html - External Links', () => {
     let document;
 
     beforeAll(() => {
@@ -364,7 +364,7 @@ describe('All Pages - Link Validation', () => {
     });
   });
 
-  describe('pages/side_proj.html - Navigation Links', () => {
+  describe('pages/side_proj/index.html - Navigation Links', () => {
     let document;
 
     beforeAll(() => {
@@ -392,7 +392,7 @@ describe('All Pages - Link Validation', () => {
     });
   });
 
-  describe('pages/side_proj.html - Project Links', () => {
+  describe('pages/side_proj/index.html - Project Links', () => {
     let document;
 
     beforeAll(() => {
@@ -412,7 +412,7 @@ describe('All Pages - Link Validation', () => {
     });
   });
 
-  describe('pages/side_proj.html - External Links', () => {
+  describe('pages/side_proj/index.html - External Links', () => {
     let document;
 
     beforeAll(() => {
@@ -697,7 +697,7 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('frameworks.html should link to required CSS files', () => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/frameworks.html'), 'utf8');
+      const html = fs.readFileSync(path.join(__dirname, '../pages/frameworks/index.html'), 'utf8');
 
       expect(html).toContain('../css/materialize.css');
       expect(html).toContain('../css/style.css');
@@ -706,7 +706,7 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('side_proj.html should link to required CSS files', () => {
-      const html = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
+      const html = fs.readFileSync(path.join(__dirname, '../pages/side_proj/index.html'), 'utf8');
 
       expect(html).toContain('../css/materialize.css');
       expect(html).toContain('../css/style.css');

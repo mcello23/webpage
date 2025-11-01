@@ -5,8 +5,8 @@ const { JSDOM } = require('jsdom');
 describe('Favicon Configuration - All HTML Pages', () => {
   const htmlFiles = [
     'index.html',
-    'pages/frameworks.html',
-    'pages/side_proj.html',
+    'pages/frameworks/index.html',
+    'pages/side_proj/index.html',
     'pages/responsive-tester.html',
   ];
 
@@ -41,10 +41,12 @@ describe('Favicon Configuration - All HTML Pages', () => {
             'link[rel="icon"][type="image/png"][sizes="32x32"]'
           );
           expect(favicon32).toBeTruthy();
-          const expectedPath = isSubdirectory
-            ? '../favicon/favicon-32x32.png'
-            : 'favicon/favicon-32x32.png';
-          expect(favicon32.getAttribute('href')).toBe(expectedPath);
+          const href = favicon32.getAttribute('href');
+          if (isSubdirectory) {
+            expect(href).toMatch(/^(\.\.\/)+favicon\/favicon-32x32\.png$/);
+          } else {
+            expect(href).toBe('favicon/favicon-32x32.png');
+          }
         });
 
         test('has 16x16 PNG favicon', () => {
@@ -52,10 +54,12 @@ describe('Favicon Configuration - All HTML Pages', () => {
             'link[rel="icon"][type="image/png"][sizes="16x16"]'
           );
           expect(favicon16).toBeTruthy();
-          const expectedPath = isSubdirectory
-            ? '../favicon/favicon-16x16.png'
-            : 'favicon/favicon-16x16.png';
-          expect(favicon16.getAttribute('href')).toBe(expectedPath);
+          const href = favicon16.getAttribute('href');
+          if (isSubdirectory) {
+            expect(href).toMatch(/^(\.\.\/)+favicon\/favicon-16x16\.png$/);
+          } else {
+            expect(href).toBe('favicon/favicon-16x16.png');
+          }
         });
 
         test('PNG favicons are ordered before SVG (for browser fallback)', () => {
@@ -85,8 +89,12 @@ describe('Favicon Configuration - All HTML Pages', () => {
         test('has SVG favicon for modern browsers', () => {
           const svgFavicon = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
           expect(svgFavicon).toBeTruthy();
-          const expectedPath = isSubdirectory ? '../favicon.svg' : 'favicon.svg';
-          expect(svgFavicon.getAttribute('href')).toBe(expectedPath);
+          const href = svgFavicon.getAttribute('href');
+          if (isSubdirectory) {
+            expect(href).toMatch(/^(\.\.\/)+favicon\.svg$/);
+          } else {
+            expect(href).toBe('favicon.svg');
+          }
         });
 
         test('SVG favicon does not have sizes attribute', () => {
@@ -99,10 +107,12 @@ describe('Favicon Configuration - All HTML Pages', () => {
         test('has Apple Touch Icon', () => {
           const appleTouchIcon = document.querySelector('link[rel="apple-touch-icon"]');
           expect(appleTouchIcon).toBeTruthy();
-          const expectedPath = isSubdirectory
-            ? '../favicon/apple-touch-icon.png'
-            : 'favicon/apple-touch-icon.png';
-          expect(appleTouchIcon.getAttribute('href')).toBe(expectedPath);
+          const href = appleTouchIcon.getAttribute('href');
+          if (isSubdirectory) {
+            expect(href).toMatch(/^(\.\.\/)+favicon\/apple-touch-icon\.png$/);
+          } else {
+            expect(href).toBe('favicon/apple-touch-icon.png');
+          }
         });
 
         test('Apple Touch Icon has correct size', () => {
@@ -115,10 +125,12 @@ describe('Favicon Configuration - All HTML Pages', () => {
         test('has web app manifest link', () => {
           const manifest = document.querySelector('link[rel="manifest"]');
           expect(manifest).toBeTruthy();
-          const expectedPath = isSubdirectory
-            ? '../favicon/site.webmanifest'
-            : 'favicon/site.webmanifest';
-          expect(manifest.getAttribute('href')).toBe(expectedPath);
+          const href = manifest.getAttribute('href');
+          if (isSubdirectory) {
+            expect(href).toMatch(/^(\.\.\/)+favicon\/site\.webmanifest$/);
+          } else {
+            expect(href).toBe('favicon/site.webmanifest');
+          }
         });
 
         test('has theme color meta tag', () => {
@@ -146,7 +158,8 @@ describe('Favicon Configuration - All HTML Pages', () => {
           const href = favicon32.getAttribute('href');
 
           // Should be relative (no leading slash)
-          const expectedPattern = isSubdirectory ? /^\.\.\/favicon\// : /^favicon\//;
+          // Accept both ../ (pages/) and ../../ (pages/subdir/)
+          const expectedPattern = isSubdirectory ? /^(\.\.\/|\.\.\/\.\.\/)favicon\// : /^favicon\//;
           expect(href).toMatch(expectedPattern);
           expect(href).not.toMatch(/^\/favicon\//);
         });
@@ -363,13 +376,13 @@ describe('Favicon Configuration - All HTML Pages', () => {
       const files = [
         { name: 'index.html', doc: documents['index.html'].document, isInSubdir: false },
         {
-          name: 'pages/frameworks.html',
-          doc: documents['pages/frameworks.html'].document,
+          name: 'pages/frameworks/index.html',
+          doc: documents['pages/frameworks/index.html'].document,
           isInSubdir: true,
         },
         {
-          name: 'pages/side_proj.html',
-          doc: documents['pages/side_proj.html'].document,
+          name: 'pages/side_proj/index.html',
+          doc: documents['pages/side_proj/index.html'].document,
           isInSubdir: true,
         },
         {
@@ -398,11 +411,12 @@ describe('Favicon Configuration - All HTML Pages', () => {
       // Check that each file has correct paths for its location (root vs subdirectory)
       faviconSetups.forEach((setup) => {
         if (setup.isInSubdir) {
-          expect(setup.png32).toBe('../favicon/favicon-32x32.png');
-          expect(setup.png16).toBe('../favicon/favicon-16x16.png');
-          expect(setup.svg).toBe('../favicon.svg');
-          expect(setup.apple).toBe('../favicon/apple-touch-icon.png');
-          expect(setup.manifest).toBe('../favicon/site.webmanifest');
+          // Accept both ../ (pages/) and ../../ (pages/subdir/) paths
+          expect(setup.png32).toMatch(/^(\.\.\/|\.\.\/\.\.\/)+favicon\/favicon-32x32\.png$/);
+          expect(setup.png16).toMatch(/^(\.\.\/|\.\.\/\.\.\/)+favicon\/favicon-16x16\.png$/);
+          expect(setup.svg).toMatch(/^(\.\.\/|\.\.\/\.\.\/)+favicon\.svg$/);
+          expect(setup.apple).toMatch(/^(\.\.\/|\.\.\/\.\.\/)+favicon\/apple-touch-icon\.png$/);
+          expect(setup.manifest).toMatch(/^(\.\.\/|\.\.\/\.\.\/)+favicon\/site\.webmanifest$/);
         } else {
           expect(setup.png32).toBe('favicon/favicon-32x32.png');
           expect(setup.png16).toBe('favicon/favicon-16x16.png');
@@ -418,8 +432,8 @@ describe('Favicon Configuration - All HTML Pages', () => {
     test('all pages have the same number of favicon-related links', () => {
       const files = [
         { name: 'index.html', doc: documents['index.html'].document },
-        { name: 'pages/frameworks.html', doc: documents['pages/frameworks.html'].document },
-        { name: 'pages/side_proj.html', doc: documents['pages/side_proj.html'].document },
+        { name: 'pages/frameworks/index.html', doc: documents['pages/frameworks/index.html'].document },
+        { name: 'pages/side_proj/index.html', doc: documents['pages/side_proj/index.html'].document },
         {
           name: 'pages/responsive-tester.html',
           doc: documents['pages/responsive-tester.html'].document,

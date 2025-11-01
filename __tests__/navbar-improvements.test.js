@@ -15,10 +15,10 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     // Load all HTML pages
     const indexHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
     const frameworksHtml = fs.readFileSync(
-      path.join(__dirname, '../pages/frameworks.html'),
+      path.join(__dirname, '../pages/frameworks/index.html'),
       'utf8'
     );
-    const sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj.html'), 'utf8');
+    const sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj/index.html'), 'utf8');
 
     // Create JSDOM instances
     const indexDOM = new JSDOM(indexHtml);

@@ -9,11 +9,11 @@ describe('Cross-Page Consistency Tests', () => {
   beforeAll(() => {
     const indexHtml = fs.readFileSync(path.resolve(__dirname, '..', 'index.html'), 'utf8');
     const frameworksHtml = fs.readFileSync(
-      path.resolve(__dirname, '..', 'pages', 'frameworks.html'),
+      path.resolve(__dirname, '..', 'pages', 'frameworks', 'index.html'),
       'utf8'
     );
     const sideProjHtml = fs.readFileSync(
-      path.resolve(__dirname, '..', 'pages', 'side_proj.html'),
+      path.resolve(__dirname, '..', 'pages', 'side_proj', 'index.html'),
       'utf8'
     );
 
@@ -153,10 +153,10 @@ describe('Cross-Page Consistency Tests', () => {
     });
 
     test('all pages load style.css', () => {
-      // index.html uses css/style.css, pages use ../css/style.css
+      // index.html uses css/style.css, pages use ../../css/style.css
       const indexStyle = indexDoc.querySelector('link[href="css/style.css"]');
-      const frameworksStyle = frameworksDoc.querySelector('link[href="../css/style.css"]');
-      const sideProjStyle = sideProjDoc.querySelector('link[href="../css/style.css"]');
+      const frameworksStyle = frameworksDoc.querySelector('link[href="../../css/style.css"]');
+      const sideProjStyle = sideProjDoc.querySelector('link[href="../../css/style.css"]');
 
       expect(indexStyle).toBeTruthy();
       expect(frameworksStyle).toBeTruthy();
@@ -203,10 +203,10 @@ describe('Cross-Page Consistency Tests', () => {
       expect(frameworksScript).toBeTruthy();
       expect(sideProjScript).toBeTruthy();
 
-      // index.html uses js/certificates.js, other pages use ../js/certificates.js
+      // index.html uses js/certificates.js, other pages use ../../js/certificates.js
       expect(indexScript.getAttribute('src')).toBe('js/certificates.js');
-      expect(frameworksScript.getAttribute('src')).toBe('../js/certificates.js');
-      expect(sideProjScript.getAttribute('src')).toBe('../js/certificates.js');
+      expect(frameworksScript.getAttribute('src')).toBe('../../js/certificates.js');
+      expect(sideProjScript.getAttribute('src')).toBe('../../js/certificates.js');
     });
 
     test('certificate images folder exists and is accessible', () => {
