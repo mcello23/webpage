@@ -355,7 +355,7 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('should have contact anchor link', () => {
-      const contactLink = document.querySelector('a[href="/#contact"]');
+      const contactLink = document.querySelector('a[href="/webpage/#contact"]');
       expect(contactLink).toBeTruthy();
     });
   });
@@ -403,7 +403,7 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('should have contact link to main page', () => {
-      const contactLink = document.querySelector('a[href="/#contact"]');
+      const contactLink = document.querySelector('a[href="/webpage/#contact"]');
       expect(contactLink).toBeTruthy();
     });
   });
