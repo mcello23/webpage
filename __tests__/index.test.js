@@ -63,8 +63,8 @@ describe('Index Page (Main Portfolio)', () => {
     test('navigation buttons have correct hrefs', () => {
       const buttons = document.querySelectorAll('a.nav-btn');
       const hrefs = Array.from(buttons).map((btn) => btn.getAttribute('href'));
-      expect(hrefs).toContain('/pages/side_proj/');
-      expect(hrefs).toContain('/pages/frameworks/');
+      expect(hrefs).toContain('/webpage/pages/side_proj/');
+      expect(hrefs).toContain('/webpage/pages/frameworks/');
       expect(hrefs).toContain('#');
     });
 
