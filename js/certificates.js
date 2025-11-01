@@ -36,7 +36,7 @@ const getBasePath = () => {
   if (path.match(/\/pages\/[^/]+\/[^/]*$/)) {
     return '../../';
   }
-  // If we're just in /pages/ 
+  // If we're just in /pages/
   if (path.includes('/pages/')) {
     return '../';
   }
