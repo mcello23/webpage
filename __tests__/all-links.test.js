@@ -61,12 +61,12 @@ describe('All Pages - Link Validation', () => {
 
     test('projects nav button should link to side_proj.html', () => {
       const projectsLink = document.querySelector('.nav-btn-projects');
-      expect(projectsLink.getAttribute('href')).toBe('/pages/side_proj');
+      expect(projectsLink.getAttribute('href')).toBe('/pages/side_proj/');
     });
 
     test('frameworks nav button should link to frameworks.html', () => {
       const frameworksLink = document.querySelector('.nav-btn-frameworks');
-      expect(frameworksLink.getAttribute('href')).toBe('/pages/frameworks');
+      expect(frameworksLink.getAttribute('href')).toBe('/pages/frameworks/');
     });
 
     test('certificates button should have # anchor', () => {
@@ -302,12 +302,12 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('projects link should go to side_proj.html', () => {
-      const projectsLink = document.querySelector('a[href="/pages/side_proj"]');
+      const projectsLink = document.querySelector('a[href="/pages/side_proj/"]');
       expect(projectsLink).toBeTruthy();
     });
 
     test('frameworks link should be self-referential', () => {
-      const frameworksLink = document.querySelector('a[href="/pages/frameworks"]');
+      const frameworksLink = document.querySelector('a[href="/pages/frameworks/"]');
       expect(frameworksLink).toBeTruthy();
     });
   });
@@ -382,12 +382,12 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('projects link should be self-referential', () => {
-      const projectsLink = document.querySelector('a[href="/pages/side_proj"]');
+      const projectsLink = document.querySelector('a[href="/pages/side_proj/"]');
       expect(projectsLink).toBeTruthy();
     });
 
     test('frameworks link should go to frameworks.html', () => {
-      const frameworksLink = document.querySelector('a[href="/pages/frameworks"]');
+      const frameworksLink = document.querySelector('a[href="/pages/frameworks/"]');
       expect(frameworksLink).toBeTruthy();
     });
   });
@@ -448,12 +448,12 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('should have link to test frameworks page', () => {
-      const frameworksLink = document.querySelector('a[href="/pages/frameworks"]');
+      const frameworksLink = document.querySelector('a[href="/pages/frameworks/"]');
       expect(frameworksLink).toBeTruthy();
     });
 
     test('should have link to test projects page', () => {
-      const projectsLink = document.querySelector('a[href="/pages/side_proj"]');
+      const projectsLink = document.querySelector('a[href="/pages/side_proj/"]');
       expect(projectsLink).toBeTruthy();
     });
   });

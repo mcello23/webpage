@@ -52,8 +52,8 @@ describe('Frameworks Page', () => {
     test('navigation buttons have correct hrefs', () => {
       const buttons = document.querySelectorAll('a.nav-btn');
       const hrefs = Array.from(buttons).map((btn) => btn.getAttribute('href'));
-      expect(hrefs).toContain('/pages/side_proj');
-      expect(hrefs).toContain('/pages/frameworks');
+      expect(hrefs).toContain('/pages/side_proj/');
+      expect(hrefs).toContain('/pages/frameworks/');
       expect(hrefs).toContain('#');
     });
 
