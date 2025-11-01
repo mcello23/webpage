@@ -264,14 +264,14 @@ describe('Index Page (Main Portfolio)', () => {
       expect(content).toContain('WSL');
     });
 
-    test('Shell & Environment appears before Languages section', () => {
+    test('Shell & Environment appears after Languages section', () => {
       const allH5 = Array.from(document.querySelectorAll('h5'));
       const shellIndex = allH5.findIndex((h) => h.textContent.includes('Shell & Environment'));
       const languagesIndex = allH5.findIndex((h) => h.textContent.includes('Languages'));
 
       expect(shellIndex).toBeGreaterThan(-1);
       expect(languagesIndex).toBeGreaterThan(-1);
-      expect(shellIndex).toBeLessThan(languagesIndex);
+      expect(shellIndex).toBeGreaterThan(languagesIndex);
     });
 
     test('includes core technologies', () => {
