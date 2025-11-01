@@ -432,8 +432,14 @@ describe('Favicon Configuration - All HTML Pages', () => {
     test('all pages have the same number of favicon-related links', () => {
       const files = [
         { name: 'index.html', doc: documents['index.html'].document },
-        { name: 'pages/frameworks/index.html', doc: documents['pages/frameworks/index.html'].document },
-        { name: 'pages/side_proj/index.html', doc: documents['pages/side_proj/index.html'].document },
+        {
+          name: 'pages/frameworks/index.html',
+          doc: documents['pages/frameworks/index.html'].document,
+        },
+        {
+          name: 'pages/side_proj/index.html',
+          doc: documents['pages/side_proj/index.html'].document,
+        },
         {
           name: 'pages/responsive-tester.html',
           doc: documents['pages/responsive-tester.html'].document,
