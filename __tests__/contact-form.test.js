@@ -86,4 +86,94 @@ describe('Contact Form - Web3Forms Integration', () => {
       expect(fromNameField.getAttribute('value')).toBe('Portfolio Contact Form');
     });
   });
+
+  describe('Form Submit Handler Validation', () => {
+    test('form has onsubmit attribute', () => {
+      const form = document.getElementById('cv-form');
+      expect(form.hasAttribute('onsubmit')).toBe(true);
+    });
+
+    test('onsubmit handler calls sendCVRequest function', () => {
+      const form = document.getElementById('cv-form');
+      const onsubmitValue = form.getAttribute('onsubmit');
+      expect(onsubmitValue).toBeTruthy();
+      expect(onsubmitValue).toContain('sendCVRequest');
+    });
+
+    test('onsubmit handler passes event parameter', () => {
+      const form = document.getElementById('cv-form');
+      const onsubmitValue = form.getAttribute('onsubmit');
+      expect(onsubmitValue).toContain('event');
+    });
+
+    test('onsubmit handler syntax is correct', () => {
+      const form = document.getElementById('cv-form');
+      const onsubmitValue = form.getAttribute('onsubmit');
+      // Should match pattern: return functionName(event)
+      const handlerRegex = /return\s+sendCVRequest\s*\(\s*event\s*\)/;
+      expect(onsubmitValue).toMatch(handlerRegex);
+    });
+
+    test('sendCVRequest function is defined in HTML script tag', () => {
+      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const html = fs.readFileSync(htmlPath, 'utf8');
+      expect(html).toContain('async function sendCVRequest');
+    });
+
+    test('sendCVRequest function accepts event parameter', () => {
+      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const html = fs.readFileSync(htmlPath, 'utf8');
+      // Check for function signature with event parameter
+      expect(html).toMatch(/async\s+function\s+sendCVRequest\s*\(\s*e\s*\)/);
+    });
+
+    test('sendCVRequest function calls preventDefault', () => {
+      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const html = fs.readFileSync(htmlPath, 'utf8');
+      const scriptMatch = html.match(/async function sendCVRequest[\s\S]*?(?=<\/script>)/);
+      expect(scriptMatch).toBeTruthy();
+      expect(scriptMatch[0]).toContain('e.preventDefault()');
+    });
+
+    test('sendCVRequest function makes fetch call to web3forms API', () => {
+      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const html = fs.readFileSync(htmlPath, 'utf8');
+      const scriptMatch = html.match(/async function sendCVRequest[\s\S]*?(?=<\/script>)/);
+      expect(scriptMatch).toBeTruthy();
+      expect(scriptMatch[0]).toContain('fetch');
+      expect(scriptMatch[0]).toContain('api.web3forms.com/submit');
+    });
+
+    test('sendCVRequest function handles form validation', () => {
+      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const html = fs.readFileSync(htmlPath, 'utf8');
+      const scriptMatch = html.match(/async function sendCVRequest[\s\S]*?(?=<\/script>)/);
+      expect(scriptMatch).toBeTruthy();
+      expect(scriptMatch[0]).toContain('cv-form');
+      expect(scriptMatch[0]).toContain('cv-name');
+      expect(scriptMatch[0]).toContain('cv-email');
+      expect(scriptMatch[0]).toContain('cv-subject');
+      expect(scriptMatch[0]).toContain('cv-message');
+    });
+
+    test('submit button exists with correct ID', () => {
+      const submitBtn = document.getElementById('submit-btn');
+      expect(submitBtn).toBeTruthy();
+      expect(submitBtn.tagName).toBe('BUTTON');
+    });
+
+    test('form contains all required UI elements for feedback', () => {
+      const btnText = document.getElementById('btn-text');
+      const btnLoading = document.getElementById('btn-loading');
+      const cvConfirm = document.getElementById('cv-confirm');
+      const successMsg = document.getElementById('success-msg');
+      const errorMsg = document.getElementById('error-msg');
+
+      expect(btnText).toBeTruthy();
+      expect(btnLoading).toBeTruthy();
+      expect(cvConfirm).toBeTruthy();
+      expect(successMsg).toBeTruthy();
+      expect(errorMsg).toBeTruthy();
+    });
+  });
 });
