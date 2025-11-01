@@ -22,7 +22,10 @@ describe('All Pages - Link Validation', () => {
       path.join(__dirname, '../pages/frameworks/index.html'),
       'utf8'
     );
-    const sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj/index.html'), 'utf8');
+    const sideProjHtml = fs.readFileSync(
+      path.join(__dirname, '../pages/side_proj/index.html'),
+      'utf8'
+    );
     const responsiveTesterHtml = fs.readFileSync(
       path.join(__dirname, '../pages/responsive-tester.html'),
       'utf8'

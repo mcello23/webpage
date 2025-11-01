@@ -18,22 +18,30 @@
 
 /**
  * Detects if the current page is in a subfolder and returns appropriate base path
- * This allows the certificate paths to work correctly from both root and /pages/ directory
+ * This allows the certificate paths to work correctly from both root and deeply nested /pages/ directories
  *
- * @returns {string} Base path - returns '../' if in /pages/ subfolder, empty string otherwise
+ * @returns {string} Base path - returns '../../' for deeply nested pages, '../' for /pages/, empty string otherwise
  *
  * @example
- * // From /index.html
+ * // From root index.html
  * getBasePath(); // returns ''
  *
  * @example
- * // From /pages/frameworks.html
- * getBasePath(); // returns '../'
+ * // From pages/frameworks/index.html (2 levels deep)
+ * getBasePath(); // returns '../../'
  */
 const getBasePath = () => {
   const path = window.location.pathname;
-  // If we're in a subfolder (contains /pages/), add ../ prefix
-  return path.includes('/pages/') ? '../' : '';
+  // If we're in a deeper subfolder like /pages/frameworks/ or /pages/side_proj/
+  if (path.match(/\/pages\/[^/]+\/[^/]*$/)) {
+    return '../../';
+  }
+  // If we're just in /pages/ 
+  if (path.includes('/pages/')) {
+    return '../';
+  }
+  // Otherwise (root level)
+  return '';
 };
 
 /**

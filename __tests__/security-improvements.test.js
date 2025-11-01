@@ -32,7 +32,7 @@ describe('Code Documentation and Security Enhancements', () => {
       expect(certCode).toContain('@returns {string} Base path');
       expect(certCode).toContain('@example');
       expect(certCode).toMatch(/getBasePath\(\);.*returns ''/);
-      expect(certCode).toMatch(/getBasePath\(\);.*returns '\.\.\/'/);
+      expect(certCode).toMatch(/getBasePath\(\);.*returns '\.\.\/\.\.\/'|returns '\.\.\/'/);
     });
 
     test('escapeHtml has JSDoc with security note', () => {
