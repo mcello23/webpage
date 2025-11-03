@@ -4,8 +4,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://api.web3forms.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://api.web3forms.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com"
+    />
     <title>Marcelo Costa — Senior QA Engineer & SDET | Cypress & Playwright</title>
 
     <!-- Canonical & Theme -->
@@ -297,11 +299,11 @@
         display: block;
       }
     </style>
-    <base href="/webpage/">
+    <base href="/webpage/" />
     <script>
       (function () {
         try {
-          var path = (window.location && window.location.pathname) ? window.location.pathname : '';
+          var path = window.location && window.location.pathname ? window.location.pathname : '';
           var base = path.indexOf('/webpage/') === 0 ? '/webpage' : '';
           if (!base) return;
           var anchors = document.querySelectorAll('a[href^="/"]');
@@ -380,7 +382,7 @@
         <ul class="social-nav">
           <li>
             <a
-              href="https://calendly.com/marceloadsc/30min"
+              href="https://calendly.com/marceloadsc/15min"
               class="cta-link book-call"
               target="_blank"
               rel="noopener noreferrer"
@@ -585,7 +587,6 @@
             <div class="intro-card">
               <h3>💻 Tech Stack</h3>
               <div class="center-align" style="margin-top: 30px" aria-label="Technology categories">
-
                 <!-- Languages -->
                 <div style="margin-bottom: 30px">
                   <h5
@@ -1667,7 +1668,7 @@
                 <i class="fab fa-linkedin left" aria-hidden="true"></i>Let’s Connect
               </a>
               <a
-                href="https://calendly.com/marceloadsc/30min"
+                href="https://calendly.com/marceloadsc/15min"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn-large white teal-text waves-effect"

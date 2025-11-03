@@ -55,7 +55,7 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
 ### Calendly CTA (Intentional Mismatch Explained)
 
-The booking links use the event slug `/30min` while retaining the visible & aria wording “Book 15‑min call”. This is intentional per product/branding guidance; tests enforce both the 30min slug and 15‑minute wording so future refactors don’t “fix” it. Update instructions below.
+The booking links use the event slug `/15min` while retaining the visible & aria wording “Book 15‑min call”. This is intentional per product/branding guidance; tests enforce both the 15min slug and 15‑minute wording so future refactors don’t “fix” it. Update instructions below.
 
 ## 📁 Project Structure
 
@@ -262,7 +262,7 @@ npm run format    # Run Prettier
 
 Booking link appears in header social CTA + footer CTA:
 
-- URL (event slug): `https://calendly.com/marceloadsc/30min`
+- URL (event slug): `https://calendly.com/marceloadsc/15min`
 - Visible text: `Book 15-min call`
 - aria-label: `Book a 15-minute call`
 
@@ -400,7 +400,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Custom certificate modal (replaces previous gallery dependency).
 - Navigation redesign with compact mobile menu & added CTA tests.
 - Accessibility refinements (ARIA roles, labels, list semantics, sr-only headings).
-- Calendly slug migration (/15min → /30min) with preserved 15‑minute wording.
+- Calendly slug migration (/15min → /15min) with preserved 15‑minute wording.
 
 ### Earlier
 

@@ -83,7 +83,7 @@ describe('All Pages - Link Validation', () => {
       const calendlyLinks = Array.from(document.querySelectorAll('a[href*="calendly"]'));
       expect(calendlyLinks.length).toBeGreaterThan(0);
       calendlyLinks.forEach((link) => {
-        expect(link.getAttribute('href')).toContain('calendly.com/marceloadsc/30min');
+        expect(link.getAttribute('href')).toContain('calendly.com/marceloadsc/15min');
       });
     });
 

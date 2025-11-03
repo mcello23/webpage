@@ -16,7 +16,7 @@ describe('Calendly Booking Functionality', () => {
     });
 
     test('should have correct href pointing to Calendly', () => {
-      expect(htmlContent).toContain('href="https://calendly.com/marceloadsc/30min"');
+      expect(htmlContent).toContain('href="https://calendly.com/marceloadsc/15min"');
     });
 
     test('should open in new tab (target="_blank")', () => {
@@ -36,7 +36,7 @@ describe('Calendly Booking Functionality', () => {
     test('should have CTA link class for call-to-action buttons', () => {
       // Book 15-min call uses cta-link class, not social-icon
       const buttonPattern =
-        /href="https:\/\/calendly\.com\/marceloadsc\/30min"[\s\S]{0,200}class="cta-link/;
+        /href="https:\/\/calendly\.com\/marceloadsc\/15min"[\s\S]{0,200}class="cta-link/;
       expect(htmlContent).toMatch(buttonPattern);
     });
 
@@ -61,12 +61,12 @@ describe('Calendly Booking Functionality', () => {
       expect(htmlContent).toContain('marceloadsc');
     });
 
-    test('should specify 30min event type', () => {
-      expect(htmlContent).toContain('/30min');
+    test('should specify 15min event type', () => {
+      expect(htmlContent).toContain('/15min');
     });
 
     test('Calendly link should be complete and properly formatted', () => {
-      const calendlyPattern = /https:\/\/calendly\.com\/marceloadsc\/30min/;
+      const calendlyPattern = /https:\/\/calendly\.com\/marceloadsc\/15min/;
       expect(htmlContent).toMatch(calendlyPattern);
     });
   });
@@ -117,7 +117,7 @@ describe('Calendly Booking Functionality', () => {
     });
 
     test('footer booking link should point to same Calendly URL', () => {
-      const matches = htmlContent.match(/https:\/\/calendly\.com\/marceloadsc\/30min/g);
+      const matches = htmlContent.match(/https:\/\/calendly\.com\/marceloadsc\/15min/g);
       expect(matches).not.toBeNull();
       expect(matches.length).toBeGreaterThanOrEqual(2); // At least in header and footer
     });
