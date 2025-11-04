@@ -1,0 +1,17 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "selector-class-pattern": null,
+    "no-descending-specificity": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "selector-id-pattern": null,
+    "custom-property-pattern": null
+  },
+  "ignoreFiles": [
+    "node_modules/**",
+    "coverage/**",
+    "css/materialize.css",
+    "css/materialize.min.css",
+    "css/prism.css"
+  ]
+}

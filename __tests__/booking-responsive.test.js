@@ -81,7 +81,7 @@ describe('Booking Call Responsive Behavior', () => {
   describe('CSS Media Query Rules for 900p or Lower (992px-1599px)', () => {
     test('should have media query rule for hiding booking text below 1600px', () => {
       const mediaQueryPattern =
-        /@media\s+screen\s+and\s+\(min-width:\s*992px\)\s+and\s+\(max-width:\s*1599px\)/;
+        /@media\s+screen\s+and\s+\((min-width:\s*992px|width\s*>=\s*992px)\)\s+and\s+\((max-width:\s*1599px|width\s*<=\s*1599px)\)/;
       expect(cssContent).toMatch(mediaQueryPattern);
     });
 
@@ -110,7 +110,8 @@ describe('Booking Call Responsive Behavior', () => {
 
   describe('CSS Media Query Rules for 900p+ (>= 1600px)', () => {
     test('should have media query rule for showing booking text at 1600px+', () => {
-      const mediaQueryPattern = /@media\s+screen\s+and\s+\(min-width:\s*1600px\)/;
+      const mediaQueryPattern =
+        /@media\s+screen\s+and\s+\((min-width:\s*1600px|width\s*>=\s*1600px)\)/;
       expect(cssContent).toMatch(mediaQueryPattern);
     });
 
@@ -165,7 +166,7 @@ describe('Booking Call Responsive Behavior', () => {
     test('breakpoint should match brand logo text hiding threshold', () => {
       // Both brand-logo span and booking call span should hide at same breakpoint
       const breakpointPattern =
-        /@media\s+screen\s+and\s+\(min-width:\s*992px\)\s+and\s+\(max-width:\s*1599px\)/;
+        /@media\s+screen\s+and\s+\((min-width:\s*992px|width\s*>=\s*992px)\)\s+and\s+\((max-width:\s*1599px|width\s*<=\s*1599px)\)/;
       const brandSpanHide = /\.brand-logo\s+span[^}]*display:\s*none\s*!important/s;
       const bookingSpanHide = /\.cta-link\.book-call\s+span[^}]*display:\s*none\s*!important/s;
 
@@ -176,7 +177,8 @@ describe('Booking Call Responsive Behavior', () => {
 
     test('show threshold should match brand logo text showing threshold', () => {
       // Both brand-logo span and booking call span should show at same breakpoint
-      const breakpointPattern = /@media\s+screen\s+and\s+\(min-width:\s*1600px\)/;
+      const breakpointPattern =
+        /@media\s+screen\s+and\s+\((min-width:\s*1600px|width\s*>=\s*1600px)\)/;
       const brandSpanShow = /\.brand-logo\s+span[^}]*display:\s*inline\s*!important/s;
       const bookingSpanShow = /\.cta-link\.book-call\s+span[^}]*display:\s*inline\s*!important/s;
 
@@ -424,9 +426,11 @@ describe('Booking Call Responsive Behavior', () => {
 
     test('should reuse existing breakpoint queries instead of creating new ones', () => {
       const query992_1599 = cssContent.match(
-        /@media\s+screen\s+and\s+\(min-width:\s*992px\)\s+and\s+\(max-width:\s*1599px\)/g
+        /@media\s+screen\s+and\s+\((min-width:\s*992px|width\s*>=\s*992px)\)\s+and\s+\((max-width:\s*1599px|width\s*<=\s*1599px)\)/g
       );
-      const query1600 = cssContent.match(/@media\s+screen\s+and\s+\(min-width:\s*1600px\)/g);
+      const query1600 = cssContent.match(
+        /@media\s+screen\s+and\s+\((min-width:\s*1600px|width\s*>=\s*1600px)\)/g
+      );
 
       // Should have these queries, but not excessive duplicates
       expect(query992_1599).toBeTruthy();

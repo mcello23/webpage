@@ -146,9 +146,9 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
       // Check for white text
       expect(cssContent).toMatch(/\.center-nav\.active\s+a\s*{[\s\S]*?color:\s*#fff/);
 
-      // Check for white icons
+      // Check for white icons (supports both rgba and modern rgb syntax)
       expect(cssContent).toMatch(
-        /\.center-nav\.active\s+a\s+i\s*{[\s\S]*?color:\s*rgba\(255,\s*255,\s*255,\s*0\.95\)/
+        /\.center-nav\.active\s+a\s+i\s*{[\s\S]*?color:\s*(rgba\(255,?\s*255,?\s*255,?\s*0?\.?95\)|rgb\(255\s+255\s+255\s*\/\s*95%\))/
       );
     });
 
@@ -180,7 +180,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
       // Check that nav-wrapper uses align-items: center on mobile
       expect(cssContent).toMatch(
-        /@media\s+screen\s+and\s+\(max-width:\s*767px\)[\s\S]*?\.nav-wrapper\s*{[\s\S]*?align-items:\s*center/
+        /@media\s+screen\s+and\s+\((?:max-width:\s*767px|width\s*<=\s*767px)\)[\s\S]*?\.nav-wrapper\s*{[\s\S]*?align-items:\s*center/
       );
     });
 
@@ -189,7 +189,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
       // Extract tablet breakpoint section (max-width: 991px)
       const tabletSection = cssContent.match(
-        /@media\s+screen\s+and\s+\(max-width:\s*991px\)\s*{([\s\S]*?)(?=@media|$)/
+        /@media\s+screen\s+and\s+\((?:max-width:\s*991px|width\s*<=\s*991px)\)\s*\{\s*([\s\S]*?)(?=@media\s+|$)/
       );
 
       if (tabletSection) {
@@ -214,7 +214,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
       // Check desktop media query
       const desktopSection = cssContent.match(
-        /@media\s+screen\s+and\s+\(min-width:\s*992px\)\s*{([\s\S]*?)}/
+        /@media\s+screen\s+and\s+\((?:min-width:\s*992px|width\s*>=\s*992px)\)\s*\{\s*([\s\S]*?)\}/
       );
 
       if (desktopSection) {
@@ -255,16 +255,24 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
       const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
 
       // Desktop breakpoint (min-width: 992px)
-      expect(cssContent).toMatch(/@media\s+screen\s+and\s+\(min-width:\s*992px\)/);
+      expect(cssContent).toMatch(
+        /@media\s+screen\s+and\s+\((min-width:\s*992px|width\s*>=\s*992px)\)/
+      );
 
       // Tablet breakpoint (max-width: 991px)
-      expect(cssContent).toMatch(/@media\s+screen\s+and\s+\(max-width:\s*991px\)/);
+      expect(cssContent).toMatch(
+        /@media\s+screen\s+and\s+\((max-width:\s*991px|width\s*<=\s*991px)\)/
+      );
 
       // Mobile breakpoint (max-width: 767px)
-      expect(cssContent).toMatch(/@media\s+screen\s+and\s+\(max-width:\s*767px\)/);
+      expect(cssContent).toMatch(
+        /@media\s+screen\s+and\s+\((max-width:\s*767px|width\s*<=\s*767px)\)/
+      );
 
       // Small mobile breakpoint (max-width: 480px)
-      expect(cssContent).toMatch(/@media\s+screen\s+and\s+\(max-width:\s*480px\)/);
+      expect(cssContent).toMatch(
+        /@media\s+screen\s+and\s+\((max-width:\s*480px|width\s*<=\s*480px)\)/
+      );
     });
 
     test('CSS should hide brand on mobile devices', () => {
@@ -272,12 +280,13 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
       // Check mobile section hides brand
       const mobileSection = cssContent.match(
-        /@media\s+screen\s+and\s+\(max-width:\s*767px\)\s*{([\s\S]*?)(?=@media|$)/
+        /@media\s+screen\s+and\s+\((?:max-width:\s*767px|width\s*<=\s*767px)\)\s*\{\s*([\s\S]*?)(?=@media\s+|$)/
       );
 
       if (mobileSection) {
         const mobileCSS = mobileSection[1];
-        expect(mobileCSS).toMatch(/\.brand-logo.*display:\s*none/s);
+        // Mobile hides the brand icon specifically (i element)
+        expect(mobileCSS).toMatch(/\.brand-logo\s+i\s*\{[\s\S]*?display:\s*none/);
       }
     });
 
@@ -289,12 +298,12 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
       // But shown on mobile
       const mobileSection = cssContent.match(
-        /@media\s+screen\s+and\s+\(max-width:\s*767px\)\s*{([\s\S]*?)(?=@media|$)/
+        /@media\s+screen\s+and\s+\((?:max-width:\s*767px|width\s*<=\s*767px)\)\s*\{\s*([\s\S]*?)(?=@media\s+|$)/
       );
 
       if (mobileSection) {
         const mobileCSS = mobileSection[1];
-        expect(mobileCSS).toMatch(/\.mobile-home-link\s*{[\s\S]*?display:\s*block/);
+        expect(mobileCSS).toMatch(/\.mobile-home-link\s*\{[\s\S]*?display:\s*block/);
       }
     });
 
@@ -303,12 +312,12 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
       // Check tablet breakpoint
       const tabletSection = cssContent.match(
-        /@media\s+screen\s+and\s+\(max-width:\s*991px\)\s*{([\s\S]*?)(?=@media|$)/
+        /@media\s+screen\s+and\s+\((?:max-width:\s*991px|width\s*<=\s*991px)\)\s*\{\s*([\s\S]*?)(?=@media\s+|$)/
       );
 
       if (tabletSection) {
         const tabletCSS = tabletSection[1];
-        expect(tabletCSS).toMatch(/\.cta-link\s+span\s*{[\s\S]*?display:\s*none/);
+        expect(tabletCSS).toMatch(/\.cta-link\s+span\s*\{[\s\S]*?display:\s*none/);
       }
     });
   });

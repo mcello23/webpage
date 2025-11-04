@@ -1,4 +1,5 @@
 /* Custom Stylesheet */
+
 /**
  * Use this file to override Materialize files so you can update
  * the core Materialize files in the future
@@ -22,7 +23,7 @@ nav .nav-wrapper {
 }
 
 .text-description {
-  font: 15px;
+  font-size: 15px;
 }
 
 p {
@@ -51,7 +52,7 @@ p#text-in6 {
   border-radius: 60%; /* makes the image round */
   width: 240px; /* sets the width of the image to 64 pixels */
   float: right; /* floats the image to the right */
-  padding-top: 0px;
+  padding-top: 0;
   padding-bottom: 20px;
 }
 
@@ -65,9 +66,8 @@ p#text-in6 {
 .image-amz {
   width: 232px; /* sets the width of the image to 64 pixels */
   float: left;
-  position: left;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
   margin-right: 20px;
   margin-left: 20px;
   border-radius: 20px;
@@ -76,9 +76,8 @@ p#text-in6 {
 .image-quix {
   width: 292px; /* sets the width of the image to 64 pixels */
   float: left;
-  position: left;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
   margin-right: 20px;
   margin-left: 20px;
   border-radius: 20px;
@@ -87,9 +86,8 @@ p#text-in6 {
 .image-js {
   width: 170px;
   float: right;
-  position: right;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
   margin-right: 20px;
   margin-left: 20px;
   border-radius: 20px;
@@ -98,11 +96,10 @@ p#text-in6 {
 .image-py {
   width: 290px;
   float: right;
-  position: right;
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
   padding-left: 20px;
-  margin-right: 0px;
+  margin-right: 0;
   margin-left: 30px;
   border-radius: 20px;
 }
@@ -110,8 +107,7 @@ p#text-in6 {
 .image-sel {
   width: 192px; /* sets the width of the image to 64 pixels */
   float: right;
-  position: right;
-  padding-top: 0px;
+  padding-top: 0;
   margin-bottom: 40px;
   margin-right: 30px;
 }
@@ -120,7 +116,7 @@ p#text-in6 {
   width: 96%; /* sets the width of the image to 64 pixels */
   height: 80%;
   float: none;
-  padding-top: 0px;
+  padding-top: 0;
   margin-bottom: 20px;
   margin-right: 20px;
 }
@@ -134,7 +130,7 @@ p#text-in6 {
 }
 
 h3#mdi-content {
-  float: center;
+  text-align: center;
 }
 
 a#download-button1,
@@ -156,8 +152,8 @@ a#download-button9 {
 .btn-large.white.teal-text {
   transition: all 0.3s ease;
   box-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.16),
-    0 2px 10px rgba(0, 0, 0, 0.12);
+    0 2px 5px rgb(0 0 0 / 16%),
+    0 2px 10px rgb(0 0 0 / 12%);
 }
 
 .btn-large.white.teal-text:hover {
@@ -165,15 +161,15 @@ a#download-button9 {
   color: white !important;
   transform: translateY(-2px);
   box-shadow:
-    0 4px 10px rgba(0, 191, 165, 0.3),
-    0 6px 20px rgba(0, 191, 165, 0.2);
+    0 4px 10px rgb(0 191 165 / 30%),
+    0 6px 20px rgb(0 191 165 / 20%);
 }
 
 .btn-large.white.teal-text:active {
   transform: translateY(0);
   box-shadow:
-    0 2px 5px rgba(0, 0, 0, 0.16),
-    0 2px 10px rgba(0, 0, 0, 0.12);
+    0 2px 5px rgb(0 0 0 / 16%),
+    0 2px 10px rgb(0 0 0 / 12%);
 }
 
 .btn-large.white.teal-text i {
@@ -189,7 +185,7 @@ a#download-button9 {
   line-height: 0px;
   height: 100%;
   width: 100%;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgb(255 255 255 / 90%);
   padding-top: 30px;
   padding-bottom: 30px;
   background-size: cover;
@@ -209,6 +205,7 @@ a#download-button9 {
 .icon-block {
   padding: 15px;
 }
+
 .icon-block .material-icons {
   font-size: inherit;
 }
@@ -233,7 +230,7 @@ footer.page-footer {
   margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
-  border: 13px solid rgb(0, 0, 0);
+  border: 13px solid rgb(0 0 0);
   overflow: hidden;
 }
 
@@ -255,8 +252,8 @@ footer.page-footer {
 }
 
 .video-cypress.playing {
-  background-color: rgba(0, 0, 0, 0);
-  background-image: url(https://www.svgrepo.com/show/13672/play-button.svg);
+  background-color: rgb(0 0 0 / 0%);
+  background-image: url('https://www.svgrepo.com/show/13672/play-button.svg');
   background-repeat: no-repeat;
   background-position: center;
   display: none;
@@ -265,11 +262,11 @@ footer.page-footer {
 .video-selenium {
   width: auto;
   height: auto;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgb(0 0 0 / 0%);
 }
 
 .video-selenium video {
-  background-image: url(https://www.svgrepo.com/show/13672/play-button.svg);
+  background-image: url('https://www.svgrepo.com/show/13672/play-button.svg');
   background-repeat: no-repeat;
   background-position: center;
   display: none;
@@ -308,7 +305,7 @@ p#manual-tests {
   margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
-  border: 13px solid rgb(0, 0, 0);
+  border: 13px solid rgb(0 0 0);
   overflow: hidden;
 }
 
@@ -317,16 +314,19 @@ p#manual-tests {
   position: relative;
   overflow: hidden;
 }
+
 .portfolio-hero .parallax {
   /* Pure CSS gradient as the hero 'image' (no external image file) */
   background-image:
     linear-gradient(135deg, #26a69a 0%, #4db6ac 40%, #00796b 70%, #00251a 100%),
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0px, transparent 2px),
-    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0px, transparent 2px);
+    radial-gradient(circle at 10% 20%, rgb(255 255 255 / 3%) 0, transparent 2px),
+    radial-gradient(circle at 80% 80%, rgb(255 255 255 / 3%) 0, transparent 2px);
   background-size: cover;
   background-position: center;
   min-height: 420px; /* ensure hero has a comfortable height */
+  z-index: 1;
 }
+
 .portfolio-hero::before {
   /* subtle overlay to keep text readable while preserving the pure gradient background */
   content: '';
@@ -335,30 +335,28 @@ p#manual-tests {
   pointer-events: none;
   background-image: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.14) 0%,
-    rgba(0, 0, 0, 0.12) 50%,
-    rgba(0, 0, 0, 0.18) 100%
+    rgb(0 0 0 / 14%) 0%,
+    rgb(0 0 0 / 12%) 50%,
+    rgb(0 0 0 / 18%) 100%
   );
   mix-blend-mode: normal;
 }
+
 .portfolio-hero .section,
 .portfolio-hero .container {
   position: relative; /* ensure content sits above overlays */
   z-index: 3;
 }
-.portfolio-hero .parallax {
-  z-index: 1;
-}
 
 /* subtle animated pattern to give depth on larger screens */
-@media (min-width: 992px) {
+@media (width >= 992px) {
   .portfolio-hero::after {
     content: '';
     position: absolute;
     inset: 0;
     background-image: repeating-linear-gradient(
       45deg,
-      rgba(255, 255, 255, 0.01) 0 2px,
+      rgb(255 255 255 / 1%) 0 2px,
       transparent 2px 40px
     );
     opacity: 0.6;
@@ -367,13 +365,16 @@ p#manual-tests {
     animation: slow-drift 18s linear infinite;
     pointer-events: none;
   }
+
   @keyframes slow-drift {
     0% {
       transform: translateX(0);
     }
+
     50% {
       transform: translateX(20px);
     }
+
     100% {
       transform: translateX(0);
     }
@@ -386,11 +387,12 @@ p#manual-tests {
   overflow: hidden;
   background-image:
     linear-gradient(135deg, #21a0a0 0%, #1e8e8e 40%, #175e5e 70%),
-    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0px, transparent 2px);
+    radial-gradient(circle at 20% 30%, rgb(255 255 255 / 3%) 0, transparent 2px);
   background-size: cover;
   background-position: center;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgb(255 255 255 / 95%);
 }
+
 .hero-playwright::before {
   content: '';
   position: absolute;
@@ -398,7 +400,7 @@ p#manual-tests {
   pointer-events: none;
   background-image: repeating-linear-gradient(
     0deg,
-    rgba(255, 255, 255, 0.02) 0 1px,
+    rgb(255 255 255 / 2%) 0 1px,
     transparent 1px 40px
   );
   mix-blend-mode: overlay;
@@ -410,22 +412,25 @@ p#manual-tests {
   overflow: hidden;
   background-image:
     linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%),
-    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.05) 0px, transparent 3px),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.04) 0px, transparent 2px);
+    radial-gradient(circle at 20% 80%, rgb(255 255 255 / 5%) 0, transparent 3px),
+    radial-gradient(circle at 80% 20%, rgb(255 255 255 / 4%) 0, transparent 2px);
   background-size: 200% 200%;
   background-position: center;
   animation: gradient-shift 12s ease infinite;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgb(255 255 255 / 95%);
 }
+
 @keyframes gradient-shift {
   0%,
   100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
 }
+
 .hero-playwright-alt::before {
   content: '';
   position: absolute;
@@ -433,9 +438,9 @@ p#manual-tests {
   pointer-events: none;
   background-image: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0.15) 50%,
-    rgba(0, 0, 0, 0.3) 100%
+    rgb(0 0 0 / 25%) 0%,
+    rgb(0 0 0 / 15%) 50%,
+    rgb(0 0 0 / 30%) 100%
   );
   mix-blend-mode: normal;
 }
@@ -451,7 +456,7 @@ p#manual-tests {
    ============================================ */
 
 /* Small devices (landscape phones, 576px to 767px) */
-@media only screen and (min-width: 576px) and (max-width: 767px) {
+@media only screen and (width >= 576px) and (width <= 767px) {
   /* Navigation - still needs mobile-friendly layout */
   nav .nav-wrapper {
     display: flex !important;
@@ -478,7 +483,7 @@ p#manual-tests {
     left: auto !important;
     width: 100% !important;
     gap: 8px !important;
-    margin: 10px 0 0 0 !important;
+    margin: 10px 0 0 !important;
   }
 
   nav .center-nav {
@@ -542,7 +547,7 @@ p#manual-tests {
 }
 
 /* Medium devices (tablets, 768px to 991px) */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (width >= 768px) and (width <= 991px) {
   /* Navigation - show elements but in adjusted layout */
   nav .hide-on-med-and-down {
     display: flex !important;
@@ -609,7 +614,7 @@ p#manual-tests {
 }
 
 /* Large devices (desktops, 992px to 1199px) */
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
+@media only screen and (width >= 992px) and (width <= 1199px) {
   .container {
     width: 85% !important;
   }
@@ -620,7 +625,7 @@ p#manual-tests {
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+@media only screen and (width >= 1200px) {
   .container {
     width: 80% !important;
     max-width: 1200px;
@@ -628,7 +633,7 @@ p#manual-tests {
 }
 
 /* Landscape orientation adjustments */
-@media only screen and (max-height: 500px) and (orientation: landscape) {
+@media only screen and (height <= 500px) and (orientation: landscape) {
   .portfolio-hero .parallax {
     min-height: 200px !important;
   }
@@ -661,10 +666,10 @@ p#manual-tests {
   }
 
   .section {
-    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
-  a[href]:after {
+  a[href]::after {
     content: ' (' attr(href) ')';
   }
 }
@@ -681,11 +686,11 @@ p#manual-tests {
 }
 
 /* High contrast mode support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .skill-tag,
   .gradient-card,
   .btn-large {
-    border: 2px solid currentColor !important;
+    border: 2px solid currentcolor !important;
   }
 }
 
@@ -695,7 +700,7 @@ p#manual-tests {
    ======================================== */
 
 /* Ensure images are responsive on mobile */
-@media only screen and (max-width: 600px) {
+@media only screen and (width <= 600px) {
   .image-cyp,
   .image-amz,
   .image-quix,
@@ -727,7 +732,7 @@ p#manual-tests {
 }
 
 /* Tablet improvements */
-@media only screen and (min-width: 601px) and (max-width: 992px) {
+@media only screen and (width >= 601px) and (width <= 992px) {
   .parallax-container {
     min-height: 250px;
   }

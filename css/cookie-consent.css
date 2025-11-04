@@ -7,21 +7,22 @@
   background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
   color: #fff;
   padding: 20px;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -4px 20px rgb(0 0 0 / 30%);
   z-index: 9999;
   display: none;
-  animation: slideUp 0.5s ease-out;
+  animation: slide-up 0.5s ease-out;
 }
 
 .cookie-consent-banner.show {
   display: block;
 }
 
-@keyframes slideUp {
+@keyframes slide-up {
   from {
     transform: translateY(100%);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -43,7 +44,7 @@
 }
 
 .cookie-consent-text h4 {
-  margin: 0 0 10px 0;
+  margin: 0 0 10px;
   font-size: 1.2rem;
   font-weight: 700;
   color: #fff;
@@ -88,13 +89,13 @@
 .cookie-consent-btn-accept {
   background: linear-gradient(135deg, #27ae60, #229954);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+  box-shadow: 0 4px 12px rgb(39 174 96 / 30%);
 }
 
 .cookie-consent-btn-accept:hover {
   background: linear-gradient(135deg, #229954, #1e8449);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(39, 174, 96, 0.4);
+  box-shadow: 0 6px 16px rgb(39 174 96 / 40%);
 }
 
 .cookie-consent-btn-decline {
@@ -104,7 +105,7 @@
 }
 
 .cookie-consent-btn-decline:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255 255 255 / 10%);
   transform: translateY(-2px);
 }
 
@@ -115,12 +116,12 @@
 }
 
 .cookie-consent-btn-settings:hover {
-  background: rgba(52, 152, 219, 0.1);
+  background: rgb(52 152 219 / 10%);
   transform: translateY(-2px);
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
   .cookie-consent-content {
     flex-direction: column;
     align-items: stretch;
@@ -144,11 +145,8 @@
 /* Cookie Settings Modal (optional future enhancement) */
 .cookie-settings-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  background: rgb(0 0 0 / 70%);
   z-index: 10000;
   display: none;
   align-items: center;
@@ -167,7 +165,7 @@
   width: 90%;
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 40px rgb(0 0 0 / 30%);
 }
 
 .cookie-settings-modal h3 {
@@ -186,7 +184,7 @@
 }
 
 .cookie-toggle-info h4 {
-  margin: 0 0 5px 0;
+  margin: 0 0 5px;
   color: #2c3e50;
   font-size: 1rem;
 }

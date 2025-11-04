@@ -17,7 +17,7 @@
 .mobile-home-btn i {
   font-size: 18px;
   margin-right: 6px;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgb(255 255 255 / 95%);
   display: inline-flex;
   align-items: center;
   line-height: 1;
@@ -26,13 +26,14 @@
 .mobile-home-btn:hover,
 .mobile-home-btn:focus {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
   filter: brightness(1.05);
   transition:
     transform 0.22s ease,
     box-shadow 0.22s ease,
     filter 0.22s ease;
 }
+
 /* ========================================
    CENTRALIZED NAVBAR STYLES - Responsive Design
    ======================================== */
@@ -46,7 +47,7 @@ html body nav.main-nav {
   top: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
   height: 80px;
 }
 
@@ -118,7 +119,7 @@ html body nav.main-nav {
 .nav-btn i {
   font-size: 18px;
   margin-right: 6px;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgb(255 255 255 / 95%);
 }
 
 .nav-btn-projects {
@@ -135,7 +136,7 @@ html body nav.main-nav {
 
 .nav-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 25%);
   filter: brightness(1.1);
 }
 
@@ -149,7 +150,7 @@ html body nav.main-nav {
 }
 
 /* Desktop: ensure social group items are centered vertically; prefer fine-grained nudges on the CTA only */
-@media screen and (min-width: 992px) {
+@media screen and (width >= 992px) {
   .social-nav {
     padding-top: 0;
     height: 80px;
@@ -186,6 +187,7 @@ html body nav.main-nav {
   transition: all 0.3s ease;
   white-space: nowrap;
   height: 40px;
+
   /* Perfectly aligned with social icons - no transform needed */
 }
 
@@ -202,20 +204,20 @@ html body nav.main-nav {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 12px rgb(102 126 234 / 40%);
 }
 
 .cta-link.download-cv:hover {
   background-color: #4db6ac;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(77, 182, 172, 0.4);
+  box-shadow: 0 4px 12px rgb(77 182 172 / 40%);
 }
 
 /* Separator */
 .nav-separator {
   width: 1px;
   height: 30px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgb(0 0 0 / 20%);
   margin: 0 4px;
 }
 
@@ -295,7 +297,7 @@ a[aria-label='discord-link']:hover {
   display: none;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (width <= 991px) {
   .main-nav {
     height: auto;
     min-height: 70px;
@@ -345,23 +347,24 @@ a[aria-label='discord-link']:hover {
     gap: 12px;
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgb(0 0 0 / 10%);
     display: none;
   }
 
   .center-nav.active {
     display: flex;
     flex-direction: column;
+
     /* Floating overlay panel - left aligned */
     position: fixed;
     left: 16px; /* Float on the left */
     top: 72px; /* slightly below navbar */
     width: auto; /* Auto width for compact size */
     max-width: 220px; /* Smaller max width */
-    background: rgba(255, 255, 255, 0.98);
+    background: rgb(255 255 255 / 98%);
     border-radius: 12px;
     padding: 10px 12px; /* Smaller padding */
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 18px 40px rgb(0 0 0 / 18%);
     gap: 8px; /* Smaller gap between items */
     z-index: 1200;
   }
@@ -394,14 +397,14 @@ a[aria-label='discord-link']:hover {
 
   .center-nav.active a:hover {
     transform: translateY(-2px); /* Subtler hover */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 15%);
     filter: brightness(1.08);
   }
 
   .center-nav.active a i {
     margin-right: 6px; /* Smaller margin */
     font-size: 16px; /* Smaller icons */
-    color: rgba(255, 255, 255, 0.95);
+    color: rgb(255 255 255 / 95%);
   }
 
   /* Slight spacing below the navbar toggle to avoid overlap */
@@ -415,7 +418,7 @@ a[aria-label='discord-link']:hover {
   /* Override social icon hover for mobile - keep centered */
   .social-icon:hover {
     transform: scale(1.06);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 12%);
     transition:
       transform 0.18s ease,
       box-shadow 0.18s ease;
@@ -443,6 +446,7 @@ a[aria-label='discord-link']:hover {
     font-size: 20px;
     width: 36px;
     height: 36px;
+
     /* No transform - let flexbox handle alignment */
   }
 
@@ -459,6 +463,7 @@ a[aria-label='discord-link']:hover {
     justify-content: center;
     align-items: center;
     min-height: 36px;
+
     /* No transform - let flexbox handle alignment */
   }
 
@@ -481,13 +486,9 @@ a[aria-label='discord-link']:hover {
   a[aria-label='discord-link']:hover {
     transform: scale(1.08) !important;
   }
-
-  .mobile-menu-toggle {
-    display: block;
-  }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (width <= 767px) {
   /* Make navbar more compact on mobile */
   .main-nav {
     height: auto;
@@ -497,6 +498,16 @@ a[aria-label='discord-link']:hover {
   .nav-wrapper {
     padding: 8px 12px; /* Reduced padding */
     align-items: center; /* Center all items vertically with the toggle button */
+  }
+
+  /* Mobile menu toggle positioned top-left */
+  .mobile-menu-toggle {
+    display: block;
+    order: -1; /* Force to be first */
+    margin: 0;
+    margin-right: auto; /* Push everything else to the right */
+    padding: 4px;
+    font-size: 26px;
   }
 
   /* On mobile keep the brand icon but hide the text to save space */
@@ -516,15 +527,6 @@ a[aria-label='discord-link']:hover {
     display: none;
   }
 
-  /* Mobile menu toggle positioned top-left */
-  .mobile-menu-toggle {
-    order: -1; /* Force to be first */
-    margin: 0;
-    margin-right: auto; /* Push everything else to the right */
-    padding: 4px;
-    font-size: 26px;
-  }
-
   /* Show mobile home link */
   .mobile-home-link {
     display: block;
@@ -542,6 +544,7 @@ a[aria-label='discord-link']:hover {
     font-size: 20px;
     width: 36px;
     height: 36px;
+
     /* No transform - flexbox centers them with the toggle */
   }
 
@@ -558,6 +561,7 @@ a[aria-label='discord-link']:hover {
     justify-content: center;
     align-items: center;
     min-height: 36px;
+
     /* No transform - flexbox centers them with the toggle */
   }
 
@@ -633,7 +637,7 @@ a[aria-label='discord-link']:hover {
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (width <= 480px) {
   .nav-wrapper {
     padding: 6px 10px; /* Even more compact */
     align-items: center; /* Keep everything vertically centered */
@@ -676,7 +680,7 @@ a[aria-label='discord-link']:hover {
    Below 900p (less than 1600px width) - Hide brand text and booking call text
    VERSION: 6.0 - Added booking call text hiding at 900p or lower
    ======================================== */
-@media screen and (min-width: 992px) and (max-width: 1599px) {
+@media screen and (width >= 992px) and (width <= 1599px) {
   .brand-logo span {
     display: none !important;
   }
@@ -700,7 +704,7 @@ a[aria-label='discord-link']:hover {
    At 900p and above (1600px+ width) - Show brand text and booking call text
    VERSION: 6.0 - Nuclear override at 900p threshold, shows booking call text
    ======================================== */
-@media screen and (min-width: 1600px) {
+@media screen and (width >= 1600px) {
   /* Override parent container */
   .brand-logo {
     visibility: visible !important;

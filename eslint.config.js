@@ -1,3 +1,5 @@
+const html = require('eslint-plugin-html');
+
 module.exports = [
   {
     // Global ignores (equivalent to .eslintignore)
@@ -14,7 +16,6 @@ module.exports = [
       'js/materialize.min.js',
       'js/prism.js',
       'coverage/**',
-      '**/*.html', // Ignore HTML files - inline scripts already have ESLint comments
     ],
   },
   {
@@ -59,6 +60,48 @@ module.exports = [
         // jQuery globals
         $: 'readonly',
         jQuery: 'readonly',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['warn'],
+      'no-undef': 'error',
+    },
+  },
+  {
+    // Configuration for inline JavaScript in HTML files
+    files: ['**/*.html'],
+    plugins: {
+      html,
+    },
+    languageOptions: {
+      ecmaVersion: 12,
+      sourceType: 'script',
+      globals: {
+        // Browser globals
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        console: 'readonly',
+        alert: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        fetch: 'readonly',
+        FormData: 'readonly',
+        URL: 'readonly',
+        Image: 'readonly',
+        // jQuery globals
+        $: 'readonly',
+        jQuery: 'readonly',
+        // Materialize globals
+        M: 'readonly',
+        // Custom globals
+        certificateModal: 'readonly',
+        toggleMobileMenu: 'readonly',
+        showToast: 'readonly',
+        acceptCookies: 'readonly',
+        declineCookies: 'readonly',
       },
     },
     rules: {

@@ -39,8 +39,12 @@ jobs:
         run: npm run format:check
         continue-on-error: false
 
-      - name: Run ESLint
+      - name: Run ESLint (JS + HTML)
         run: npm run lint
+        continue-on-error: false
+
+      - name: Run Stylelint (CSS)
+        run: npm run lint:css
         continue-on-error: false
 
   test:

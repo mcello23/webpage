@@ -1,12 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
+    <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://api.web3forms.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://api.web3forms.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com"
+    />
     <title>Marcelo Costa - SDET Portfolio</title>
-
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16x16.png" />
@@ -14,7 +16,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../../favicon/apple-touch-icon.png" />
     <link rel="manifest" href="../../favicon/site.webmanifest" />
     <meta name="theme-color" content="#3F51B5" />
-
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link
@@ -47,38 +48,69 @@
       rel="stylesheet"
       media="screen,projection"
     />
-
     <style>
       /* Animation keyframes for parallax separators */
       @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        33% { transform: translateY(-10px) rotate(1deg); }
-        66% { transform: translateY(-5px) rotate(-1deg); }
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        33% {
+          transform: translateY(-10px) rotate(1deg);
+        }
+        66% {
+          transform: translateY(-5px) rotate(-1deg);
+        }
       }
-      
+
       @keyframes spin {
-        from { transform: rotate(45deg); }
-        to { transform: rotate(405deg); }
+        from {
+          transform: rotate(45deg);
+        }
+        to {
+          transform: rotate(405deg);
+        }
       }
-      
+
       @keyframes spin-slow {
-        from { transform: rotate(15deg); }
-        to { transform: rotate(375deg); }
+        from {
+          transform: rotate(15deg);
+        }
+        to {
+          transform: rotate(375deg);
+        }
       }
-      
+
       @keyframes pulse {
-        0%, 100% { opacity: 0.6; transform: scale(1); }
-        50% { opacity: 1; transform: scale(1.05); }
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
       }
-      
+
       @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-15px); }
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
       }
 
       @keyframes gradient-shift {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
       }
 
       /* Parallax container styling */
@@ -95,20 +127,16 @@
       .hero-ai {
         position: relative;
         overflow: hidden;
-        background-image: linear-gradient(
-          135deg,
-          #667eea 0%,
-          #764ba2 50%,
-          #8b5cf6 100%
-        ),
-        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
-        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 2px, transparent 2px);
+        background-image:
+          linear-gradient(135deg, #667eea 0%, #764ba2 50%, #8b5cf6 100%),
+          radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
+          radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 2px, transparent 2px);
         background-size: 200% 200%;
         background-position: center;
         animation: gradient-shift 15s ease infinite;
         color: rgba(255, 255, 255, 0.95);
       }
-      
+
       .hero-ai::before {
         content: '';
         position: absolute;
@@ -125,7 +153,7 @@
     <script>
       (function () {
         try {
-          var path = (window.location && window.location.pathname) ? window.location.pathname : '';
+          var path = window.location && window.location.pathname ? window.location.pathname : '';
           var base = path.indexOf('/webpage/') === 0 ? '/webpage' : '';
           if (!base) return;
           var anchors = document.querySelectorAll('a[href^="/"]');
@@ -149,11 +177,10 @@
     <nav class="main-nav" role="navigation" aria-label="Primary">
       <div class="nav-wrapper">
         <!-- Left: Brand -->
-        <a href="/webpage/" class="brand-logo" aria-label="Home">
-          <i class="material-icons" aria-hidden="true">home</i>
-          <span>Marcelo Costa — SDET</span>
-        </a>
-
+        <a href="/webpage/" class="brand-logo" aria-label="Home"
+          ><i class="material-icons" aria-hidden="true">home</i>
+          <span>Marcelo Costa — SDET</span></a
+        >
         <!-- Mobile toggle -->
         <button
           class="mobile-menu-toggle"
@@ -165,7 +192,6 @@
         >
           <i class="material-icons" aria-hidden="true">menu</i>
         </button>
-
         <!-- Center nav -->
         <ul class="center-nav" id="mobileMenu">
           <li class="mobile-home-link">
@@ -173,31 +199,28 @@
               href="/webpage/"
               class="mobile-home-btn"
               style="background: linear-gradient(135deg, #4db6ac, #26a69a)"
+              ><i class="material-icons" aria-hidden="true">home</i> Home</a
             >
-              <i class="material-icons" aria-hidden="true">home</i> Home
-            </a>
           </li>
           <li>
-            <a href="/webpage/pages/side_proj/" class="nav-btn nav-btn-projects">
-              <i class="material-icons" aria-hidden="true">extension</i> Side Projects
-            </a>
+            <a href="/webpage/pages/side_proj/" class="nav-btn nav-btn-projects"
+              ><i class="material-icons" aria-hidden="true">extension</i> Side Projects</a
+            >
           </li>
           <li>
-            <a href="/webpage/pages/frameworks/" class="nav-btn nav-btn-frameworks">
-              <i class="material-icons" aria-hidden="true">code</i> Frameworks
-            </a>
+            <a href="/webpage/pages/frameworks/" class="nav-btn nav-btn-frameworks"
+              ><i class="material-icons" aria-hidden="true">code</i> Frameworks</a
+            >
           </li>
           <li>
             <a
               href="#"
-              onclick="window.certificateModal && window.certificateModal.open(); return false;"
+              onclick="window.certificateModal &amp; window.certificateModal.open(); return false;"
               class="nav-btn nav-btn-certs"
+              ><i class="material-icons" aria-hidden="true">card_membership</i> Certificates</a
             >
-              <i class="material-icons" aria-hidden="true">card_membership</i> Certificates
-            </a>
           </li>
         </ul>
-
         <!-- Right: Social + CTAs -->
         <ul class="social-nav">
           <li>
@@ -207,12 +230,11 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Book a 15-minute call"
+              ><i class="material-icons" aria-hidden="true">schedule</i>
+              <span>Book 15-min call</span></a
             >
-              <i class="material-icons" aria-hidden="true">schedule</i>
-              <span>Book 15-min call</span>
-            </a>
           </li>
-          <li class="nav-separator"></li>
+          <li class="nav-separator" aria-hidden="true"></li>
           <li>
             <a
               href="https://github.com/mcello23"
@@ -220,9 +242,8 @@
               class="social-icon"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              <i class="fab fa-github" aria-hidden="true"></i>
-            </a>
+              ><i class="fab fa-github" aria-hidden="true"></i
+            ></a>
           </li>
           <li>
             <a
@@ -231,14 +252,12 @@
               class="social-icon"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              <i class="fab fa-linkedin" aria-hidden="true"></i>
-            </a>
+              ><i class="fab fa-linkedin" aria-hidden="true"></i
+            ></a>
           </li>
         </ul>
       </div>
     </nav>
-
     <script>
       // eslint-disable-next-line no-unused-vars -- Function is called from onclick attribute in HTML
       function toggleMobileMenu() {
@@ -249,275 +268,357 @@
         toggle.setAttribute('aria-expanded', String(!expanded));
       }
     </script>
-
     <div style="margin-top: 80px"></div>
-
-  <!-- Introduction Section -->
-  <div class="section" style="padding: 60px 0;">
-    <div class="container">
-      <div class="row center">
-        <h2 class="header col s12 dark" style="margin-bottom: 40px;">Side Projects & Automation Tools</h2>
-        <p class="flow-text grey-text text-darken-2">Innovative automation solutions showcasing AI integration, scripting expertise, and real-world problem-solving</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- AI Test Plan Generator Separator -->
-  <div class="parallax-container valign-wrapper hero-ai">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: 
-      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 2px, transparent 2px),
-      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 2px, transparent 2px),
-      radial-gradient(circle at 40% 40%, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 50px 50px, 70px 70px, 30px 30px;
-      animation: float 20s ease-in-out infinite;">
-    </div>
-    <div style="position: absolute; top: 10%; left: 10%; width: 100px; height: 100px; border: 2px solid rgba(255,255,255,0.2); transform: rotate(45deg); animation: spin 30s linear infinite;"></div>
-    <div style="position: absolute; top: 60%; right: 15%; width: 60px; height: 60px; border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; animation: pulse 4s ease-in-out infinite;"></div>
-    <div class="section no-pad-bot" style="position: relative; z-index: 10;">
+    <!-- Introduction Section -->
+    <div class="section" style="padding: 60px 0">
       <div class="container">
         <div class="row center">
-          <h2 class="header col s12 white-text text-lighten-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">🤖 AI Test Plan Generator</h2>
-          <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Intelligent test planning powered by artificial intelligence</p>
+          <h2 class="header col s12 dark" style="margin-bottom: 40px">
+            Side Projects & Automation Tools
+          </h2>
+          <p class="flow-text grey-text text-darken-2">
+            Innovative automation solutions showcasing AI integration, scripting expertise, and
+            real-world problem-solving
+          </p>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="container center-align">
-    <div class="section">
-      <br />
-      <h4 class="mdi-content-send dark center-align" id="title-ai2" style="margin-bottom: 20px;">
-        <b>OpenAI GPT-4 • Node.js • TypeScript</b>
-      </h4>
+    <!-- AI Test Plan Generator Separator -->
+    <div class="parallax-container valign-wrapper hero-ai">
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image:
+            radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+            radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+          background-size:
+            50px 50px,
+            70px 70px,
+            30px 30px;
+          animation: float 20s ease-in-out infinite;
+        "
+      ></div>
+      <div
+        style="
+          position: absolute;
+          top: 10%;
+          left: 10%;
+          width: 100px;
+          height: 100px;
+          border: 2px solid rgba(255, 255, 255, 0.2);
+          transform: rotate(45deg);
+          animation: spin 30s linear infinite;
+        "
+      ></div>
+      <div
+        style="
+          position: absolute;
+          top: 60%;
+          right: 15%;
+          width: 60px;
+          height: 60px;
+          border: 2px solid rgba(255, 255, 255, 0.2);
+          border-radius: 50%;
+          animation: pulse 4s ease-in-out infinite;
+        "
+      ></div>
+      <div class="section no-pad-bot" style="position: relative; z-index: 10">
+        <div class="container">
+          <div class="row center">
+            <h2
+              class="header col s12 white-text text-lighten-2"
+              style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7)"
+            >
+              🤖 AI Test Plan Generator
+            </h2>
+            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8)">
+              Intelligent test planning powered by artificial intelligence
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container center-align">
       <div class="section">
-        <img
-          class="image-cyp right-align"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/512px-OpenAI_Logo.svg.png"
-          alt="openai-logo"
-          style="width: 100px"
-        /><br />
-        <div class="row">
-          <div class="center-align">
-            <p class="text-accent-2 waves-green left-align">
-              I developed an innovative AI-powered test plan generator that leverages
-              <b>OpenAI's GPT-4</b> to create comprehensive, structured test plans for software
-              projects. This tool revolutionizes the test planning process by intelligently generating
-              detailed test cases, reducing manual effort from hours to minutes while maintaining
-              professional quality standards.
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              The application features both a <b>CLI interface</b> and a <b>web interface</b>, built
-              with <b>Node.js</b> and <b>TypeScript</b>. It intelligently generates complete test plans
-              including test objectives, scope definition, testing approach, environment requirements,
-              and detailed test cases with preconditions, step-by-step procedures, expected results,
-              priority levels, and realistic time estimates. The AI analyzes your project requirements
-              and automatically creates test cases covering functional, non-functional, edge cases, and
-              regression scenarios.
-            </p>
-            <img
-              class="image-js center-align"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png"
-              alt="typescript-logo"
-              style="width: 80px"
-            />
-            <p class="text-accent-2 waves-green left-align">
-              <b> Key Features: </b>
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>AI-Powered Intelligence:</b> Uses GPT-4 to generate context-aware test cases based
-              on project description, features, and requirements
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Comprehensive Test Coverage:</b> Automatically generates 5-10+ test cases covering
-              functional, non-functional, edge cases, and regression scenarios
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Multiple Testing Types:</b> Support for unit, integration, E2E testing, or
-              comprehensive coverage across all types
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Multi-Platform Support:</b> Optimized test plans for web, mobile, API, and desktop
-              applications
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Flexible Export Options:</b> Export test plans in JSON format for tool integration
-              or Markdown for documentation
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Dual Interface:</b> Choose between interactive CLI for automation or modern web UI
-              for ease of use
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Smart Prioritization:</b> AI automatically assigns priority levels (high, medium,
-              low) based on test case criticality
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Time Estimation:</b> Realistic time estimates for each test case and total test
-              execution duration
-            </p>
-            <br /><br />
-            <div class="row center">
-              <a
-                href="https://github.com/mcello23/ai-test-plan-generator"
-                id="download-button-ai"
-                class="btn-large waves-effect waves-light teal lighten-1 pad center-align"
-                >Check out my GitHub project</a
-              >
+        <br />
+        <h4 class="mdi-content-send dark center-align" id="title-ai2" style="margin-bottom: 20px">
+          <b>OpenAI GPT-4 • Node.js • TypeScript</b>
+        </h4>
+        <div class="section">
+          <img
+            class="image-cyp right-align"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/512px-OpenAI_Logo.svg.png"
+            alt="openai-logo"
+            style="width: 100px"
+          /><br />
+          <div class="row">
+            <div class="center-align">
+              <p class="text-accent-2 waves-green left-align">
+                I developed an innovative AI-powered test plan generator that leverages
+                <b>OpenAI's GPT-4</b> to create comprehensive, structured test plans for software
+                projects. This tool revolutionizes the test planning process by intelligently
+                generating detailed test cases, reducing manual effort from hours to minutes while
+                maintaining professional quality standards.
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                The application features both a <b>CLI interface</b> and a <b>web interface</b>,
+                built with <b>Node.js</b> and <b>TypeScript</b>. It intelligently generates complete
+                test plans including test objectives, scope definition, testing approach,
+                environment requirements, and detailed test cases with preconditions, step-by-step
+                procedures, expected results, priority levels, and realistic time estimates. The AI
+                analyzes your project requirements and automatically creates test cases covering
+                functional, non-functional, edge cases, and regression scenarios.
+              </p>
+              <img
+                class="image-js center-align"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/512px-Typescript_logo_2020.svg.png"
+                alt="typescript-logo"
+                style="width: 80px"
+              />
+              <p class="text-accent-2 waves-green left-align"><b>Key Features:</b></p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>AI-Powered Intelligence:</b> Uses GPT-4 to generate context-aware test cases
+                based on project description, features, and requirements
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Comprehensive Test Coverage:</b> Automatically generates 5-10+ test cases
+                covering functional, non-functional, edge cases, and regression scenarios
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Multiple Testing Types:</b> Support for unit, integration, E2E testing, or
+                comprehensive coverage across all types
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Multi-Platform Support:</b> Optimized test plans for web, mobile, API, and
+                desktop applications
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Flexible Export Options:</b> Export test plans in JSON format for tool
+                integration or Markdown for documentation
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Dual Interface:</b> Choose between interactive CLI for automation or modern web
+                UI for ease of use
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Smart Prioritization:</b> AI automatically assigns priority levels (high,
+                medium, low) based on test case criticality
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Time Estimation:</b> Realistic time estimates for each test case and total test
+                execution duration
+              </p>
+              <br />
+              <br />
+              <div class="row center">
+                <a
+                  href="https://github.com/mcello23/ai-test-plan-generator"
+                  id="download-button-ai"
+                  class="btn-large waves-effect waves-light teal lighten-1 pad center-align"
+                  >Check out my GitHub project</a
+                >
+              </div>
             </div>
           </div>
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
-      <br /><br /><br /><br />
     </div>
-  </div>
-
-  <!-- Python Music Downloader Separator -->
-  <div class="parallax-container valign-wrapper hero-playwright-alt">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: 
-      radial-gradient(circle at 30% 70%, rgba(255,255,255,0.08) 2px, transparent 2px),
-      radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08) 2px, transparent 2px),
-      radial-gradient(circle at 50% 50%, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 60px 60px, 80px 80px, 40px 40px;
-      animation: float 25s ease-in-out infinite;">
-    </div>
-    <div style="position: absolute; top: 15%; right: 10%; width: 80px; height: 80px; border: 2px solid rgba(255,255,255,0.25); transform: rotate(30deg); animation: spin-slow 25s linear infinite;"></div>
-    <div style="position: absolute; bottom: 20%; left: 12%; width: 50px; height: 50px; border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; animation: bounce 3s ease-in-out infinite;"></div>
-    <div class="section no-pad-bot" style="position: relative; z-index: 10;">
-      <div class="container">
-        <div class="row center">
-          <h2 class="header col s12 white-text text-lighten-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">🎵 Python Music Downloader</h2>
-          <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">Automated YouTube to MP3 conversion with batch processing</p>
+    <!-- Python Music Downloader Separator -->
+    <div class="parallax-container valign-wrapper hero-playwright-alt">
+      <div
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image:
+            radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
+            radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+          background-size:
+            60px 60px,
+            80px 80px,
+            40px 40px;
+          animation: float 25s ease-in-out infinite;
+        "
+      ></div>
+      <div
+        style="
+          position: absolute;
+          top: 15%;
+          right: 10%;
+          width: 80px;
+          height: 80px;
+          border: 2px solid rgba(255, 255, 255, 0.25);
+          transform: rotate(30deg);
+          animation: spin-slow 25s linear infinite;
+        "
+      ></div>
+      <div
+        style="
+          position: absolute;
+          bottom: 20%;
+          left: 12%;
+          width: 50px;
+          height: 50px;
+          border: 2px solid rgba(255, 255, 255, 0.2);
+          border-radius: 50%;
+          animation: bounce 3s ease-in-out infinite;
+        "
+      ></div>
+      <div class="section no-pad-bot" style="position: relative; z-index: 10">
+        <div class="container">
+          <div class="row center">
+            <h2
+              class="header col s12 white-text text-lighten-2"
+              style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7)"
+            >
+              🎵 Python Music Downloader
+            </h2>
+            <p class="flow-text white-text" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8)">
+              Automated YouTube to MP3 conversion with batch processing
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="container center-align">
-    <div class="section">
-      <br />
-      <!-- Python Music Downloader Project -->
-      <br />
-      <h4 class="mdi-content-send dark center-align" id="title-python2" style="margin-bottom: 20px;">
-        <b>yt-dlp • youtubesearchpython • FFmpeg</b>
-      </h4>
+    <div class="container center-align">
       <div class="section">
-        <img
-          class="image-cyp right-align"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/512px-Python-logo-notext.svg.png"
-          alt="python-logo"
-          style="width: 100px"
-        /><br />
-        <div class="row">
-          <div class="center-align">
-            <p class="text-accent-2 waves-green left-align">
-              I built a practical Python automation tool that simplifies music downloading from YouTube
-              by converting videos directly to high-quality MP3 files. This project demonstrates
-              proficiency in Python scripting, API integration, and automation workflows - skills that
-              translate directly to test automation and DevOps tasks.
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              The tool uses <b>yt-dlp</b> (an advanced fork of youtube-dl) combined with
-              <b>youtubesearchpython</b> to automatically search YouTube, download audio streams, and
-              convert them to MP3 format using <b>FFmpeg</b>. It features smart search capabilities,
-              automatic metadata extraction, and batch processing support for multiple songs
-              simultaneously.
-            </p>
-            <img
-              class="image-js center-align"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/512px-YouTube_full-color_icon_%282017%29.svg.png"
-              alt="youtube-logo"
-              style="width: 100px; margin: 10px 0"
-            />
-            <p class="text-accent-2 waves-green left-align">
-              <b> Key Features: </b>
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Smart YouTube Search:</b> Automatically searches YouTube for songs using artist and
-              track name
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>High-Quality Audio:</b> Downloads and converts to MP3 at 192 kbps for optimal sound
-              quality
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Batch Processing:</b> Process multiple songs in a single execution from a simple
-              Python list
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Automatic Organization:</b> Creates organized output folders with numbered files for
-              easy management
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>FFmpeg Integration:</b> Leverages FFmpeg for professional-grade audio conversion
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Error Handling:</b> Robust error handling for failed searches or download issues
-            </p>
-            <p class="text-accent-2 waves-green left-align">
-              • <b>Cross-Platform:</b> Works on macOS, Linux, and Windows with proper dependencies
-            </p>
-            <br /><br />
-            <div class="row center">
-              <a
-                href="https://github.com/mcello23/python-music-download"
-                id="download-button-python"
-                class="btn-large waves-effect waves-light teal lighten-1 pad center-align"
-                >Check out my GitHub project</a
-              >
+        <br />
+        <!-- Python Music Downloader Project -->
+        <br />
+        <h4
+          class="mdi-content-send dark center-align"
+          id="title-python2"
+          style="margin-bottom: 20px"
+        >
+          <b>yt-dlp • youtubesearchpython • FFmpeg</b>
+        </h4>
+        <div class="section">
+          <img
+            class="image-cyp right-align"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/512px-Python-logo-notext.svg.png"
+            alt="python-logo"
+            style="width: 100px"
+          /><br />
+          <div class="row">
+            <div class="center-align">
+              <p class="text-accent-2 waves-green left-align">
+                I built a practical Python automation tool that simplifies music downloading from
+                YouTube by converting videos directly to high-quality MP3 files. This project
+                demonstrates proficiency in Python scripting, API integration, and automation
+                workflows - skills that translate directly to test automation and DevOps tasks.
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                The tool uses <b>yt-dlp</b> (an advanced fork of youtube-dl) combined with
+                <b>youtubesearchpython</b> to automatically search YouTube, download audio streams,
+                and convert them to MP3 format using <b>FFmpeg</b>. It features smart search
+                capabilities, automatic metadata extraction, and batch processing support for
+                multiple songs simultaneously.
+              </p>
+              <img
+                class="image-js center-align"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/512px-YouTube_full-color_icon_%282017%29.svg.png"
+                alt="youtube-logo"
+                style="width: 100px; margin: 10px 0"
+              />
+              <p class="text-accent-2 waves-green left-align"><b>Key Features:</b></p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Smart YouTube Search:</b> Automatically searches YouTube for songs using artist
+                and track name
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>High-Quality Audio:</b> Downloads and converts to MP3 at 192 kbps for optimal
+                sound quality
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Batch Processing:</b> Process multiple songs in a single execution from a
+                simple Python list
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Automatic Organization:</b> Creates organized output folders with numbered
+                files for easy management
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>FFmpeg Integration:</b> Leverages FFmpeg for professional-grade audio
+                conversion
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Error Handling:</b> Robust error handling for failed searches or download
+                issues
+              </p>
+              <p class="text-accent-2 waves-green left-align">
+                • <b>Cross-Platform:</b> Works on macOS, Linux, and Windows with proper dependencies
+              </p>
+              <br />
+              <br />
+              <div class="row center">
+                <a
+                  href="https://github.com/mcello23/python-music-download"
+                  id="download-button-python"
+                  class="btn-large waves-effect waves-light teal lighten-1 pad center-align"
+                  >Check out my GitHub project</a
+                >
+              </div>
             </div>
           </div>
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <!-- Certificate Modal Container -->
+        <div id="certificateModal" class="cert-modal"></div>
       </div>
-      <br /><br /><br /><br />
-          </div>
-        </div>
-      </div>
-      <br /><br /><br /><br />
-
-      <!-- Certificate Modal Container -->
-      <div id="certificateModal" class="cert-modal"></div>
-    </div>
-    <div
-      class="section"
-      style="padding: 60px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-    >
-      <div class="container">
-        <div class="row center">
-          <div class="col s12">
-            <h3 class="white-text">Thanks for exploring my testing portfolio</h3>
-            <p class="flow-text white-text">
-              Ready to build robust, scalable testing solutions together
-            </p>
-            <div style="margin-top: 30px">
-              <a
-                href="https://www.linkedin.com/in/marceloc/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-large white teal-text waves-effect"
-                style="margin: 10px; border-radius: 25px"
-              >
-                <i class="fab fa-linkedin left" aria-hidden="true"></i>Let's Connect
-              </a>
-              <a
-                href="https://calendly.com/marceloadsc/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-large white teal-text waves-effect"
-                style="margin: 10px; border-radius: 25px"
-              >
-                <i class="material-icons left" aria-hidden="true">event</i>Book 15-min Call
-              </a>
-              <a
-                href="/webpage/#contact"
-                class="btn-large white teal-text waves-effect"
-                style="margin: 10px; border-radius: 25px"
-              >
-                <i class="material-icons left" aria-hidden="true">email</i>Send Message
-              </a>
+      <div
+        class="section"
+        style="padding: 60px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+      >
+        <div class="container">
+          <div class="row center">
+            <div class="col s12">
+              <h3 class="white-text">Thanks for exploring my testing portfolio</h3>
+              <p class="flow-text white-text">
+                Ready to build robust, scalable testing solutions together
+              </p>
+              <div style="margin-top: 30px">
+                <a
+                  href="https://www.linkedin.com/in/marceloc/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-large white teal-text waves-effect"
+                  style="margin: 10px; border-radius: 25px"
+                  >Let's Connect</a
+                >
+                <a
+                  href="https://calendly.com/marceloadsc/15min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-large white teal-text waves-effect"
+                  style="margin: 10px; border-radius: 25px"
+                  ><i class="material-icons left" aria-hidden="true">event</i>Book 15-min Call</a
+                >
+                <a
+                  href="/webpage/#contact"
+                  class="btn-large white teal-text waves-effect"
+                  style="margin: 10px; border-radius: 25px"
+                  ><i class="material-icons left" aria-hidden="true">email</i>Send Message</a
+                >
+              </div>
+              <p class="white-text" style="margin-top: 20px">
+                © 2025 Marcelo Costa | Senior QA Engineer & Test Automation Specialist
+              </p>
             </div>
-            <p class="white-text" style="margin-top: 20px">
-              © 2025 Marcelo Costa | Senior QA Engineer & Test Automation Specialist
-            </p>
           </div>
         </div>
       </div>

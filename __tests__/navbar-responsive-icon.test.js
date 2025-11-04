@@ -188,13 +188,13 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
   describe('Responsive Breakpoint: Below 900p (992px - 1599px)', () => {
     test('CSS should contain media query for 992px to 1599px range', () => {
       expect(cssContent).toMatch(
-        /@media screen and \(min-width: 992px\) and \(max-width: 1599px\)/
+        /@media screen and \((min-width:\s*992px|width\s*>=\s*992px)\) and \((max-width:\s*1599px|width\s*<=\s*1599px)\)/
       );
     });
 
     test('should hide brand text span in mid-range breakpoint', () => {
       const mediaQueryRule = cssContent.match(
-        /@media screen and \(min-width: 992px\) and \(max-width: 1599px\)\s*{[^}]*\.brand-logo span[^}]*}/s
+        /@media screen and \((min-width:\s*992px|width\s*>=\s*992px)\) and \((max-width:\s*1599px|width\s*<=\s*1599px)\)\s*{[^}]*\.brand-logo span[^}]*}/s
       );
       expect(mediaQueryRule).toBeTruthy();
       expect(mediaQueryRule[0]).toMatch(/display:\s*none\s*!important/);
@@ -202,7 +202,7 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
     test('should keep icon visible in mid-range breakpoint', () => {
       const mediaQueryRule = cssContent.match(
-        /@media screen and \(min-width: 992px\) and \(max-width: 1599px\)[^@]*\.brand-logo i[^}]*display[^;]*/s
+        /@media screen and \((min-width:\s*992px|width\s*>=\s*992px)\) and \((max-width:\s*1599px|width\s*<=\s*1599px)\)[^@]*\.brand-logo i[^}]*display[^;]*/s
       );
       expect(mediaQueryRule).toBeTruthy();
       expect(mediaQueryRule[0]).toMatch(/display:\s*inline-flex\s*!important/);
@@ -210,7 +210,7 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
     test('mid-range media query should use !important for specificity', () => {
       const spanRule = cssContent.match(
-        /@media screen and \(min-width: 992px\) and \(max-width: 1599px\)[^@]*\.brand-logo span[^}]*/s
+        /@media screen and \((min-width:\s*992px|width\s*>=\s*992px)\) and \((max-width:\s*1599px|width\s*<=\s*1599px)\)[^@]*\.brand-logo span[^}]*/s
       );
       expect(spanRule[0]).toMatch(/!important/);
     });
@@ -218,12 +218,12 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
   describe('Responsive Breakpoint: At 900p+ (1600px and above)', () => {
     test('CSS should contain media query for 1600px minimum', () => {
-      expect(cssContent).toMatch(/@media screen and \(min-width: 1600px\)/);
+      expect(cssContent).toMatch(/@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)/);
     });
 
     test('should show brand text span at 900p+', () => {
       const mediaQueryRule = cssContent.match(
-        /@media screen and \(min-width: 1600px\)[^@]*\.brand-logo span[^}]*}/s
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*\.brand-logo span[^}]*}/s
       );
       expect(mediaQueryRule).toBeTruthy();
       expect(mediaQueryRule[0]).toMatch(/display:\s*inline\s*!important/);
@@ -231,7 +231,7 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
     test('should have comprehensive visibility overrides for text span', () => {
       const spanRule = cssContent.match(
-        /@media screen and \(min-width: 1600px\)[^@]*\.brand-logo span\s*{[^}]*}/s
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*\.brand-logo span\s*{[^}]*}/s
       );
       expect(spanRule[0]).toMatch(/opacity:\s*1\s*!important/);
       expect(spanRule[0]).toMatch(/visibility:\s*visible\s*!important/);
@@ -241,7 +241,7 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
     test('should override parent container visibility', () => {
       const containerRule = cssContent.match(
-        /@media screen and \(min-width: 1600px\)[^@]*\.brand-logo\s*{[^}]*}/s
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*\.brand-logo\s*{[^}]*}/s
       );
       expect(containerRule[0]).toMatch(/visibility:\s*visible\s*!important/);
       expect(containerRule[0]).toMatch(/opacity:\s*1\s*!important/);
@@ -249,33 +249,37 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
     test('should show icon at 900p+', () => {
       const iconRule = cssContent.match(
-        /@media screen and \(min-width: 1600px\)[^@]*\.brand-logo i[^}]*}/s
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*\.brand-logo i[^}]*}/s
       );
       expect(iconRule[0]).toMatch(/display:\s*inline-flex\s*!important/);
       expect(iconRule[0]).toMatch(/visibility:\s*visible\s*!important/);
     });
 
     test('900p+ rules should use !important for nuclear override', () => {
-      const rule = cssContent.match(/@media screen and \(min-width: 1600px\)[^@]*/s);
+      const rule = cssContent.match(
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*/s
+      );
       const importantCount = (rule[0].match(/!important/g) || []).length;
       expect(importantCount).toBeGreaterThanOrEqual(8); // Should have many !important declarations
     });
 
     test('should have overflow visible to prevent clipping', () => {
-      const rules = cssContent.match(/@media screen and \(min-width: 1600px\)[^@]*/s);
+      const rules = cssContent.match(
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*/s
+      );
       expect(rules[0]).toMatch(/overflow:\s*visible\s*!important/);
     });
 
     test('should have pointer-events auto for interaction', () => {
       const spanRule = cssContent.match(
-        /@media screen and \(min-width: 1600px\)[^@]*\.brand-logo span[^}]*}/s
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*\.brand-logo span[^}]*}/s
       );
       expect(spanRule[0]).toMatch(/pointer-events:\s*auto\s*!important/);
     });
 
     test('should remove max-width constraint', () => {
       const spanRule = cssContent.match(
-        /@media screen and \(min-width: 1600px\)[^@]*\.brand-logo span[^}]*}/s
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*\.brand-logo span[^}]*}/s
       );
       expect(spanRule[0]).toMatch(/max-width:\s*none\s*!important/);
     });
@@ -283,12 +287,12 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
   describe('Responsive Breakpoint: Mobile (below 992px)', () => {
     test('CSS should have mobile breakpoint at max-width 991px', () => {
-      expect(cssContent).toMatch(/@media screen and \(max-width: 991px\)/);
+      expect(cssContent).toMatch(/@media screen and \((max-width:\s*991px|width\s*<=\s*991px)\)/);
     });
 
     test('mobile breakpoint should hide brand elements', () => {
       const mobileRule = cssContent.match(
-        /@media screen and \(max-width: 991px\)[^@]*\.brand-logo[^@]*/s
+        /@media screen and \((max-width:\s*991px|width\s*<=\s*991px)\)[^@]*\.brand-logo[^@]*/s
       );
       expect(mobileRule[0]).toMatch(/visibility:\s*hidden\s*!important/);
       expect(mobileRule[0]).toMatch(/opacity:\s*0\s*!important/);
@@ -443,7 +447,7 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
     test('media queries should be optimized with min/max combinations', () => {
       const midRangeQuery = cssContent.match(
-        /@media screen and \(min-width: 992px\) and \(max-width: 1599px\)/
+        /@media screen and \((min-width:\s*992px|width\s*>=\s*992px)\) and \((max-width:\s*1599px|width\s*<=\s*1599px)\)/
       );
       expect(midRangeQuery).toBeTruthy();
     });
@@ -464,19 +468,23 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
   describe('Specificity and Override Strategy', () => {
     test('responsive rules should use !important for overrides', () => {
-      const responsiveRules = cssContent.match(/@media screen and \(min-width: 1600px\)[^@]*/s);
+      const responsiveRules = cssContent.match(
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*/s
+      );
       expect(responsiveRules[0]).toMatch(/!important/);
     });
 
     test('should have at least 8 !important declarations in 900p+ breakpoint', () => {
-      const rule = cssContent.match(/@media screen and \(min-width: 1600px\)[^@]*/s);
+      const rule = cssContent.match(
+        /@media screen and \((min-width:\s*1600px|width\s*>=\s*1600px)\)[^@]*/s
+      );
       const importantCount = (rule[0].match(/!important/g) || []).length;
       expect(importantCount).toBeGreaterThanOrEqual(8);
     });
 
     test('mid-range hiding should use !important', () => {
       const midRule = cssContent.match(
-        /@media screen and \(min-width: 992px\) and \(max-width: 1599px\)[^@]*/s
+        /@media screen and \((min-width:\s*992px|width\s*>=\s*992px)\) and \((max-width:\s*1599px|width\s*<=\s*1599px)\)[^@]*/s
       );
       expect(midRule[0]).toMatch(/!important/);
     });

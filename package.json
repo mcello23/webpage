@@ -5,8 +5,10 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "lint": "eslint . --ext .js",
-    "lint:fix": "eslint . --ext .js --fix",
+    "lint": "eslint . --ext .js,.html",
+    "lint:fix": "eslint . --ext .js,.html --fix",
+    "lint:css": "stylelint '**/*.css'",
+    "lint:css:fix": "stylelint '**/*.css' --fix",
     "format": "prettier --write '**/*.{js,html,css,json}'",
     "format:check": "prettier --check '**/*.{js,html,css,json}'"
   },
@@ -23,6 +25,8 @@
     "jest-environment-jsdom": "^30.2.0",
     "jsdom": "^27.0.1",
     "prettier": "^3.6.2",
-    "sharp": "^0.34.4"
+    "sharp": "^0.34.4",
+    "stylelint": "^16.25.0",
+    "stylelint-config-standard": "^39.0.1"
   }
 }
