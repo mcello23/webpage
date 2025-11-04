@@ -500,8 +500,9 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
       expect(cssContent).toMatch(/\.center-nav\.active\s*{[\s\S]*?z-index:\s*1200/);
     });
 
-    test('Mobile menu should appear directly below navbar (top: 80px)', () => {
-      expect(cssContent).toMatch(/\.center-nav\.active\s*{[\s\S]*?top:\s*80px/);
+    test('Mobile menu should appear directly below navbar at tablet breakpoint (top: 70px)', () => {
+      // At tablet/mobile breakpoint (≤991px), navbar is min-height: 70px
+      expect(cssContent).toMatch(/\.center-nav\.active\s*{[\s\S]*?top:\s*70px/);
     });
 
     test('Desktop nav items should be centered using absolute positioning', () => {

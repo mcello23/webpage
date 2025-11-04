@@ -1,6 +1,6 @@
 /* ========================================
    CENTRALIZED NAVBAR STYLES
-   VERSION: 12.1 - Fixed mobile menu positioning to align with navbar (80px)
+   VERSION: 12.2 - Fixed mobile menu positioning per breakpoint (70px tablet, 50px mobile)
    ======================================== */
 
 /* Make the mobile home button get the same tactile hover/focus effect as desktop nav buttons */
@@ -332,6 +332,12 @@ a[aria-label='discord-link']:hover {
     padding: 15px 20px;
   }
 
+  /* Adjust backdrop to match navbar height */
+  .mobile-menu-backdrop {
+    top: 70px;
+    height: calc(100vh - 70px);
+  }
+
   .brand-logo {
     font-size: 1rem;
     line-height: normal;
@@ -382,7 +388,7 @@ a[aria-label='discord-link']:hover {
     /* Floating overlay panel - full width */
     position: fixed;
     left: 0; /* Start at screen edge */
-    top: 80px; /* Directly below navbar (navbar height) */
+    top: 70px; /* Directly below navbar (min-height at tablet/mobile) */
     width: 100%; /* Full screen width */
     background: #00bfa5; /* Same teal as navbar */
     border-radius: 0; /* No border radius for full-width */
@@ -529,6 +535,12 @@ a[aria-label='discord-link']:hover {
     align-items: center; /* Center all items vertically with the toggle button */
   }
 
+  /* Adjust backdrop to match smaller mobile navbar height */
+  .mobile-menu-backdrop {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+
   /* Mobile menu toggle positioned top-left */
   .mobile-menu-toggle {
     display: block;
@@ -632,6 +644,8 @@ a[aria-label='discord-link']:hover {
 
   .center-nav.active {
     display: flex;
+    /* Adjust top position for smaller mobile navbar */
+    top: 50px; /* Match mobile navbar min-height */
   }
 
   .center-nav li {
