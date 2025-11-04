@@ -31,7 +31,7 @@
     />
     <link href="../../css/prism.css" rel="stylesheet" />
     <link
-      href="../../css/navbar.css?v=16"
+      href="../../css/navbar.css?v=18"
       type="text/css"
       rel="stylesheet"
       media="screen,projection"
@@ -263,9 +263,15 @@
       function toggleMobileMenu() {
         const menu = document.getElementById('mobileMenu');
         const toggle = document.querySelector('.mobile-menu-toggle');
+        const icon = toggle.querySelector('i');
         const expanded = toggle.getAttribute('aria-expanded') === 'true';
+
         menu.classList.toggle('active');
+        toggle.classList.toggle('active');
         toggle.setAttribute('aria-expanded', String(!expanded));
+
+        // Toggle icon between menu and close
+        icon.textContent = menu.classList.contains('active') ? 'close' : 'menu';
       }
     </script>
     <div style="margin-top: 80px"></div>
@@ -581,8 +587,11 @@
         <div id="certificateModal" class="cert-modal"></div>
       </div>
       <div
-        class="section"
-        style="padding: 60px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+        class="section fullwidth-cta"
+        style="
+          padding: 60px 0;
+          background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
+        "
       >
         <div class="container">
           <div class="row center">
@@ -598,7 +607,7 @@
                   rel="noopener noreferrer"
                   class="btn-large white teal-text waves-effect"
                   style="margin: 10px; border-radius: 25px"
-                  >Let's Connect</a
+                  ><i class="fab fa-linkedin left" aria-hidden="true"></i>Let's Connect</a
                 >
                 <a
                   href="https://calendly.com/marceloadsc/15min"

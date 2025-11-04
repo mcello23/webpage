@@ -150,8 +150,8 @@ describe('Booking Call Responsive Behavior', () => {
   });
 
   describe('Cache Busting Verification', () => {
-    test('index.html should have updated cache version to v16', () => {
-      expect(htmlContent).toContain('navbar.css?v=16');
+    test('index.html should have updated cache version to v16 or higher', () => {
+      expect(htmlContent).toMatch(/navbar\.css\?v=(1[6-9]|[2-9]\d)/);
     });
 
     test('should NOT have old cache version v15 or v14', () => {
@@ -370,12 +370,12 @@ describe('Booking Call Responsive Behavior', () => {
       sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj/index.html'), 'utf8');
     });
 
-    test('frameworks.html should have updated cache version v16', () => {
-      expect(frameworksHtml).toContain('navbar.css?v=16');
+    test('frameworks.html should have updated cache version v16 or higher', () => {
+      expect(frameworksHtml).toMatch(/navbar\.css\?v=(1[6-9]|[2-9]\d)/);
     });
 
-    test('side_proj.html should have updated cache version v16', () => {
-      expect(sideProjHtml).toContain('navbar.css?v=16');
+    test('side_proj.html should have updated cache version v16 or higher', () => {
+      expect(sideProjHtml).toMatch(/navbar\.css\?v=(1[6-9]|[2-9]\d)/);
     });
 
     test('frameworks.html should have booking call link', () => {

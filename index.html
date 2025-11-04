@@ -111,18 +111,10 @@
     <!-- CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="css/materialize.css" rel="stylesheet" media="screen,projection" />
-    <link
-      href="css/style.css"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='screen,projection'"
-    />
-    <link
-      href="css/navbar.css?v=16"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='screen,projection'"
-    />
+    <!-- Core styles (load immediately to ensure navbar + layout colors correct) -->
+    <link href="css/style.css" rel="stylesheet" media="screen,projection" />
+    <!-- Navbar stylesheet (loaded normally to avoid FOUC / timing issues on home page) -->
+    <link href="css/navbar.css?v=30" rel="stylesheet" media="screen,projection" />
     <link
       href="css/certificates.css"
       rel="stylesheet"
@@ -288,16 +280,6 @@
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
       }
-      /* Mobile menu */
-      .main-nav .mobile-menu-toggle {
-        background: transparent;
-        border: 0;
-        color: #fff;
-        cursor: pointer;
-      }
-      #mobileMenu.active {
-        display: block;
-      }
     </style>
     <base href="/webpage/" />
     <script>
@@ -349,11 +331,7 @@
         <!-- Center nav -->
         <ul class="center-nav" id="mobileMenu">
           <li class="mobile-home-link">
-            <a
-              href="/webpage/"
-              class="mobile-home-btn"
-              style="background: linear-gradient(135deg, #4db6ac, #26a69a)"
-            >
+            <a href="/webpage/" class="mobile-home-btn">
               <i class="material-icons" aria-hidden="true">home</i> Home
             </a>
           </li>
@@ -424,9 +402,19 @@
       function toggleMobileMenu() {
         const menu = document.getElementById('mobileMenu');
         const toggle = document.querySelector('.mobile-menu-toggle');
+        const icon = toggle.querySelector('i');
         const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        menu.classList.toggle('active');
-        toggle.setAttribute('aria-expanded', String(!expanded));
+
+        const nowOpen = !expanded;
+        menu.classList.toggle('active', nowOpen);
+        toggle.classList.toggle('active', nowOpen);
+        toggle.setAttribute('aria-expanded', String(nowOpen));
+
+        // Clean up any inline styles that may have been left from previous code
+        menu.removeAttribute('style');
+
+        // Toggle icon between menu and close
+        icon.textContent = nowOpen ? 'close' : 'menu';
       }
     </script>
 

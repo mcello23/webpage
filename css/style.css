@@ -7,6 +7,30 @@
  * Made By MaterializeCSS.com
  */
 
+/* ========================================
+   Global Design Tokens
+   Centralized brand colors now used by all pages (CTA gradients, nav, etc.)
+   ======================================== */
+:root {
+  --brand-1: #667eea; /* primary gradient start */
+  --brand-2: #764ba2; /* primary gradient end */
+}
+
+/* Ensure body has no unexpected margins that might visually clip full-width CTA sections */
+body {
+  margin: 0;
+}
+
+/* Utility: force a section to span full viewport width regardless of parent containers */
+.fullwidth-cta {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
 nav ul a,
 nav .house-logo {
   color: #444;

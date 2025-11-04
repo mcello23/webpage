@@ -1,3 +1,8 @@
+/* ========================================
+   CENTRALIZED NAVBAR STYLES
+   VERSION: 12.0 - Reverted to floating overlay menu design
+   ======================================== */
+
 /* Make the mobile home button get the same tactile hover/focus effect as desktop nav buttons */
 .mobile-home-btn {
   padding: 10px 24px;
@@ -58,6 +63,7 @@ html body nav.main-nav {
   align-items: center;
   height: 100%;
   position: relative;
+  background-color: #00bfa5; /* Teal navbar background */
 }
 
 .brand-logo {
@@ -297,6 +303,24 @@ a[aria-label='discord-link']:hover {
   display: none;
 }
 
+.mobile-menu-backdrop {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 80px);
+  background: rgb(0 0 0 / 25%);
+  z-index: 1090;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.mobile-menu-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
 @media screen and (width <= 991px) {
   .main-nav {
     height: auto;
@@ -355,17 +379,16 @@ a[aria-label='discord-link']:hover {
     display: flex;
     flex-direction: column;
 
-    /* Floating overlay panel - left aligned */
+    /* Floating overlay panel - full width */
     position: fixed;
-    left: 16px; /* Float on the left */
+    left: 0; /* Start at screen edge */
     top: 72px; /* slightly below navbar */
-    width: auto; /* Auto width for compact size */
-    max-width: 220px; /* Smaller max width */
-    background: rgb(255 255 255 / 98%);
-    border-radius: 12px;
-    padding: 10px 12px; /* Smaller padding */
+    width: 100%; /* Full screen width */
+    background: #00bfa5; /* Same teal as navbar */
+    border-radius: 0; /* No border radius for full-width */
+    padding: 12px 16px; /* Padding on sides */
     box-shadow: 0 18px 40px rgb(0 0 0 / 18%);
-    gap: 8px; /* Smaller gap between items */
+    gap: 8px; /* Gap between items */
     z-index: 1200;
   }
 
@@ -376,23 +399,29 @@ a[aria-label='discord-link']:hover {
     justify-content: flex-start; /* Left align */
   }
 
-  /* Compact buttons with smaller footprint */
+  /* Larger buttons with more presence */
   .center-nav.active a {
     width: 100%;
     display: inline-flex;
     align-items: center;
-    gap: 8px; /* Smaller gap */
-    padding: 8px 12px; /* Smaller padding */
+    gap: 12px; /* Larger gap between icon and text */
+    padding: 14px 18px; /* Larger padding */
     border-radius: 8px;
     text-decoration: none;
     color: #fff;
     justify-content: flex-start;
-    font-size: 0.85rem; /* Smaller text */
+    font-size: 1rem; /* Larger text */
+    font-weight: 600;
     transition:
       transform 0.18s ease,
       box-shadow 0.18s ease,
       background 0.18s ease,
       filter 0.18s ease;
+  }
+
+  /* Style the mobile home button with a distinctive color */
+  .center-nav.active .mobile-home-btn {
+    background: linear-gradient(135deg, #00bcd4, #0097a7) !important;
   }
 
   .center-nav.active a:hover {
@@ -402,8 +431,8 @@ a[aria-label='discord-link']:hover {
   }
 
   .center-nav.active a i {
-    margin-right: 6px; /* Smaller margin */
-    font-size: 16px; /* Smaller icons */
+    margin-right: 0; /* No extra margin, gap handles it */
+    font-size: 20px; /* Larger icons */
     color: rgb(255 255 255 / 95%);
   }
 
