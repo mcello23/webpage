@@ -644,6 +644,7 @@ a[aria-label='discord-link']:hover {
 
   .center-nav.active {
     display: flex;
+
     /* Adjust top position for smaller mobile navbar */
     top: 50px; /* Match mobile navbar min-height */
   }
