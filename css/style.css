@@ -149,6 +149,35 @@ a#download-button9 {
   margin: auto 6px; /* adds a 16px margin on both sides of the button */
 }
 
+/* ========================================
+   CTA BUTTON HOVER EFFECTS
+   Smooth transitions for call-to-action buttons
+   ======================================== */
+.btn-large.white.teal-text {
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.btn-large.white.teal-text:hover {
+  background-color: #00bfa5 !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 191, 165, 0.3), 0 6px 20px rgba(0, 191, 165, 0.2);
+}
+
+.btn-large.white.teal-text:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.btn-large.white.teal-text i {
+  transition: transform 0.3s ease;
+}
+
+.btn-large.white.teal-text:hover i {
+  transform: scale(1.1);
+}
+
 .parallax-container {
   min-height: 331px;
   line-height: 0px;
@@ -284,7 +313,8 @@ p#manual-tests {
 }
 .portfolio-hero .parallax {
   /* Pure CSS gradient as the hero 'image' (no external image file) */
-  background-image: linear-gradient(135deg, #26a69a 0%, #4db6ac 40%, #00796b 70%, #00251a 100%),
+  background-image:
+    linear-gradient(135deg, #26a69a 0%, #4db6ac 40%, #00796b 70%, #00251a 100%),
     radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0px, transparent 2px),
     radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.03) 0px, transparent 2px);
   background-size: cover;
@@ -348,7 +378,8 @@ p#manual-tests {
 .hero-playwright {
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(135deg, #21a0a0 0%, #1e8e8e 40%, #175e5e 70%),
+  background-image:
+    linear-gradient(135deg, #21a0a0 0%, #1e8e8e 40%, #175e5e 70%),
     radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0px, transparent 2px);
   background-size: cover;
   background-position: center;
@@ -371,14 +402,8 @@ p#manual-tests {
 .hero-playwright-alt {
   position: relative;
   overflow: hidden;
-  background-image: linear-gradient(
-      135deg,
-      #667eea 0%,
-      #764ba2 25%,
-      #f093fb 50%,
-      #4facfe 75%,
-      #00f2fe 100%
-    ),
+  background-image:
+    linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%),
     radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.05) 0px, transparent 3px),
     radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.04) 0px, transparent 2px);
   background-size: 200% 200%;
@@ -658,7 +683,6 @@ p#manual-tests {
   }
 }
 
-
 /* ========================================
    RESPONSIVE ENHANCEMENTS FOR MOBILE
    Works with Materialize, not against it
@@ -678,19 +702,19 @@ p#manual-tests {
     margin: 20px auto !important;
     max-width: 90%;
   }
-  
+
   .parallax-container {
     min-height: 200px;
   }
-  
+
   .intro-card {
     padding: 25px 20px !important;
   }
-  
+
   .intro-stats {
     flex-direction: column;
   }
-  
+
   .stat-item {
     width: 100% !important;
   }
@@ -710,7 +734,7 @@ p#manual-tests {
 
 /* Make sure row has proper clearfix */
 .row::after {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }

@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint . --ext .js",
-    "format": "prettier --write '**/*.{js,html,css,json}'"
+    "lint:fix": "eslint . --ext .js --fix",
+    "format": "prettier --write '**/*.{js,html,css,json}'",
+    "format:check": "prettier --check '**/*.{js,html,css,json}'"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",

@@ -18,7 +18,10 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
       path.join(__dirname, '../pages/frameworks/index.html'),
       'utf8'
     );
-    const sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj/index.html'), 'utf8');
+    const sideProjHtml = fs.readFileSync(
+      path.join(__dirname, '../pages/side_proj/index.html'),
+      'utf8'
+    );
 
     // Create JSDOM instances
     const indexDOM = new JSDOM(indexHtml);

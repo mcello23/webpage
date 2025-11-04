@@ -28,7 +28,10 @@
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   filter: brightness(1.05);
-  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
 }
 /* ========================================
    CENTRALIZED NAVBAR STYLES - Responsive Design
@@ -382,7 +385,10 @@ a[aria-label='discord-link']:hover {
     color: #fff;
     justify-content: flex-start;
     font-size: 0.85rem; /* Smaller text */
-    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease,
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      background 0.18s ease,
       filter 0.18s ease;
   }
 
@@ -410,7 +416,9 @@ a[aria-label='discord-link']:hover {
   .social-icon:hover {
     transform: scale(1.06);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
   }
 
   .center-nav li {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,8 +20,9 @@
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-          Cantarell, sans-serif;
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+          sans-serif;
         padding: 20px;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
@@ -198,7 +199,7 @@
     <script>
       (function () {
         try {
-          var path = (window.location && window.location.pathname) ? window.location.pathname : '';
+          var path = window.location && window.location.pathname ? window.location.pathname : '';
           var base = path.indexOf('/webpage/') === 0 ? '/webpage' : '';
           if (!base) return;
           var anchors = document.querySelectorAll('a[href^="/"]');
