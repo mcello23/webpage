@@ -155,19 +155,25 @@ a#download-button9 {
    ======================================== */
 .btn-large.white.teal-text {
   transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.16),
+    0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
 .btn-large.white.teal-text:hover {
   background-color: #00bfa5 !important;
   color: white !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 191, 165, 0.3), 0 6px 20px rgba(0, 191, 165, 0.2);
+  box-shadow:
+    0 4px 10px rgba(0, 191, 165, 0.3),
+    0 6px 20px rgba(0, 191, 165, 0.2);
 }
 
 .btn-large.white.teal-text:active {
   transform: translateY(0);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.16),
+    0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
 .btn-large.white.teal-text i {
