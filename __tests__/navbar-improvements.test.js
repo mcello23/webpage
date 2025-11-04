@@ -500,8 +500,8 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
       expect(cssContent).toMatch(/\.center-nav\.active\s*{[\s\S]*?z-index:\s*1200/);
     });
 
-    test('Mobile menu should appear below navbar (top: 72px)', () => {
-      expect(cssContent).toMatch(/\.center-nav\.active\s*{[\s\S]*?top:\s*72px/);
+    test('Mobile menu should appear directly below navbar (top: 80px)', () => {
+      expect(cssContent).toMatch(/\.center-nav\.active\s*{[\s\S]*?top:\s*80px/);
     });
 
     test('Desktop nav items should be centered using absolute positioning', () => {

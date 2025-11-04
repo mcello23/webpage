@@ -1,6 +1,6 @@
 /* ========================================
    CENTRALIZED NAVBAR STYLES
-   VERSION: 12.0 - Reverted to floating overlay menu design
+   VERSION: 12.1 - Fixed mobile menu positioning to align with navbar (80px)
    ======================================== */
 
 /* Make the mobile home button get the same tactile hover/focus effect as desktop nav buttons */
@@ -382,7 +382,7 @@ a[aria-label='discord-link']:hover {
     /* Floating overlay panel - full width */
     position: fixed;
     left: 0; /* Start at screen edge */
-    top: 72px; /* slightly below navbar */
+    top: 80px; /* Directly below navbar (navbar height) */
     width: 100%; /* Full screen width */
     background: #00bfa5; /* Same teal as navbar */
     border-radius: 0; /* No border radius for full-width */
