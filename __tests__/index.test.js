@@ -734,6 +734,184 @@ describe('Index Page (Main Portfolio)', () => {
       });
     });
 
+    test('XLSX article has correct title', () => {
+      const articlesSection = document.querySelector('#articles');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
+      const xlsxHeading = Array.from(articleHeadings).find((h) =>
+        h.textContent.includes('validate tables, rows or any content of an Excel file')
+      );
+      expect(xlsxHeading).toBeTruthy();
+      expect(xlsxHeading.textContent).toContain(
+        'How to validate tables, rows or any content of an Excel file using Cypress'
+      );
+    });
+
+    test('XLSX article has correct description', () => {
+      const content = document.body.textContent;
+      expect(content).toContain('Master Excel file validation in E2E tests');
+      expect(content).toContain('Learn to parse, validate, and assert');
+    });
+
+    test('XLSX article has correct link to Dev.to', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let xlsxCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="validate-a-content-of-an-xlsx-file"]');
+        if (link) {
+          xlsxCard = card;
+        }
+      });
+
+      expect(xlsxCard).toBeTruthy();
+      const link = xlsxCard.querySelector('a[href*="validate-a-content-of-an-xlsx-file"]');
+      expect(link).toBeTruthy();
+      expect(link.getAttribute('href')).toBe(
+        'https://dev.to/cypress/how-to-validate-a-content-of-an-xlsx-file-using-cypress-45da'
+      );
+      expect(link.getAttribute('target')).toBe('_blank');
+      expect(link.getAttribute('rel')).toBe('noopener noreferrer');
+    });
+
+    test('XLSX article has correct tags', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let xlsxCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="validate-a-content-of-an-xlsx-file"]');
+        if (link) {
+          xlsxCard = card;
+        }
+      });
+
+      expect(xlsxCard).toBeTruthy();
+      const tags = xlsxCard.querySelectorAll('.skill-tag');
+      const tagTexts = Array.from(tags).map((tag) => tag.textContent.trim());
+
+      expect(tagTexts).toContain('File Handling');
+      expect(tagTexts).toContain('XLSX');
+      expect(tagTexts).toContain('Cypress');
+      expect(tags.length).toBe(3);
+    });
+
+    test('XLSX article has insert_drive_file icon', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let xlsxCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="validate-a-content-of-an-xlsx-file"]');
+        if (link) {
+          xlsxCard = card;
+        }
+      });
+
+      expect(xlsxCard).toBeTruthy();
+      const icon = xlsxCard.querySelector('.card-image .material-icons');
+      expect(icon).toBeTruthy();
+      expect(icon.textContent).toContain('table_chart');
+    });
+
+    test('XLSX article has gradient card styling', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let xlsxCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="validate-a-content-of-an-xlsx-file"]');
+        if (link) {
+          xlsxCard = card;
+        }
+      });
+
+      expect(xlsxCard).toBeTruthy();
+      expect(xlsxCard.classList.contains('gradient-card')).toBe(true);
+      expect(xlsxCard.classList.contains('card')).toBe(true);
+    });
+
+    test('XLSX article has teal gradient background in card image', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let xlsxCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="validate-a-content-of-an-xlsx-file"]');
+        if (link) {
+          xlsxCard = card;
+        }
+      });
+
+      expect(xlsxCard).toBeTruthy();
+      const gradientDiv = xlsxCard.querySelector('.card-image div[style*="background"]');
+      expect(gradientDiv).toBeTruthy();
+      expect(gradientDiv.getAttribute('style')).toContain('linear-gradient');
+      expect(gradientDiv.getAttribute('style')).toContain('#26a69a');
+      expect(gradientDiv.getAttribute('style')).toContain('#00897b');
+    });
+
+    test('XLSX article has correct header text in card image', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let xlsxCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="validate-a-content-of-an-xlsx-file"]');
+        if (link) {
+          xlsxCard = card;
+        }
+      });
+
+      expect(xlsxCard).toBeTruthy();
+      const headerText = xlsxCard.querySelector('.card-image h5');
+      expect(headerText).toBeTruthy();
+      expect(headerText.textContent.trim()).toBe('Excel Validation');
+      expect(headerText.classList.contains('white-text')).toBe(true);
+    });
+
+    test('XLSX article button has Dev.to branding', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let xlsxCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="validate-a-content-of-an-xlsx-file"]');
+        if (link) {
+          xlsxCard = card;
+        }
+      });
+
+      expect(xlsxCard).toBeTruthy();
+      const button = xlsxCard.querySelector('.card-action a');
+      expect(button).toBeTruthy();
+      expect(button.textContent).toContain('Read on Dev.to');
+
+      const icon = button.querySelector('.fa-dev');
+      expect(icon).toBeTruthy();
+    });
+
+    test('XLSX article tags have correct gradient styling', () => {
+      const articlesSection = document.querySelector('#articles');
+      const cards = articlesSection.querySelectorAll('.gradient-card');
+
+      let xlsxCard = null;
+      cards.forEach((card) => {
+        const link = card.querySelector('a[href*="validate-a-content-of-an-xlsx-file"]');
+        if (link) {
+          xlsxCard = card;
+        }
+      });
+
+      expect(xlsxCard).toBeTruthy();
+      const tags = xlsxCard.querySelectorAll('.skill-tag');
+
+      tags.forEach((tag) => {
+        const style = tag.getAttribute('style');
+        expect(style).toContain('background: linear-gradient(135deg, #26a69a, #00897b)');
+      });
+    });
+
     test('More Articles Coming Soon card exists', () => {
       const articlesSection = document.querySelector('#articles');
       const cards = articlesSection.querySelectorAll('.gradient-card');
