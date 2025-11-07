@@ -139,7 +139,8 @@ class TestDashboard {
       `;
     } catch (error) {
       console.error('Error loading Jest results:', error);
-      const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const isDev =
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       container.innerHTML = `
         <div class="error-message">
           <i class="material-icons">error_outline</i>
@@ -213,7 +214,8 @@ class TestDashboard {
       `;
     } catch (error) {
       console.error('Error loading K6 results:', error);
-      const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const isDev =
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       container.innerHTML = `
         <div class="error-message">
           <i class="material-icons">error_outline</i>
