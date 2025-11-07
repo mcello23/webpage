@@ -9,6 +9,15 @@ Modern, performance‑oriented and accessibility‑aware portfolio highlighting 
 
 Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 
+## 🎯 Live Test Dashboard
+
+The webpage includes a **live test results dashboard** that displays:
+- ✅ **Jest Test Results**: 989 tests across 20 suites, success rate, pass/fail metrics
+- ⚡ **K6 Performance**: HTTP requests, average duration, P95 latency, checks passing
+- 🔄 **Auto-refresh**: Updates every 30 seconds with latest test data
+
+Test reports (Jest/K6 JSON files) are automatically generated and deployed via GitHub Actions. Coverage reports are generated locally/CI but not published to GitHub Pages.
+
 ## ✨ Highlights
 
 ### Core

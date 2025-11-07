@@ -9,6 +9,7 @@
     "test:k6": "./tests/k6/run-tests.sh",
     "test:puppeteer": "./tests/puppeteer/run-tests.sh",
     "test:all": "npm run test:jest && npm run test:k6 && npm run test:puppeteer",
+    "test:reports": "npm test -- --json --outputFile=tests/jest/reports/results-latest.json && cd tests/k6 && ./run-tests.sh && cd ../..",
     "lint": "eslint . --ext .js,.html",
     "lint:fix": "eslint . --ext .js,.html --fix",
     "lint:css": "stylelint '**/*.css'",

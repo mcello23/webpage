@@ -105,6 +105,42 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22.20.0'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install k6
+        run: |
+          curl -L https://github.com/grafana/k6/releases/download/v1.3.0/k6-v1.3.0-linux-amd64.tar.gz | tar xvz --strip-components=1 -C /tmp
+          sudo mv /tmp/k6 /usr/local/bin/k6
+          k6 version
+
+      - name: Generate Jest test reports
+        run: |
+          mkdir -p tests/jest/reports
+          npm test -- --json --outputFile=tests/jest/reports/results-latest.json || true
+          echo "Jest reports generated"
+
+      - name: Generate K6 performance reports
+        run: |
+          cd tests/k6
+          chmod +x run-tests.sh
+          ./run-tests.sh || true
+          cd ../..
+          echo "K6 reports generated"
+
+      - name: List generated reports
+        run: |
+          echo "=== Jest Reports ==="
+          ls -lah tests/jest/reports/ || echo "No Jest reports"
+          echo "=== K6 Reports ==="
+          ls -lah tests/k6/reports/ || echo "No K6 reports"
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -112,3 +148,4 @@ jobs:
           publish_dir: ./
           publish_branch: gh-pages
           force_orphan: true
+          exclude_assets: '.github,node_modules,.git,.vscode,coverage'

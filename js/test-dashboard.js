@@ -5,7 +5,7 @@
 
 class TestDashboard {
   constructor() {
-    this.jestDataPath = 'tests/jest/reports/results-20251107_204823.json';
+    this.jestDataPath = 'tests/jest/reports/results-latest.json';
     this.k6SummaryPath = 'tests/k6/reports/http-summary-20251107_204829.json';
     this.k6PerformancePath = 'tests/k6/reports/http-performance-20251107_204829.json';
     this.updateInterval = 30000; // 30 seconds
@@ -90,62 +90,60 @@ class TestDashboard {
     if (!container) return;
 
     try {
-      // For now, we'll use coverage data as the JSON results file appears to be corrupted
-      const response = await fetch('coverage/lcov.info');
-      const text = await response.text();
+      // Try to load Jest JSON results first
+      const response = await fetch(this.jestDataPath);
 
-      // Parse lcov info for basic stats
-      const lines = text.split('\n');
-      const testFiles = lines.filter((line) => line.startsWith('SF:')).length;
-      const linesFound = lines
-        .filter((line) => line.startsWith('LF:'))
-        .reduce((acc, line) => {
-          return acc + parseInt(line.split(':')[1]) || 0;
-        }, 0);
-      const linesHit = lines
-        .filter((line) => line.startsWith('LH:'))
-        .reduce((acc, line) => {
-          return acc + parseInt(line.split(':')[1]) || 0;
-        }, 0);
+      if (!response.ok) {
+        throw new Error('Jest results not found');
+      }
 
-      const coverage = linesFound > 0 ? ((linesHit / linesFound) * 100).toFixed(2) : 0;
+      const data = await response.json();
+
+      // Extract test summary from Jest JSON
+      const testsPassed = data.numPassedTests || 0;
+      const testsFailed = data.numFailedTests || 0;
+      const testsTotal = data.numTotalTests || 0;
+      const testSuites = data.numTotalTestSuites || 0;
+      const passRate = testsTotal > 0 ? ((testsPassed / testsTotal) * 100).toFixed(2) : 100;
 
       container.innerHTML = `
         <div class="test-stats">
           <div class="stat-item">
-            <span class="stat-value success">${testFiles}</span>
-            <span class="stat-label">Test Files</span>
+            <span class="stat-value success">${testSuites}</span>
+            <span class="stat-label">Test Suites</span>
           </div>
           <div class="stat-item">
-            <span class="stat-value">${linesFound}</span>
-            <span class="stat-label">Total Lines</span>
+            <span class="stat-value">${testsTotal}</span>
+            <span class="stat-label">Total Tests</span>
           </div>
           <div class="stat-item">
-            <span class="stat-value success">${linesHit}</span>
-            <span class="stat-label">Lines Covered</span>
+            <span class="stat-value success">${testsPassed}</span>
+            <span class="stat-label">Passed</span>
           </div>
-          <div class="stat-item coverage-stat">
-            <span class="stat-value ${coverage >= 80 ? 'success' : coverage >= 60 ? 'warning' : 'error'}">${coverage}%</span>
-            <span class="stat-label">Coverage</span>
+          <div class="stat-item">
+            <span class="stat-value ${testsFailed > 0 ? 'error' : 'success'}">${testsFailed}</span>
+            <span class="stat-label">Failed</span>
+          </div>
+        </div>
+        <div class="test-details">
+          <div class="detail-row">
+            <span class="detail-label">✓ Success Rate:</span>
+            <span class="detail-value ${passRate >= 95 ? 'success' : 'warning'}">${passRate}%</span>
           </div>
         </div>
         <div class="test-progress">
           <div class="progress-bar">
-            <div class="progress-fill success" style="width: ${coverage}%"></div>
+            <div class="progress-fill ${passRate >= 95 ? 'success' : passRate >= 80 ? 'warning' : 'error'}" style="width: ${passRate}%"></div>
           </div>
-        </div>
-        <div class="test-footer">
-          <a href="coverage/lcov-report/index.html" target="_blank" class="view-details-btn">
-            View Full Report <i class="material-icons">open_in_new</i>
-          </a>
         </div>
       `;
     } catch (error) {
+      console.error('Error loading Jest results:', error);
       container.innerHTML = `
         <div class="error-message">
           <i class="material-icons">error_outline</i>
           <p>Unable to load Jest results</p>
-          <small>${error.message}</small>
+          <small>Run tests to generate results: <code>npm test</code></small>
         </div>
       `;
     }
@@ -153,6 +151,7 @@ class TestDashboard {
 
   /**
    * Load K6 performance test results
+```
    */
   async loadK6Results() {
     const container = document.getElementById('k6-results');
