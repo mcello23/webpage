@@ -334,8 +334,20 @@ describe('Favicon Configuration - All HTML Pages', () => {
     });
 
     test('Android chrome icons are optimized', () => {
-      const icon192Path = path.resolve(__dirname, '..', '..', 'favicon', 'android-chrome-192x192.png');
-      const icon512Path = path.resolve(__dirname, '..', '..', 'favicon', 'android-chrome-512x512.png');
+      const icon192Path = path.resolve(
+        __dirname,
+        '..',
+        '..',
+        'favicon',
+        'android-chrome-192x192.png'
+      );
+      const icon512Path = path.resolve(
+        __dirname,
+        '..',
+        '..',
+        'favicon',
+        'android-chrome-512x512.png'
+      );
 
       const stats192 = fs.statSync(icon192Path);
       const stats512 = fs.statSync(icon512Path);

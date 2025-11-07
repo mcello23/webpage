@@ -16,6 +16,10 @@ module.exports = [
       'js/materialize.min.js',
       'js/prism.js',
       'coverage/**',
+      'tests/*/reports/**',
+      'tests/jest/reports/**',
+      'tests/k6/reports/**',
+      'tests/puppeteer/reports/**',
     ],
   },
   {

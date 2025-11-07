@@ -652,7 +652,10 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('frameworks.html should link to required CSS files', () => {
-      const html = fs.readFileSync(path.join(__dirname, '../../pages/frameworks/index.html'), 'utf8');
+      const html = fs.readFileSync(
+        path.join(__dirname, '../../pages/frameworks/index.html'),
+        'utf8'
+      );
 
       expect(html).toContain('../css/materialize.css');
       expect(html).toContain('../css/style.css');
@@ -661,7 +664,10 @@ describe('All Pages - Link Validation', () => {
     });
 
     test('side_proj.html should link to required CSS files', () => {
-      const html = fs.readFileSync(path.join(__dirname, '../../pages/side_proj/index.html'), 'utf8');
+      const html = fs.readFileSync(
+        path.join(__dirname, '../../pages/side_proj/index.html'),
+        'utf8'
+      );
 
       expect(html).toContain('../css/materialize.css');
       expect(html).toContain('../css/style.css');

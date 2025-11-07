@@ -367,7 +367,10 @@ describe('Booking Call Responsive Behavior', () => {
         path.join(__dirname, '../../pages/frameworks/index.html'),
         'utf8'
       );
-      sideProjHtml = fs.readFileSync(path.join(__dirname, '../../pages/side_proj/index.html'), 'utf8');
+      sideProjHtml = fs.readFileSync(
+        path.join(__dirname, '../../pages/side_proj/index.html'),
+        'utf8'
+      );
     });
 
     test('frameworks.html should have updated cache version v16 or higher', () => {
