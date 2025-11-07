@@ -21,8 +21,14 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
-  testMatch: ['**/__tests__/**/*.test.js'],
-  testPathIgnorePatterns: ['/node_modules/', '/coverage/', '/dist/'],
+  testMatch: ['**/tests/jest/**/*.test.js'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/coverage/',
+    '/dist/',
+    '/tests/k6/',
+    '/tests/puppeteer/',
+  ],
   coverageProvider: 'v8',
   collectCoverageFrom: [
     '**/*.js',

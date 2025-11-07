@@ -7,7 +7,7 @@ describe('Contact Form - Web3Forms Integration', () => {
   let document;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, '..', 'index.html');
+    const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     dom = new JSDOM(html);
     document = dom.window.document;
@@ -115,20 +115,20 @@ describe('Contact Form - Web3Forms Integration', () => {
     });
 
     test('sendCVRequest function is defined in HTML script tag', () => {
-      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
       const html = fs.readFileSync(htmlPath, 'utf8');
       expect(html).toContain('async function sendCVRequest');
     });
 
     test('sendCVRequest function accepts event parameter', () => {
-      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
       const html = fs.readFileSync(htmlPath, 'utf8');
       // Check for function signature with event parameter
       expect(html).toMatch(/async\s+function\s+sendCVRequest\s*\(\s*e\s*\)/);
     });
 
     test('sendCVRequest function calls preventDefault', () => {
-      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
       const html = fs.readFileSync(htmlPath, 'utf8');
       const scriptMatch = html.match(/async function sendCVRequest[\s\S]*?(?=<\/script>)/);
       expect(scriptMatch).toBeTruthy();
@@ -136,7 +136,7 @@ describe('Contact Form - Web3Forms Integration', () => {
     });
 
     test('sendCVRequest function makes fetch call to web3forms API', () => {
-      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
       const html = fs.readFileSync(htmlPath, 'utf8');
       const scriptMatch = html.match(/async function sendCVRequest[\s\S]*?(?=<\/script>)/);
       expect(scriptMatch).toBeTruthy();
@@ -145,7 +145,7 @@ describe('Contact Form - Web3Forms Integration', () => {
     });
 
     test('sendCVRequest function handles form validation', () => {
-      const htmlPath = path.resolve(__dirname, '..', 'index.html');
+      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
       const html = fs.readFileSync(htmlPath, 'utf8');
       const scriptMatch = html.match(/async function sendCVRequest[\s\S]*?(?=<\/script>)/);
       expect(scriptMatch).toBeTruthy();

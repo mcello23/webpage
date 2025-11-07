@@ -5,6 +5,10 @@
   "private": true,
   "scripts": {
     "test": "jest",
+    "test:jest": "./tests/jest/run-tests.sh",
+    "test:k6": "./tests/k6/run-tests.sh",
+    "test:puppeteer": "./tests/puppeteer/run-tests.sh",
+    "test:all": "npm run test:jest && npm run test:k6 && npm run test:puppeteer",
     "lint": "eslint . --ext .js,.html",
     "lint:fix": "eslint . --ext .js,.html --fix",
     "lint:css": "stylelint '**/*.css'",
@@ -25,6 +29,7 @@
     "jest-environment-jsdom": "^30.2.0",
     "jsdom": "^27.0.1",
     "prettier": "^3.6.2",
+    "puppeteer": "^24.29.1",
     "sharp": "^0.34.4",
     "stylelint": "^16.25.0",
     "stylelint-config-standard": "^39.0.1"

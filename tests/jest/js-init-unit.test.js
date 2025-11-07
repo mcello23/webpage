@@ -10,7 +10,7 @@ describe('init.js - Unit Tests', () => {
   let initCode;
 
   beforeAll(() => {
-    initCode = fs.readFileSync(path.join(__dirname, '../js/init.js'), 'utf8');
+    initCode = fs.readFileSync(path.join(__dirname, '../../js/init.js'), 'utf8');
   });
 
   describe('File Structure', () => {

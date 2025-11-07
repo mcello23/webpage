@@ -18,7 +18,7 @@ describe('Index Page (Main Portfolio)', () => {
   let document;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, '..', 'index.html');
+    const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     dom = new JSDOM(html);
     document = dom.window.document;
@@ -114,7 +114,7 @@ describe('Index Page (Main Portfolio)', () => {
     test('profile image file exists', () => {
       const fs = require('fs');
       const path = require('path');
-      const imgPath = path.resolve(__dirname, '..', 'images', 'assets', 'DSC_9554.jpg');
+      const imgPath = path.resolve(__dirname, '..', '..', 'images', 'assets', 'DSC_9554.jpg');
       expect(fs.existsSync(imgPath)).toBe(true);
     });
 
@@ -1091,7 +1091,7 @@ describe('Index Page (Main Portfolio)', () => {
       const path = require('path');
 
       // Check that certificate images folder exists
-      const imagesPath = path.resolve(__dirname, '..', 'images');
+      const imagesPath = path.resolve(__dirname, '..', '..', 'images');
       expect(fs.existsSync(imagesPath)).toBe(true);
 
       // Check for key certificate images
@@ -1119,7 +1119,7 @@ describe('Index Page (Main Portfolio)', () => {
       const fs = require('fs');
       const path = require('path');
 
-      const thumbsPath = path.resolve(__dirname, '..', 'images', 'thumbs');
+      const thumbsPath = path.resolve(__dirname, '..', '..', 'images', 'thumbs');
       expect(fs.existsSync(thumbsPath)).toBe(true);
 
       // Check for key thumbnail images (note: some have different casing)
@@ -1138,7 +1138,7 @@ describe('Index Page (Main Portfolio)', () => {
     test('certificates.js contains 16 certificates', () => {
       const fs = require('fs');
       const path = require('path');
-      const certJsPath = path.resolve(__dirname, '..', 'js', 'certificates.js');
+      const certJsPath = path.resolve(__dirname, '..', '..', 'js', 'certificates.js');
       const certJsContent = fs.readFileSync(certJsPath, 'utf8');
 
       // Count certificate objects (id: 1 through id: 16)
@@ -1150,7 +1150,7 @@ describe('Index Page (Main Portfolio)', () => {
     test('certificates.js has path detection for subfolder support', () => {
       const fs = require('fs');
       const path = require('path');
-      const certJsPath = path.resolve(__dirname, '..', 'js', 'certificates.js');
+      const certJsPath = path.resolve(__dirname, '..', '..', 'js', 'certificates.js');
       const certJsContent = fs.readFileSync(certJsPath, 'utf8');
 
       // Verify path detection function

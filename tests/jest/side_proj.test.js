@@ -18,7 +18,7 @@ describe('Side Projects Page', () => {
   let document;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, '..', 'pages', 'side_proj', 'index.html');
+    const htmlPath = path.resolve(__dirname, '..', '..', 'pages', 'side_proj', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     dom = new JSDOM(html);
     document = dom.window.document;

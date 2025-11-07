@@ -15,7 +15,7 @@ describe('Favicon Configuration - All HTML Pages', () => {
 
   beforeAll(() => {
     htmlFiles.forEach((htmlFile) => {
-      const htmlPath = path.resolve(__dirname, '..', htmlFile);
+      const htmlPath = path.resolve(__dirname, '..', '..', htmlFile);
       const html = fs.readFileSync(htmlPath, 'utf8');
       const dom = new JSDOM(html);
       documents[htmlFile] = {
@@ -174,7 +174,7 @@ describe('Favicon Configuration - All HTML Pages', () => {
           expect(body).toBeTruthy();
 
           // Ensure head is closed before body starts
-          const htmlString = fs.readFileSync(path.resolve(__dirname, '..', htmlFile), 'utf8');
+          const htmlString = fs.readFileSync(path.resolve(__dirname, '..', '..', htmlFile), 'utf8');
           expect(htmlString).toMatch(/<\/head>\s*<body/i);
         });
 
@@ -202,7 +202,7 @@ describe('Favicon Configuration - All HTML Pages', () => {
     let manifest;
 
     beforeAll(() => {
-      const manifestPath = path.resolve(__dirname, '..', 'favicon', 'site.webmanifest');
+      const manifestPath = path.resolve(__dirname, '..', '..', 'favicon', 'site.webmanifest');
       const manifestContent = fs.readFileSync(manifestPath, 'utf8');
       manifest = JSON.parse(manifestContent);
     });
@@ -276,13 +276,13 @@ describe('Favicon Configuration - All HTML Pages', () => {
 
     faviconFiles.forEach((file) => {
       test(`${file} exists`, () => {
-        const filePath = path.resolve(__dirname, '..', file);
+        const filePath = path.resolve(__dirname, '..', '..', file);
         expect(fs.existsSync(filePath)).toBe(true);
       });
 
       if (file.endsWith('.png')) {
         test(`${file} is a valid PNG file`, () => {
-          const filePath = path.resolve(__dirname, '..', file);
+          const filePath = path.resolve(__dirname, '..', '..', file);
           const fileBuffer = fs.readFileSync(filePath);
 
           // PNG files start with these magic bytes
@@ -295,7 +295,7 @@ describe('Favicon Configuration - All HTML Pages', () => {
 
       if (file.endsWith('.svg')) {
         test(`${file} is a valid SVG file`, () => {
-          const filePath = path.resolve(__dirname, '..', file);
+          const filePath = path.resolve(__dirname, '..', '..', file);
           const content = fs.readFileSync(filePath, 'utf8');
 
           expect(content).toMatch(/<svg/i);
@@ -305,7 +305,7 @@ describe('Favicon Configuration - All HTML Pages', () => {
 
       if (file.endsWith('.webmanifest')) {
         test(`${file} is valid JSON`, () => {
-          const filePath = path.resolve(__dirname, '..', file);
+          const filePath = path.resolve(__dirname, '..', '..', file);
           const content = fs.readFileSync(filePath, 'utf8');
 
           expect(() => JSON.parse(content)).not.toThrow();
@@ -316,26 +316,26 @@ describe('Favicon Configuration - All HTML Pages', () => {
 
   describe('Favicon File Sizes (Optimization)', () => {
     test('16x16 PNG is reasonably small (< 1KB)', () => {
-      const filePath = path.resolve(__dirname, '..', 'favicon', 'favicon-16x16.png');
+      const filePath = path.resolve(__dirname, '..', '..', 'favicon', 'favicon-16x16.png');
       const stats = fs.statSync(filePath);
       expect(stats.size).toBeLessThan(1024); // Less than 1KB
     });
 
     test('32x32 PNG is reasonably small (< 2KB)', () => {
-      const filePath = path.resolve(__dirname, '..', 'favicon', 'favicon-32x32.png');
+      const filePath = path.resolve(__dirname, '..', '..', 'favicon', 'favicon-32x32.png');
       const stats = fs.statSync(filePath);
       expect(stats.size).toBeLessThan(2048); // Less than 2KB
     });
 
     test('Apple touch icon exists and is not too large (< 10KB)', () => {
-      const filePath = path.resolve(__dirname, '..', 'favicon', 'apple-touch-icon.png');
+      const filePath = path.resolve(__dirname, '..', '..', 'favicon', 'apple-touch-icon.png');
       const stats = fs.statSync(filePath);
       expect(stats.size).toBeLessThan(10240); // Less than 10KB
     });
 
     test('Android chrome icons are optimized', () => {
-      const icon192Path = path.resolve(__dirname, '..', 'favicon', 'android-chrome-192x192.png');
-      const icon512Path = path.resolve(__dirname, '..', 'favicon', 'android-chrome-512x512.png');
+      const icon192Path = path.resolve(__dirname, '..', '..', 'favicon', 'android-chrome-192x192.png');
+      const icon512Path = path.resolve(__dirname, '..', '..', 'favicon', 'android-chrome-512x512.png');
 
       const stats192 = fs.statSync(icon192Path);
       const stats512 = fs.statSync(icon512Path);
@@ -349,7 +349,7 @@ describe('Favicon Configuration - All HTML Pages', () => {
     let svgContent;
 
     beforeAll(() => {
-      const svgPath = path.resolve(__dirname, '..', 'favicon.svg');
+      const svgPath = path.resolve(__dirname, '..', '..', 'favicon.svg');
       svgContent = fs.readFileSync(svgPath, 'utf8');
     });
 

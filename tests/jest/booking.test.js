@@ -5,7 +5,7 @@ describe('Calendly Booking Functionality', () => {
   let htmlContent;
 
   beforeAll(() => {
-    const htmlPath = path.join(__dirname, '../index.html');
+    const htmlPath = path.join(__dirname, '../../index.html');
     htmlContent = fs.readFileSync(htmlPath, 'utf8');
   });
 

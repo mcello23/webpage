@@ -25,7 +25,7 @@ describe('Gradient Colors and Styling', () => {
   let html;
 
   beforeAll(() => {
-    const htmlPath = path.resolve(__dirname, '..', 'index.html');
+    const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
     html = fs.readFileSync(htmlPath, 'utf8');
     dom = new JSDOM(html);
     document = dom.window.document;

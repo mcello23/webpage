@@ -13,13 +13,13 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
   beforeAll(() => {
     // Load all HTML pages
-    const indexHtml = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+    const indexHtml = fs.readFileSync(path.join(__dirname, '../../index.html'), 'utf8');
     const frameworksHtml = fs.readFileSync(
-      path.join(__dirname, '../pages/frameworks/index.html'),
+      path.join(__dirname, '../../pages/frameworks/index.html'),
       'utf8'
     );
     const sideProjHtml = fs.readFileSync(
-      path.join(__dirname, '../pages/side_proj/index.html'),
+      path.join(__dirname, '../../pages/side_proj/index.html'),
       'utf8'
     );
 
@@ -37,7 +37,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     sideProjWindow = sideProjDOM.window;
 
     // Load CSS for computed styles
-    const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+    const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
     // Apply CSS to all documents
     [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
@@ -111,7 +111,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
   describe('Mobile Menu Improved Design', () => {
     test('CSS should define full-width mobile menu with improved spacing', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Check for full-width positioning (either width: 100vw or width: 100%)
       expect(cssContent).toMatch(/\.center-nav\.active\s*{[\s\S]*?(?:width:\s*100(?:vw|%))?/);
@@ -124,7 +124,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     });
 
     test('CSS should define properly sized icons (20px or larger) in mobile menu', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Check for 20px or larger icon size in active mobile menu
       expect(cssContent).toMatch(
@@ -133,14 +133,14 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     });
 
     test('CSS should define readable text (1rem or larger) in mobile menu', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Check for 1rem or larger font size in active mobile menu links (1rem, 1.1rem, etc)
       expect(cssContent).toMatch(/\.center-nav\.active\s+a\s*{[\s\S]*?font-size:\s*1(\.\d+)?rem/);
     });
 
     test('CSS should define white text and icons for mobile menu buttons', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Check for white text
       expect(cssContent).toMatch(/\.center-nav\.active\s+a\s*{[\s\S]*?color:\s*#fff/);
@@ -180,7 +180,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     );
 
     test('CSS should define cyan gradient for mobile home button', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Check that mobile-home-btn has a cyan gradient background
       expect(cssContent).toMatch(
@@ -193,7 +193,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
   describe('Alignment Tests - CTA & Icons', () => {
     test('CSS should align social nav items with flexbox center', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Check that social-nav uses align-items: center
       expect(cssContent).toMatch(/\.social-nav\s*{[\s\S]*?align-items:\s*center/);
@@ -205,7 +205,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     });
 
     test('CSS should NOT use transform translateY for alignment on tablet/mobile', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Extract tablet breakpoint section (max-width: 991px)
       const tabletSection = cssContent.match(
@@ -230,7 +230,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     });
 
     test('CSS desktop should NOT use excessive translateY for CTA', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Check desktop media query
       const desktopSection = cssContent.match(
@@ -272,7 +272,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
   describe('Responsive Behavior', () => {
     test('CSS should have proper breakpoints for navbar', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Desktop breakpoint (min-width: 992px)
       expect(cssContent).toMatch(
@@ -296,7 +296,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     });
 
     test('CSS should hide brand on mobile devices', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Check mobile section hides brand
       const mobileSection = cssContent.match(
@@ -311,7 +311,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     });
 
     test('CSS should show mobile home link on mobile', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Mobile home link should be hidden by default
       expect(cssContent).toMatch(/\.mobile-home-link\s*{[\s\S]*?display:\s*none/);
@@ -328,7 +328,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     });
 
     test('CSS should hide CTA text on tablet/mobile', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
       // Check tablet breakpoint
       const tabletSection = cssContent.match(
@@ -387,7 +387,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     let cssContent;
 
     beforeAll(() => {
-      cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
     });
 
     test('Navbar should have teal background (#00bfa5)', () => {
@@ -476,7 +476,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     let cssContent;
 
     beforeAll(() => {
-      cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
     });
 
     test('Navbar should be fixed at top with proper z-index', () => {
@@ -534,7 +534,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     let cssContent;
 
     beforeAll(() => {
-      cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
     });
 
     test('Desktop nav should have proper gap between items (72px)', () => {
@@ -577,7 +577,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     let cssContent;
 
     beforeAll(() => {
-      cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
     });
 
     test('Navbar should have box shadow for depth', () => {
@@ -633,7 +633,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     let cssContent;
 
     beforeAll(() => {
-      cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
     });
 
     test('Brand logo should have proper font size', () => {
@@ -672,7 +672,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     let cssContent;
 
     beforeAll(() => {
-      cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
     });
 
     test('Mobile toggle should be hidden on desktop', () => {
@@ -748,7 +748,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     let cssContent;
 
     beforeAll(() => {
-      cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
     });
 
     test('Nav wrapper should use flexbox with proper properties', () => {
@@ -792,7 +792,7 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     let cssContent;
 
     beforeAll(() => {
-      cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+      cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
     });
 
     test('Buttons should prevent text wrapping', () => {

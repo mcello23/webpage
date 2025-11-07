@@ -10,7 +10,7 @@ describe('certificates.js - Unit Tests', () => {
   let certCode;
 
   beforeAll(() => {
-    certCode = fs.readFileSync(path.join(__dirname, '../js/certificates.js'), 'utf8');
+    certCode = fs.readFileSync(path.join(__dirname, '../../js/certificates.js'), 'utf8');
   });
 
   describe('File Structure and Exports', () => {

@@ -35,7 +35,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -59,7 +59,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -80,7 +80,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -101,7 +101,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -130,7 +130,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -156,7 +156,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -184,7 +184,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -209,7 +209,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -231,7 +231,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -249,7 +249,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -269,7 +269,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -291,7 +291,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 
@@ -314,7 +314,7 @@ describe('Cookie Consent System', () => {
       const fs = require('fs');
       const path = require('path');
       const scriptContent = fs.readFileSync(
-        path.join(__dirname, '../js/cookie-consent.js'),
+        path.join(__dirname, '../../js/cookie-consent.js'),
         'utf8'
       );
 

@@ -7,13 +7,13 @@ describe('Cross-Page Consistency Tests', () => {
   let indexDoc, frameworksDoc, sideProjDoc;
 
   beforeAll(() => {
-    const indexHtml = fs.readFileSync(path.resolve(__dirname, '..', 'index.html'), 'utf8');
+    const indexHtml = fs.readFileSync(path.resolve(__dirname, '..', '..', 'index.html'), 'utf8');
     const frameworksHtml = fs.readFileSync(
-      path.resolve(__dirname, '..', 'pages', 'frameworks', 'index.html'),
+      path.resolve(__dirname, '..', '..', 'pages', 'frameworks', 'index.html'),
       'utf8'
     );
     const sideProjHtml = fs.readFileSync(
-      path.resolve(__dirname, '..', 'pages', 'side_proj', 'index.html'),
+      path.resolve(__dirname, '..', '..', 'pages', 'side_proj', 'index.html'),
       'utf8'
     );
 
@@ -213,8 +213,8 @@ describe('Cross-Page Consistency Tests', () => {
       const fs = require('fs');
       const path = require('path');
 
-      const imagesPath = path.resolve(__dirname, '..', 'images');
-      const thumbsPath = path.resolve(__dirname, '..', 'images', 'thumbs');
+      const imagesPath = path.resolve(__dirname, '..', '..', 'images');
+      const thumbsPath = path.resolve(__dirname, '..', '..', 'images', 'thumbs');
 
       expect(fs.existsSync(imagesPath)).toBe(true);
       expect(fs.existsSync(thumbsPath)).toBe(true);
@@ -231,7 +231,7 @@ describe('Cross-Page Consistency Tests', () => {
     test('certificates.js includes path detection for subfolders', () => {
       const fs = require('fs');
       const path = require('path');
-      const certJsPath = path.resolve(__dirname, '..', 'js', 'certificates.js');
+      const certJsPath = path.resolve(__dirname, '..', '..', 'js', 'certificates.js');
       const certJsContent = fs.readFileSync(certJsPath, 'utf8');
 
       // Verify the path detection function exists

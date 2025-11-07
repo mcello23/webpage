@@ -18,8 +18,8 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
   let cssContent;
 
   beforeAll(() => {
-    const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
-    cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+    const html = fs.readFileSync(path.join(__dirname, '../../index.html'), 'utf8');
+    cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
 
     dom = new JSDOM(html, {
       url: 'http://localhost',

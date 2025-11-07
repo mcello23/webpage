@@ -396,3 +396,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Puppeteer, Jest, and K6 test reports
+tests/jest/reports/
+tests/k6/reports/
+tests/puppeteer/reports/

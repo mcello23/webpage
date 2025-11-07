@@ -15,8 +15,8 @@ describe('Booking Call Responsive Behavior', () => {
   let htmlContent;
 
   beforeAll(() => {
-    htmlContent = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
-    cssContent = fs.readFileSync(path.join(__dirname, '../css/navbar.css'), 'utf8');
+    htmlContent = fs.readFileSync(path.join(__dirname, '../../index.html'), 'utf8');
+    cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
   });
 
   describe('HTML Structure Verification', () => {
@@ -364,10 +364,10 @@ describe('Booking Call Responsive Behavior', () => {
 
     beforeAll(() => {
       frameworksHtml = fs.readFileSync(
-        path.join(__dirname, '../pages/frameworks/index.html'),
+        path.join(__dirname, '../../pages/frameworks/index.html'),
         'utf8'
       );
-      sideProjHtml = fs.readFileSync(path.join(__dirname, '../pages/side_proj/index.html'), 'utf8');
+      sideProjHtml = fs.readFileSync(path.join(__dirname, '../../pages/side_proj/index.html'), 'utf8');
     });
 
     test('frameworks.html should have updated cache version v16 or higher', () => {

@@ -7,8 +7,8 @@ describe('Performance Optimizations', () => {
 
   beforeAll(() => {
     // Load all files once at the start
-    const html = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
-    css = fs.readFileSync(path.join(__dirname, '../css/materialize.css'), 'utf8');
+    const html = fs.readFileSync(path.join(__dirname, '../../index.html'), 'utf8');
+    css = fs.readFileSync(path.join(__dirname, '../../css/materialize.css'), 'utf8');
     $ = cheerio.load(html);
   });
 
