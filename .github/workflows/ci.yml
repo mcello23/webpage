@@ -138,9 +138,25 @@ jobs:
         run: |
           echo "=== Jest Reports ==="
           ls -lah tests/jest/reports/ || echo "No Jest reports"
+          if [ -f tests/jest/reports/results-latest.json ]; then
+            echo "Jest results file size:"
+            wc -c tests/jest/reports/results-latest.json
+            echo "First 200 chars:"
+            head -c 200 tests/jest/reports/results-latest.json
+          fi
+          echo ""
           echo "=== K6 Reports ==="
           ls -lah tests/k6/reports/ || echo "No K6 reports"
+          if [ -f tests/k6/reports/http-summary-*.json ]; then
+            echo "K6 summary exists"
+          fi
 
+      - name: Prepare deployment with test reports
+        run: |
+          # Remove .gitignore temporarily so peaceiris/actions-gh-pages includes test reports
+          mv .gitignore .gitignore.bak
+          echo "Removed .gitignore for deployment"
+          
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -148,4 +164,10 @@ jobs:
           publish_dir: ./
           publish_branch: gh-pages
           force_orphan: true
-          exclude_assets: '.github,node_modules,.git,.vscode,coverage'
+          exclude_assets: '.github,node_modules,.git,.vscode,.gitignore.bak'
+
+      - name: Restore .gitignore
+        if: always()
+        run: |
+          mv .gitignore.bak .gitignore || true
+          echo ".gitignore restored"

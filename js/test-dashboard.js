@@ -139,11 +139,12 @@ class TestDashboard {
       `;
     } catch (error) {
       console.error('Error loading Jest results:', error);
+      const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       container.innerHTML = `
         <div class="error-message">
           <i class="material-icons">error_outline</i>
           <p>Unable to load Jest results</p>
-          <small>Run tests to generate results: <code>npm test</code></small>
+          <small>${isDev ? 'Run: <code>npm run test:reports</code>' : 'Reports are being generated... Please wait for CI/CD to complete.'}</small>
         </div>
       `;
     }
@@ -211,11 +212,13 @@ class TestDashboard {
         </div>
       `;
     } catch (error) {
+      console.error('Error loading K6 results:', error);
+      const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       container.innerHTML = `
         <div class="error-message">
           <i class="material-icons">error_outline</i>
           <p>Unable to load K6 results</p>
-          <small>${error.message}</small>
+          <small>${isDev ? 'Run: <code>npm run test:reports</code>' : 'Reports are being generated... Please wait for CI/CD to complete.'}</small>
         </div>
       `;
     }
