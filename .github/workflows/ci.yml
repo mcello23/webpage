@@ -151,23 +151,23 @@ jobs:
             echo "K6 summary exists"
           fi
 
-      - name: Prepare deployment with test reports
+      - name: Prepare deployment directory
         run: |
-          # Remove .gitignore temporarily so peaceiris/actions-gh-pages includes test reports
-          mv .gitignore .gitignore.bak
-          echo "Removed .gitignore for deployment"
+          # Create a clean deployment directory
+          mkdir -p deploy_temp
+          
+          # Copy all necessary files (respecting structure but not .gitignore)
+          rsync -av --exclude='.git' --exclude='node_modules' --exclude='.github' --exclude='deploy_temp' ./ deploy_temp/
+          
+          # Verify test reports are included
+          echo "=== Verifying deploy_temp contents ==="
+          ls -lah deploy_temp/tests/jest/reports/ || echo "No Jest reports in deploy_temp"
+          ls -lah deploy_temp/tests/k6/reports/ || echo "No K6 reports in deploy_temp"
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./deploy_temp
           publish_branch: gh-pages
           force_orphan: true
-          exclude_assets: '.github,node_modules,.git,.vscode,.gitignore.bak'
-
-      - name: Restore .gitignore
-        if: always()
-        run: |
-          mv .gitignore.bak .gitignore || true
-          echo ".gitignore restored"
