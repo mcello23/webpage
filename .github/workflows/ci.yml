@@ -76,9 +76,8 @@ jobs:
 
       - name: Run k6 performance tests
         run: |
-          cd tests/k6
-          chmod +x run-tests.sh
-          ./run-tests.sh || true
+          chmod +x tests/k6/run-tests.sh
+          ./tests/k6/run-tests.sh || true
 
       - name: Upload Jest reports as artifact
         if: always()
@@ -110,6 +109,11 @@ jobs:
     needs: [test]
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     timeout-minutes: 10
+    
+    # Required for GitHub Pages deployment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout code
@@ -236,8 +240,8 @@ jobs:
             K6_JSON='{"metrics":{"http_reqs":{"count":0},"http_req_duration":{"avg":0,"p(95)":0},"checks":{"passes":0,"fails":0}}}'
           fi
 
-          # Emit the payload the dashboard loads (as .txt so Pages serves it)
-          cat > deploy_temp/test-data.txt <<'EOF'
+          # Emit the payload the dashboard loads (as .js file)
+          cat > deploy_temp/test-data.js <<'EOF'
           // Auto-generated test results data
           if (typeof window !== 'undefined') {
             window.TEST_RESULTS = {};
@@ -248,46 +252,29 @@ jobs:
             echo "window.TEST_RESULTS.jest = $JEST_JSON;"
             echo "window.TEST_RESULTS.k6 = $K6_JSON;"
             echo "window.TEST_RESULTS.generatedAt = '$(date -u +%Y-%m-%dT%H:%M:%SZ)';"
-          } >> deploy_temp/test-data.txt
+          } >> deploy_temp/test-data.js
 
-          echo "✓ Emitted deploy_temp/test-data.txt"
+          echo "✓ Emitted deploy_temp/test-data.js"
           echo "File size:"
-          wc -c deploy_temp/test-data.txt
+          wc -c deploy_temp/test-data.js
           echo "First 400 chars:"
-          head -c 400 deploy_temp/test-data.txt
+          head -c 400 deploy_temp/test-data.js
+          
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./deploy_temp
           
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./deploy_temp
-          publish_branch: gh-pages
-          force_orphan: true
-          cname: false
+        id: deployment
+        uses: actions/deploy-pages@v4
           
-      - name: Trigger Pages rebuild
+      - name: Verify deployment
         run: |
-          echo "Waiting for Pages to process deployment..."
-          sleep 5
-          echo "✓ Deployment complete. GitHub Pages may take 1-2 minutes to serve updated files."
-          echo "📊 Test dashboard available at: https://mcello23.github.io/webpage/"
+          echo "✓ Deployment complete!"
+          echo "📊 Test dashboard available at: ${{ steps.deployment.outputs.page_url }}"
           echo ""
           echo "🔍 Test data file:"
-          echo "   - https://mcello23.github.io/webpage/test-data.txt"
+          echo "   - ${{ steps.deployment.outputs.page_url }}test-data.js"
           echo ""
-          echo "💡 If file returns 404, wait 2-5 minutes for CDN propagation"
-          
-      - name: Verify test-data.txt deployment
-        run: |
-          echo "Verifying test-data.txt is in gh-pages branch..."
-          sleep 10
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://raw.githubusercontent.com/${{ github.repository }}/gh-pages/test-data.txt")
-          if [ "$STATUS" = "200" ]; then
-            echo "✓ test-data.txt found in gh-pages branch"
-            curl -s "https://raw.githubusercontent.com/${{ github.repository }}/gh-pages/test-data.txt" | head -c 300
-            echo ""
-          else
-            echo "⚠ test-data.txt returned HTTP $STATUS (may need CDN propagation time)"
-          fi
-          echo ""
-          echo "⏳ Note: GitHub Pages CDN may take 1-10 minutes to serve at mcello23.github.io"
+          echo "💡 GitHub Pages may take 1-2 minutes to propagate changes"

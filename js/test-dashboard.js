@@ -5,8 +5,8 @@
 
 class TestDashboard {
   constructor() {
-    // Use .txt file with JavaScript inside (GitHub Pages serves .txt reliably)
-    this.dataScriptPath = 'test-data.txt';
+    // Use .js file for test data (proper MIME type, better semantics)
+    this.dataScriptPath = 'test-data.js';
     this.updateInterval = 30000; // 30 seconds
     this.dashboardElement = null;
     this.dataLoaded = false;
