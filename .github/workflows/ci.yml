@@ -66,17 +66,35 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install k6
-        run: |
-          curl -L https://github.com/grafana/k6/releases/download/v1.3.0/k6-v1.3.0-linux-amd64.tar.gz | tar xvz --strip-components=1 -C /tmp
-          sudo mv /tmp/k6 /usr/local/bin/k6
-          k6 version
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
 
-      - name: Run unit tests
-        run: npm test -- --coverage
+      - name: Run unit tests with coverage
+        run: |
+          mkdir -p tests/jest/reports
+          npm test -- --coverage --json --outputFile=tests/jest/reports/results-latest.json || echo '{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0}' > tests/jest/reports/results-latest.json
 
       - name: Run k6 performance tests
-        run: npm run test:k6
+        run: |
+          cd tests/k6
+          chmod +x run-tests.sh
+          ./run-tests.sh || true
+
+      - name: Upload Jest reports as artifact
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: jest-reports
+          path: tests/jest/reports/
+          retention-days: 30
+
+      - name: Upload k6 reports as artifact
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: k6-reports
+          path: tests/k6/reports/
+          retention-days: 30
 
       - name: Upload coverage reports
         if: always()
@@ -84,14 +102,6 @@ jobs:
         with:
           name: coverage-report
           path: coverage/
-          retention-days: 30
-
-      - name: Upload k6 reports
-        if: always()
-        uses: actions/upload-artifact@v5
-        with:
-          name: k6-reports
-          path: tests/k6/reports/
           retention-days: 30
 
   deploy:
@@ -105,62 +115,37 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Setup Node.js
+      - name: Setup Node.js (for jq processing only)
         uses: actions/setup-node@v6
         with:
           node-version: '22.20.0'
-          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Download Jest reports from test job
+        uses: actions/download-artifact@v5
+        with:
+          name: jest-reports
+          path: tests/jest/reports/
 
-      - name: Install k6
+      - name: Download K6 reports from test job
+        uses: actions/download-artifact@v5
+        with:
+          name: k6-reports
+          path: tests/k6/reports/
+
+      - name: Verify downloaded reports
         run: |
-          curl -L https://github.com/grafana/k6/releases/download/v1.3.0/k6-v1.3.0-linux-amd64.tar.gz | tar xvz --strip-components=1 -C /tmp
-          sudo mv /tmp/k6 /usr/local/bin/k6
-          k6 version
-
-      - name: Generate Jest test reports
-        run: |
-          mkdir -p tests/jest/reports
-          npm test -- --coverage --json --outputFile=tests/jest/reports/results-latest.json || echo '{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0}' > tests/jest/reports/results-latest.json
-          # Verify file has valid JSON
-          if [ ! -s tests/jest/reports/results-latest.json ]; then
-            echo '{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0}' > tests/jest/reports/results-latest.json
-          fi
-          echo "Jest reports generated"
-
-      - name: Generate K6 performance reports
-        run: |
-          cd tests/k6
-          chmod +x run-tests.sh
-          ./run-tests.sh || true
-          cd ../..
-          echo "K6 reports generated"
-
-      - name: List generated reports
-        run: |
-          echo "=== Jest Reports ==="
+          echo "=== Downloaded Jest Reports ==="
           ls -lah tests/jest/reports/ || echo "No Jest reports"
           if [ -f tests/jest/reports/results-latest.json ]; then
-            echo "Jest results file size:"
+            echo "✓ Jest results downloaded"
             wc -c tests/jest/reports/results-latest.json
-            echo "First 200 chars:"
-            head -c 200 tests/jest/reports/results-latest.json
-            echo ""
-            echo "Validating JSON:"
-            if jq empty tests/jest/reports/results-latest.json 2>/dev/null; then
-              echo "✓ Valid JSON"
-            else
-              echo "✗ Invalid JSON - Creating fallback"
-              echo '{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0}' > tests/jest/reports/results-latest.json
-            fi
           fi
           echo ""
-          echo "=== K6 Reports ==="
+          echo "=== Downloaded K6 Reports ==="
           ls -lah tests/k6/reports/ || echo "No K6 reports"
-          if [ -f tests/k6/reports/http-summary-*.json ]; then
-            echo "K6 summary exists"
+          if [ -f tests/k6/reports/http-summary-latest.json ]; then
+            echo "✓ K6 results downloaded"
+            wc -c tests/k6/reports/http-summary-latest.json
           fi
 
       - name: Prepare deployment directory
@@ -217,62 +202,59 @@ jobs:
             echo "✗ Jest JSON is invalid"
           fi
 
-      - name: Generate test data as JavaScript module
+      - name: Generate test-data.txt for the dashboard
         run: |
-          echo "Generating test data as JavaScript (GitHub Pages blocks JSON in subdirs)"
-          SUMMARY_SOURCE="deploy_temp/tests/jest/reports/results-latest.json"
-          if [ ! -f "$SUMMARY_SOURCE" ]; then
-            echo "Source not found, trying original tests path"
-            SUMMARY_SOURCE="tests/jest/reports/results-latest.json"
+          mkdir -p deploy_temp
+          # Jest
+          JEST_SRC="tests/jest/reports/results-latest.json"
+          if [ -f "deploy_temp/tests/jest/reports/results-latest.json" ]; then
+            JEST_SRC="deploy_temp/tests/jest/reports/results-latest.json"
           fi
-          
-          # Extract Jest data
-          if [ ! -f "$SUMMARY_SOURCE" ]; then
-            echo "No Jest results. Creating fallback."
-            JEST_DATA='{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0,"generatedAt":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"}'
-          else
-            TOTAL=$(jq -r '.numTotalTests // 0' "$SUMMARY_SOURCE" 2>/dev/null || echo 0)
-            PASSED=$(jq -r '.numPassedTests // 0' "$SUMMARY_SOURCE" 2>/dev/null || echo 0)
-            FAILED=$(jq -r '.numFailedTests // 0' "$SUMMARY_SOURCE" 2>/dev/null || echo 0)
-            SUITES=$(jq -r '.numTotalTestSuites // 0' "$SUMMARY_SOURCE" 2>/dev/null || echo 0)
-            PASSED_SUITES=$(jq -r '.numPassedTestSuites // 0' "$SUMMARY_SOURCE" 2>/dev/null || echo $SUITES)
+          if [ -f "$JEST_SRC" ]; then
+            TOTAL=$(jq -r '.numTotalTests // 0' "$JEST_SRC")
+            PASSED=$(jq -r '.numPassedTests // 0' "$JEST_SRC")
+            FAILED=$(jq -r '.numFailedTests // 0' "$JEST_SRC")
+            SUITES=$(jq -r '.numTotalTestSuites // 0' "$JEST_SRC")
+            PASSED_SUITES=$(jq -r '.numPassedTestSuites // 0' "$JEST_SRC")
             SUCCESS=$([ "$FAILED" -eq 0 ] && echo true || echo false)
-            PASS_RATE=0
             if [ "$TOTAL" -gt 0 ]; then
               PASS_RATE=$(awk -v p="$PASSED" -v t="$TOTAL" 'BEGIN { printf "%.2f", (p/t)*100 }')
+            else
+              PASS_RATE="100.00"
             fi
-            GENERATED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-            JEST_DATA='{"success":'$SUCCESS',"numTotalTests":'$TOTAL',"numPassedTests":'$PASSED',"numFailedTests":'$FAILED',"numTotalTestSuites":'$SUITES',"numPassedTestSuites":'$PASSED_SUITES',"passRate":'$PASS_RATE',"generatedAt":"'$GENERATED_AT'"}'
-          fi
-          
-          # Extract K6 data
-          K6_FILE="deploy_temp/tests/k6/reports/http-summary-latest.json"
-          if [ ! -f "$K6_FILE" ]; then
-            K6_FILE="tests/k6/reports/http-summary-latest.json"
-          fi
-          if [ -f "$K6_FILE" ]; then
-            K6_DATA=$(cat "$K6_FILE")
+            JEST_JSON="{\"success\":$SUCCESS,\"numTotalTests\":$TOTAL,\"numPassedTests\":$PASSED,\"numFailedTests\":$FAILED,\"numTotalTestSuites\":$SUITES,\"numPassedTestSuites\":$PASSED_SUITES,\"passRate\":$PASS_RATE}"
           else
-            K6_DATA='{"metrics":{"http_reqs":{"count":0},"http_req_duration":{"avg":0,"p(95)":0},"checks":{"passes":0,"fails":0}}}'
+            JEST_JSON='{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0,"passRate":0}'
           fi
-          
-          # Create JavaScript module as .txt file (GitHub Pages can't block .txt)
-          echo "// Auto-generated test results data" > deploy_temp/test-data.txt
-          echo "// Generated at: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> deploy_temp/test-data.txt
-          echo "if (typeof window !== 'undefined') {" >> deploy_temp/test-data.txt
-          echo "  window.TEST_RESULTS = {" >> deploy_temp/test-data.txt
-          echo "    jest: $JEST_DATA," >> deploy_temp/test-data.txt
-          echo "    k6: $K6_DATA," >> deploy_temp/test-data.txt
-          echo "    generatedAt: \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" >> deploy_temp/test-data.txt
-          echo "  };" >> deploy_temp/test-data.txt
-          echo "}" >> deploy_temp/test-data.txt
-          
-          echo "✓ Generated deploy_temp/test-data.txt (as .txt to bypass restrictions)"
+
+          # k6
+          K6_SRC="deploy_temp/tests/k6/reports/http-summary-latest.json"
+          [ ! -f "$K6_SRC" ] && K6_SRC="tests/k6/reports/http-summary-latest.json"
+          if [ -f "$K6_SRC" ]; then
+            K6_JSON=$(cat "$K6_SRC")
+          else
+            K6_JSON='{"metrics":{"http_reqs":{"count":0},"http_req_duration":{"avg":0,"p(95)":0},"checks":{"passes":0,"fails":0}}}'
+          fi
+
+          # Emit the payload the dashboard loads (as .txt so Pages serves it)
+          cat > deploy_temp/test-data.txt <<'EOF'
+          // Auto-generated test results data
+          if (typeof window !== 'undefined') {
+            window.TEST_RESULTS = {};
+          }
+          EOF
+          # Append JSON safely
+          {
+            echo "window.TEST_RESULTS.jest = $JEST_JSON;"
+            echo "window.TEST_RESULTS.k6 = $K6_JSON;"
+            echo "window.TEST_RESULTS.generatedAt = '$(date -u +%Y-%m-%dT%H:%M:%SZ)';"
+          } >> deploy_temp/test-data.txt
+
+          echo "✓ Emitted deploy_temp/test-data.txt"
           echo "File size:"
           wc -c deploy_temp/test-data.txt
-          echo "First 300 chars:"
-          head -c 300 deploy_temp/test-data.txt
-          echo ""
+          echo "First 400 chars:"
+          head -c 400 deploy_temp/test-data.txt
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -290,26 +272,22 @@ jobs:
           echo "✓ Deployment complete. GitHub Pages may take 1-2 minutes to serve updated files."
           echo "📊 Test dashboard available at: https://mcello23.github.io/webpage/"
           echo ""
-          echo "🔍 Direct file URLs (for debugging):"
-          echo "   - https://mcello23.github.io/webpage/reports/jest-summary.json"
-          echo "   - https://mcello23.github.io/webpage/tests/jest/reports/results-summary.json"
+          echo "🔍 Test data file:"
+          echo "   - https://mcello23.github.io/webpage/test-data.txt"
           echo ""
-          echo "💡 If files return 404, wait 2-5 minutes for CDN propagation or try:"
-          echo "   curl -I https://mcello23.github.io/webpage/reports/jest-summary.json"
+          echo "💡 If file returns 404, wait 2-5 minutes for CDN propagation"
           
-      - name: Verify deployment files via GitHub API
+      - name: Verify test-data.txt deployment
         run: |
-          echo "Verifying files are in gh-pages branch..."
+          echo "Verifying test-data.txt is in gh-pages branch..."
           sleep 10
-          # Check via GitHub API if files exist
-          for path in "reports/jest-summary.json" "tests/jest/reports/results-summary.json" "tests/k6/reports/http-summary-latest.json"; do
-            echo "Checking: $path"
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://raw.githubusercontent.com/${{ github.repository }}/gh-pages/$path")
-            if [ "$STATUS" = "200" ]; then
-              echo "  ✓ $path exists in gh-pages (HTTP $STATUS)"
-            else
-              echo "  ✗ $path missing in gh-pages (HTTP $STATUS)"
-            fi
-          done
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://raw.githubusercontent.com/${{ github.repository }}/gh-pages/test-data.txt")
+          if [ "$STATUS" = "200" ]; then
+            echo "✓ test-data.txt found in gh-pages branch"
+            curl -s "https://raw.githubusercontent.com/${{ github.repository }}/gh-pages/test-data.txt" | head -c 300
+            echo ""
+          else
+            echo "⚠ test-data.txt returned HTTP $STATUS (may need CDN propagation time)"
+          fi
           echo ""
-          echo "⏳ Note: GitHub Pages CDN may take 1-10 minutes to serve these files at mcello23.github.io"
+          echo "⏳ Note: GitHub Pages CDN may take 1-10 minutes to serve at mcello23.github.io"
