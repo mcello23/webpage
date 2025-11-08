@@ -5,18 +5,11 @@
 
 class TestDashboard {
   constructor() {
-    // Base-relative path for Jest results. We'll resolve absolute URL at runtime.
-    // We'll try multiple candidates to avoid 404s in Pages/CDN edge cases
-    this.jestCandidatePaths = [
-      'reports/jest-summary.json', // slim summary published at top-level reports/
-      'tests/jest/reports/results-summary.json', // summary alongside full
-      'tests/jest/reports/results-latest.json', // full raw Jest JSON
-      'tests/jest/reports/results-full.json', // full copy with alternate name
-    ];
-    this.k6SummaryPath = 'tests/k6/reports/http-summary-latest.json';
-    this.k6PerformancePath = 'tests/k6/reports/http-performance-latest.json';
+    // Use JavaScript file instead of JSON (GitHub Pages blocks JSON in subdirectories)
+    this.dataScriptPath = 'data/test-results.js';
     this.updateInterval = 30000; // 30 seconds
     this.dashboardElement = null;
+    this.dataLoaded = false;
   }
 
   /**
@@ -24,9 +17,9 @@ class TestDashboard {
    */
   init() {
     this.createDashboard();
-    this.loadTestResults();
+    this.loadDataScript();
     // Auto-refresh every 30 seconds
-    setInterval(() => this.loadTestResults(), this.updateInterval);
+    setInterval(() => this.loadDataScript(), this.updateInterval);
   }
 
   /**
@@ -78,45 +71,84 @@ class TestDashboard {
   }
 
   /**
-   * Load all test results
+   * Load the data script dynamically
    */
-  async loadTestResults() {
-    try {
-      await Promise.all([this.loadJestResults(), this.loadK6Results()]);
-      this.updateLastUpdatedTime();
-    } catch (error) {
-      console.error('Error loading test results:', error);
+  loadDataScript() {
+    // Check if data is already available
+    if (window.TEST_RESULTS && !this.dataLoaded) {
+      this.dataLoaded = true;
+      this.displayResults();
+      return;
     }
+
+    // Load script dynamically
+    const existingScript = document.getElementById('test-data-script');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const script = document.createElement('script');
+    script.id = 'test-data-script';
+    script.src = `${this.dataScriptPath}?t=${Date.now()}`; // Cache bust
+    script.onload = () => {
+      this.dataLoaded = true;
+      this.displayResults();
+    };
+    script.onerror = () => {
+      console.error('Failed to load test data script');
+      this.displayError();
+    };
+    document.head.appendChild(script);
+  }
+
+  /**
+   * Display results from loaded data
+   */
+  displayResults() {
+    if (!window.TEST_RESULTS) {
+      this.displayError();
+      return;
+    }
+
+    this.loadJestResults(window.TEST_RESULTS.jest);
+    this.loadK6Results(window.TEST_RESULTS.k6);
+    this.updateLastUpdatedTime();
+  }
+
+  /**
+   * Display error message
+   */
+  displayError() {
+    const jestContainer = document.getElementById('jest-results');
+    const k6Container = document.getElementById('k6-results');
+    const isDev =
+      window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+    const errorHTML = `
+      <div class="error-message">
+        <i class="material-icons">error_outline</i>
+        <p>Unable to load test results</p>
+        <small>${isDev ? 'Run: <code>npm run test:reports</code> and push to trigger CI/CD' : 'Data file not found. CI/CD may still be deploying.'}</small>
+      </div>
+    `;
+
+    if (jestContainer) jestContainer.innerHTML = errorHTML;
+    if (k6Container) k6Container.innerHTML = errorHTML;
   }
 
   /**
    * Load Jest test results
    */
-  async loadJestResults() {
+  async loadJestResults(data) {
     const container = document.getElementById('jest-results');
     if (!container) return;
 
     try {
-      // Try candidate paths, first one that returns 200 wins
-      let data = null;
-      let lastErr = null;
-      for (const path of this.jestCandidatePaths) {
-        try {
-          const res = await fetch(path, { cache: 'no-store' });
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          data = await res.json();
-          break;
-        } catch (e) {
-          lastErr = e;
-        }
-      }
       if (!data) {
-        throw new Error(
-          `Jest results not found via candidates (${lastErr?.message || 'no detail'})`
-        );
+        throw new Error('No Jest data provided');
       }
 
-      // Extract test summary from Jest JSON
+      // Extract test summary from data
       const testsPassed = Number(data.numPassedTests ?? 0);
       const testsFailed = Number(data.numFailedTests ?? 0);
       const testsTotal = Number(data.numTotalTests ?? 0);
@@ -157,14 +189,14 @@ class TestDashboard {
         </div>
       `;
     } catch (error) {
-      console.error('Error loading Jest results:', error);
+      console.error('Error displaying Jest results:', error);
       const isDev =
         window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       container.innerHTML = `
         <div class="error-message">
           <i class="material-icons">error_outline</i>
-          <p>Unable to load Jest results</p>
-          <small>${isDev ? 'Run: <code>npm run test:reports</code>' : 'Reports are being generated... Please wait for CI/CD to complete.'}</small>
+          <p>Unable to display Jest results</p>
+          <small>${isDev ? 'Run: <code>npm run test:reports</code>' : 'Data parsing error'}</small>
           <details style="margin-top:6px"><summary style="cursor:pointer">Debug info</summary><code>${(error && error.message) || 'No message'}</code></details>
         </div>
       `;
@@ -175,14 +207,15 @@ class TestDashboard {
    * Load K6 performance test results
 ```
    */
-  async loadK6Results() {
+  async loadK6Results(data) {
     const container = document.getElementById('k6-results');
     if (!container) return;
 
     try {
-      const response = await fetch(this.k6SummaryPath, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`K6 summary not found (HTTP ${response.status})`);
-      const data = await response.json();
+      if (!data || !data.metrics) {
+        throw new Error('No K6 data provided');
+      }
+
       const metrics = data.metrics || {};
       const httpReqs = metrics.http_reqs ? metrics.http_reqs.count : 0;
       const httpDuration = metrics.http_req_duration
@@ -241,14 +274,14 @@ class TestDashboard {
         </div>
       `;
     } catch (error) {
-      console.error('Error loading K6 results:', error);
+      console.error('Error displaying K6 results:', error);
       const isDev =
         window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       container.innerHTML = `
         <div class="error-message">
           <i class="material-icons">error_outline</i>
-          <p>Unable to load K6 results</p>
-          <small>${isDev ? 'Run: <code>npm run test:reports</code>' : 'Reports unavailable (404). CI/CD may still be deploying. Fallback active.'}</small>
+          <p>Unable to display K6 results</p>
+          <small>${isDev ? 'Run: <code>npm run test:reports</code>' : 'Data parsing error'}</small>
           <details style="margin-top:6px"><summary style="cursor:pointer">Debug info</summary><code>${(error && error.message) || 'No message'}</code></details>
         </div>
       `;

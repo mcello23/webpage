@@ -217,18 +217,19 @@ jobs:
             echo "✗ Jest JSON is invalid"
           fi
 
-      - name: Generate slim Jest summary + extra variants
+      - name: Generate test data as JavaScript module
         run: |
-          echo "Generating slim Jest summary JSON"
+          echo "Generating test data as JavaScript (GitHub Pages blocks JSON in subdirs)"
           SUMMARY_SOURCE="deploy_temp/tests/jest/reports/results-latest.json"
           if [ ! -f "$SUMMARY_SOURCE" ]; then
             echo "Source not found, trying original tests path"
             SUMMARY_SOURCE="tests/jest/reports/results-latest.json"
           fi
+          
+          # Extract Jest data
           if [ ! -f "$SUMMARY_SOURCE" ]; then
-            echo "No Jest results file to summarize. Creating fallback summary."
-            mkdir -p deploy_temp/tests/jest/reports
-            printf '%s' "{\"success\":false,\"numTotalTests\":0,\"numPassedTests\":0,\"numFailedTests\":0,\"numTotalTestSuites\":0,\"generatedAt\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}" > deploy_temp/tests/jest/reports/results-summary.json
+            echo "No Jest results. Creating fallback."
+            JEST_DATA='{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0,"generatedAt":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"}'
           else
             TOTAL=$(jq -r '.numTotalTests // 0' "$SUMMARY_SOURCE" 2>/dev/null || echo 0)
             PASSED=$(jq -r '.numPassedTests // 0' "$SUMMARY_SOURCE" 2>/dev/null || echo 0)
@@ -241,21 +242,36 @@ jobs:
               PASS_RATE=$(awk -v p="$PASSED" -v t="$TOTAL" 'BEGIN { printf "%.2f", (p/t)*100 }')
             fi
             GENERATED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-            # Write summary inside original reports dir
-            echo "Writing deploy_temp/tests/jest/reports/results-summary.json"
-            printf '%s' "{\"success\":$SUCCESS,\"numTotalTests\":$TOTAL,\"numPassedTests\":$PASSED,\"numFailedTests\":$FAILED,\"numTotalTestSuites\":$SUITES,\"numPassedTestSuites\":$PASSED_SUITES,\"passRate\":$PASS_RATE,\"generatedAt\":\"$GENERATED_AT\"}" > deploy_temp/tests/jest/reports/results-summary.json
-            # Also provide copy in top-level reports directory for simpler path
-            mkdir -p deploy_temp/reports
-            cp deploy_temp/tests/jest/reports/results-summary.json deploy_temp/reports/jest-summary.json
-            # Provide a renamed full copy for debugging (some large JSON may be blocked by Pages). This helps verify alternate filename behavior.
-            cp "$SUMMARY_SOURCE" deploy_temp/tests/jest/reports/results-full.json || true
-            echo "Summary + full copy generated. Sizes:"
-            wc -c deploy_temp/tests/jest/reports/results-summary.json || true
-            wc -c "$SUMMARY_SOURCE" || true
+            JEST_DATA='{"success":'$SUCCESS',"numTotalTests":'$TOTAL',"numPassedTests":'$PASSED',"numFailedTests":'$FAILED',"numTotalTestSuites":'$SUITES',"numPassedTestSuites":'$PASSED_SUITES',"passRate":'$PASS_RATE',"generatedAt":"'$GENERATED_AT'"}'
           fi
-          echo "Listing Jest report variants:"
-          ls -lah deploy_temp/tests/jest/reports/ | grep -E 'results-(summary|latest|full)\.json' || true
-          ls -lah deploy_temp/reports/ | grep -E 'jest-summary\.json' || true
+          
+          # Extract K6 data
+          K6_FILE="deploy_temp/tests/k6/reports/http-summary-latest.json"
+          if [ ! -f "$K6_FILE" ]; then
+            K6_FILE="tests/k6/reports/http-summary-latest.json"
+          fi
+          if [ -f "$K6_FILE" ]; then
+            K6_DATA=$(cat "$K6_FILE")
+          else
+            K6_DATA='{"metrics":{"http_reqs":{"count":0},"http_req_duration":{"avg":0,"p(95)":0},"checks":{"passes":0,"fails":0}}}'
+          fi
+          
+          # Create JavaScript module
+          mkdir -p deploy_temp/data
+          echo "// Auto-generated test results data" > deploy_temp/data/test-results.js
+          echo "// This file is served as JavaScript to bypass GitHub Pages JSON restrictions" >> deploy_temp/data/test-results.js
+          echo "window.TEST_RESULTS = {" >> deploy_temp/data/test-results.js
+          echo "  jest: $JEST_DATA," >> deploy_temp/data/test-results.js
+          echo "  k6: $K6_DATA," >> deploy_temp/data/test-results.js
+          echo "  generatedAt: \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" >> deploy_temp/data/test-results.js
+          echo "};" >> deploy_temp/data/test-results.js
+          
+          echo "✓ Generated deploy_temp/data/test-results.js"
+          echo "File size:"
+          wc -c deploy_temp/data/test-results.js
+          echo "First 300 chars:"
+          head -c 300 deploy_temp/data/test-results.js
+          echo ""
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
