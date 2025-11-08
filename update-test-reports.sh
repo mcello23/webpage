@@ -7,7 +7,7 @@ echo "🧪 Generating test reports for dashboard..."
 npm run test:reports
 
 echo ""
-echo "📦 Creating JavaScript data file at root (simulating CI/CD)..."
+echo "📦 Creating test data as .txt file (simulating CI/CD)..."
 
 # Read Jest results
 if [ -f "tests/jest/reports/results-latest.json" ]; then
@@ -31,18 +31,20 @@ else
   K6_DATA='{"metrics":{"http_reqs":{"count":0},"http_req_duration":{"avg":0,"p(95)":0},"checks":{"passes":0,"fails":0}}}'
 fi
 
-# Generate JavaScript file at root
-cat > test-results.js <<EOF
+# Generate .txt file with JavaScript inside
+cat > test-data.txt <<EOF
 // Auto-generated test results data (local development)
-window.TEST_RESULTS = {
-  jest: $JEST_DATA,
-  k6: $K6_DATA,
-  generatedAt: "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-};
+if (typeof window !== 'undefined') {
+  window.TEST_RESULTS = {
+    jest: $JEST_DATA,
+    k6: $K6_DATA,
+    generatedAt: "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  };
+}
 EOF
 
 echo "✅ All test reports updated!"
-echo "📊 Generated: test-results.js (root level)"
+echo "📊 Generated: test-data.txt"
 echo ""
 echo "🌐 View at:"
 echo "   - Local: open index.html in browser"

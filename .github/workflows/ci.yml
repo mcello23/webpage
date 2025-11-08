@@ -256,20 +256,22 @@ jobs:
             K6_DATA='{"metrics":{"http_reqs":{"count":0},"http_req_duration":{"avg":0,"p(95)":0},"checks":{"passes":0,"fails":0}}}'
           fi
           
-          # Create JavaScript module (root level to bypass GitHub Pages restrictions)
-          echo "// Auto-generated test results data" > deploy_temp/test-results.js
-          echo "// Generated at: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> deploy_temp/test-results.js
-          echo "window.TEST_RESULTS = {" >> deploy_temp/test-results.js
-          echo "  jest: $JEST_DATA," >> deploy_temp/test-results.js
-          echo "  k6: $K6_DATA," >> deploy_temp/test-results.js
-          echo "  generatedAt: \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" >> deploy_temp/test-results.js
-          echo "};" >> deploy_temp/test-results.js
+          # Create JavaScript module as .txt file (GitHub Pages can't block .txt)
+          echo "// Auto-generated test results data" > deploy_temp/test-data.txt
+          echo "// Generated at: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> deploy_temp/test-data.txt
+          echo "if (typeof window !== 'undefined') {" >> deploy_temp/test-data.txt
+          echo "  window.TEST_RESULTS = {" >> deploy_temp/test-data.txt
+          echo "    jest: $JEST_DATA," >> deploy_temp/test-data.txt
+          echo "    k6: $K6_DATA," >> deploy_temp/test-data.txt
+          echo "    generatedAt: \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" >> deploy_temp/test-data.txt
+          echo "  };" >> deploy_temp/test-data.txt
+          echo "}" >> deploy_temp/test-data.txt
           
-          echo "✓ Generated deploy_temp/test-results.js (root level)"
+          echo "✓ Generated deploy_temp/test-data.txt (as .txt to bypass restrictions)"
           echo "File size:"
-          wc -c deploy_temp/test-results.js
+          wc -c deploy_temp/test-data.txt
           echo "First 300 chars:"
-          head -c 300 deploy_temp/test-results.js
+          head -c 300 deploy_temp/test-data.txt
           echo ""
           
       - name: Deploy to GitHub Pages
