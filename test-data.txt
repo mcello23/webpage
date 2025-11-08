@@ -1,0 +1,43 @@
+// Auto-generated test results data
+if (typeof window !== 'undefined') {
+  window.TEST_RESULTS = {};
+}
+window.TEST_RESULTS.jest = {"success":true,"numTotalTests":989,"numPassedTests":989,"numFailedTests":0,"numTotalTestSuites":20,"numPassedTestSuites":20,"passRate":100.00};
+window.TEST_RESULTS.k6 = {
+  "metrics": {
+    "http_reqs": {
+      "count": 150,
+      "rate": 15.0
+    },
+    "http_req_duration": {
+      "avg": 145.32,
+      "min": 89.5,
+      "med": 132.8,
+      "max": 287.6,
+      "p(90)": 198.4,
+      "p(95)": 245.7,
+      "thresholds": {
+        "p(95)<2000": true
+      }
+    },
+    "checks": {
+      "passes": 298,
+      "fails": 2
+    }
+  },
+  "root_group": {
+    "checks": [
+      {
+        "name": "status 200",
+        "passes": 149,
+        "fails": 1
+      },
+      {
+        "name": "has content",
+        "passes": 149,
+        "fails": 1
+      }
+    ]
+  }
+};
+window.TEST_RESULTS.generatedAt = '2025-11-08T13:37:17Z';

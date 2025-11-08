@@ -1,0 +1,782 @@
+/* ========================================
+   CENTRALIZED NAVBAR STYLES
+   VERSION: 12.2 - Fixed mobile menu positioning per breakpoint (70px tablet, 50px mobile)
+   ======================================== */
+
+/* Make the mobile home button get the same tactile hover/focus effect as desktop nav buttons */
+.mobile-home-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: 0;
+  color: #fff;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mobile-home-btn i {
+  font-size: 18px;
+  margin-right: 6px;
+  color: rgb(255 255 255 / 95%);
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.mobile-home-btn:hover,
+.mobile-home-btn:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
+  filter: brightness(1.05);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
+}
+
+/* ========================================
+   CENTRALIZED NAVBAR STYLES - Responsive Design
+   ======================================== */
+
+html body nav.main-nav {
+  z-index: 1000 !important;
+}
+
+.main-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  height: 80px;
+}
+
+.nav-wrapper {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  background-color: #00bfa5; /* Teal navbar background */
+}
+
+.brand-logo {
+  font-size: 1.15rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand-logo i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.brand-logo span {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.brand-logo:hover {
+  transform: translateX(-5px);
+  opacity: 0.8;
+}
+
+.center-nav {
+  display: flex;
+  gap: 72px;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  list-style: none;
+  align-items: center;
+}
+
+.nav-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: 0;
+  color: #fff;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-btn i {
+  font-size: 18px;
+  margin-right: 6px;
+  color: rgb(255 255 255 / 95%);
+}
+
+.nav-btn-projects {
+  background: linear-gradient(135deg, #5c6bc0, #3f51b5);
+}
+
+.nav-btn-frameworks {
+  background: linear-gradient(135deg, #b66a50, #9b4b2f);
+}
+
+.nav-btn-certs {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+}
+
+.nav-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 25%);
+  filter: brightness(1.1);
+}
+
+.social-nav {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  margin-left: auto;
+  list-style: none;
+  align-items: center;
+}
+
+/* Desktop: ensure social group items are centered vertically; prefer fine-grained nudges on the CTA only */
+@media screen and (width >= 992px) {
+  .social-nav {
+    padding-top: 0;
+    height: 80px;
+    align-items: center;
+    transform: none; /* remove broad group-level nudges for predictable baseline */
+  }
+
+  /* Fine-grained desktop nudging: nudge the CTA by a single pixel to match icons precisely. Adjust here if needed. */
+  .cta-link {
+    transform: translateY(0); /* aligned with icons at baseline */
+  }
+}
+
+/* Ensure each list item in social-nav aligns its children to the center baseline */
+.social-nav > li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* CTA Links with text */
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: transparent;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  height: 40px;
+
+  /* Perfectly aligned with social icons - no transform needed */
+}
+
+.cta-link i {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.cta-link span {
+  line-height: 1;
+}
+
+.cta-link.book-call:hover {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(102 126 234 / 40%);
+}
+
+.cta-link.download-cv:hover {
+  background-color: #4db6ac;
+  color: #fff;
+  box-shadow: 0 4px 12px rgb(77 182 172 / 40%);
+}
+
+/* Separator */
+.nav-separator {
+  width: 1px;
+  height: 30px;
+  background-color: rgb(0 0 0 / 20%);
+  margin: 0 4px;
+}
+
+.social-icon {
+  font-size: 22px;
+  color: #333;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 1;
+}
+
+.social-icon i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon:hover {
+  transform: translateY(-4px) scale(1.15);
+}
+
+/* Social icon colors on hover - using attribute selectors for better compatibility */
+a[aria-label='github-link']:hover {
+  color: #fff !important;
+  background-color: #333 !important;
+}
+
+a[aria-label='linkedin-link']:hover {
+  color: #fff !important;
+  background-color: #0077b5 !important;
+}
+
+a[aria-label='discord-link']:hover {
+  color: #fff !important;
+  background-color: #5865f2 !important;
+}
+
+/* Fallback using :has() for browsers that support it */
+.social-icon:has(.fa-github):hover {
+  color: #fff;
+  background-color: #333;
+}
+
+.social-icon:has(.fa-linkedin):hover {
+  color: #fff;
+  background-color: #0077b5;
+}
+
+.social-icon:has(.fa-discord):hover {
+  color: #fff;
+  background-color: #5865f2;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #000; /* make menu icon black */
+  cursor: pointer;
+  padding: 8px;
+  margin-right: auto; /* Keep it to the left */
+}
+
+.mobile-menu-toggle i {
+  color: #000; /* ensure the icon itself is black */
+}
+
+/* Hide mobile home link on desktop */
+.mobile-home-link {
+  display: none;
+}
+
+.mobile-menu-backdrop {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 80px);
+  background: rgb(0 0 0 / 25%);
+  z-index: 1090;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.mobile-menu-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+@media screen and (width <= 991px) {
+  .main-nav {
+    height: auto;
+    min-height: 70px;
+  }
+
+  .nav-wrapper {
+    flex-wrap: wrap;
+    padding: 15px 20px;
+  }
+
+  /* Adjust backdrop to match navbar height */
+  .mobile-menu-backdrop {
+    top: 70px;
+    height: calc(100vh - 70px);
+  }
+
+  .brand-logo {
+    font-size: 1rem;
+    line-height: normal;
+  }
+
+  /* Hide the brand (icon + text) on smaller devices (phones/tablets) */
+  .brand-logo span,
+  .brand-logo i {
+    display: none;
+  }
+
+  /* Strong fallback to ensure the brand is visually hidden even if other rules override display */
+  .brand-logo,
+  .brand-logo i,
+  .brand-logo span {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .brand-logo span {
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .center-nav {
+    position: static;
+    transform: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgb(0 0 0 / 10%);
+    display: none;
+  }
+
+  .center-nav.active {
+    display: flex;
+    flex-direction: column;
+
+    /* Floating overlay panel - full width */
+    position: fixed;
+    left: 0; /* Start at screen edge */
+    top: 70px; /* Directly below navbar (min-height at tablet/mobile) */
+    width: 100%; /* Full screen width */
+    background: #00bfa5; /* Same teal as navbar */
+    border-radius: 0; /* No border radius for full-width */
+    padding: 12px 16px; /* Padding on sides */
+    box-shadow: 0 18px 40px rgb(0 0 0 / 18%);
+    gap: 8px; /* Gap between items */
+    z-index: 1200;
+  }
+
+  /* Make each mobile menu item compact */
+  .center-nav.active li {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* Left align */
+  }
+
+  /* Larger buttons with more presence */
+  .center-nav.active a {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px; /* Larger gap between icon and text */
+    padding: 14px 18px; /* Larger padding */
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    justify-content: flex-start;
+    font-size: 1rem; /* Larger text */
+    font-weight: 600;
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      background 0.18s ease,
+      filter 0.18s ease;
+  }
+
+  /* Style the mobile home button with a distinctive color */
+  .center-nav.active .mobile-home-btn {
+    background: linear-gradient(135deg, #00bcd4, #0097a7) !important;
+  }
+
+  .center-nav.active a:hover {
+    transform: translateY(-2px); /* Subtler hover */
+    box-shadow: 0 6px 18px rgb(0 0 0 / 15%);
+    filter: brightness(1.08);
+  }
+
+  .center-nav.active a i {
+    margin-right: 0; /* No extra margin, gap handles it */
+    font-size: 20px; /* Larger icons */
+    color: rgb(255 255 255 / 95%);
+  }
+
+  /* Slight spacing below the navbar toggle to avoid overlap */
+  .mobile-menu-toggle {
+    position: relative;
+    z-index: 1300;
+    order: -1; /* Force to be first */
+    margin-right: auto; /* Push everything else to the right */
+  }
+
+  /* Override social icon hover for mobile - keep centered */
+  .social-icon:hover {
+    transform: scale(1.06);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 12%);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .center-nav li {
+    width: 100%;
+  }
+
+  .nav-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+
+  .social-nav {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; /* Align with mobile menu toggle */
+  }
+
+  .social-icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+
+    /* No transform - let flexbox handle alignment */
+  }
+
+  /* Hide CTA text on tablets, show only icons */
+  .cta-link span {
+    display: none;
+  }
+
+  .cta-link {
+    padding: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    min-height: 36px;
+
+    /* No transform - let flexbox handle alignment */
+  }
+
+  .cta-link i {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hide separator on smaller screens */
+  .nav-separator {
+    display: none;
+  }
+
+  /* Override social icon hover for mobile - remove vertical shift, keep centered */
+  .social-icon:hover,
+  a[aria-label='github-link']:hover,
+  a[aria-label='linkedin-link']:hover,
+  a[aria-label='discord-link']:hover {
+    transform: scale(1.08) !important;
+  }
+}
+
+@media screen and (width <= 767px) {
+  /* Make navbar more compact on mobile */
+  .main-nav {
+    height: auto;
+    min-height: 50px; /* Smaller navbar height */
+  }
+
+  .nav-wrapper {
+    padding: 8px 12px; /* Reduced padding */
+    align-items: center; /* Center all items vertically with the toggle button */
+  }
+
+  /* Adjust backdrop to match smaller mobile navbar height */
+  .mobile-menu-backdrop {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
+
+  /* Mobile menu toggle positioned top-left */
+  .mobile-menu-toggle {
+    display: block;
+    order: -1; /* Force to be first */
+    margin: 0;
+    margin-right: auto; /* Push everything else to the right */
+    padding: 4px;
+    font-size: 26px;
+  }
+
+  /* On mobile keep the brand icon but hide the text to save space */
+  .brand-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Hide only the textual part of the brand on small screens */
+  .brand-logo span {
+    display: none;
+  }
+
+  /* Hide the brand icon on small screens as well */
+  .brand-logo i {
+    display: none;
+  }
+
+  /* Show mobile home link */
+  .mobile-home-link {
+    display: block;
+  }
+
+  /* Social icons stay on right, smaller */
+  .social-nav {
+    gap: 8px;
+    order: 10; /* Ensure it's last, after toggle */
+    margin-left: 0;
+    align-items: center; /* Align with toggle button */
+  }
+
+  .social-icon {
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+
+    /* No transform - flexbox centers them with the toggle */
+  }
+
+  /* Hide CTA text on mobile, show only icons */
+  .cta-link span {
+    display: none;
+  }
+
+  .cta-link {
+    padding: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    min-height: 36px;
+
+    /* No transform - flexbox centers them with the toggle */
+  }
+
+  .cta-link i {
+    margin: 0;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hide separator on mobile */
+  .nav-separator {
+    display: none;
+  }
+
+  /* Override social icon hover - remove vertical shift, keep centered */
+  .social-icon:hover,
+  a[aria-label='github-link']:hover,
+  a[aria-label='linkedin-link']:hover,
+  a[aria-label='discord-link']:hover {
+    transform: scale(1.08) !important;
+  }
+
+  /* Navigation menu - left aligned and compact */
+  .center-nav {
+    position: static;
+    transform: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    gap: 0; /* No gap between items */
+    margin-top: 8px;
+    padding-top: 0;
+    border-top: none;
+    display: none;
+    align-items: flex-start; /* Left align */
+  }
+
+  .center-nav.active {
+    display: flex;
+
+    /* Adjust top position for smaller mobile navbar */
+    top: 50px; /* Match mobile navbar min-height */
+  }
+
+  .center-nav li {
+    width: auto; /* Not full width */
+  }
+
+  /* Smaller, left-aligned buttons */
+  .nav-btn {
+    width: auto;
+    justify-content: flex-start; /* Left align content */
+    padding: 8px 16px; /* Smaller padding */
+    font-size: 0.85rem; /* Smaller text */
+    margin: 2px 0; /* Small vertical margin */
+  }
+
+  /* Mobile-only home button that visually matches .nav-btn but is excluded from tests counting */
+  .mobile-home-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .nav-btn i {
+    font-size: 16px;
+    margin-right: 8px;
+  }
+}
+
+@media screen and (width <= 480px) {
+  .nav-wrapper {
+    padding: 6px 10px; /* Even more compact */
+    align-items: center; /* Keep everything vertically centered */
+  }
+
+  .mobile-menu-toggle {
+    font-size: 24px;
+  }
+
+  .social-nav {
+    gap: 6px;
+    align-items: center; /* Align with toggle button */
+  }
+
+  .social-icon {
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Override social icon hover - remove vertical shift, keep centered */
+  .social-icon:hover,
+  a[aria-label='github-link']:hover,
+  a[aria-label='linkedin-link']:hover,
+  a[aria-label='discord-link']:hover {
+    transform: scale(1.08) !important;
+  }
+
+  .nav-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .nav-btn i {
+    font-size: 14px;
+  }
+}
+
+/* ========================================
+   Below 900p (less than 1600px width) - Hide brand text and booking call text
+   VERSION: 6.0 - Added booking call text hiding at 900p or lower
+   ======================================== */
+@media screen and (width >= 992px) and (width <= 1599px) {
+  .brand-logo span {
+    display: none !important;
+  }
+
+  .brand-logo i {
+    display: inline-flex !important;
+  }
+
+  /* Hide "Book 15-min call" text at 900p or lower */
+  .cta-link.book-call span {
+    display: none !important;
+  }
+
+  /* Keep the icon visible */
+  .cta-link.book-call i {
+    display: inline-flex !important;
+  }
+}
+
+/* ========================================
+   At 900p and above (1600px+ width) - Show brand text and booking call text
+   VERSION: 6.0 - Nuclear override at 900p threshold, shows booking call text
+   ======================================== */
+@media screen and (width >= 1600px) {
+  /* Override parent container */
+  .brand-logo {
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+  }
+
+  /* Show the text span */
+  .brand-logo span {
+    display: inline !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+    max-width: none !important;
+  }
+
+  /* Show the icon */
+  .brand-logo i {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Show "Book 15-min call" text at 900p or higher */
+  .cta-link.book-call span {
+    display: inline !important;
+  }
+}

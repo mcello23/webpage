@@ -1,0 +1,775 @@
+/* Custom Stylesheet */
+
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+/* ========================================
+   Global Design Tokens
+   Centralized brand colors now used by all pages (CTA gradients, nav, etc.)
+   ======================================== */
+:root {
+  --brand-1: #667eea; /* primary gradient start */
+  --brand-2: #764ba2; /* primary gradient end */
+}
+
+/* Ensure body has no unexpected margins that might visually clip full-width CTA sections */
+body {
+  margin: 0;
+}
+
+/* Utility: force a section to span full viewport width regardless of parent containers */
+.fullwidth-cta {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+nav ul a,
+nav .house-logo {
+  color: #444;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+}
+
+nav .nav-wrapper {
+  background-color: #00bfa5;
+}
+
+.text-description {
+  font-size: 15px;
+}
+
+p {
+  line-height: 1.8rem;
+}
+
+.waves-green {
+  font-size: 1.29rem;
+}
+
+p#text-in,
+p#text-in1,
+p#text-in2,
+p#text-in3,
+p#text-in4,
+p#text-in5,
+p#text-in6 {
+  font-size: 1.3rem;
+}
+
+.sidenav-trigger {
+  color: #9a921c;
+}
+
+.image-desc {
+  border-radius: 60%; /* makes the image round */
+  width: 240px; /* sets the width of the image to 64 pixels */
+  float: right; /* floats the image to the right */
+  padding-top: 0;
+  padding-bottom: 20px;
+}
+
+.image-cyp {
+  width: 170px; /* sets the width of the image to 64 pixels */
+  float: right;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.image-amz {
+  width: 232px; /* sets the width of the image to 64 pixels */
+  float: left;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 20px;
+}
+
+.image-quix {
+  width: 292px; /* sets the width of the image to 64 pixels */
+  float: left;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 20px;
+}
+
+.image-js {
+  width: 170px;
+  float: right;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 20px;
+}
+
+.image-py {
+  width: 290px;
+  float: right;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 20px;
+  margin-right: 0;
+  margin-left: 30px;
+  border-radius: 20px;
+}
+
+.image-sel {
+  width: 192px; /* sets the width of the image to 64 pixels */
+  float: right;
+  padding-top: 0;
+  margin-bottom: 40px;
+  margin-right: 30px;
+}
+
+.image-selenium {
+  width: 96%; /* sets the width of the image to 64 pixels */
+  height: 80%;
+  float: none;
+  padding-top: 0;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.image-desc-doom {
+  border-radius: 13%;
+  width: 488px; /* sets the width of the image to 64 pixels */
+  float: left; /* floats the image to the right */
+  padding-top: 12px;
+  padding-right: 30px;
+}
+
+h3#mdi-content {
+  text-align: center;
+}
+
+a#download-button1,
+a#download-button2,
+a#download-button3,
+a#download-button4,
+a#download-button5,
+a#download-button6,
+a#download-button7,
+a#download-button8,
+a#download-button9 {
+  margin: auto 6px; /* adds a 16px margin on both sides of the button */
+}
+
+/* ========================================
+   CTA BUTTON HOVER EFFECTS
+   Smooth transitions for call-to-action buttons
+   ======================================== */
+.btn-large.white.teal-text {
+  transition: all 0.3s ease;
+  box-shadow:
+    0 2px 5px rgb(0 0 0 / 16%),
+    0 2px 10px rgb(0 0 0 / 12%);
+}
+
+.btn-large.white.teal-text:hover {
+  background-color: #00bfa5 !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 10px rgb(0 191 165 / 30%),
+    0 6px 20px rgb(0 191 165 / 20%);
+}
+
+.btn-large.white.teal-text:active {
+  transform: translateY(0);
+  box-shadow:
+    0 2px 5px rgb(0 0 0 / 16%),
+    0 2px 10px rgb(0 0 0 / 12%);
+}
+
+.btn-large.white.teal-text i {
+  transition: transform 0.3s ease;
+}
+
+.btn-large.white.teal-text:hover i {
+  transform: scale(1.1);
+}
+
+.parallax-container {
+  min-height: 331px;
+  line-height: 0px;
+  height: 100%;
+  width: 100%;
+  color: rgb(255 255 255 / 90%);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-size: cover;
+  background-position: center;
+}
+
+.parallax-container .section {
+  width: 100%;
+  padding-top: 1px;
+  padding-bottom: 10px;
+  height: 200%;
+  margin: auto;
+  background-size: cover;
+  background-position: center;
+}
+
+.icon-block {
+  padding: 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: auto;
+}
+
+.album-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem 0;
+  overflow: hidden;
+  align-items: center;
+  font-weight: bold;
+}
+
+.album-image {
+  width: 27%;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: 13px solid rgb(0 0 0);
+  overflow: hidden;
+}
+
+.album-image img {
+  width: 100%;
+  height: auto;
+}
+
+.album-image h3 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.album-image p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.video-cypress.playing {
+  background-color: rgb(0 0 0 / 0%);
+  background-image: url('https://www.svgrepo.com/show/13672/play-button.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
+}
+
+.video-selenium {
+  width: auto;
+  height: auto;
+  background-color: rgb(0 0 0 / 0%);
+}
+
+.video-selenium video {
+  background-image: url('https://www.svgrepo.com/show/13672/play-button.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
+}
+
+.video-selenium.playing video {
+  display: block;
+}
+
+.code-container {
+  background-color: black !important;
+  padding: 10px !important;
+  border-radius: 14px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+ol#list,
+ol#list-second-code {
+  font-size: 18px;
+}
+
+.spaced {
+  word-spacing: 5px;
+}
+
+p#manual-tests {
+  text-align: center;
+  text-decoration-line: underline;
+}
+
+.title-cyp,
+.title-cyp2 {
+  width: 24%;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: 13px solid rgb(0 0 0);
+  overflow: hidden;
+}
+
+/* Portfolio hero background: gradient overlay + image + subtle pattern overlay */
+.portfolio-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-hero .parallax {
+  /* Pure CSS gradient as the hero 'image' (no external image file) */
+  background-image:
+    linear-gradient(135deg, #26a69a 0%, #4db6ac 40%, #00796b 70%, #00251a 100%),
+    radial-gradient(circle at 10% 20%, rgb(255 255 255 / 3%) 0, transparent 2px),
+    radial-gradient(circle at 80% 80%, rgb(255 255 255 / 3%) 0, transparent 2px);
+  background-size: cover;
+  background-position: center;
+  min-height: 420px; /* ensure hero has a comfortable height */
+  z-index: 1;
+}
+
+.portfolio-hero::before {
+  /* subtle overlay to keep text readable while preserving the pure gradient background */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 14%) 0%,
+    rgb(0 0 0 / 12%) 50%,
+    rgb(0 0 0 / 18%) 100%
+  );
+  mix-blend-mode: normal;
+}
+
+.portfolio-hero .section,
+.portfolio-hero .container {
+  position: relative; /* ensure content sits above overlays */
+  z-index: 3;
+}
+
+/* subtle animated pattern to give depth on larger screens */
+@media (width >= 992px) {
+  .portfolio-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgb(255 255 255 / 1%) 0 2px,
+      transparent 2px 40px
+    );
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+    transform: translateZ(0);
+    animation: slow-drift 18s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes slow-drift {
+    0% {
+      transform: translateX(0);
+    }
+
+    50% {
+      transform: translateX(20px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Playwright hero utility backgrounds (match the inline Playwright section style) */
+.hero-playwright {
+  position: relative;
+  overflow: hidden;
+  background-image:
+    linear-gradient(135deg, #21a0a0 0%, #1e8e8e 40%, #175e5e 70%),
+    radial-gradient(circle at 20% 30%, rgb(255 255 255 / 3%) 0, transparent 2px);
+  background-size: cover;
+  background-position: center;
+  color: rgb(255 255 255 / 95%);
+}
+
+.hero-playwright::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgb(255 255 255 / 2%) 0 1px,
+    transparent 1px 40px
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Alternate color variant (modern sunset/ocean gradient) */
+.hero-playwright-alt {
+  position: relative;
+  overflow: hidden;
+  background-image:
+    linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%),
+    radial-gradient(circle at 20% 80%, rgb(255 255 255 / 5%) 0, transparent 3px),
+    radial-gradient(circle at 80% 20%, rgb(255 255 255 / 4%) 0, transparent 2px);
+  background-size: 200% 200%;
+  background-position: center;
+  animation: gradient-shift 12s ease infinite;
+  color: rgb(255 255 255 / 95%);
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.hero-playwright-alt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    180deg,
+    rgb(0 0 0 / 25%) 0%,
+    rgb(0 0 0 / 15%) 50%,
+    rgb(0 0 0 / 30%) 100%
+  );
+  mix-blend-mode: normal;
+}
+
+/* Usage:
+   - Apply `hero-playwright` to a `.parallax-container` or any large hero to get the teal Playwright look.
+   - Use `hero-playwright-alt` to swap to the purple/indigo variant.
+   Example: <div class="parallax-container hero-playwright-alt"> ... </div>
+*/
+
+/* ============================================
+   RESPONSIVE DESIGN - Mobile First Approach
+   ============================================ */
+
+/* Small devices (landscape phones, 576px to 767px) */
+@media only screen and (width >= 576px) and (width <= 767px) {
+  /* Navigation - still needs mobile-friendly layout */
+  nav .nav-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 10px !important;
+  }
+
+  nav .brand-logo {
+    font-size: 1.1rem !important;
+    text-align: center !important;
+    position: static !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding: 10px !important;
+  }
+
+  /* Show navigation on small screens */
+  nav .hide-on-med-and-down {
+    display: flex !important;
+    flex-direction: column !important;
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    width: 100% !important;
+    gap: 8px !important;
+    margin: 10px 0 0 !important;
+  }
+
+  nav .center-nav {
+    order: 1 !important;
+  }
+
+  nav ul:last-child {
+    order: 2 !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    margin-top: 8px !important;
+  }
+
+  .nav-btn {
+    font-size: 0.85rem !important;
+    padding: 12px 16px !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  h1 {
+    font-size: 2.4rem !important;
+  }
+
+  h2 {
+    font-size: 1.9rem !important;
+  }
+
+  h3 {
+    font-size: 1.6rem !important;
+  }
+
+  h4 {
+    font-size: 1.3rem !important;
+  }
+
+  .skill-tag {
+    font-size: 0.85rem !important;
+    padding: 8px 14px !important;
+  }
+
+  .intro-card {
+    padding: 25px !important;
+  }
+
+  .stat-item {
+    min-width: 45% !important;
+  }
+
+  img.circle.responsive-img {
+    max-width: 140px !important;
+  }
+
+  .container {
+    width: 90% !important;
+  }
+
+  .section {
+    padding: 40px 0 !important;
+  }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media only screen and (width >= 768px) and (width <= 991px) {
+  /* Navigation - show elements but in adjusted layout */
+  nav .hide-on-med-and-down {
+    display: flex !important;
+  }
+
+  nav .center-nav {
+    gap: 20px !important;
+  }
+
+  nav .brand-logo {
+    font-size: 1.3rem !important;
+  }
+
+  .nav-btn {
+    font-size: 0.8rem !important;
+    padding: 8px 14px !important;
+  }
+
+  .nav-btn i {
+    font-size: 16px !important;
+  }
+
+  h1 {
+    font-size: 2.8rem !important;
+  }
+
+  h2 {
+    font-size: 2.2rem !important;
+  }
+
+  h3 {
+    font-size: 1.8rem !important;
+  }
+
+  .skill-tag {
+    font-size: 0.9rem !important;
+    padding: 9px 16px !important;
+  }
+
+  .intro-card {
+    padding: 30px !important;
+  }
+
+  .stat-item {
+    min-width: 30% !important;
+  }
+
+  img.circle.responsive-img {
+    max-width: 160px !important;
+  }
+
+  .image-desc,
+  .image-cyp,
+  .image-js,
+  .image-py,
+  .image-sel {
+    width: 45% !important;
+  }
+
+  .image-amz,
+  .image-quix {
+    width: 60% !important;
+  }
+}
+
+/* Large devices (desktops, 992px to 1199px) */
+@media only screen and (width >= 992px) and (width <= 1199px) {
+  .container {
+    width: 85% !important;
+  }
+
+  .stat-item {
+    min-width: 200px !important;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media only screen and (width >= 1200px) {
+  .container {
+    width: 80% !important;
+    max-width: 1200px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media only screen and (height <= 500px) and (orientation: landscape) {
+  .portfolio-hero .parallax {
+    min-height: 200px !important;
+  }
+
+  .parallax-container {
+    min-height: 180px !important;
+  }
+
+  nav {
+    position: relative !important;
+  }
+
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .section {
+    padding: 20px 0 !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  nav {
+    display: none;
+  }
+
+  .parallax-container {
+    background: #fff !important;
+  }
+
+  .section {
+    break-inside: avoid;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+}
+
+/* Accessibility - Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  .skill-tag,
+  .gradient-card,
+  .btn-large {
+    border: 2px solid currentcolor !important;
+  }
+}
+
+/* ========================================
+   RESPONSIVE ENHANCEMENTS FOR MOBILE
+   Works with Materialize, not against it
+   ======================================== */
+
+/* Ensure images are responsive on mobile */
+@media only screen and (width <= 600px) {
+  .image-cyp,
+  .image-amz,
+  .image-quix,
+  .image-js,
+  .image-py,
+  .image-sel,
+  .image-desc-doom {
+    float: none !important;
+    display: block;
+    margin: 20px auto !important;
+    max-width: 90%;
+  }
+
+  .parallax-container {
+    min-height: 200px;
+  }
+
+  .intro-card {
+    padding: 25px 20px !important;
+  }
+
+  .intro-stats {
+    flex-direction: column;
+  }
+
+  .stat-item {
+    width: 100% !important;
+  }
+}
+
+/* Tablet improvements */
+@media only screen and (width >= 601px) and (width <= 992px) {
+  .parallax-container {
+    min-height: 250px;
+  }
+}
+
+/* Ensure cards have proper spacing */
+.card {
+  margin-bottom: 20px;
+}
+
+/* Make sure row has proper clearfix */
+.row::after {
+  content: '';
+  display: table;
+  clear: both;
+}
