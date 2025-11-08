@@ -7,7 +7,7 @@ TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 # Criar diretório de relatórios
 mkdir -p "$REPORT_DIR"
 
-echo "🚀 Executando testes k6..."
+echo "🚀 Executing k6 tests..."
 echo "════════════════════════════════════════"
 
 # Teste 1: Performance HTTP
@@ -30,10 +30,10 @@ echo ""
 
 echo ""
 echo "════════════════════════════════════════"
-echo "✅ k6 tests finalizados!"
+echo "✅ k6 tests finished!"
 echo ""
-echo "📁 Relatórios salvos em: $REPORT_DIR"
+echo "📁 Reports saved in: $REPORT_DIR"
 ls -lh "$REPORT_DIR"/*${TIMESTAMP}*
 echo ""
-echo "💡 Para visualizar relatórios HTML, instale: npm install -g k6-reporter"
-echo "   Depois execute: k6-reporter $REPORT_DIR/http-summary-${TIMESTAMP}.json"
+echo "💡 To view HTML reports, install: npm install -g k6-reporter"
+echo "   Then run: k6-reporter $REPORT_DIR/http-summary-${TIMESTAMP}.json"

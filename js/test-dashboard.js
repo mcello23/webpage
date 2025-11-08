@@ -6,7 +6,13 @@
 class TestDashboard {
   constructor() {
     // Base-relative path for Jest results. We'll resolve absolute URL at runtime.
-    this.jestDataPath = 'tests/jest/reports/results-latest.json';
+    // We'll try multiple candidates to avoid 404s in Pages/CDN edge cases
+    this.jestCandidatePaths = [
+      'reports/jest-summary.json', // slim summary published at top-level reports/
+      'tests/jest/reports/results-summary.json', // summary alongside full
+      'tests/jest/reports/results-latest.json', // full raw Jest JSON
+      'tests/jest/reports/results-full.json', // full copy with alternate name
+    ];
     this.k6SummaryPath = 'tests/k6/reports/http-summary-latest.json';
     this.k6PerformancePath = 'tests/k6/reports/http-performance-latest.json';
     this.updateInterval = 30000; // 30 seconds
@@ -91,21 +97,33 @@ class TestDashboard {
     if (!container) return;
 
     try {
-      // Try to load Jest JSON results first
-      const response = await fetch(this.jestDataPath);
-
-      if (!response.ok) {
-        throw new Error('Jest results not found');
+      // Try candidate paths, first one that returns 200 wins
+      let data = null;
+      let lastErr = null;
+      for (const path of this.jestCandidatePaths) {
+        try {
+          const res = await fetch(path, { cache: 'no-store' });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          data = await res.json();
+          break;
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+      if (!data) {
+        throw new Error(
+          `Jest results not found via candidates (${lastErr?.message || 'no detail'})`
+        );
       }
 
-      const data = await response.json();
-
       // Extract test summary from Jest JSON
-      const testsPassed = data.numPassedTests || 0;
-      const testsFailed = data.numFailedTests || 0;
-      const testsTotal = data.numTotalTests || 0;
-      const testSuites = data.numTotalTestSuites || 0;
+      const testsPassed = Number(data.numPassedTests ?? 0);
+      const testsFailed = Number(data.numFailedTests ?? 0);
+      const testsTotal = Number(data.numTotalTests ?? 0);
+      const testSuites = Number(data.numTotalTestSuites ?? data.numPassedTestSuites ?? 0);
+      const precomputedRate = data.passRate != null ? Number(data.passRate) : null;
       const passRate = testsTotal > 0 ? ((testsPassed / testsTotal) * 100).toFixed(2) : 100;
+      const rate = precomputedRate != null ? precomputedRate.toFixed(2) : passRate;
 
       container.innerHTML = `
         <div class="test-stats">
@@ -129,12 +147,12 @@ class TestDashboard {
         <div class="test-details">
           <div class="detail-row">
             <span class="detail-label">✓ Success Rate:</span>
-            <span class="detail-value ${passRate >= 95 ? 'success' : 'warning'}">${passRate}%</span>
+            <span class="detail-value ${Number(rate) >= 95 ? 'success' : 'warning'}">${rate}%</span>
           </div>
         </div>
         <div class="test-progress">
           <div class="progress-bar">
-            <div class="progress-fill ${passRate >= 95 ? 'success' : passRate >= 80 ? 'warning' : 'error'}" style="width: ${passRate}%"></div>
+            <div class="progress-fill ${Number(rate) >= 95 ? 'success' : Number(rate) >= 80 ? 'warning' : 'error'}" style="width: ${rate}%"></div>
           </div>
         </div>
       `;
@@ -147,6 +165,7 @@ class TestDashboard {
           <i class="material-icons">error_outline</i>
           <p>Unable to load Jest results</p>
           <small>${isDev ? 'Run: <code>npm run test:reports</code>' : 'Reports are being generated... Please wait for CI/CD to complete.'}</small>
+          <details style="margin-top:6px"><summary style="cursor:pointer">Debug info</summary><code>${(error && error.message) || 'No message'}</code></details>
         </div>
       `;
     }
