@@ -157,6 +157,38 @@ class TestDashboard {
       const passRate = testsTotal > 0 ? ((testsPassed / testsTotal) * 100).toFixed(2) : 100;
       const rate = precomputedRate != null ? precomputedRate.toFixed(2) : passRate;
 
+      // Generate suites detail HTML
+      let suitesHTML = '';
+      if (data.testSuites && data.testSuites.length > 0) {
+        suitesHTML = `
+          <div class="test-suites-section">
+            <button class="expand-button" onclick="this.classList.toggle('expanded'); this.nextElementSibling.classList.toggle('show');">
+              <i class="material-icons">expand_more</i>
+              <span>View ${testSuites} Test Suites (${testsTotal} tests)</span>
+            </button>
+            <div class="suites-list">
+              ${data.testSuites
+                .map(
+                  (suite) => `
+                <div class="suite-item ${suite.status || 'passed'}">
+                  <div class="suite-header">
+                    <span class="suite-name" title="${suite.name}">${suite.name}</span>
+                    <span class="suite-stats">
+                      <span class="badge success">${suite.numPassedTests || 0} passed</span>
+                      ${suite.numFailedTests > 0 ? `<span class="badge error">${suite.numFailedTests} failed</span>` : ''}
+                      <span class="badge">${suite.numTests || 0} total</span>
+                    </span>
+                  </div>
+                  ${suite.duration ? `<div class="suite-duration">${(suite.duration / 1000).toFixed(2)}s</div>` : ''}
+                </div>
+              `
+                )
+                .join('')}
+            </div>
+          </div>
+        `;
+      }
+
       container.innerHTML = `
         <div class="test-stats">
           <div class="stat-item">
@@ -187,6 +219,7 @@ class TestDashboard {
             <div class="progress-fill ${Number(rate) >= 95 ? 'success' : Number(rate) >= 80 ? 'warning' : 'error'}" style="width: ${rate}%"></div>
           </div>
         </div>
+        ${suitesHTML}
       `;
     } catch (error) {
       console.error('Error displaying Jest results:', error);
@@ -218,9 +251,23 @@ class TestDashboard {
 
       const metrics = data.metrics || {};
       const httpReqs = metrics.http_reqs ? metrics.http_reqs.count : 0;
+      const httpRate = metrics.http_reqs ? Number(metrics.http_reqs.rate).toFixed(2) : '0.00';
       const httpDuration = metrics.http_req_duration
         ? Number(metrics.http_req_duration.avg).toFixed(2)
         : '0.00';
+      const httpMin = metrics.http_req_duration
+        ? Number(metrics.http_req_duration.min).toFixed(2)
+        : '0.00';
+      const httpMed = metrics.http_req_duration
+        ? Number(metrics.http_req_duration.med).toFixed(2)
+        : '0.00';
+      const httpMax = metrics.http_req_duration
+        ? Number(metrics.http_req_duration.max).toFixed(2)
+        : '0.00';
+      const p90Duration =
+        metrics.http_req_duration && metrics.http_req_duration['p(90)']
+          ? Number(metrics.http_req_duration['p(90)']).toFixed(2)
+          : '0.00';
       const p95Duration =
         metrics.http_req_duration && metrics.http_req_duration['p(95)'] !== undefined
           ? Number(metrics.http_req_duration['p(95)']).toFixed(2)
@@ -233,6 +280,56 @@ class TestDashboard {
         metrics.http_req_duration && metrics.http_req_duration.thresholds
           ? metrics.http_req_duration.thresholds['p(95)<2000']
           : false;
+
+      // Generate detailed metrics HTML
+      const detailsHTML = `
+        <div class="k6-details-section">
+          <button class="expand-button" onclick="this.classList.toggle('expanded'); this.nextElementSibling.classList.toggle('show');">
+            <i class="material-icons">expand_more</i>
+            <span>View Detailed Metrics</span>
+          </button>
+          <div class="metrics-detail">
+            <div class="metric-group">
+              <h4>Request Duration (ms)</h4>
+              <div class="metric-row"><span class="metric-label">Min:</span><span class="metric-value">${httpMin}ms</span></div>
+              <div class="metric-row"><span class="metric-label">Median:</span><span class="metric-value">${httpMed}ms</span></div>
+              <div class="metric-row"><span class="metric-label">Average:</span><span class="metric-value">${httpDuration}ms</span></div>
+              <div class="metric-row"><span class="metric-label">P90:</span><span class="metric-value">${p90Duration}ms</span></div>
+              <div class="metric-row"><span class="metric-label">P95:</span><span class="metric-value ${threshold ? 'success' : 'warning'}">${p95Duration}ms</span></div>
+              <div class="metric-row"><span class="metric-label">Max:</span><span class="metric-value">${httpMax}ms</span></div>
+            </div>
+            <div class="metric-group">
+              <h4>Test Configuration</h4>
+              <div class="metric-row"><span class="metric-label">Total Requests:</span><span class="metric-value">${httpReqs}</span></div>
+              <div class="metric-row"><span class="metric-label">Request Rate:</span><span class="metric-value">${httpRate} req/s</span></div>
+              <div class="metric-row"><span class="metric-label">Duration:</span><span class="metric-value">30s</span></div>
+              <div class="metric-row"><span class="metric-label">Virtual Users:</span><span class="metric-value">10</span></div>
+            </div>
+            ${
+              data.root_group && data.root_group.checks
+                ? `
+            <div class="metric-group">
+              <h4>Checks Breakdown</h4>
+              ${data.root_group.checks
+                .map(
+                  (check) => `
+                <div class="metric-row">
+                  <span class="metric-label">${check.name}:</span>
+                  <span class="metric-value ${check.fails > 0 ? 'error' : 'success'}">
+                    ${check.passes} / ${check.passes + check.fails} 
+                    (${((check.passes / (check.passes + check.fails)) * 100).toFixed(1)}%)
+                  </span>
+                </div>
+              `
+                )
+                .join('')}
+            </div>
+            `
+                : ''
+            }
+          </div>
+        </div>
+      `;
 
       container.innerHTML = `
         <div class="test-stats">
@@ -272,6 +369,7 @@ class TestDashboard {
             <div class="progress-fill ${checksRate >= 95 ? 'success' : 'warning'}" style="width: ${checksRate}%"></div>
           </div>
         </div>
+        ${detailsHTML}
       `;
     } catch (error) {
       console.error('Error displaying K6 results:', error);

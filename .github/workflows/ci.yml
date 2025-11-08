@@ -206,7 +206,7 @@ jobs:
             echo "✗ Jest JSON is invalid"
           fi
 
-      - name: Generate test-data.txt for the dashboard
+      - name: Generate test-data.js for the dashboard
         run: |
           mkdir -p deploy_temp
           # Jest
@@ -226,9 +226,20 @@ jobs:
             else
               PASS_RATE="100.00"
             fi
-            JEST_JSON="{\"success\":$SUCCESS,\"numTotalTests\":$TOTAL,\"numPassedTests\":$PASSED,\"numFailedTests\":$FAILED,\"numTotalTestSuites\":$SUITES,\"numPassedTestSuites\":$PASSED_SUITES,\"passRate\":$PASS_RATE}"
+            
+            # Extract test suites details
+            SUITES_DETAIL=$(jq -c '[.testResults[] | {
+              name: (.name | split("/") | .[-1]),
+              status: .status,
+              numTests: (.assertionResults | length),
+              numPassedTests: ([.assertionResults[] | select(.status == "passed")] | length),
+              numFailedTests: ([.assertionResults[] | select(.status == "failed")] | length),
+              duration: (.endTime - .startTime)
+            }]' "$JEST_SRC")
+            
+            JEST_JSON="{\"success\":$SUCCESS,\"numTotalTests\":$TOTAL,\"numPassedTests\":$PASSED,\"numFailedTests\":$FAILED,\"numTotalTestSuites\":$SUITES,\"numPassedTestSuites\":$PASSED_SUITES,\"passRate\":$PASS_RATE,\"testSuites\":$SUITES_DETAIL}"
           else
-            JEST_JSON='{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0,"passRate":0}'
+            JEST_JSON='{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0,"passRate":0,"testSuites":[]}'
           fi
 
           # k6
