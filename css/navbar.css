@@ -146,6 +146,22 @@ html body nav.main-nav {
   filter: brightness(1.1);
 }
 
+/* Remove tap highlight color on all interactive elements */
+.nav-btn,
+.cta-link,
+.social-icon,
+.mobile-home-btn {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.nav-btn:focus,
+.cta-link:focus,
+.social-icon:focus {
+  outline: 2px solid rgb(255 255 255 / 30%);
+  outline-offset: 2px;
+}
+
 .social-nav {
   display: flex;
   gap: 16px;
@@ -292,6 +308,14 @@ a[aria-label='discord-link']:hover {
   cursor: pointer;
   padding: 8px;
   margin-right: auto; /* Keep it to the left */
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  outline: none; /* Remove focus outline */
+}
+
+.mobile-menu-toggle:focus,
+.mobile-menu-toggle:active {
+  background: none !important;
+  outline: none !important;
 }
 
 .mobile-menu-toggle i {
@@ -375,9 +399,9 @@ a[aria-label='discord-link']:hover {
     width: 100%;
     flex-direction: column;
     gap: 12px;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid rgb(0 0 0 / 10%);
+    margin-top: 20px; /* More space from navbar */
+    padding-top: 20px; /* More padding */
+    border-top: 1px solid rgb(255 255 255 / 15%); /* Visual separator */
     display: none;
   }
 
@@ -390,12 +414,15 @@ a[aria-label='discord-link']:hover {
     left: 0; /* Start at screen edge */
     top: 70px; /* Directly below navbar (min-height at tablet/mobile) */
     width: 100%; /* Full screen width */
-    background: #00bfa5; /* Same teal as navbar */
+    background: #00bfa5 !important; /* Same teal as navbar - force solid color */
+    background-color: #00bfa5 !important; /* Ensure no transparency */
     border-radius: 0; /* No border radius for full-width */
-    padding: 12px 16px; /* Padding on sides */
-    box-shadow: 0 18px 40px rgb(0 0 0 / 18%);
-    gap: 8px; /* Gap between items */
+    padding: 20px; /* More padding for breathing room */
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%); /* Softer shadow */
+    gap: 10px; /* More gap between items */
     z-index: 1200;
+    max-height: calc(100vh - 70px); /* Prevent overflow */
+    overflow-y: auto; /* Enable scrolling if needed */
   }
 
   /* Make each mobile menu item compact */
@@ -423,6 +450,7 @@ a[aria-label='discord-link']:hover {
       box-shadow 0.18s ease,
       background 0.18s ease,
       filter 0.18s ease;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
   }
 
   /* Style the mobile home button with a distinctive color */
@@ -471,16 +499,16 @@ a[aria-label='discord-link']:hover {
   }
 
   .social-nav {
-    gap: 12px;
+    gap: 14px; /* More spacing between icons */
     flex-wrap: wrap;
     justify-content: center;
     align-items: center; /* Align with mobile menu toggle */
   }
 
   .social-icon {
-    font-size: 20px;
-    width: 36px;
-    height: 36px;
+    font-size: 22px; /* Slightly larger icons */
+    width: 40px; /* Larger clickable area */
+    height: 40px;
 
     /* No transform - let flexbox handle alignment */
   }
@@ -491,19 +519,20 @@ a[aria-label='discord-link']:hover {
   }
 
   .cta-link {
-    padding: 8px;
-    width: 36px;
-    height: 36px;
+    padding: 10px; /* Slightly larger padding */
+    width: 40px; /* Larger clickable area */
+    height: 40px;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    min-height: 36px;
+    min-height: 40px;
 
     /* No transform - let flexbox handle alignment */
   }
 
   .cta-link i {
     margin: 0;
+    font-size: 20px; /* Larger icons */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -575,16 +604,16 @@ a[aria-label='discord-link']:hover {
 
   /* Social icons stay on right, smaller */
   .social-nav {
-    gap: 8px;
+    gap: 10px; /* Better spacing */
     order: 10; /* Ensure it's last, after toggle */
     margin-left: 0;
     align-items: center; /* Align with toggle button */
   }
 
   .social-icon {
-    font-size: 20px;
-    width: 36px;
-    height: 36px;
+    font-size: 22px; /* Larger icons */
+    width: 40px; /* Larger touch target */
+    height: 40px;
 
     /* No transform - flexbox centers them with the toggle */
   }
@@ -595,20 +624,20 @@ a[aria-label='discord-link']:hover {
   }
 
   .cta-link {
-    padding: 8px;
-    width: 36px;
-    height: 36px;
+    padding: 10px;
+    width: 40px; /* Larger touch target */
+    height: 40px;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    min-height: 36px;
+    min-height: 40px;
 
     /* No transform - flexbox centers them with the toggle */
   }
 
   .cta-link i {
     margin: 0;
-    font-size: 20px;
+    font-size: 20px; /* Larger icons */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -635,31 +664,66 @@ a[aria-label='discord-link']:hover {
     width: 100%;
     flex-direction: column;
     gap: 0; /* No gap between items */
-    margin-top: 8px;
-    padding-top: 0;
-    border-top: none;
+    margin-top: 16px; /* More space from navbar */
+    padding-top: 12px; /* Additional padding */
+    border-top: 1px solid rgb(255 255 255 / 10%); /* Visual separator */
     display: none;
     align-items: flex-start; /* Left align */
   }
 
   .center-nav.active {
     display: flex;
-
-    /* Adjust top position for smaller mobile navbar */
+    position: fixed;
+    left: 0;
     top: 50px; /* Match mobile navbar min-height */
+    width: 100%;
+    background: #00bfa5 !important; /* Force solid color */
+    background-color: #00bfa5 !important; /* Ensure no transparency */
+    padding: 16px; /* More padding */
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%); /* Softer shadow */
+    gap: 8px; /* Gap between items */
+    z-index: 1200;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
   }
 
   .center-nav li {
-    width: auto; /* Not full width */
+    width: 100%; /* Full width on mobile */
+  }
+
+  /* Mobile menu items - full width and easier to tap */
+  .center-nav.active a {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px; /* Better touch target */
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    justify-content: flex-start;
+    font-size: 0.95rem; /* Readable size */
+    font-weight: 600;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+  }
+
+  .center-nav.active a:hover {
+    background: rgb(255 255 255 / 10%);
+    transform: translateX(4px);
+  }
+
+  .center-nav.active a:active {
+    background: rgb(255 255 255 / 15%); /* Subtle active state */
   }
 
   /* Smaller, left-aligned buttons */
   .nav-btn {
-    width: auto;
+    width: 100%;
     justify-content: flex-start; /* Left align content */
-    padding: 8px 16px; /* Smaller padding */
-    font-size: 0.85rem; /* Smaller text */
-    margin: 2px 0; /* Small vertical margin */
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    margin: 0;
   }
 
   /* Mobile-only home button that visually matches .nav-btn but is excluded from tests counting */
@@ -667,17 +731,24 @@ a[aria-label='discord-link']:hover {
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 8px 16px;
-    font-size: 0.85rem;
+    padding: 12px 16px; /* Match nav-btn padding */
+    font-size: 0.95rem; /* Match nav-btn font size */
     color: #fff;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
+    width: 100%; /* Full width */
+    background: linear-gradient(135deg, #00bcd4, #0097a7);
+  }
+
+  .mobile-home-btn:hover {
+    background: linear-gradient(135deg, #0097a7, #00838f);
+    transform: translateX(4px);
   }
 
   .nav-btn i {
-    font-size: 16px;
-    margin-right: 8px;
+    font-size: 18px; /* Larger icons */
+    margin-right: 0; /* Gap handles spacing */
   }
 }
 

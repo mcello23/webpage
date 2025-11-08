@@ -44,6 +44,10 @@ module.exports = [
         URL: 'readonly',
         Image: 'readonly',
         Buffer: 'readonly',
+        localStorage: 'readonly',
+        Chart: 'readonly',
+        Blob: 'readonly',
+        prompt: 'readonly',
         // Node.js globals
         process: 'readonly',
         __dirname: 'readonly',
@@ -95,6 +99,10 @@ module.exports = [
         FormData: 'readonly',
         URL: 'readonly',
         Image: 'readonly',
+        localStorage: 'readonly',
+        Chart: 'readonly',
+        Blob: 'readonly',
+        prompt: 'readonly',
         // jQuery globals
         $: 'readonly',
         jQuery: 'readonly',

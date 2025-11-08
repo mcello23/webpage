@@ -700,9 +700,9 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
         /@media\s+screen\s+and\s+\((?:max-width:\s*991px|width\s*<=\s*991px)\)[\s\S]*?\.social-icon\s*{([^}]*)}/
       );
       if (tabletSection) {
-        expect(tabletSection[1]).toMatch(/font-size:\s*20px/);
-        expect(tabletSection[1]).toMatch(/width:\s*36px/);
-        expect(tabletSection[1]).toMatch(/height:\s*36px/);
+        expect(tabletSection[1]).toMatch(/font-size:\s*22px/);
+        expect(tabletSection[1]).toMatch(/width:\s*40px/);
+        expect(tabletSection[1]).toMatch(/height:\s*40px/);
       }
     });
 

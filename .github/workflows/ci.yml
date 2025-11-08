@@ -242,6 +242,13 @@ jobs:
             JEST_JSON='{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0,"passRate":0,"testSuites":[]}'
           fi
 
+          # Coverage data
+          COVERAGE_JSON='{"lines":{"total":0,"covered":0,"pct":0},"statements":{"total":0,"covered":0,"pct":0},"functions":{"total":0,"covered":0,"pct":0},"branches":{"total":0,"covered":0,"pct":0}}'
+          if [ -f "coverage/coverage-summary.json" ]; then
+            echo "✓ Coverage summary found"
+            COVERAGE_JSON=$(jq -c '.total' coverage/coverage-summary.json 2>/dev/null || echo "$COVERAGE_JSON")
+          fi
+
           # k6
           K6_SRC="deploy_temp/tests/k6/reports/http-summary-latest.json"
           [ ! -f "$K6_SRC" ] && K6_SRC="tests/k6/reports/http-summary-latest.json"
@@ -250,6 +257,11 @@ jobs:
           else
             K6_JSON='{"metrics":{"http_reqs":{"count":0},"http_req_duration":{"avg":0,"p(95)":0},"checks":{"passes":0,"fails":0}}}'
           fi
+
+          # Metadata
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          COMMIT="${GITHUB_SHA:0:7}"
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 
           # Emit the payload the dashboard loads (as .js file)
           cat > deploy_temp/test-data.js <<'EOF'
@@ -262,14 +274,16 @@ jobs:
           {
             echo "window.TEST_RESULTS.jest = $JEST_JSON;"
             echo "window.TEST_RESULTS.k6 = $K6_JSON;"
-            echo "window.TEST_RESULTS.generatedAt = '$(date -u +%Y-%m-%dT%H:%M:%SZ)';"
+            echo "window.TEST_RESULTS.coverage = $COVERAGE_JSON;"
+            echo "window.TEST_RESULTS.metadata = {\"branch\":\"$BRANCH\",\"commit\":\"$COMMIT\",\"timestamp\":\"$TIMESTAMP\",\"triggeredBy\":\"$GITHUB_EVENT_NAME\"};"
+            echo "window.TEST_RESULTS.generatedAt = '$TIMESTAMP';"
           } >> deploy_temp/test-data.js
 
           echo "✓ Emitted deploy_temp/test-data.js"
           echo "File size:"
           wc -c deploy_temp/test-data.js
-          echo "First 400 chars:"
-          head -c 400 deploy_temp/test-data.js
+          echo "First 500 chars:"
+          head -c 500 deploy_temp/test-data.js
           
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
