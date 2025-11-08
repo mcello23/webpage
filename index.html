@@ -357,8 +357,12 @@
         max-height: calc(90vh - 80px);
       }
       @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
       @keyframes slideUp {
         from {
@@ -402,10 +406,18 @@
         align-items: center;
         justify-content: center;
       }
-      .stat-icon.success { background: linear-gradient(135deg, #43e97b, #38f9d7); }
-      .stat-icon.primary { background: linear-gradient(135deg, #667eea, #764ba2); }
-      .stat-icon.warning { background: linear-gradient(135deg, #ffc107, #ff9800); }
-      .stat-icon.info { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+      .stat-icon.success {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+      }
+      .stat-icon.primary {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+      }
+      .stat-icon.warning {
+        background: linear-gradient(135deg, #ffc107, #ff9800);
+      }
+      .stat-icon.info {
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+      }
       .stat-icon i {
         color: #fff;
         font-size: 28px;
@@ -558,8 +570,12 @@
         font-weight: 700;
         color: var(--ink);
       }
-      .metric-value.success { color: #43e97b; }
-      .metric-value.error { color: #ff6b6b; }
+      .metric-value.success {
+        color: #43e97b;
+      }
+      .metric-value.error {
+        color: #ff6b6b;
+      }
 
       /* Floating Dashboard Button */
       .dashboard-fab {
@@ -725,12 +741,16 @@
     </script>
 
     <!-- Test Dashboard Modal -->
-    <div id="testDashboardModal" class="test-dashboard-modal" style="display: none;">
+    <div id="testDashboardModal" class="test-dashboard-modal" style="display: none">
       <div class="modal-overlay" onclick="closeTestDashboardModal()"></div>
       <div class="modal-content-wrapper">
         <div class="modal-header">
           <h2><i class="material-icons">analytics</i> Test Results Dashboard</h2>
-          <button class="modal-close-btn" onclick="closeTestDashboardModal()" aria-label="Close modal">
+          <button
+            class="modal-close-btn"
+            onclick="closeTestDashboardModal()"
+            aria-label="Close modal"
+          >
             <i class="material-icons">close</i>
           </button>
         </div>
@@ -2339,9 +2359,9 @@
     </script>
 
     <!-- Floating Dashboard Button -->
-    <button 
-      class="dashboard-fab" 
-      onclick="openTestDashboardModal()" 
+    <button
+      class="dashboard-fab"
+      onclick="openTestDashboardModal()"
       aria-label="Open Test Dashboard"
       title="View Test Results"
     >
@@ -2356,11 +2376,12 @@
 
     <!-- Test Dashboard Modal Script -->
     <script>
+      // eslint-disable-next-line no-unused-vars -- Function is called from onclick attribute in HTML
       function openTestDashboardModal() {
         const modal = document.getElementById('testDashboardModal');
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
-        
+
         // Initialize dashboard if not already done
         if (!window.testDashboardInitialized) {
           initializeModalDashboard();
@@ -2374,17 +2395,18 @@
         document.body.style.overflow = '';
       }
 
+      // eslint-disable-next-line no-unused-vars -- Function is called from onclick attribute in HTML
       function toggleModalSection(contentId) {
         const content = document.getElementById(contentId);
         const button = content.previousElementSibling.querySelector('.btn-collapse i');
         content.classList.toggle('collapsed');
-        button.textContent = content.classList.contains('collapsed') 
-          ? 'expand_more' 
+        button.textContent = content.classList.contains('collapsed')
+          ? 'expand_more'
           : 'expand_less';
       }
 
       // Close modal on ESC key
-      document.addEventListener('keydown', function(e) {
+      document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
           closeTestDashboardModal();
         }
@@ -2398,10 +2420,11 @@
         }
 
         const data = window.TEST_RESULTS;
-        
+
         // Update Quick Stats
-        const totalTests = (data.jest?.numTotalTests || 0) + (data.k6?.metrics?.http_reqs?.count || 0);
-        const passedTests = (data.jest?.numPassedTests || 0);
+        const totalTests =
+          (data.jest?.numTotalTests || 0) + (data.k6?.metrics?.http_reqs?.count || 0);
+        const passedTests = data.jest?.numPassedTests || 0;
         const passRate = totalTests > 0 ? ((passedTests / totalTests) * 100).toFixed(1) : 0;
         const avgDuration = data.jest?.avgDuration ? (data.jest.avgDuration / 1000).toFixed(2) : 0;
         const coverage = data.coverage?.total?.lines?.pct || 0;
@@ -2413,7 +2436,8 @@
 
         // Jest Metrics
         if (data.jest) {
-          document.getElementById('modal-jest-suites').textContent = data.jest.numTotalTestSuites || 0;
+          document.getElementById('modal-jest-suites').textContent =
+            data.jest.numTotalTestSuites || 0;
           document.getElementById('modal-jest-passed').textContent = data.jest.numPassedTests || 0;
           document.getElementById('modal-jest-failed').textContent = data.jest.numFailedTests || 0;
           document.getElementById('modal-jest-rate').textContent = passRate + '%';
@@ -2423,21 +2447,25 @@
         if (data.k6?.metrics) {
           const metrics = data.k6.metrics;
           document.getElementById('modal-k6-requests').textContent = metrics.http_reqs?.count || 0;
-          document.getElementById('modal-k6-avg').textContent = 
+          document.getElementById('modal-k6-avg').textContent =
             (metrics.http_req_duration?.avg || 0).toFixed(2) + 'ms';
-          document.getElementById('modal-k6-p95').textContent = 
+          document.getElementById('modal-k6-p95').textContent =
             (metrics.http_req_duration?.p95 || 0).toFixed(2) + 'ms';
-          document.getElementById('modal-k6-checks').textContent = 
-            ((metrics.checks?.passes || 0) / (metrics.checks?.value || 1) * 100).toFixed(1) + '%';
+          document.getElementById('modal-k6-checks').textContent =
+            (((metrics.checks?.passes || 0) / (metrics.checks?.value || 1)) * 100).toFixed(1) + '%';
         }
 
         // Coverage Metrics
         if (data.coverage?.total) {
           const cov = data.coverage.total;
-          document.getElementById('modal-coverage-lines').textContent = cov.lines?.pct?.toFixed(1) + '%';
-          document.getElementById('modal-coverage-statements').textContent = cov.statements?.pct?.toFixed(1) + '%';
-          document.getElementById('modal-coverage-functions').textContent = cov.functions?.pct?.toFixed(1) + '%';
-          document.getElementById('modal-coverage-branches').textContent = cov.branches?.pct?.toFixed(1) + '%';
+          document.getElementById('modal-coverage-lines').textContent =
+            cov.lines?.pct?.toFixed(1) + '%';
+          document.getElementById('modal-coverage-statements').textContent =
+            cov.statements?.pct?.toFixed(1) + '%';
+          document.getElementById('modal-coverage-functions').textContent =
+            cov.functions?.pct?.toFixed(1) + '%';
+          document.getElementById('modal-coverage-branches').textContent =
+            cov.branches?.pct?.toFixed(1) + '%';
         }
 
         // Initialize Charts
@@ -2450,9 +2478,9 @@
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              position: 'bottom'
-            }
-          }
+              position: 'bottom',
+            },
+          },
         };
 
         // Trend Chart
@@ -2462,20 +2490,22 @@
             new Chart(trendCtx, {
               type: 'line',
               data: {
-                labels: data.history.map(h => new Date(h.timestamp).toLocaleDateString()),
-                datasets: [{
-                  label: 'Pass Rate',
-                  data: data.history.map(h => {
-                    const total = h.jest?.numTotalTests || 1;
-                    const passed = h.jest?.numPassedTests || 0;
-                    return (passed / total * 100).toFixed(1);
-                  }),
-                  borderColor: '#43e97b',
-                  backgroundColor: 'rgba(67, 233, 123, 0.1)',
-                  tension: 0.4
-                }]
+                labels: data.history.map((h) => new Date(h.timestamp).toLocaleDateString()),
+                datasets: [
+                  {
+                    label: 'Pass Rate',
+                    data: data.history.map((h) => {
+                      const total = h.jest?.numTotalTests || 1;
+                      const passed = h.jest?.numPassedTests || 0;
+                      return ((passed / total) * 100).toFixed(1);
+                    }),
+                    borderColor: '#43e97b',
+                    backgroundColor: 'rgba(67, 233, 123, 0.1)',
+                    tension: 0.4,
+                  },
+                ],
               },
-              options: chartOptions
+              options: chartOptions,
             });
           }
         }
@@ -2487,16 +2517,18 @@
             type: 'doughnut',
             data: {
               labels: ['Passed', 'Failed', 'Skipped'],
-              datasets: [{
-                data: [
-                  data.jest.numPassedTests || 0,
-                  data.jest.numFailedTests || 0,
-                  data.jest.numPendingTests || 0
-                ],
-                backgroundColor: ['#43e97b', '#ff6b6b', '#ffc107']
-              }]
+              datasets: [
+                {
+                  data: [
+                    data.jest.numPassedTests || 0,
+                    data.jest.numFailedTests || 0,
+                    data.jest.numPendingTests || 0,
+                  ],
+                  backgroundColor: ['#43e97b', '#ff6b6b', '#ffc107'],
+                },
+              ],
             },
-            options: chartOptions
+            options: chartOptions,
           });
         }
 
@@ -2507,13 +2539,15 @@
             type: 'bar',
             data: {
               labels: ['Passed', 'Failed'],
-              datasets: [{
-                label: 'Jest Tests',
-                data: [data.jest.numPassedTests || 0, data.jest.numFailedTests || 0],
-                backgroundColor: ['#43e97b', '#ff6b6b']
-              }]
+              datasets: [
+                {
+                  label: 'Jest Tests',
+                  data: [data.jest.numPassedTests || 0, data.jest.numFailedTests || 0],
+                  backgroundColor: ['#43e97b', '#ff6b6b'],
+                },
+              ],
             },
-            options: chartOptions
+            options: chartOptions,
           });
         }
 
@@ -2525,20 +2559,22 @@
             type: 'bar',
             data: {
               labels: ['Min', 'Median', 'Avg', 'P90', 'P95', 'Max'],
-              datasets: [{
-                label: 'HTTP Duration (ms)',
-                data: [
-                  metrics.http_req_duration?.min || 0,
-                  metrics.http_req_duration?.med || 0,
-                  metrics.http_req_duration?.avg || 0,
-                  metrics.http_req_duration?.p90 || 0,
-                  metrics.http_req_duration?.p95 || 0,
-                  metrics.http_req_duration?.max || 0
-                ],
-                backgroundColor: '#667eea'
-              }]
+              datasets: [
+                {
+                  label: 'HTTP Duration (ms)',
+                  data: [
+                    metrics.http_req_duration?.min || 0,
+                    metrics.http_req_duration?.med || 0,
+                    metrics.http_req_duration?.avg || 0,
+                    metrics.http_req_duration?.p90 || 0,
+                    metrics.http_req_duration?.p95 || 0,
+                    metrics.http_req_duration?.max || 0,
+                  ],
+                  backgroundColor: '#667eea',
+                },
+              ],
             },
-            options: chartOptions
+            options: chartOptions,
           });
         }
 
@@ -2550,25 +2586,27 @@
             type: 'radar',
             data: {
               labels: ['Lines', 'Statements', 'Functions', 'Branches'],
-              datasets: [{
-                label: 'Coverage %',
-                data: [
-                  cov.lines?.pct || 0,
-                  cov.statements?.pct || 0,
-                  cov.functions?.pct || 0,
-                  cov.branches?.pct || 0
-                ],
-                backgroundColor: 'rgba(102, 126, 234, 0.2)',
-                borderColor: '#667eea',
-                pointBackgroundColor: '#667eea'
-              }]
+              datasets: [
+                {
+                  label: 'Coverage %',
+                  data: [
+                    cov.lines?.pct || 0,
+                    cov.statements?.pct || 0,
+                    cov.functions?.pct || 0,
+                    cov.branches?.pct || 0,
+                  ],
+                  backgroundColor: 'rgba(102, 126, 234, 0.2)',
+                  borderColor: '#667eea',
+                  pointBackgroundColor: '#667eea',
+                },
+              ],
             },
-            options: chartOptions
+            options: chartOptions,
           });
         }
 
         // Export functionality
-        document.getElementById('modal-export-btn')?.addEventListener('click', function() {
+        document.getElementById('modal-export-btn')?.addEventListener('click', function () {
           const dataStr = JSON.stringify(data, null, 2);
           const blob = new Blob([dataStr], { type: 'application/json' });
           const url = URL.createObjectURL(blob);

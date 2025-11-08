@@ -158,7 +158,7 @@ html body nav.main-nav {
 .nav-btn:focus,
 .cta-link:focus,
 .social-icon:focus {
-  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline: 2px solid rgb(255 255 255 / 30%);
   outline-offset: 2px;
 }
 
@@ -401,7 +401,7 @@ a[aria-label='discord-link']:hover {
     gap: 12px;
     margin-top: 20px; /* More space from navbar */
     padding-top: 20px; /* More padding */
-    border-top: 1px solid rgba(255, 255, 255, 0.15); /* Visual separator */
+    border-top: 1px solid rgb(255 255 255 / 15%); /* Visual separator */
     display: none;
   }
 
@@ -417,8 +417,8 @@ a[aria-label='discord-link']:hover {
     background: #00bfa5 !important; /* Same teal as navbar - force solid color */
     background-color: #00bfa5 !important; /* Ensure no transparency */
     border-radius: 0; /* No border radius for full-width */
-    padding: 20px 20px; /* More padding for breathing room */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Softer shadow */
+    padding: 20px; /* More padding for breathing room */
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%); /* Softer shadow */
     gap: 10px; /* More gap between items */
     z-index: 1200;
     max-height: calc(100vh - 70px); /* Prevent overflow */
@@ -666,7 +666,7 @@ a[aria-label='discord-link']:hover {
     gap: 0; /* No gap between items */
     margin-top: 16px; /* More space from navbar */
     padding-top: 12px; /* Additional padding */
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Visual separator */
+    border-top: 1px solid rgb(255 255 255 / 10%); /* Visual separator */
     display: none;
     align-items: flex-start; /* Left align */
   }
@@ -679,8 +679,8 @@ a[aria-label='discord-link']:hover {
     width: 100%;
     background: #00bfa5 !important; /* Force solid color */
     background-color: #00bfa5 !important; /* Ensure no transparency */
-    padding: 16px 16px; /* More padding */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Softer shadow */
+    padding: 16px; /* More padding */
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%); /* Softer shadow */
     gap: 8px; /* Gap between items */
     z-index: 1200;
     max-height: calc(100vh - 50px);
@@ -709,12 +709,12 @@ a[aria-label='discord-link']:hover {
   }
 
   .center-nav.active a:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255 255 255 / 10%);
     transform: translateX(4px);
   }
 
   .center-nav.active a:active {
-    background: rgba(255, 255, 255, 0.15); /* Subtle active state */
+    background: rgb(255 255 255 / 15%); /* Subtle active state */
   }
 
   /* Smaller, left-aligned buttons */
