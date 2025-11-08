@@ -20,17 +20,29 @@ k6 run tests/k6/test-k6.js \
   --out json="$REPORT_DIR/http-performance-${TIMESTAMP}.json" \
   --summary-export="$REPORT_DIR/http-summary-${TIMESTAMP}.json"
 
+# Create latest symlinks for easy access in dashboard
+cp "$REPORT_DIR/http-performance-${TIMESTAMP}.json" "$REPORT_DIR/http-performance-latest.json"
+cp "$REPORT_DIR/http-summary-${TIMESTAMP}.json" "$REPORT_DIR/http-summary-latest.json"
+
 echo ""
 echo "════════════════════════════════════════"
 echo ""
 echo "📊 Teste 2: Google Analytics API (test-k6-ga.js)"
 echo "────────────────────────────────────────"
-echo "⚠️  Requer GA_API_SECRET configurado"
-k6 run tests/k6/test-k6-ga.js \
-  --duration 10s \
-  --vus 2 \
-  --out json="$REPORT_DIR/ga-api-${TIMESTAMP}.json" \
-  --summary-export="$REPORT_DIR/ga-summary-${TIMESTAMP}.json"
+if [ -f "tests/k6/test-k6-ga.js" ]; then
+  echo "⚠️  Requer GA_API_SECRET configurado"
+  k6 run tests/k6/test-k6-ga.js \
+    --duration 10s \
+    --vus 2 \
+    --out json="$REPORT_DIR/ga-api-${TIMESTAMP}.json" \
+    --summary-export="$REPORT_DIR/ga-summary-${TIMESTAMP}.json"
+  
+  # Create latest symlinks for easy access
+  cp "$REPORT_DIR/ga-api-${TIMESTAMP}.json" "$REPORT_DIR/ga-api-latest.json"
+  cp "$REPORT_DIR/ga-summary-${TIMESTAMP}.json" "$REPORT_DIR/ga-summary-latest.json"
+else
+  echo "⏭️  Skipping GA test (test-k6-ga.js not found)"
+fi
 
 echo ""
 echo "════════════════════════════════════════"
