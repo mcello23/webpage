@@ -7,10 +7,7 @@ echo "🧪 Generating test reports for dashboard..."
 npm run test:reports
 
 echo ""
-echo "📦 Creating JavaScript data file (simulating CI/CD)..."
-
-# Create data directory
-mkdir -p data
+echo "📦 Creating JavaScript data file at root (simulating CI/CD)..."
 
 # Read Jest results
 if [ -f "tests/jest/reports/results-latest.json" ]; then
@@ -34,8 +31,8 @@ else
   K6_DATA='{"metrics":{"http_reqs":{"count":0},"http_req_duration":{"avg":0,"p(95)":0},"checks":{"passes":0,"fails":0}}}'
 fi
 
-# Generate JavaScript file
-cat > data/test-results.js <<EOF
+# Generate JavaScript file at root
+cat > test-results.js <<EOF
 // Auto-generated test results data (local development)
 window.TEST_RESULTS = {
   jest: $JEST_DATA,
@@ -45,7 +42,7 @@ window.TEST_RESULTS = {
 EOF
 
 echo "✅ All test reports updated!"
-echo "📊 Generated: data/test-results.js"
+echo "📊 Generated: test-results.js (root level)"
 echo ""
 echo "🌐 View at:"
 echo "   - Local: open index.html in browser"

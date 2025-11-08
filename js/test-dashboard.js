@@ -5,8 +5,8 @@
 
 class TestDashboard {
   constructor() {
-    // Use JavaScript file instead of JSON (GitHub Pages blocks JSON in subdirectories)
-    this.dataScriptPath = 'data/test-results.js';
+    // Use JavaScript file at root level (GitHub Pages blocks files in some subdirectories)
+    this.dataScriptPath = 'test-results.js';
     this.updateInterval = 30000; // 30 seconds
     this.dashboardElement = null;
     this.dataLoaded = false;

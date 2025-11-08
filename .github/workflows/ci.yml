@@ -256,21 +256,20 @@ jobs:
             K6_DATA='{"metrics":{"http_reqs":{"count":0},"http_req_duration":{"avg":0,"p(95)":0},"checks":{"passes":0,"fails":0}}}'
           fi
           
-          # Create JavaScript module
-          mkdir -p deploy_temp/data
-          echo "// Auto-generated test results data" > deploy_temp/data/test-results.js
-          echo "// This file is served as JavaScript to bypass GitHub Pages JSON restrictions" >> deploy_temp/data/test-results.js
-          echo "window.TEST_RESULTS = {" >> deploy_temp/data/test-results.js
-          echo "  jest: $JEST_DATA," >> deploy_temp/data/test-results.js
-          echo "  k6: $K6_DATA," >> deploy_temp/data/test-results.js
-          echo "  generatedAt: \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" >> deploy_temp/data/test-results.js
-          echo "};" >> deploy_temp/data/test-results.js
+          # Create JavaScript module (root level to bypass GitHub Pages restrictions)
+          echo "// Auto-generated test results data" > deploy_temp/test-results.js
+          echo "// Generated at: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> deploy_temp/test-results.js
+          echo "window.TEST_RESULTS = {" >> deploy_temp/test-results.js
+          echo "  jest: $JEST_DATA," >> deploy_temp/test-results.js
+          echo "  k6: $K6_DATA," >> deploy_temp/test-results.js
+          echo "  generatedAt: \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" >> deploy_temp/test-results.js
+          echo "};" >> deploy_temp/test-results.js
           
-          echo "✓ Generated deploy_temp/data/test-results.js"
+          echo "✓ Generated deploy_temp/test-results.js (root level)"
           echo "File size:"
-          wc -c deploy_temp/data/test-results.js
+          wc -c deploy_temp/test-results.js
           echo "First 300 chars:"
-          head -c 300 deploy_temp/data/test-results.js
+          head -c 300 deploy_temp/test-results.js
           echo ""
           
       - name: Deploy to GitHub Pages
