@@ -165,6 +165,11 @@ jobs:
           cp -v tests/jest/reports/*.json deploy_temp/tests/jest/reports/ 2>/dev/null || echo "No Jest JSON reports to copy"
           cp -v tests/k6/reports/*.json deploy_temp/tests/k6/reports/ 2>/dev/null || echo "No K6 JSON reports to copy"
           
+          # Remove test report exclusions from .gitignore so they can be committed to gh-pages
+          sed -i '/^tests\/jest\/reports\/\*/d' deploy_temp/.gitignore
+          sed -i '/^tests\/k6\/reports\/\*/d' deploy_temp/.gitignore
+          sed -i '/^tests\/puppeteer\/reports\/\*/d' deploy_temp/.gitignore
+          
           # Verify test reports are included
           echo "=== Verifying deploy_temp contents ==="
           ls -lah deploy_temp/tests/jest/reports/ || echo "No Jest reports in deploy_temp"
