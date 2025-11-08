@@ -6,8 +6,8 @@
 class TestDashboard {
   constructor() {
     this.jestDataPath = 'tests/jest/reports/results-latest.json';
-    this.k6SummaryPath = 'tests/k6/reports/http-summary-20251107_204829.json';
-    this.k6PerformancePath = 'tests/k6/reports/http-performance-20251107_204829.json';
+    this.k6SummaryPath = 'tests/k6/reports/http-summary-latest.json';
+    this.k6PerformancePath = 'tests/k6/reports/http-performance-latest.json';
     this.updateInterval = 30000; // 30 seconds
     this.dashboardElement = null;
   }
