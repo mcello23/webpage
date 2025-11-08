@@ -123,7 +123,11 @@ jobs:
       - name: Generate Jest test reports
         run: |
           mkdir -p tests/jest/reports
-          npm test -- --coverage --json --outputFile=tests/jest/reports/results-latest.json || true
+          npm test -- --coverage --json --outputFile=tests/jest/reports/results-latest.json || echo '{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0}' > tests/jest/reports/results-latest.json
+          # Verify file has valid JSON
+          if [ ! -s tests/jest/reports/results-latest.json ]; then
+            echo '{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0}' > tests/jest/reports/results-latest.json
+          fi
           echo "Jest reports generated"
 
       - name: Generate K6 performance reports
@@ -143,6 +147,14 @@ jobs:
             wc -c tests/jest/reports/results-latest.json
             echo "First 200 chars:"
             head -c 200 tests/jest/reports/results-latest.json
+            echo ""
+            echo "Validating JSON:"
+            if jq empty tests/jest/reports/results-latest.json 2>/dev/null; then
+              echo "✓ Valid JSON"
+            else
+              echo "✗ Invalid JSON - Creating fallback"
+              echo '{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0}' > tests/jest/reports/results-latest.json
+            fi
           fi
           echo ""
           echo "=== K6 Reports ==="
@@ -162,8 +174,18 @@ jobs:
           # Explicitly copy test reports (they are gitignored but needed for GitHub Pages)
           mkdir -p deploy_temp/tests/jest/reports
           mkdir -p deploy_temp/tests/k6/reports
-          cp -v tests/jest/reports/*.json deploy_temp/tests/jest/reports/ 2>/dev/null || echo "No Jest JSON reports to copy"
-          cp -v tests/k6/reports/*.json deploy_temp/tests/k6/reports/ 2>/dev/null || echo "No K6 JSON reports to copy"
+          
+          # Copy Jest reports
+          if [ -f tests/jest/reports/results-latest.json ]; then
+            cp -v tests/jest/reports/results-latest.json deploy_temp/tests/jest/reports/
+            echo "✓ Copied Jest results"
+          else
+            echo "⚠ No Jest results found, creating placeholder"
+            echo '{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0}' > deploy_temp/tests/jest/reports/results-latest.json
+          fi
+          
+          # Copy K6 reports
+          cp -v tests/k6/reports/*.json deploy_temp/tests/k6/reports/ 2>/dev/null || echo "⚠ No K6 JSON reports to copy"
           
           # Remove test report exclusions from .gitignore so they can be committed to gh-pages
           sed -i '/^tests\/jest\/reports\/\*/d' deploy_temp/.gitignore
@@ -171,9 +193,19 @@ jobs:
           sed -i '/^tests\/puppeteer\/reports\/\*/d' deploy_temp/.gitignore
           
           # Verify test reports are included
+          echo ""
           echo "=== Verifying deploy_temp contents ==="
           ls -lah deploy_temp/tests/jest/reports/ || echo "No Jest reports in deploy_temp"
+          echo ""
           ls -lah deploy_temp/tests/k6/reports/ || echo "No K6 reports in deploy_temp"
+          echo ""
+          echo "=== Verifying Jest JSON is valid ==="
+          if jq empty deploy_temp/tests/jest/reports/results-latest.json 2>/dev/null; then
+            echo "✓ Jest JSON is valid"
+            jq -r '.numTotalTests // 0' deploy_temp/tests/jest/reports/results-latest.json | xargs -I {} echo "Total tests: {}"
+          else
+            echo "✗ Jest JSON is invalid"
+          fi
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
