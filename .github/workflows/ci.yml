@@ -156,8 +156,14 @@ jobs:
           # Create a clean deployment directory
           mkdir -p deploy_temp
           
-          # Copy all necessary files (respecting structure but not .gitignore)
-          rsync -av --exclude='.git' --exclude='node_modules' --exclude='.github' --exclude='deploy_temp' ./ deploy_temp/
+          # Copy all necessary files (excluding development artifacts)
+          rsync -av --exclude='.git' --exclude='node_modules' --exclude='.github' --exclude='deploy_temp' --exclude='coverage' ./ deploy_temp/
+          
+          # Explicitly copy test reports (they are gitignored but needed for GitHub Pages)
+          mkdir -p deploy_temp/tests/jest/reports
+          mkdir -p deploy_temp/tests/k6/reports
+          cp -v tests/jest/reports/*.json deploy_temp/tests/jest/reports/ 2>/dev/null || echo "No Jest JSON reports to copy"
+          cp -v tests/k6/reports/*.json deploy_temp/tests/k6/reports/ 2>/dev/null || echo "No K6 JSON reports to copy"
           
           # Verify test reports are included
           echo "=== Verifying deploy_temp contents ==="
