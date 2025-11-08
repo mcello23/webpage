@@ -7,7 +7,7 @@ TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 # Criar diretório de relatórios
 mkdir -p "$REPORT_DIR"
 
-echo "🚀 Executando testes Jest..."
+echo "🚀 Executing Jest tests..."
 echo "════════════════════════════════════════"
 echo ""
 
@@ -21,11 +21,11 @@ npm test -- \
 
 echo ""
 echo "════════════════════════════════════════"
-echo "✅ Testes Jest concluídos!"
+echo "✅ Jest tests completed!"
 echo ""
-echo "📁 Relatórios salvos em:"
+echo "📁 Reports saved in:"
 echo "   Coverage HTML: $REPORT_DIR/coverage-${TIMESTAMP}/lcov-report/index.html"
-echo "   Resultados JSON: $REPORT_DIR/results-${TIMESTAMP}.json"
+echo "   JSON Results: $REPORT_DIR/results-${TIMESTAMP}.json"
 echo ""
-echo "💡 Para abrir o relatório de coverage no browser:"
+echo "💡 To open the coverage report in the browser:"
 echo "   xdg-open $REPORT_DIR/coverage-${TIMESTAMP}/lcov-report/index.html"

@@ -5,6 +5,7 @@
 
 class TestDashboard {
   constructor() {
+    // Base-relative path for Jest results. We'll resolve absolute URL at runtime.
     this.jestDataPath = 'tests/jest/reports/results-latest.json';
     this.k6SummaryPath = 'tests/k6/reports/http-summary-latest.json';
     this.k6PerformancePath = 'tests/k6/reports/http-performance-latest.json';
@@ -160,18 +161,26 @@ class TestDashboard {
     if (!container) return;
 
     try {
-      const response = await fetch(this.k6SummaryPath);
+      const response = await fetch(this.k6SummaryPath, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`K6 summary not found (HTTP ${response.status})`);
       const data = await response.json();
-
-      const metrics = data.metrics;
-      const httpReqs = metrics.http_reqs.count;
-      const httpDuration = metrics.http_req_duration.avg.toFixed(2);
-      const p95Duration = metrics.http_req_duration['p(95)'].toFixed(2);
-      const checksPass = metrics.checks.passes;
-      const checksFail = metrics.checks.fails;
+      const metrics = data.metrics || {};
+      const httpReqs = metrics.http_reqs ? metrics.http_reqs.count : 0;
+      const httpDuration = metrics.http_req_duration
+        ? Number(metrics.http_req_duration.avg).toFixed(2)
+        : '0.00';
+      const p95Duration =
+        metrics.http_req_duration && metrics.http_req_duration['p(95)'] !== undefined
+          ? Number(metrics.http_req_duration['p(95)']).toFixed(2)
+          : '0.00';
+      const checksPass = metrics.checks ? metrics.checks.passes : 0;
+      const checksFail = metrics.checks ? metrics.checks.fails : 0;
       const checksTotal = checksPass + checksFail;
-      const checksRate = ((checksPass / checksTotal) * 100).toFixed(2);
-      const threshold = metrics.http_req_duration.thresholds['p(95)<2000'];
+      const checksRate = checksTotal > 0 ? ((checksPass / checksTotal) * 100).toFixed(2) : '100.00';
+      const threshold =
+        metrics.http_req_duration && metrics.http_req_duration.thresholds
+          ? metrics.http_req_duration.thresholds['p(95)<2000']
+          : false;
 
       container.innerHTML = `
         <div class="test-stats">
@@ -220,7 +229,8 @@ class TestDashboard {
         <div class="error-message">
           <i class="material-icons">error_outline</i>
           <p>Unable to load K6 results</p>
-          <small>${isDev ? 'Run: <code>npm run test:reports</code>' : 'Reports are being generated... Please wait for CI/CD to complete.'}</small>
+          <small>${isDev ? 'Run: <code>npm run test:reports</code>' : 'Reports unavailable (404). CI/CD may still be deploying. Fallback active.'}</small>
+          <details style="margin-top:6px"><summary style="cursor:pointer">Debug info</summary><code>${(error && error.message) || 'No message'}</code></details>
         </div>
       `;
     }

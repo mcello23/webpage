@@ -187,10 +187,14 @@ jobs:
           # Copy K6 reports
           cp -v tests/k6/reports/*.json deploy_temp/tests/k6/reports/ 2>/dev/null || echo "⚠ No K6 JSON reports to copy"
           
-          # Remove test report exclusions from .gitignore so they can be committed to gh-pages
-          sed -i '/^tests\/jest\/reports\/\*/d' deploy_temp/.gitignore
-          sed -i '/^tests\/k6\/reports\/\*/d' deploy_temp/.gitignore
-          sed -i '/^tests\/puppeteer\/reports\/\*/d' deploy_temp/.gitignore
+          # Ensure .gitignore will not exclude any report files in the publish tree
+          if [ -f deploy_temp/.gitignore ]; then
+            sed -i '/^tests\/jest\/reports\/\*/d' deploy_temp/.gitignore || true
+            sed -i '/^tests\/k6\/reports\/\*/d' deploy_temp/.gitignore || true
+            sed -i '/^tests\/puppeteer\/reports\/\*/d' deploy_temp/.gitignore || true
+            # As a safety net, remove .gitignore entirely from the publish dir
+            rm -f deploy_temp/.gitignore
+          fi
           
           # Verify test reports are included
           echo ""
