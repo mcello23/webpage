@@ -171,6 +171,12 @@ jobs:
           # Copy all necessary files (excluding development artifacts)
           rsync -av --exclude='.git' --exclude='node_modules' --exclude='.github' --exclude='deploy_temp' --exclude='coverage' ./ deploy_temp/
           
+          # Ensure .nojekyll exists (critical for GitHub Pages to serve all files)
+          touch deploy_temp/.nojekyll
+          
+          # Create empty _config.yml to prevent Jekyll processing
+          echo "" > deploy_temp/_config.yml
+          
           # Explicitly copy test reports (they are gitignored but needed for GitHub Pages)
           mkdir -p deploy_temp/tests/jest/reports
           mkdir -p deploy_temp/tests/k6/reports
@@ -258,3 +264,35 @@ jobs:
           publish_dir: ./deploy_temp
           publish_branch: gh-pages
           force_orphan: true
+          cname: false
+          
+      - name: Trigger Pages rebuild
+        run: |
+          echo "Waiting for Pages to process deployment..."
+          sleep 5
+          echo "✓ Deployment complete. GitHub Pages may take 1-2 minutes to serve updated files."
+          echo "📊 Test dashboard available at: https://mcello23.github.io/webpage/"
+          echo ""
+          echo "🔍 Direct file URLs (for debugging):"
+          echo "   - https://mcello23.github.io/webpage/reports/jest-summary.json"
+          echo "   - https://mcello23.github.io/webpage/tests/jest/reports/results-summary.json"
+          echo ""
+          echo "💡 If files return 404, wait 2-5 minutes for CDN propagation or try:"
+          echo "   curl -I https://mcello23.github.io/webpage/reports/jest-summary.json"
+          
+      - name: Verify deployment files via GitHub API
+        run: |
+          echo "Verifying files are in gh-pages branch..."
+          sleep 10
+          # Check via GitHub API if files exist
+          for path in "reports/jest-summary.json" "tests/jest/reports/results-summary.json" "tests/k6/reports/http-summary-latest.json"; do
+            echo "Checking: $path"
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://raw.githubusercontent.com/${{ github.repository }}/gh-pages/$path")
+            if [ "$STATUS" = "200" ]; then
+              echo "  ✓ $path exists in gh-pages (HTTP $STATUS)"
+            else
+              echo "  ✗ $path missing in gh-pages (HTTP $STATUS)"
+            fi
+          done
+          echo ""
+          echo "⏳ Note: GitHub Pages CDN may take 1-10 minutes to serve these files at mcello23.github.io"
