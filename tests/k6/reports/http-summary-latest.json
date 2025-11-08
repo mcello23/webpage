@@ -1,0 +1,37 @@
+{
+  "metrics": {
+    "http_reqs": {
+      "count": 150,
+      "rate": 15.0
+    },
+    "http_req_duration": {
+      "avg": 145.32,
+      "min": 89.5,
+      "med": 132.8,
+      "max": 287.6,
+      "p(90)": 198.4,
+      "p(95)": 245.7,
+      "thresholds": {
+        "p(95)<2000": true
+      }
+    },
+    "checks": {
+      "passes": 298,
+      "fails": 2
+    }
+  },
+  "root_group": {
+    "checks": [
+      {
+        "name": "status 200",
+        "passes": 149,
+        "fails": 1
+      },
+      {
+        "name": "has content",
+        "passes": 149,
+        "fails": 1
+      }
+    ]
+  }
+}
