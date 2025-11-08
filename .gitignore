@@ -398,13 +398,12 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Test reports - ignored locally but generated in CI/CD for GitHub Pages
-tests/jest/reports/
-tests/k6/reports/
-tests/puppeteer/reports/
+tests/jest/reports/*
+!tests/jest/reports/.gitkeep.md
+tests/k6/reports/*
+!tests/k6/reports/.gitkeep.md
+tests/puppeteer/reports/*
+!tests/puppeteer/reports/.gitkeep.md
 
 # Coverage reports - not needed in repository, generated locally/CI only
 coverage/
-
-# But keep the directory structure
-!tests/jest/reports/.gitkeep.md
-!tests/k6/reports/.gitkeep.md       

@@ -73,7 +73,7 @@ jobs:
           k6 version
 
       - name: Run unit tests
-        run: npm test
+        run: npm test -- --coverage
 
       - name: Run k6 performance tests
         run: npm run test:k6
@@ -123,7 +123,7 @@ jobs:
       - name: Generate Jest test reports
         run: |
           mkdir -p tests/jest/reports
-          npm test -- --json --outputFile=tests/jest/reports/results-latest.json || true
+          npm test -- --coverage --json --outputFile=tests/jest/reports/results-latest.json || true
           echo "Jest reports generated"
 
       - name: Generate K6 performance reports
