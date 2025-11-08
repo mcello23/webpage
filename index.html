@@ -888,8 +888,24 @@
             </div>
 
             <!-- Metadata Info -->
-            <div class="metadata-section" style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #f5f7fa, #e6eef9); border-radius: 8px;">
-              <div style="display: flex; gap: 30px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted);">
+            <div
+              class="metadata-section"
+              style="
+                margin-bottom: 20px;
+                padding: 15px;
+                background: linear-gradient(135deg, #f5f7fa, #e6eef9);
+                border-radius: 8px;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  gap: 30px;
+                  flex-wrap: wrap;
+                  font-size: 0.9rem;
+                  color: var(--muted);
+                "
+              >
                 <div><strong>Branch:</strong> <span id="modal-branch">-</span></div>
                 <div><strong>Commit:</strong> <span id="modal-commit">-</span></div>
                 <div><strong>Last Run:</strong> <span id="modal-timestamp">-</span></div>
@@ -927,14 +943,23 @@
                     <span class="metric-value" id="modal-jest-duration">-</span>
                   </div>
                 </div>
-                
+
                 <!-- Test Suites Details -->
-                <div style="margin-top: 30px;">
-                  <h3 style="font-size: 1.2rem; color: var(--ink); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
-                    <i class="material-icons" style="font-size: 20px;">folder</i>
+                <div style="margin-top: 30px">
+                  <h3
+                    style="
+                      font-size: 1.2rem;
+                      color: var(--ink);
+                      margin-bottom: 15px;
+                      display: flex;
+                      align-items: center;
+                      gap: 8px;
+                    "
+                  >
+                    <i class="material-icons" style="font-size: 20px">folder</i>
                     Test Suites Details
                   </h3>
-                  <div id="modal-jest-suites-list" style="display: grid; gap: 12px;">
+                  <div id="modal-jest-suites-list" style="display: grid; gap: 12px">
                     <!-- Suites will be populated here -->
                   </div>
                 </div>
@@ -972,11 +997,20 @@
                     <span class="metric-value success" id="modal-k6-checks">-</span>
                   </div>
                 </div>
-                
+
                 <!-- K6 Duration Details -->
-                <div style="margin-top: 30px;">
-                  <h3 style="font-size: 1.2rem; color: var(--ink); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
-                    <i class="material-icons" style="font-size: 20px;">timer</i>
+                <div style="margin-top: 30px">
+                  <h3
+                    style="
+                      font-size: 1.2rem;
+                      color: var(--ink);
+                      margin-bottom: 15px;
+                      display: flex;
+                      align-items: center;
+                      gap: 8px;
+                    "
+                  >
+                    <i class="material-icons" style="font-size: 20px">timer</i>
                     Request Duration Breakdown
                   </h3>
                   <div class="metrics-grid">
@@ -1000,12 +1034,21 @@
                 </div>
 
                 <!-- K6 Checks Details -->
-                <div style="margin-top: 30px;" id="modal-k6-checks-section">
-                  <h3 style="font-size: 1.2rem; color: var(--ink); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
-                    <i class="material-icons" style="font-size: 20px;">rule</i>
+                <div style="margin-top: 30px" id="modal-k6-checks-section">
+                  <h3
+                    style="
+                      font-size: 1.2rem;
+                      color: var(--ink);
+                      margin-bottom: 15px;
+                      display: flex;
+                      align-items: center;
+                      gap: 8px;
+                    "
+                  >
+                    <i class="material-icons" style="font-size: 20px">rule</i>
                     Checks Breakdown
                   </h3>
-                  <div id="modal-k6-checks-list" style="display: grid; gap: 12px;">
+                  <div id="modal-k6-checks-list" style="display: grid; gap: 12px">
                     <!-- Checks will be populated here -->
                   </div>
                 </div>
@@ -2495,8 +2538,8 @@
         if (data.metadata) {
           document.getElementById('modal-branch').textContent = data.metadata.branch || '-';
           document.getElementById('modal-commit').textContent = data.metadata.commit || '-';
-          document.getElementById('modal-timestamp').textContent = data.metadata.timestamp 
-            ? new Date(data.metadata.timestamp).toLocaleString() 
+          document.getElementById('modal-timestamp').textContent = data.metadata.timestamp
+            ? new Date(data.metadata.timestamp).toLocaleString()
             : '-';
         }
 
@@ -2515,21 +2558,25 @@
 
         // Jest Metrics
         if (data.jest) {
-          const jestDuration = data.jest.avgDuration ? (data.jest.avgDuration / 1000).toFixed(2) : '0';
+          const jestDuration = data.jest.avgDuration
+            ? (data.jest.avgDuration / 1000).toFixed(2)
+            : '0';
           document.getElementById('modal-jest-suites').textContent =
             data.jest.numTotalTestSuites || 0;
           document.getElementById('modal-jest-passed').textContent = data.jest.numPassedTests || 0;
           document.getElementById('modal-jest-failed').textContent = data.jest.numFailedTests || 0;
-          document.getElementById('modal-jest-rate').textContent = (data.jest.passRate || passRate) + '%';
+          document.getElementById('modal-jest-rate').textContent =
+            (data.jest.passRate || passRate) + '%';
           document.getElementById('modal-jest-duration').textContent = jestDuration + 's';
 
           // Populate Jest Suites Details
           const suitesList = document.getElementById('modal-jest-suites-list');
           if (data.jest.testSuites && data.jest.testSuites.length > 0) {
-            suitesList.innerHTML = data.jest.testSuites.map(suite => {
-              const status = suite.numFailedTests > 0 ? 'failed' : 'passed';
-              const duration = suite.duration ? (suite.duration / 1000).toFixed(2) : '0';
-              return `
+            suitesList.innerHTML = data.jest.testSuites
+              .map((suite) => {
+                const status = suite.numFailedTests > 0 ? 'failed' : 'passed';
+                const duration = suite.duration ? (suite.duration / 1000).toFixed(2) : '0';
+                return `
                 <div class="suite-item ${status}">
                   <div class="suite-header">
                     <span class="suite-name">${suite.name}</span>
@@ -2542,7 +2589,8 @@
                   <div class="suite-duration">${duration}s</div>
                 </div>
               `;
-            }).join('');
+              })
+              .join('');
           } else {
             suitesList.innerHTML = '<p style="color: var(--muted);">No suite details available</p>';
           }
@@ -2552,38 +2600,42 @@
         if (data.k6?.metrics) {
           const metrics = data.k6.metrics;
           const rate = metrics.http_reqs?.rate ? metrics.http_reqs.rate.toFixed(2) : '0';
-          
+
           document.getElementById('modal-k6-requests').textContent = metrics.http_reqs?.count || 0;
           document.getElementById('modal-k6-rate').textContent = rate + ' req/s';
           document.getElementById('modal-k6-avg').textContent =
             (metrics.http_req_duration?.avg || 0).toFixed(2) + 'ms';
           document.getElementById('modal-k6-p95').textContent =
-            (metrics.http_req_duration?.['p(95)'] || metrics.http_req_duration?.p95 || 0).toFixed(2) + 'ms';
-          
+            (metrics.http_req_duration?.['p(95)'] || metrics.http_req_duration?.p95 || 0).toFixed(
+              2
+            ) + 'ms';
+
           const checksTotal = (metrics.checks?.passes || 0) + (metrics.checks?.fails || 0);
-          const checksRate = checksTotal > 0 
-            ? ((metrics.checks.passes / checksTotal) * 100).toFixed(1) 
-            : '100';
+          const checksRate =
+            checksTotal > 0 ? ((metrics.checks.passes / checksTotal) * 100).toFixed(1) : '100';
           document.getElementById('modal-k6-checks').textContent = checksRate + '%';
 
           // Duration breakdown
-          document.getElementById('modal-k6-min').textContent = 
+          document.getElementById('modal-k6-min').textContent =
             (metrics.http_req_duration?.min || 0).toFixed(2) + 'ms';
-          document.getElementById('modal-k6-med').textContent = 
+          document.getElementById('modal-k6-med').textContent =
             (metrics.http_req_duration?.med || 0).toFixed(2) + 'ms';
-          document.getElementById('modal-k6-p90').textContent = 
-            (metrics.http_req_duration?.['p(90)'] || metrics.http_req_duration?.p90 || 0).toFixed(2) + 'ms';
-          document.getElementById('modal-k6-max').textContent = 
+          document.getElementById('modal-k6-p90').textContent =
+            (metrics.http_req_duration?.['p(90)'] || metrics.http_req_duration?.p90 || 0).toFixed(
+              2
+            ) + 'ms';
+          document.getElementById('modal-k6-max').textContent =
             (metrics.http_req_duration?.max || 0).toFixed(2) + 'ms';
 
           // Populate K6 Checks Details
           const checksList = document.getElementById('modal-k6-checks-list');
           if (data.k6.root_group?.checks && data.k6.root_group.checks.length > 0) {
-            checksList.innerHTML = data.k6.root_group.checks.map(check => {
-              const total = check.passes + check.fails;
-              const rate = total > 0 ? ((check.passes / total) * 100).toFixed(1) : '100';
-              const status = check.fails > 0 ? 'failed' : 'passed';
-              return `
+            checksList.innerHTML = data.k6.root_group.checks
+              .map((check) => {
+                const total = check.passes + check.fails;
+                const rate = total > 0 ? ((check.passes / total) * 100).toFixed(1) : '100';
+                const status = check.fails > 0 ? 'failed' : 'passed';
+                return `
                 <div class="check-item ${status}">
                   <span class="check-name">${check.name}</span>
                   <span class="check-result ${check.fails > 0 ? 'error' : 'success'}">
@@ -2591,7 +2643,8 @@
                   </span>
                 </div>
               `;
-            }).join('');
+              })
+              .join('');
           } else {
             checksList.innerHTML = '<p style="color: var(--muted);">No check details available</p>';
           }
