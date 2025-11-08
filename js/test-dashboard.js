@@ -306,7 +306,7 @@ class TestDashboard {
               <div class="metric-row"><span class="metric-label">Virtual Users:</span><span class="metric-value">10</span></div>
             </div>
             ${
-              data.root_group && data.root_group.checks
+              data.root_group && data.root_group.checks && Array.isArray(data.root_group.checks)
                 ? `
             <div class="metric-group">
               <h4>Checks Breakdown</h4>
