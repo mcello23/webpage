@@ -577,6 +577,96 @@
         color: #ff6b6b;
       }
 
+      /* Suite Item Styles */
+      .suite-item {
+        background: linear-gradient(135deg, #f9fafb, #f0f2f5);
+        border-radius: 8px;
+        padding: 15px;
+        border-left: 4px solid var(--brand-1);
+        transition: all 0.3s ease;
+      }
+      .suite-item:hover {
+        transform: translateX(4px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .suite-item.failed {
+        border-left-color: #f44336;
+      }
+      .suite-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .suite-name {
+        font-weight: 600;
+        color: var(--ink);
+        font-size: 0.95rem;
+      }
+      .suite-stats {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .badge {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        background: #e0e0e0;
+        color: #666;
+      }
+      .badge.success {
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: #fff;
+      }
+      .badge.error {
+        background: linear-gradient(135deg, #f44336, #e53935);
+        color: #fff;
+      }
+      .suite-duration {
+        margin-top: 8px;
+        font-size: 0.85rem;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .suite-duration::before {
+        content: '⏱️';
+      }
+
+      /* Check Item Styles */
+      .check-item {
+        background: linear-gradient(135deg, #f9fafb, #f0f2f5);
+        border-radius: 8px;
+        padding: 12px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-left: 4px solid var(--brand-1);
+      }
+      .check-item.failed {
+        border-left-color: #f44336;
+      }
+      .check-name {
+        font-weight: 500;
+        color: var(--ink);
+        font-size: 0.9rem;
+      }
+      .check-result {
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .check-result.success {
+        color: #43e97b;
+      }
+      .check-result.error {
+        color: #f44336;
+      }
+
       /* Floating Dashboard Button */
       .dashboard-fab {
         position: fixed;
@@ -797,49 +887,12 @@
               </div>
             </div>
 
-            <!-- Filters -->
-            <div class="filters-section">
-              <div class="filter-group">
-                <label for="modal-filter-type">Test Type:</label>
-                <select id="modal-filter-type" class="filter-select">
-                  <option value="all">All Tests</option>
-                  <option value="jest">Jest Only</option>
-                  <option value="k6">K6 Only</option>
-                </select>
-              </div>
-              <div class="filter-group">
-                <label for="modal-filter-status">Status:</label>
-                <select id="modal-filter-status" class="filter-select">
-                  <option value="all">All Status</option>
-                  <option value="passed">Passed</option>
-                  <option value="failed">Failed</option>
-                </select>
-              </div>
-              <div class="filter-group">
-                <button class="btn-action" id="modal-export-btn" title="Export report">
-                  <i class="material-icons">download</i>
-                  <span>Export</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Charts Section -->
-            <div class="charts-grid">
-              <div class="chart-card">
-                <div class="chart-header">
-                  <h3><i class="material-icons">show_chart</i> Test Execution Trend</h3>
-                </div>
-                <div class="chart-container">
-                  <canvas id="modal-trend-chart"></canvas>
-                </div>
-              </div>
-              <div class="chart-card">
-                <div class="chart-header">
-                  <h3><i class="material-icons">pie_chart</i> Test Distribution</h3>
-                </div>
-                <div class="chart-container">
-                  <canvas id="modal-distribution-chart"></canvas>
-                </div>
+            <!-- Metadata Info -->
+            <div class="metadata-section" style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #f5f7fa, #e6eef9); border-radius: 8px;">
+              <div style="display: flex; gap: 30px; flex-wrap: wrap; font-size: 0.9rem; color: var(--muted);">
+                <div><strong>Branch:</strong> <span id="modal-branch">-</span></div>
+                <div><strong>Commit:</strong> <span id="modal-commit">-</span></div>
+                <div><strong>Last Run:</strong> <span id="modal-timestamp">-</span></div>
               </div>
             </div>
 
@@ -848,7 +901,7 @@
               <div class="section-header">
                 <h2><i class="material-icons">check_circle</i> Jest Unit Tests</h2>
                 <button class="btn-collapse" onclick="toggleModalSection('modal-jest-content')">
-                  <i class="material-icons">expand_more</i>
+                  <i class="material-icons">expand_less</i>
                 </button>
               </div>
               <div class="section-content" id="modal-jest-content">
@@ -869,9 +922,21 @@
                     <span class="metric-label">Success Rate</span>
                     <span class="metric-value" id="modal-jest-rate">-</span>
                   </div>
+                  <div class="metric-item">
+                    <span class="metric-label">Total Duration</span>
+                    <span class="metric-value" id="modal-jest-duration">-</span>
+                  </div>
                 </div>
-                <div class="chart-container" style="margin-top: 20px">
-                  <canvas id="modal-jest-chart"></canvas>
+                
+                <!-- Test Suites Details -->
+                <div style="margin-top: 30px;">
+                  <h3 style="font-size: 1.2rem; color: var(--ink); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                    <i class="material-icons" style="font-size: 20px;">folder</i>
+                    Test Suites Details
+                  </h3>
+                  <div id="modal-jest-suites-list" style="display: grid; gap: 12px;">
+                    <!-- Suites will be populated here -->
+                  </div>
                 </div>
               </div>
             </div>
@@ -881,7 +946,7 @@
               <div class="section-header">
                 <h2><i class="material-icons">speed</i> K6 Performance Tests</h2>
                 <button class="btn-collapse" onclick="toggleModalSection('modal-k6-content')">
-                  <i class="material-icons">expand_more</i>
+                  <i class="material-icons">expand_less</i>
                 </button>
               </div>
               <div class="section-content" id="modal-k6-content">
@@ -889,6 +954,10 @@
                   <div class="metric-item">
                     <span class="metric-label">HTTP Requests</span>
                     <span class="metric-value" id="modal-k6-requests">-</span>
+                  </div>
+                  <div class="metric-item">
+                    <span class="metric-label">Request Rate</span>
+                    <span class="metric-value" id="modal-k6-rate">-</span>
                   </div>
                   <div class="metric-item">
                     <span class="metric-label">Avg Duration</span>
@@ -903,41 +972,42 @@
                     <span class="metric-value success" id="modal-k6-checks">-</span>
                   </div>
                 </div>
-                <div class="chart-container" style="margin-top: 20px">
-                  <canvas id="modal-k6-chart"></canvas>
+                
+                <!-- K6 Duration Details -->
+                <div style="margin-top: 30px;">
+                  <h3 style="font-size: 1.2rem; color: var(--ink); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                    <i class="material-icons" style="font-size: 20px;">timer</i>
+                    Request Duration Breakdown
+                  </h3>
+                  <div class="metrics-grid">
+                    <div class="metric-item">
+                      <span class="metric-label">Min</span>
+                      <span class="metric-value" id="modal-k6-min">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Median</span>
+                      <span class="metric-value" id="modal-k6-med">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">P90</span>
+                      <span class="metric-value" id="modal-k6-p90">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Max</span>
+                      <span class="metric-value" id="modal-k6-max">-</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <!-- Coverage Details -->
-            <div class="section-card" id="modal-coverage-section">
-              <div class="section-header">
-                <h2><i class="material-icons">assessment</i> Code Coverage</h2>
-                <button class="btn-collapse" onclick="toggleModalSection('modal-coverage-content')">
-                  <i class="material-icons">expand_more</i>
-                </button>
-              </div>
-              <div class="section-content collapsed" id="modal-coverage-content">
-                <div class="metrics-grid">
-                  <div class="metric-item">
-                    <span class="metric-label">Lines</span>
-                    <span class="metric-value" id="modal-coverage-lines">-</span>
+                <!-- K6 Checks Details -->
+                <div style="margin-top: 30px;" id="modal-k6-checks-section">
+                  <h3 style="font-size: 1.2rem; color: var(--ink); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                    <i class="material-icons" style="font-size: 20px;">rule</i>
+                    Checks Breakdown
+                  </h3>
+                  <div id="modal-k6-checks-list" style="display: grid; gap: 12px;">
+                    <!-- Checks will be populated here -->
                   </div>
-                  <div class="metric-item">
-                    <span class="metric-label">Statements</span>
-                    <span class="metric-value" id="modal-coverage-statements">-</span>
-                  </div>
-                  <div class="metric-item">
-                    <span class="metric-label">Functions</span>
-                    <span class="metric-value" id="modal-coverage-functions">-</span>
-                  </div>
-                  <div class="metric-item">
-                    <span class="metric-label">Branches</span>
-                    <span class="metric-value" id="modal-coverage-branches">-</span>
-                  </div>
-                </div>
-                <div class="chart-container" style="margin-top: 20px">
-                  <canvas id="modal-coverage-chart"></canvas>
                 </div>
               </div>
             </div>
@@ -2371,8 +2441,8 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
-    <!-- Test Data -->
-    <script src="pages/test-dashboard/test-data-example.js"></script>
+    <!-- Test Data (generated by CI/CD) -->
+    <script src="test-data.js"></script>
 
     <!-- Test Dashboard Modal Script -->
     <script>
@@ -2421,13 +2491,22 @@
 
         const data = window.TEST_RESULTS;
 
+        // Update Metadata
+        if (data.metadata) {
+          document.getElementById('modal-branch').textContent = data.metadata.branch || '-';
+          document.getElementById('modal-commit').textContent = data.metadata.commit || '-';
+          document.getElementById('modal-timestamp').textContent = data.metadata.timestamp 
+            ? new Date(data.metadata.timestamp).toLocaleString() 
+            : '-';
+        }
+
         // Update Quick Stats
         const totalTests =
           (data.jest?.numTotalTests || 0) + (data.k6?.metrics?.http_reqs?.count || 0);
         const passedTests = data.jest?.numPassedTests || 0;
         const passRate = totalTests > 0 ? ((passedTests / totalTests) * 100).toFixed(1) : 0;
         const avgDuration = data.jest?.avgDuration ? (data.jest.avgDuration / 1000).toFixed(2) : 0;
-        const coverage = data.coverage?.total?.lines?.pct || 0;
+        const coverage = data.coverage?.lines?.pct || 0;
 
         document.getElementById('modal-total-tests').textContent = totalTests;
         document.getElementById('modal-pass-rate').textContent = passRate + '%';
@@ -2436,186 +2515,89 @@
 
         // Jest Metrics
         if (data.jest) {
+          const jestDuration = data.jest.avgDuration ? (data.jest.avgDuration / 1000).toFixed(2) : '0';
           document.getElementById('modal-jest-suites').textContent =
             data.jest.numTotalTestSuites || 0;
           document.getElementById('modal-jest-passed').textContent = data.jest.numPassedTests || 0;
           document.getElementById('modal-jest-failed').textContent = data.jest.numFailedTests || 0;
-          document.getElementById('modal-jest-rate').textContent = passRate + '%';
+          document.getElementById('modal-jest-rate').textContent = (data.jest.passRate || passRate) + '%';
+          document.getElementById('modal-jest-duration').textContent = jestDuration + 's';
+
+          // Populate Jest Suites Details
+          const suitesList = document.getElementById('modal-jest-suites-list');
+          if (data.jest.testSuites && data.jest.testSuites.length > 0) {
+            suitesList.innerHTML = data.jest.testSuites.map(suite => {
+              const status = suite.numFailedTests > 0 ? 'failed' : 'passed';
+              const duration = suite.duration ? (suite.duration / 1000).toFixed(2) : '0';
+              return `
+                <div class="suite-item ${status}">
+                  <div class="suite-header">
+                    <span class="suite-name">${suite.name}</span>
+                    <div class="suite-stats">
+                      <span class="badge success">${suite.numPassedTests || 0} passed</span>
+                      ${suite.numFailedTests > 0 ? `<span class="badge error">${suite.numFailedTests} failed</span>` : ''}
+                      <span class="badge">${suite.numTests || 0} total</span>
+                    </div>
+                  </div>
+                  <div class="suite-duration">${duration}s</div>
+                </div>
+              `;
+            }).join('');
+          } else {
+            suitesList.innerHTML = '<p style="color: var(--muted);">No suite details available</p>';
+          }
         }
 
         // K6 Metrics
         if (data.k6?.metrics) {
           const metrics = data.k6.metrics;
+          const rate = metrics.http_reqs?.rate ? metrics.http_reqs.rate.toFixed(2) : '0';
+          
           document.getElementById('modal-k6-requests').textContent = metrics.http_reqs?.count || 0;
+          document.getElementById('modal-k6-rate').textContent = rate + ' req/s';
           document.getElementById('modal-k6-avg').textContent =
             (metrics.http_req_duration?.avg || 0).toFixed(2) + 'ms';
           document.getElementById('modal-k6-p95').textContent =
-            (metrics.http_req_duration?.p95 || 0).toFixed(2) + 'ms';
-          document.getElementById('modal-k6-checks').textContent =
-            (((metrics.checks?.passes || 0) / (metrics.checks?.value || 1)) * 100).toFixed(1) + '%';
-        }
+            (metrics.http_req_duration?.['p(95)'] || metrics.http_req_duration?.p95 || 0).toFixed(2) + 'ms';
+          
+          const checksTotal = (metrics.checks?.passes || 0) + (metrics.checks?.fails || 0);
+          const checksRate = checksTotal > 0 
+            ? ((metrics.checks.passes / checksTotal) * 100).toFixed(1) 
+            : '100';
+          document.getElementById('modal-k6-checks').textContent = checksRate + '%';
 
-        // Coverage Metrics
-        if (data.coverage?.total) {
-          const cov = data.coverage.total;
-          document.getElementById('modal-coverage-lines').textContent =
-            cov.lines?.pct?.toFixed(1) + '%';
-          document.getElementById('modal-coverage-statements').textContent =
-            cov.statements?.pct?.toFixed(1) + '%';
-          document.getElementById('modal-coverage-functions').textContent =
-            cov.functions?.pct?.toFixed(1) + '%';
-          document.getElementById('modal-coverage-branches').textContent =
-            cov.branches?.pct?.toFixed(1) + '%';
-        }
+          // Duration breakdown
+          document.getElementById('modal-k6-min').textContent = 
+            (metrics.http_req_duration?.min || 0).toFixed(2) + 'ms';
+          document.getElementById('modal-k6-med').textContent = 
+            (metrics.http_req_duration?.med || 0).toFixed(2) + 'ms';
+          document.getElementById('modal-k6-p90').textContent = 
+            (metrics.http_req_duration?.['p(90)'] || metrics.http_req_duration?.p90 || 0).toFixed(2) + 'ms';
+          document.getElementById('modal-k6-max').textContent = 
+            (metrics.http_req_duration?.max || 0).toFixed(2) + 'ms';
 
-        // Initialize Charts
-        initializeModalCharts(data);
-      }
-
-      function initializeModalCharts(data) {
-        const chartOptions = {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'bottom',
-            },
-          },
-        };
-
-        // Trend Chart
-        if (data.history && data.history.length > 0) {
-          const trendCtx = document.getElementById('modal-trend-chart');
-          if (trendCtx) {
-            new Chart(trendCtx, {
-              type: 'line',
-              data: {
-                labels: data.history.map((h) => new Date(h.timestamp).toLocaleDateString()),
-                datasets: [
-                  {
-                    label: 'Pass Rate',
-                    data: data.history.map((h) => {
-                      const total = h.jest?.numTotalTests || 1;
-                      const passed = h.jest?.numPassedTests || 0;
-                      return ((passed / total) * 100).toFixed(1);
-                    }),
-                    borderColor: '#43e97b',
-                    backgroundColor: 'rgba(67, 233, 123, 0.1)',
-                    tension: 0.4,
-                  },
-                ],
-              },
-              options: chartOptions,
-            });
+          // Populate K6 Checks Details
+          const checksList = document.getElementById('modal-k6-checks-list');
+          if (data.k6.root_group?.checks && data.k6.root_group.checks.length > 0) {
+            checksList.innerHTML = data.k6.root_group.checks.map(check => {
+              const total = check.passes + check.fails;
+              const rate = total > 0 ? ((check.passes / total) * 100).toFixed(1) : '100';
+              const status = check.fails > 0 ? 'failed' : 'passed';
+              return `
+                <div class="check-item ${status}">
+                  <span class="check-name">${check.name}</span>
+                  <span class="check-result ${check.fails > 0 ? 'error' : 'success'}">
+                    ${check.passes} / ${total} (${rate}%)
+                  </span>
+                </div>
+              `;
+            }).join('');
+          } else {
+            checksList.innerHTML = '<p style="color: var(--muted);">No check details available</p>';
           }
         }
 
-        // Distribution Chart
-        const distCtx = document.getElementById('modal-distribution-chart');
-        if (distCtx && data.jest) {
-          new Chart(distCtx, {
-            type: 'doughnut',
-            data: {
-              labels: ['Passed', 'Failed', 'Skipped'],
-              datasets: [
-                {
-                  data: [
-                    data.jest.numPassedTests || 0,
-                    data.jest.numFailedTests || 0,
-                    data.jest.numPendingTests || 0,
-                  ],
-                  backgroundColor: ['#43e97b', '#ff6b6b', '#ffc107'],
-                },
-              ],
-            },
-            options: chartOptions,
-          });
-        }
-
-        // Jest Chart
-        const jestCtx = document.getElementById('modal-jest-chart');
-        if (jestCtx && data.jest) {
-          new Chart(jestCtx, {
-            type: 'bar',
-            data: {
-              labels: ['Passed', 'Failed'],
-              datasets: [
-                {
-                  label: 'Jest Tests',
-                  data: [data.jest.numPassedTests || 0, data.jest.numFailedTests || 0],
-                  backgroundColor: ['#43e97b', '#ff6b6b'],
-                },
-              ],
-            },
-            options: chartOptions,
-          });
-        }
-
-        // K6 Chart
-        const k6Ctx = document.getElementById('modal-k6-chart');
-        if (k6Ctx && data.k6?.metrics) {
-          const metrics = data.k6.metrics;
-          new Chart(k6Ctx, {
-            type: 'bar',
-            data: {
-              labels: ['Min', 'Median', 'Avg', 'P90', 'P95', 'Max'],
-              datasets: [
-                {
-                  label: 'HTTP Duration (ms)',
-                  data: [
-                    metrics.http_req_duration?.min || 0,
-                    metrics.http_req_duration?.med || 0,
-                    metrics.http_req_duration?.avg || 0,
-                    metrics.http_req_duration?.p90 || 0,
-                    metrics.http_req_duration?.p95 || 0,
-                    metrics.http_req_duration?.max || 0,
-                  ],
-                  backgroundColor: '#667eea',
-                },
-              ],
-            },
-            options: chartOptions,
-          });
-        }
-
-        // Coverage Chart
-        const covCtx = document.getElementById('modal-coverage-chart');
-        if (covCtx && data.coverage?.total) {
-          const cov = data.coverage.total;
-          new Chart(covCtx, {
-            type: 'radar',
-            data: {
-              labels: ['Lines', 'Statements', 'Functions', 'Branches'],
-              datasets: [
-                {
-                  label: 'Coverage %',
-                  data: [
-                    cov.lines?.pct || 0,
-                    cov.statements?.pct || 0,
-                    cov.functions?.pct || 0,
-                    cov.branches?.pct || 0,
-                  ],
-                  backgroundColor: 'rgba(102, 126, 234, 0.2)',
-                  borderColor: '#667eea',
-                  pointBackgroundColor: '#667eea',
-                },
-              ],
-            },
-            options: chartOptions,
-          });
-        }
-
-        // Export functionality
-        document.getElementById('modal-export-btn')?.addEventListener('click', function () {
-          const dataStr = JSON.stringify(data, null, 2);
-          const blob = new Blob([dataStr], { type: 'application/json' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `test-results-${new Date().toISOString()}.json`;
-          a.click();
-          URL.revokeObjectURL(url);
-        });
+        console.log('✓ Modal dashboard initialized with data:', data);
       }
     </script>
   </body>
