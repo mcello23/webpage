@@ -18,10 +18,26 @@ if [ -f "tests/jest/reports/results-latest.json" ]; then
     numFailedTests,
     numTotalTestSuites,
     numPassedTestSuites,
-    passRate: (if .numTotalTests > 0 then ((.numPassedTests / .numTotalTests) * 100) else 100 end)
+    passRate: (if .numTotalTests > 0 then ((.numPassedTests / .numTotalTests) * 100) else 100 end),
+    avgDuration: ([.testResults[].endTime - .testResults[].startTime] | add // 0),
+    testSuites: [.testResults[] | {
+      name: (.name | split("/") | .[-1]),
+      status: .status,
+      numTests: (.assertionResults | length),
+      numPassedTests: ([.assertionResults[] | select(.status == "passed")] | length),
+      numFailedTests: ([.assertionResults[] | select(.status == "failed")] | length),
+      duration: (.endTime - .startTime)
+    }]
   }')
 else
-  JEST_DATA='{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0}'
+  JEST_DATA='{"success":false,"numTotalTests":0,"numPassedTests":0,"numFailedTests":0,"numTotalTestSuites":0,"passRate":100,"avgDuration":0,"testSuites":[]}'
+fi
+
+# Read coverage results
+if [ -f "coverage/coverage-summary.json" ]; then
+  COVERAGE_DATA=$(cat coverage/coverage-summary.json | jq -c '.total')
+else
+  COVERAGE_DATA='{"lines":{"total":0,"covered":0,"pct":0},"statements":{"total":0,"covered":0,"pct":0},"functions":{"total":0,"covered":0,"pct":0},"branches":{"total":0,"covered":0,"pct":0}}'
 fi
 
 # Read K6 results
@@ -38,6 +54,13 @@ if (typeof window !== 'undefined') {
   window.TEST_RESULTS = {
     jest: $JEST_DATA,
     k6: $K6_DATA,
+    coverage: $COVERAGE_DATA,
+    metadata: {
+      branch: "local",
+      commit: "dev",
+      timestamp: "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+      triggeredBy: "manual"
+    },
     generatedAt: "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   };
 }

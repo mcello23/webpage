@@ -204,7 +204,7 @@ jobs:
           mkdir -p deploy_temp
           
           # Copy all necessary files (excluding development artifacts)
-          rsync -av --exclude='.git' --exclude='node_modules' --exclude='.github' --exclude='deploy_temp' --exclude='coverage' ./ deploy_temp/
+          rsync -av --exclude='.git' --exclude='node_modules' --exclude='.github' --exclude='deploy_temp' ./ deploy_temp/
           
           # Ensure .nojekyll exists (critical for GitHub Pages to serve all files)
           touch deploy_temp/.nojekyll
@@ -273,7 +273,8 @@ jobs:
               PASS_RATE="100.00"
             fi
             
-            # Calculate average duration (total time across all suites)
+            # Calculate total duration across all test suites (in milliseconds)
+            # This will be divided per test in the frontend display
             AVG_DURATION=$(jq -r '[.testResults[].endTime - .testResults[].startTime] | add // 0' "$JEST_SRC")
             
             # Extract test suites details

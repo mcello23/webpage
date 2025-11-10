@@ -2544,11 +2544,18 @@
         }
 
         // Update Quick Stats
-        const totalTests =
-          (data.jest?.numTotalTests || 0) + (data.k6?.metrics?.http_reqs?.count || 0);
-        const passedTests = data.jest?.numPassedTests || 0;
-        const passRate = totalTests > 0 ? ((passedTests / totalTests) * 100).toFixed(1) : 0;
-        const avgDuration = data.jest?.avgDuration ? (data.jest.avgDuration / 1000).toFixed(2) : 0;
+        const jestTotalTests = data.jest?.numTotalTests || 0;
+        const jestPassedTests = data.jest?.numPassedTests || 0;
+        const totalTests = jestTotalTests + (data.k6?.metrics?.http_reqs?.count || 0);
+        
+        // Pass rate should use Jest's own calculation or calculate from Jest tests only
+        const passRate = data.jest?.passRate?.toFixed?.(1) || 
+                        (jestTotalTests > 0 ? ((jestPassedTests / jestTotalTests) * 100).toFixed(1) : '100.0');
+        
+        // Avg duration should be per test, not total duration
+        const avgDuration = data.jest?.avgDuration && jestTotalTests > 0
+          ? (data.jest.avgDuration / 1000 / jestTotalTests).toFixed(2)
+          : '0.00';
         const coverage = data.coverage?.lines?.pct || 0;
 
         document.getElementById('modal-total-tests').textContent = totalTests;
