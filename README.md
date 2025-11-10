@@ -12,7 +12,7 @@ Visit the live portfolio: [Link](https://mcello23.github.io/webpage/index.html)
 ## 🎯 Live Test Dashboard
 
 The webpage includes a **live test results dashboard** that displays:
-- ✅ **Jest Test Results**: 1,073 tests across 26 suites, ~85% coverage, pass/fail metrics
+- ✅ **Jest Test Results**: 1,075 tests across 26 suites, ~85% coverage, pass/fail metrics
 - ⚡ **K6 Performance**: HTTP requests, average duration, P95 latency, checks passing
 - � **Coverage Metrics**: Statements, branches, functions, lines (with thresholds)
 - �🔄 **Auto-refresh**: Updates every 30 seconds with latest test data
@@ -36,7 +36,7 @@ Test reports (Jest/K6 JSON files) and coverage reports are automatically generat
 - Keyboard support: ArrowLeft / ArrowRight, Escape, Backspace to return to grid
 - Lazy thumbnail loading + category badges + optional LinkedIn credential link
 - Works from nested pages using dynamic base path resolution (`getBasePath()`)
-- 33 certificates with individual validation tests
+- 35 certificates with individual validation tests
 - Dual export pattern enables unit testing of CertificateModal class
 
 ### Test Dashboard (Live Results Display)
@@ -56,13 +56,13 @@ Test reports (Jest/K6 JSON files) and coverage reports are automatically generat
 
 ### Testing & Quality Signals
 
-- **1,073 Jest tests** across 26 test suites (21 integration + 5 unit) covering:
+- **1,075 Jest tests** across 26 test suites (21 integration + 5 unit) covering:
   - **Unit Tests** for core modules (TestDashboard, CertificateModal, cookie-consent, init)
   - DOM structure & accessibility attributes
   - Link integrity & cross-page consistency
   - Favicon assets & manifest validation
   - Responsive navigation behavior
-  - Certificate data validation (33 individual certificate tests)
+  - Certificate data validation (35 individual certificate tests)
   - Test dashboard methods (createDashboard, displayError, loadJestResults, loadK6Results, init/destroy)
   - Security (CSP headers, HTTPS, XSS prevention)
   - Performance optimizations (resource loading, lazy loading, minification)
@@ -114,7 +114,7 @@ webpage/
 │   └── test-dashboard.css  # Test dashboard styles
 │
 ├── js/                     # JavaScript files
-│   ├── certificates.js     # Certificate modal (33 certificates, dual export)
+│   ├── certificates.js     # Certificate modal (35 certificates, dual export)
 │   ├── cookie-consent.js   # Cookie consent logic (dual export)
 │   ├── init.js             # Materialize initialization (dual export)
 │   ├── materialize.js      # Materialize framework
@@ -125,8 +125,8 @@ webpage/
 │   ├── assets/             # Profile & supporting images
 │   │   └── DSC_9554.jpg    # Profile photo
 │   ├── thumbs/             # Certificate thumbnails (300px standardized)
-│   │   └── *.jpg           # 33 optimized thumbnails (8-24KB each)
-│   └── *.jpg               # Certificate images (full-size, 33 total)
+│   │   └── *.jpg           # 35 optimized thumbnails (8-24KB each)
+│   └── *.jpg               # Certificate images (full-size, 35 total)
 │
 ├── favicon/                # Favicon files
 │   ├── favicon-16x16.png
@@ -145,7 +145,7 @@ webpage/
 │       ├── download-certificates.js   # LinkedIn certificate downloader
 │       └── view-certificates.html     # Certificate viewer
 │
-├── tests/                  # Test suites (1,073 tests across 26 suites)
+├── tests/                  # Test suites (1,075 tests across 26 suites)
 │   ├── jest/               # Jest tests (26 suites)
 │   │   ├── unit/           # Unit tests (5 suites)
 │   │   │   ├── certificates.unit.test.js
@@ -241,7 +241,7 @@ All core JavaScript modules (`certificates.js`, `test-dashboard.js`, `init.js`, 
 - Local (unminified) CSS left readable for development; minification possible for production
 - Limited external blocking requests (fonts + icons + Materialize CDN)
 - Gradients over large hero bitmaps keep transfer size low
-- **Optimized thumbnail images**: All 33 certificate thumbnails standardized to 300px width for consistent quality
+- **Optimized thumbnail images**: All 35 certificate thumbnails standardized to 300px width for consistent quality
 - ImageMagick-based thumbnail generation with quality 85 and unsharp filter for optimal clarity
 - Non-blocking CSS loading for faster rendering
 - Font loading improved with `font-display: swap`
@@ -252,11 +252,11 @@ All core JavaScript modules (`certificates.js`, `test-dashboard.js`, `init.js`, 
 
 ## 🧪 Comprehensive Test Suite
 
-This project includes **1,073 automated tests** across **26 test suites**, demonstrating professional QA practices and modern testing methodologies.
+This project includes **1,075 automated tests** across **26 test suites**, demonstrating professional QA practices and modern testing methodologies.
 
 ### Test Coverage
 - **26 test suites** (21 integration + 5 unit)
-- **1,073 tests** passing
+- **1,075 tests** passing
 - **~85% code coverage** (statements/lines)
 - **~54% function coverage** (exceeds 35% threshold)
 - **Multiple test types**: unit, integration, E2E, performance, security, accessibility
@@ -265,7 +265,7 @@ This project includes **1,073 automated tests** across **26 test suites**, demon
 
 ### Testing Stack
 
-#### Jest (26 test suites, 1,073 tests)
+#### Jest (26 test suites, 1,075 tests)
 
 **Unit Tests** (5 suites in `tests/jest/unit/`):
 - `certificates.unit.test.js` - CertificateModal class, getBasePath() utility, escapeHtml() function
@@ -279,7 +279,7 @@ This project includes **1,073 automated tests** across **26 test suites**, demon
 - `frameworks.test.js` - Frameworks page validation
 - `side_proj.test.js` - Side projects page tests
 - `responsive-tester.test.js` - Responsive design tester functionality
-- `certificates.test.js` - Certificate modal integration tests (33 individual certificate validations)
+- `certificates.test.js` - Certificate modal integration tests (35 individual certificate validations)
 - `test-dashboard.test.js` - Dashboard data loading, display, and refresh functionality
 - `navbar-improvements.test.js` - Navigation bar enhancements and structure
 - `navbar-responsive-icon.test.js` - Mobile navigation behavior
@@ -467,7 +467,7 @@ yarn test:all               # Generates coverage in tests/jest/reports/coverage-
 - Navigation & cross‑page structural consistency
 - Favicon & manifest integrity
 - Certificate gallery markup hooks & data validation
-- All 33 certificates individually tested (structure, paths, URLs, categories)
+- All 35 certificates individually tested (structure, paths, URLs, categories)
 - Calendly CTA semantics + security attributes
 - Responsive navigation (mobile compact menu rules)
 - Styling contract tests (presence of gradients, transitions)
@@ -554,7 +554,7 @@ If you change the event slug:
 - Local (unminified) CSS left readable; could be minified if desired.
 - Limited external blocking requests (fonts + icons + Materialize CDN).
 - Gradients over large hero bitmaps keep transfer size low.
-- **Optimized thumbnail images**: All 33 certificate thumbnails standardized to 300px width for consistent quality and performance.
+- **Optimized thumbnail images**: All 35 certificate thumbnails standardized to 300px width for consistent quality and performance.
 - ImageMagick-based thumbnail generation with quality 85 and unsharp filter for optimal clarity.
 - Opportunity: inline critical CSS + defer non-critical styles (not yet required for current scale).
 
@@ -646,11 +646,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### November 2025
 
-- **Test suite expansion**: Grew from 714 to **1,073 tests** across **26 suites** (21 integration + 5 unit)
+- **Test suite expansion**: Grew from 714 to **1,075 tests** across **26 suites** (21 integration + 5 unit)
   - Added unit test subdirectory (`tests/jest/unit/`) for focused module testing
   - Created `test-dashboard.methods.unit.test.js` with comprehensive method coverage
   - Enhanced `certificates.unit.test.js` with `getBasePath()` tests for nested pages
   - Achieved **~85% statement/line coverage** and **~54% function coverage** (exceeding all thresholds)
+- **Certificate expansion**: Added 2 new certificates (Introduction to SQL, Agentic AI for Developers)
+  - Total certificates increased from 33 to **35**
+  - All new certificates validated with individual tests
 - **Test dashboard enhancements**:
   - Instance tracking system with static `destroyAll()` method
   - Environment guards prevent auto-initialization in Jest tests
@@ -674,7 +677,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   - `images/thumbs/` for certificate thumbnails
   - Root `images/` for full-size certificate images
 - **Test expansion**: Grew test suite from 425 to **714 tests** across 14 suites
-  - Added `certificates.test.js` with 50 tests validating all 33 certificates
+  - Added `certificates.test.js` with 50+ tests validating all 35 certificates
   - Individual validation tests for each certificate (structure, paths, URLs, categories)
   - Added `gradient-colors.test.js`, `all-links.test.js`, `contact-form.test.js`
   - Enhanced cross-page and responsive testing

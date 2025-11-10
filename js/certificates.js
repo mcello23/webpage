@@ -8,7 +8,7 @@
 /**
  * Certificate data structure
  * @typedef {Object} Certificate
- * @property {number} id - Unique certificate identifier (1-33)
+ * @property {number} id - Unique certificate identifier (1-35)
  * @property {string} title - Certificate title/name
  * @property {string} image - Path to full-size certificate image
  * @property {string} thumb - Path to thumbnail image (300px width)
@@ -63,12 +63,14 @@ const escapeHtml = (text) => {
 
 /**
  * Array of all professional certificates
- * Contains 33 certificates across various categories including:
+ * Contains 35 certificates across various categories including:
  * - Automation (Cypress, Playwright, Selenium)
  * - Security (Cybersecurity)
  * - Cloud (AWS)
  * - Testing methodologies
  * - Programming languages
+ * - Development Tools
+ * - AI/ML
  *
  * @type {Certificate[]}
  * @constant
@@ -368,6 +370,24 @@ const certificates = [
     thumb: 'images/thumbs/GitHub.jpg',
     linkedinUrl:
       'https://udemy-certificate.s3.amazonaws.com/pdf/UC-678f1482-4b6e-4966-8ee6-7d6923511e6d.pdf',
+    category: 'Development Tools',
+  },
+  {
+    id: 34,
+    title: 'Introduction to SQL',
+    image: 'images/introduction-to-sql.jpg',
+    thumb: 'images/thumbs/introduction-to-sql.jpg',
+    linkedinUrl:
+      'https://media.licdn.com/dms/image/v2/D4D2DAQG7goWVwCAQ7g/profile-treasury-document-images_1280/B4DZpvJka7HwAU-/1/1762801372233?e=1763596800&v=beta&t=q_uPb3apP9RX0leDxZ8zIQkZqRWHCzi3zxXwrNaY-bc',
+    category: 'Programming',
+  },
+  {
+    id: 35,
+    title: 'Agentic AI for Developers',
+    image: 'images/agentic-ai-for-developers.jpg',
+    thumb: 'images/thumbs/agentic-ai-for-developers.jpg',
+    linkedinUrl:
+      'https://media.licdn.com/dms/image/v2/D4D2DAQFkro5pUIoZhg/profile-treasury-document-images_1280/B4DZofmEm1HYAY-/1/1761466666919?e=1763596800&v=beta&t=8hki_qGadBFzkI9YKaITJIeSIMoZArUKOEgrlvIldKo',
     category: 'Development Tools',
   },
 ];

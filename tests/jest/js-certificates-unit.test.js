@@ -38,22 +38,19 @@ describe('certificates.js - Unit Tests', () => {
   });
 
   describe('Certificate Data Validation', () => {
-    test('has exactly 33 certificates', () => {
-      const certMatch = certCode.match(/const certificates = \[([\s\S]*?)\];/);
-      expect(certMatch).toBeTruthy();
-
-      const certArrayStr = certMatch[1];
-      const certCount = (certArrayStr.match(/\{\s*id:/g) || []).length;
-      expect(certCount).toBe(33);
+    test('has exactly 35 certificates', () => {
+      expect(certCode).toContain('const certificates = [');
+      const matches = certCode.match(/\{[\s\S]*?id:\s*\d+/g);
+      expect(matches).toBeTruthy();
+      expect(matches.length).toBe(35);
     });
-
     test('all certificates have required properties', () => {
       const certMatch = certCode.match(/const certificates = \[([\s\S]*?)\];/);
       const certArrayStr = certMatch[1];
 
       const certObjects = certArrayStr.match(/\{[\s\S]*?category:[\s\S]*?\},?/g);
       expect(certObjects).toBeTruthy();
-      expect(certObjects.length).toBe(33);
+      expect(certObjects.length).toBe(35);
 
       certObjects.forEach((certStr) => {
         expect(certStr).toContain('id:');
@@ -79,7 +76,7 @@ describe('certificates.js - Unit Tests', () => {
     test('all thumb paths are in thumbs folder', () => {
       const thumbMatches = certCode.match(/thumb:\s*'([^']+)'/g);
       expect(thumbMatches).toBeTruthy();
-      expect(thumbMatches.length).toBe(33);
+      expect(thumbMatches.length).toBe(35);
 
       thumbMatches.forEach((match) => {
         const thumbPath = match.match(/'([^']+)'/)[1];

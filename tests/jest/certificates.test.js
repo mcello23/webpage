@@ -20,8 +20,8 @@ describe('Certificate Data Validation', () => {
   });
 
   describe('Certificate Count', () => {
-    test('should have exactly 33 certificates', () => {
-      expect(certificates).toHaveLength(33);
+    test('should have exactly 35 certificates', () => {
+      expect(certificates).toHaveLength(35);
     });
   });
 
@@ -40,8 +40,8 @@ describe('Certificate Data Validation', () => {
     test('all certificate IDs should be unique and sequential', () => {
       const ids = certificates.map((cert) => cert.id);
       const uniqueIds = [...new Set(ids)];
-      expect(uniqueIds).toHaveLength(33);
-      expect(ids).toEqual([...Array(33).keys()].map((i) => i + 1));
+      expect(uniqueIds).toHaveLength(35);
+      expect(ids).toEqual([...Array(35).keys()].map((i) => i + 1));
     });
 
     test('all titles should be non-empty strings', () => {
@@ -160,7 +160,7 @@ describe('Certificate Data Validation', () => {
     });
   });
 
-  describe('Individual Certificate Tests - All 33 Certificates', () => {
+  describe('Individual Certificate Tests - All 35 Certificates', () => {
     // Helper function to validate certificate data
     const validateCertificate = (cert, expectedData) => {
       expect(cert.id).toBe(expectedData.id);
@@ -534,6 +534,28 @@ describe('Certificate Data Validation', () => {
         thumb: 'images/thumbs/GitHub.jpg',
         category: 'Development Tools',
         urlFragment: 'udemy-certificate.s3.amazonaws.com',
+      });
+    });
+
+    test('Certificate #34 - Introduction to SQL', () => {
+      validateCertificate(certificates[33], {
+        id: 34,
+        title: 'Introduction to SQL',
+        image: 'images/introduction-to-sql.jpg',
+        thumb: 'images/thumbs/introduction-to-sql.jpg',
+        category: 'Programming',
+        urlFragment: 'media.licdn.com',
+      });
+    });
+
+    test('Certificate #35 - Agentic AI for Developers', () => {
+      validateCertificate(certificates[34], {
+        id: 35,
+        title: 'Agentic AI for Developers',
+        image: 'images/agentic-ai-for-developers.jpg',
+        thumb: 'images/thumbs/agentic-ai-for-developers.jpg',
+        category: 'Development Tools',
+        urlFragment: 'media.licdn.com',
       });
     });
   });
