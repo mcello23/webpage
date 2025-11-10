@@ -667,6 +667,26 @@
         color: #f44336;
       }
 
+      /* Custom Scrollbar for Suite Details */
+      #modal-jest-suites-list::-webkit-scrollbar,
+      #modal-k6-checks-list::-webkit-scrollbar {
+        width: 8px;
+      }
+      #modal-jest-suites-list::-webkit-scrollbar-track,
+      #modal-k6-checks-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      #modal-jest-suites-list::-webkit-scrollbar-thumb,
+      #modal-k6-checks-list::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 10px;
+      }
+      #modal-jest-suites-list::-webkit-scrollbar-thumb:hover,
+      #modal-k6-checks-list::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #764ba2, #667eea);
+      }
+
       /* Floating Dashboard Button */
       .dashboard-fab {
         position: fixed;
@@ -959,7 +979,7 @@
                     <i class="material-icons" style="font-size: 20px">folder</i>
                     Test Suites Details
                   </h3>
-                  <div id="modal-jest-suites-list" style="display: grid; gap: 12px">
+                  <div id="modal-jest-suites-list" style="display: grid; gap: 12px; max-height: 400px; overflow-y: auto; padding-right: 8px">
                     <!-- Suites will be populated here -->
                   </div>
                 </div>
@@ -1048,7 +1068,7 @@
                     <i class="material-icons" style="font-size: 20px">rule</i>
                     Checks Breakdown
                   </h3>
-                  <div id="modal-k6-checks-list" style="display: grid; gap: 12px">
+                  <div id="modal-k6-checks-list" style="display: grid; gap: 12px; max-height: 300px; overflow-y: auto; padding-right: 8px">
                     <!-- Checks will be populated here -->
                   </div>
                 </div>

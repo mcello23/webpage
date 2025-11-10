@@ -183,6 +183,12 @@ jobs:
           name: k6-reports
           path: tests/k6/reports/
 
+      - name: Download coverage reports from test job
+        uses: actions/download-artifact@v5
+        with:
+          name: coverage-report
+          path: coverage/
+
       - name: Verify downloaded reports
         run: |
           echo "=== Downloaded Jest Reports ==="
@@ -197,6 +203,13 @@ jobs:
           if [ -f tests/k6/reports/http-summary-latest.json ]; then
             echo "✓ K6 results downloaded"
             wc -c tests/k6/reports/http-summary-latest.json
+          fi
+          echo ""
+          echo "=== Downloaded Coverage Reports ==="
+          ls -lah coverage/ || echo "No coverage reports"
+          if [ -f coverage/coverage-summary.json ]; then
+            echo "✓ Coverage summary downloaded"
+            wc -c coverage/coverage-summary.json
           fi
 
       - name: Prepare deployment directory
