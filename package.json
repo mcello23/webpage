@@ -22,7 +22,9 @@
     "lint:css": "stylelint '**/*.css'",
     "lint:css:fix": "stylelint '**/*.css' --fix",
     "format": "prettier --write '**/*.{js,html,css,json}'",
-    "format:check": "prettier --check '**/*.{js,html,css,json}'"
+    "format:check": "prettier --check '**/*.{js,html,css,json}'",
+    "quality": "yarn lint && yarn lint:css && yarn format:check",
+    "quality:fix": "yarn lint:fix && yarn lint:css:fix && yarn format"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
