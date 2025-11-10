@@ -65,6 +65,8 @@ module.exports = [
         beforeAll: 'readonly',
         afterAll: 'readonly',
         jest: 'readonly',
+        // Node.js test environment globals
+        global: 'writable',
         // jQuery globals
         $: 'readonly',
         jQuery: 'readonly',

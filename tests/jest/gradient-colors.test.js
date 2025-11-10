@@ -31,6 +31,10 @@ describe('Gradient Colors and Styling', () => {
     document = dom.window.document;
   });
 
+  afterAll(() => {
+    if (dom && dom.window) dom.window.close();
+  });
+
   describe('Tech Stack Section - Languages', () => {
     test('TypeScript has blue gradient with box-shadow', () => {
       const typeScriptTag = Array.from(document.querySelectorAll('.skill-tag')).find((tag) =>

@@ -30,6 +30,10 @@ describe('Booking Call Responsive Behavior', () => {
       document = dom.window.document;
     });
 
+    afterAll(() => {
+      if (dom && dom.window) dom.window.close();
+    });
+
     test('should have booking call link with correct classes', () => {
       const bookingLink = document.querySelector('a.cta-link.book-call');
       expect(bookingLink).toBeTruthy();
@@ -239,6 +243,10 @@ describe('Booking Call Responsive Behavior', () => {
         const computedStyle = window.getComputedStyle(bookingLink);
         expect(computedStyle.display).not.toBe('none');
       });
+
+      afterAll(() => {
+        if (dom && dom.window) dom.window.close();
+      });
     });
 
     describe('Tablet Resolution (992px - 1599px)', () => {
@@ -281,6 +289,10 @@ describe('Booking Call Responsive Behavior', () => {
         const bookingLink = document.querySelector('.cta-link.book-call');
         expect(bookingLink).toBeTruthy();
       });
+
+      afterAll(() => {
+        if (dom && dom.window) dom.window.close();
+      });
     });
 
     describe('Mobile Resolution (< 992px)', () => {
@@ -320,6 +332,10 @@ describe('Booking Call Responsive Behavior', () => {
       test('booking call icon should exist at mobile resolution', () => {
         const bookingIcon = document.querySelector('.cta-link.book-call i');
         expect(bookingIcon).toBeTruthy();
+      });
+
+      afterAll(() => {
+        if (dom && dom.window) dom.window.close();
       });
     });
   });
@@ -418,6 +434,10 @@ describe('Booking Call Responsive Behavior', () => {
       const bookingLink = document.querySelector('.cta-link.book-call');
       expect(bookingLink.tagName).toBe('A');
       expect(bookingLink.getAttribute('href')).toBeTruthy();
+    });
+
+    afterAll(() => {
+      if (dom && dom.window) dom.window.close();
     });
   });
 

@@ -10,6 +10,12 @@ class TestDashboard {
     this.updateInterval = 30000; // 30 seconds
     this.dashboardElement = null;
     this.dataLoaded = false;
+    this.intervalId = null; // Store interval ID for cleanup
+    // Register instance for global cleanup tracking
+    if (!TestDashboard.instances) {
+      TestDashboard.instances = [];
+    }
+    TestDashboard.instances.push(this);
   }
 
   /**
@@ -19,7 +25,40 @@ class TestDashboard {
     this.createDashboard();
     this.loadDataScript();
     // Auto-refresh every 30 seconds
-    setInterval(() => this.loadDataScript(), this.updateInterval);
+    this.intervalId = setInterval(() => this.loadDataScript(), this.updateInterval);
+  }
+
+  /**
+   * Cleanup method to clear intervals and prevent memory leaks
+   */
+  destroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+    // Remove from instance registry
+    if (TestDashboard.instances) {
+      const idx = TestDashboard.instances.indexOf(this);
+      if (idx !== -1) TestDashboard.instances.splice(idx, 1);
+    }
+  }
+
+  /**
+   * Destroy all active dashboard instances (used for test cleanup / page unload)
+   */
+  static destroyAll() {
+    if (Array.isArray(TestDashboard.instances)) {
+      // Copy to avoid mutation issues during iteration
+      const snapshot = [...TestDashboard.instances];
+      snapshot.forEach((inst) => {
+        try {
+          if (inst && typeof inst.destroy === 'function') inst.destroy();
+        } catch {
+          // Swallow errors in bulk cleanup
+        }
+      });
+      TestDashboard.instances.length = 0;
+    }
   }
 
   /**
@@ -398,8 +437,29 @@ class TestDashboard {
   }
 }
 
-// Initialize dashboard when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  const dashboard = new TestDashboard();
-  dashboard.init();
-});
+// Export for testing and external use
+if (typeof window !== 'undefined') {
+  window.TestDashboard = TestDashboard;
+
+  // Avoid auto-init during Jest test environment to prevent lingering intervals
+  const isTestEnv =
+    typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test';
+
+  if (!isTestEnv) {
+    // Initialize dashboard when DOM is ready (real browser usage)
+    document.addEventListener('DOMContentLoaded', () => {
+      const dashboard = new TestDashboard();
+      dashboard.init();
+    });
+
+    // Ensure cleanup of intervals if user navigates away
+    window.addEventListener('beforeunload', () => {
+      TestDashboard.destroyAll();
+    });
+  }
+}
+
+// CommonJS/Node.js export for testing
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { TestDashboard };
+}

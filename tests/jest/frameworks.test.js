@@ -24,6 +24,10 @@ describe('Frameworks Page', () => {
     document = dom.window.document;
   });
 
+  afterAll(() => {
+    if (dom && dom.window) dom.window.close();
+  });
+
   describe('Navigation Bar', () => {
     test('has a fixed nav at the top', () => {
       const nav = document.querySelector('nav');

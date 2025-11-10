@@ -16,6 +16,10 @@ describe('Responsive Breakpoint Tester Page', () => {
     document = dom.window.document;
   });
 
+  afterAll(() => {
+    if (dom && dom.window) dom.window.close();
+  });
+
   describe('Page Structure', () => {
     test('has proper HTML structure', () => {
       const html = document.querySelector('html');

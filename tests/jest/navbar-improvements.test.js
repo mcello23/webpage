@@ -10,6 +10,7 @@ const { JSDOM } = require('jsdom');
 describe('Navbar Improvements - Alignment & Mobile Menu', () => {
   let indexDoc, frameworksDoc, sideProjDoc;
   let indexWindow, frameworksWindow, sideProjWindow;
+  let indexDOM, frameworksDOM, sideProjDOM;
 
   beforeAll(() => {
     // Load all HTML pages
@@ -24,9 +25,9 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     );
 
     // Create JSDOM instances
-    const indexDOM = new JSDOM(indexHtml);
-    const frameworksDOM = new JSDOM(frameworksHtml);
-    const sideProjDOM = new JSDOM(sideProjHtml);
+    indexDOM = new JSDOM(indexHtml);
+    frameworksDOM = new JSDOM(frameworksHtml);
+    sideProjDOM = new JSDOM(sideProjHtml);
 
     indexDoc = indexDOM.window.document;
     frameworksDoc = frameworksDOM.window.document;
@@ -45,6 +46,13 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
       style.textContent = cssContent;
       doc.head.appendChild(style);
     });
+  });
+
+  afterAll(() => {
+    // Clean up JSDOM instances
+    if (indexDOM) indexDOM.window.close();
+    if (frameworksDOM) frameworksDOM.window.close();
+    if (sideProjDOM) sideProjDOM.window.close();
   });
 
   describe('Navbar Structure & ARIA', () => {

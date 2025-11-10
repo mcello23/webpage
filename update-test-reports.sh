@@ -4,7 +4,7 @@
 # Run this before opening the webpage to ensure fresh test results
 
 echo "🧪 Generating test reports for dashboard..."
-npm run test:reports
+yarn test:reports
 
 echo ""
 echo "📦 Creating test data as .js file (simulating CI/CD)..."
@@ -36,8 +36,10 @@ fi
 # Read coverage results
 if [ -f "coverage/coverage-summary.json" ]; then
   COVERAGE_DATA=$(cat coverage/coverage-summary.json | jq -c '.total')
+  echo "✓ Coverage data included"
 else
   COVERAGE_DATA='{"lines":{"total":0,"covered":0,"pct":0},"statements":{"total":0,"covered":0,"pct":0},"functions":{"total":0,"covered":0,"pct":0},"branches":{"total":0,"covered":0,"pct":0}}'
+  echo "⚠ No coverage data found (run: yarn test:unit)"
 fi
 
 # Read K6 results

@@ -12,16 +12,25 @@ describe('Favicon Configuration - All HTML Pages', () => {
 
   // Cache all DOMs at once to avoid repeated JSDOM initialization
   let documents = {};
+  let doms = {}; // Store DOM instances for cleanup
 
   beforeAll(() => {
     htmlFiles.forEach((htmlFile) => {
       const htmlPath = path.resolve(__dirname, '..', '..', htmlFile);
       const html = fs.readFileSync(htmlPath, 'utf8');
       const dom = new JSDOM(html);
+      doms[htmlFile] = dom; // Store for cleanup
       documents[htmlFile] = {
         document: dom.window.document,
         isSubdirectory: htmlFile.includes('/'),
       };
+    });
+  });
+
+  afterAll(() => {
+    // Clean up all JSDOM instances
+    Object.values(doms).forEach((dom) => {
+      if (dom && dom.window) dom.window.close();
     });
   });
 

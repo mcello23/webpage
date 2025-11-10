@@ -2558,12 +2558,13 @@
           data.jest?.avgDuration && jestTotalTests > 0
             ? (data.jest.avgDuration / 1000 / jestTotalTests).toFixed(2)
             : '0.00';
-        const coverage = data.coverage?.lines?.pct || 0;
+        const coverage = data.coverage?.lines?.pct;
 
         document.getElementById('modal-total-tests').textContent = totalTests;
         document.getElementById('modal-pass-rate').textContent = passRate + '%';
         document.getElementById('modal-avg-duration').textContent = avgDuration + 's';
-        document.getElementById('modal-coverage').textContent = coverage.toFixed(1) + '%';
+        document.getElementById('modal-coverage').textContent =
+          coverage != null && coverage > 0 ? coverage.toFixed(1) + '%' : 'N/A';
 
         // Jest Metrics
         if (data.jest) {

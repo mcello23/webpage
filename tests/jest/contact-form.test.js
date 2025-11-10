@@ -13,6 +13,10 @@ describe('Contact Form - Web3Forms Integration', () => {
     document = dom.window.document;
   });
 
+  afterAll(() => {
+    if (dom && dom.window) dom.window.close();
+  });
+
   describe('API Key Configuration', () => {
     test('access_key hidden input field exists', () => {
       const accessKeyInput = document.getElementById('access_key');

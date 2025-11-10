@@ -191,4 +191,16 @@
       return getCookie(COOKIE_NAME);
     },
   };
+
+  // Export internal functions for testing
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+      setCookie,
+      getCookie,
+      acceptCookies,
+      declineCookies,
+      init,
+      CookieConsent: window.CookieConsent,
+    };
+  }
 })();

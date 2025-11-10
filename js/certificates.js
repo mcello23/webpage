@@ -413,12 +413,18 @@ class CertificateModal {
      */
     this.container = document.getElementById('certificateModal');
 
+    const isTestEnv = typeof process !== 'undefined' && process.env.NODE_ENV === 'test';
+
     if (!this.container) {
-      console.error('Certificate modal container not found!');
+      if (!isTestEnv) {
+        console.error('Certificate modal container not found!');
+      }
       return;
     }
 
-    console.log('🔍 Modal container found:', this.container);
+    if (!isTestEnv) {
+      console.log('🔍 Modal container found:', this.container);
+    }
     this.init();
   }
 
@@ -682,22 +688,41 @@ class CertificateModal {
   }
 }
 
-// Initialize when DOM is ready and make it globally available
-window.certificateModal = null;
+// Export for testing and external use
+if (typeof window !== 'undefined') {
+  window.CertificateModal = CertificateModal;
+  window.getBasePath = getBasePath;
+  window.escapeHtml = escapeHtml;
 
-// Fallback function for onclick handlers
-window.openCertificateModal = function () {
-  if (window.certificateModal) {
-    window.certificateModal.open();
-  } else {
-    console.warn('Certificate modal not yet initialized');
+  // Initialize when DOM is ready and make it globally available
+  window.certificateModal = null;
+
+  // Fallback function for onclick handlers
+  window.openCertificateModal = function () {
+    if (window.certificateModal) {
+      window.certificateModal.open();
+    } else {
+      console.warn('Certificate modal not yet initialized');
+    }
+  };
+
+  // Only log and auto-initialize in browser environment, not in tests
+  const isTestEnv = typeof process !== 'undefined' && process.env.NODE_ENV === 'test';
+
+  if (!isTestEnv) {
+    console.log('🔍 certificates.js loaded');
   }
-};
 
-console.log('🔍 certificates.js loaded');
+  if (!isTestEnv) {
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('🔍 DOMContentLoaded fired, initializing modal...');
+      window.certificateModal = new CertificateModal();
+      console.log('✅ Certificate modal initialized:', window.certificateModal);
+    });
+  }
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('🔍 DOMContentLoaded fired, initializing modal...');
-  window.certificateModal = new CertificateModal();
-  console.log('✅ Certificate modal initialized:', window.certificateModal);
-});
+// CommonJS/Node.js export for testing
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { CertificateModal, getBasePath, escapeHtml };
+}

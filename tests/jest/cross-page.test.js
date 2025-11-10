@@ -26,6 +26,13 @@ describe('Cross-Page Consistency Tests', () => {
     sideProjDoc = sideProjDom.window.document;
   });
 
+  afterAll(() => {
+    // Clean up JSDOM instances
+    if (indexDom) indexDom.window.close();
+    if (frameworksDom) frameworksDom.window.close();
+    if (sideProjDom) sideProjDom.window.close();
+  });
+
   describe('Navigation Consistency', () => {
     test('all pages have the same brand logo text', () => {
       const indexBrand = indexDoc.querySelector('.brand-logo').textContent;

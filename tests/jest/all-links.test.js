@@ -15,6 +15,7 @@ const { JSDOM } = require('jsdom');
 describe('All Pages - Link Validation', () => {
   // Cache all documents once to avoid repeated JSDOM initialization
   let indexDoc, frameworksDoc, sideProjDoc, responsiveTesterDoc;
+  let indexDom, frameworksDom, sideProjDom, responsiveTesterDom;
 
   beforeAll(() => {
     const indexHtml = fs.readFileSync(path.join(__dirname, '../../index.html'), 'utf8');
@@ -31,10 +32,23 @@ describe('All Pages - Link Validation', () => {
       'utf8'
     );
 
-    indexDoc = new JSDOM(indexHtml).window.document;
-    frameworksDoc = new JSDOM(frameworksHtml).window.document;
-    sideProjDoc = new JSDOM(sideProjHtml).window.document;
-    responsiveTesterDoc = new JSDOM(responsiveTesterHtml).window.document;
+    indexDom = new JSDOM(indexHtml);
+    frameworksDom = new JSDOM(frameworksHtml);
+    sideProjDom = new JSDOM(sideProjHtml);
+    responsiveTesterDom = new JSDOM(responsiveTesterHtml);
+
+    indexDoc = indexDom.window.document;
+    frameworksDoc = frameworksDom.window.document;
+    sideProjDoc = sideProjDom.window.document;
+    responsiveTesterDoc = responsiveTesterDom.window.document;
+  });
+
+  afterAll(() => {
+    // Clean up JSDOM instances
+    if (indexDom) indexDom.window.close();
+    if (frameworksDom) frameworksDom.window.close();
+    if (sideProjDom) sideProjDom.window.close();
+    if (responsiveTesterDom) responsiveTesterDom.window.close();
   });
 
   describe('index.html - Navigation Links', () => {

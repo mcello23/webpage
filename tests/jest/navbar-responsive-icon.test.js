@@ -29,10 +29,14 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
     document = dom.window.document;
     window = dom.window;
 
-    // Inject CSS
+    // Inject CSS styles for computed style tests
     const style = document.createElement('style');
     style.textContent = cssContent;
     document.head.appendChild(style);
+  });
+
+  afterAll(() => {
+    if (dom && dom.window) dom.window.close();
   });
 
   describe('Home Icon Implementation', () => {

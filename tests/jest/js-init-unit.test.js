@@ -21,7 +21,8 @@ describe('init.js - Unit Tests', () => {
 
     test('uses jQuery wrapper pattern', () => {
       expect(initCode).toContain('(function ($)');
-      expect(initCode).toContain('})(jQuery)');
+      // Updated to handle conditional jQuery loading
+      expect(initCode).toMatch(/\}\)\(.*jQuery.*\)/);
     });
 
     test('waits for document ready', () => {
@@ -66,7 +67,8 @@ describe('init.js - Unit Tests', () => {
     });
 
     test('references jQuery at the end', () => {
-      expect(initCode).toContain('})(jQuery)');
+      // Updated to handle conditional jQuery loading
+      expect(initCode).toMatch(/\}\)\(.*jQuery.*\)/);
     });
   });
 

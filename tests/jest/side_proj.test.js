@@ -24,6 +24,10 @@ describe('Side Projects Page', () => {
     document = dom.window.document;
   });
 
+  afterAll(() => {
+    if (dom && dom.window) dom.window.close();
+  });
+
   describe('Page Introduction', () => {
     test('has introduction section', () => {
       const introSection = document.querySelector('.section');
