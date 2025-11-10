@@ -34,6 +34,11 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Set Puppeteer environment variables
+        run: |
+          echo "PUPPETEER_CACHE_DIR=$HOME/.cache/puppeteer" >> $GITHUB_ENV
+          echo "PUPPETEER_SKIP_DOWNLOAD=false" >> $GITHUB_ENV
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
@@ -51,7 +56,7 @@ jobs:
             ${{ runner.os }}-yarn-v2-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --silent
+        run: yarn install --immutable
 
       - name: Run Prettier check
         run: yarn format:check
@@ -83,6 +88,11 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Set Puppeteer environment variables
+        run: |
+          echo "PUPPETEER_CACHE_DIR=$HOME/.cache/puppeteer" >> $GITHUB_ENV
+          echo "PUPPETEER_SKIP_DOWNLOAD=false" >> $GITHUB_ENV
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
@@ -100,7 +110,7 @@ jobs:
             ${{ runner.os }}-yarn-v2-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --silent
+        run: yarn install --immutable
 
       - name: Setup k6
         uses: grafana/setup-k6-action@v1
