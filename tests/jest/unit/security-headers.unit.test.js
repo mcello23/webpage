@@ -357,16 +357,11 @@ describe('Security: Headers and Link Protection', () => {
       }
     });
 
-    test('non-critical images have loading="lazy"', () => {
-      const images = Array.from(document.querySelectorAll('img'));
-      const nonHeroImages = images.filter((img) => !img.getAttribute('alt')?.includes('Marcelo'));
-
-      if (nonHeroImages.length > 0) {
-        const lazyImages = nonHeroImages.filter((img) => img.getAttribute('loading') === 'lazy');
-        // Some images should be lazy loaded (if page has multiple images)
-        // This is optional if page only has hero image
-        expect(images.length).toBeGreaterThanOrEqual(1);
-      }
+    test('uses explicit loading strategy for performance', () => {
+      const htmlPath = path.resolve(__dirname, '../../..', 'index.html');
+      const html = fs.readFileSync(htmlPath, 'utf8');
+      // Should have explicit loading attributes (eager for hero, lazy for others, or data URIs)
+      expect(html).toContain('loading="eager"');
     });
 
     test('Font Awesome loads asynchronously', () => {

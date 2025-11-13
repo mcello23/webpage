@@ -11,12 +11,10 @@ describe('Security: Bot Protection - 3-Layer Defense', () => {
   let dom;
   let window;
   let document;
-  let sendCVRequest;
 
   // Cache HTML and script content (read once instead of 30+ times)
   let cachedHtml;
   let cachedScriptMatch;
-
   beforeAll(() => {
     const htmlPath = path.resolve(__dirname, '../../..', 'index.html');
     cachedHtml = fs.readFileSync(htmlPath, 'utf8');
@@ -40,7 +38,6 @@ describe('Security: Bot Protection - 3-Layer Defense', () => {
         window.formLoadTime = Date.now();
         ${cachedScriptMatch[0]}
       `);
-      sendCVRequest = window.sendCVRequest;
     }
   });
 
@@ -67,7 +64,6 @@ describe('Security: Bot Protection - 3-Layer Defense', () => {
     });
 
     test('honeypot field has no label (invisible to users)', () => {
-      const honeypot = document.getElementById('botcheck');
       const label = document.querySelector('label[for="botcheck"]');
       expect(label).toBeFalsy();
     });
