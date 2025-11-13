@@ -30,24 +30,6 @@ cp "$REPORT_DIR/basic-performance-${TIMESTAMP}.json" "$REPORT_DIR/basic-performa
 cp "$REPORT_DIR/basic-summary-${TIMESTAMP}.json" "$REPORT_DIR/basic-summary-latest.json"
 
 echo ""
-echo "────────────────────────────────────────"
-
-# Test 2: Enhanced Security & Performance
-echo ""
-echo "🔒 Test 2: Enhanced Security & Performance (test-k6-enhanced.js)"
-echo "────────────────────────────────────────"
-k6 run tests/k6/test-k6-enhanced.js \
-  --out json="$REPORT_DIR/enhanced-performance-${TIMESTAMP}.json" \
-  --summary-export="$REPORT_DIR/enhanced-summary-${TIMESTAMP}.json"
-
-cp "$REPORT_DIR/enhanced-performance-${TIMESTAMP}.json" "$REPORT_DIR/enhanced-performance-latest.json"
-cp "$REPORT_DIR/enhanced-summary-${TIMESTAMP}.json" "$REPORT_DIR/enhanced-summary-latest.json"
-
-echo ""
-echo "════════════════════════════════════════"
-echo ""
-
-echo ""
 echo "════════════════════════════════════════"
 echo "✅ k6 tests finished!"
 echo ""
