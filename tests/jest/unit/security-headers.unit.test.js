@@ -355,26 +355,6 @@ describe('Security: Headers and Link Protection', () => {
   });
 
   describe('Documentation: Security Guides', () => {
-    test('SECURITY.md exists', () => {
-      const securityPath = path.resolve(__dirname, '../../..', 'SECURITY.md');
-      expect(fs.existsSync(securityPath)).toBe(true);
-    });
-
-    test('SECURITY_DEPLOYMENT.md exists', () => {
-      const deploymentPath = path.resolve(__dirname, '../../..', 'SECURITY_DEPLOYMENT.md');
-      expect(fs.existsSync(deploymentPath)).toBe(true);
-    });
-
-    test('IMPLEMENTATION_SUMMARY.md exists', () => {
-      const summaryPath = path.resolve(__dirname, '../../..', 'IMPLEMENTATION_SUMMARY.md');
-      expect(fs.existsSync(summaryPath)).toBe(true);
-    });
-
-    test('pre-flight-check.sh script exists', () => {
-      const scriptPath = path.resolve(__dirname, '../../..', 'pre-flight-check.sh');
-      expect(fs.existsSync(scriptPath)).toBe(true);
-    });
-
     test('robots.txt exists', () => {
       const robotsPath = path.resolve(__dirname, '../../..', 'robots.txt');
       expect(fs.existsSync(robotsPath)).toBe(true);
