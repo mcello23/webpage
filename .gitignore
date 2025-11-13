@@ -419,3 +419,6 @@ test-data.txt
 
 # Coverage reports - not needed in repository, generated locally/CI only
 coverage/
+
+# Build directory for Cloudflare Pages deployment
+dist/
