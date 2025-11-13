@@ -4,10 +4,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSP meta tag for GitHub Pages (less effective than HTTP headers, but better than nothing) -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://api.web3forms.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://api.web3forms.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests"
     />
+    <!-- Referrer Policy - only send origin when navigating cross-origin -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Marcelo Costa — Senior QA Engineer & SDET | Cypress & Playwright</title>
 
     <!-- Canonical & Theme -->
@@ -108,8 +111,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
+    <!-- Preload critical fonts for faster rendering -->
+    <link
+      rel="preload"
+      href="https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <!-- CSS -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"
+      rel="stylesheet"
+    />
     <link href="css/materialize.css" rel="stylesheet" media="screen,projection" />
     <!-- Core styles (load immediately to ensure navbar + layout colors correct) -->
     <link href="css/style.css" rel="stylesheet" media="screen,projection" />
@@ -130,7 +145,15 @@
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <style>
       /* --- Utilities & shared --- */
@@ -1109,9 +1132,9 @@
                 src="images/assets/DSC_9554-optimized.webp"
                 srcset="images/assets/DSC_9554-optimized.webp 1x, images/assets/DSC_9554.jpg 2x"
                 alt="Portrait of Marcelo Costa"
-                width="170"
-                height="155"
-                loading="lazy"
+                width="180"
+                height="180"
+                loading="eager"
                 decoding="async"
                 fetchpriority="high"
                 style="
@@ -2293,6 +2316,17 @@
                   <input type="hidden" name="subject" value="Message from Portfolio" />
                   <input type="hidden" name="from_name" value="Portfolio Contact Form" />
 
+                  <!-- Honeypot field for bot detection (hidden from users) -->
+                  <input
+                    type="text"
+                    name="botcheck"
+                    id="botcheck"
+                    style="position: absolute; left: -9999px"
+                    tabindex="-1"
+                    autocomplete="off"
+                    aria-hidden="true"
+                  />
+
                   <div class="row">
                     <div class="input-field col s12">
                       <input
@@ -2446,6 +2480,9 @@
     <script defer src="js/cookie-consent.js"></script>
 
     <script>
+      // Track form load time for timing check
+      const formLoadTime = Date.now();
+
       // eslint-disable-next-line no-unused-vars -- Function is called from onsubmit attribute in HTML
       async function sendCVRequest(e) {
         e.preventDefault();
@@ -2463,9 +2500,36 @@
         const email = document.getElementById('cv-email').value.trim();
         const subject = document.getElementById('cv-subject').value.trim();
         const message = document.getElementById('cv-message').value.trim();
+        const honeypot = document.getElementById('botcheck').value;
 
+        // Basic validation
         if (!name || !email || !subject || !message) {
           alert('Please fill all fields before sending the request.');
+          return false;
+        }
+
+        // Bot mitigation checks
+        // 1. Honeypot check - bots often fill hidden fields
+        if (honeypot) {
+          console.warn('Bot detected: honeypot filled');
+          return false;
+        }
+
+        // 2. Timing check - bots submit forms too quickly (< 800ms)
+        const timeSinceLoad = Date.now() - formLoadTime;
+        if (timeSinceLoad < 800) {
+          console.warn('Bot detected: form submitted too quickly');
+          return false;
+        }
+
+        // 3. Basic input sanitization - check for suspicious patterns
+        const suspiciousPatterns = /<script|javascript:|onerror=|onclick=/i;
+        if (
+          suspiciousPatterns.test(name) ||
+          suspiciousPatterns.test(subject) ||
+          suspiciousPatterns.test(message)
+        ) {
+          alert('Invalid input detected. Please remove any special characters or scripts.');
           return false;
         }
 

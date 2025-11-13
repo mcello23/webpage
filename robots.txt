@@ -1,0 +1,13 @@
+# robots.txt for mcello23.github.io/webpage
+# Allow all well-behaved search engines
+
+User-agent: *
+Allow: /
+
+# Disallow test directories and internal tooling
+Disallow: /tests/
+Disallow: /utils/
+Disallow: /coverage/
+
+# Optional: Add sitemap when available
+# Sitemap: https://mcello23.github.io/webpage/sitemap.xml
