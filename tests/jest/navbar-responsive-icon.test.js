@@ -417,7 +417,7 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
   describe('Accessibility', () => {
     test('brand link should have proper href', () => {
       const brandLogo = document.querySelector('.brand-logo');
-      expect(brandLogo.getAttribute('href')).toBe('/webpage/');
+      expect(brandLogo.getAttribute('href')).toBe('/');
     });
 
     test('icon should be decorative with aria-hidden', () => {

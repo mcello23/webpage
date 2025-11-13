@@ -10,19 +10,38 @@ mkdir -p "$REPORT_DIR"
 echo "🚀 Executing k6 tests..."
 echo "════════════════════════════════════════"
 
-# Teste 1: Performance HTTP
+# Detect target URL (Cloudflare Pages or GitHub Pages)
+if [ -z "$BASE_URL" ]; then
+  echo "⚠️  BASE_URL not set. Using Cloudflare Pages by default."
+  export BASE_URL="https://marcelocosta.pages.dev"
+fi
+
+echo "🎯 Target: $BASE_URL"
 echo ""
-echo "📊 Performance test of HTTP (test-k6.js)"
+
+# Test 1: Basic Performance (original test)
+echo "📊 Test 1: Basic Performance (test-k6.js)"
 echo "────────────────────────────────────────"
 k6 run tests/k6/test-k6.js \
-  --duration 30s \
-  --vus 10 \
-  --out json="$REPORT_DIR/http-performance-${TIMESTAMP}.json" \
-  --summary-export="$REPORT_DIR/http-summary-${TIMESTAMP}.json"
+  --out json="$REPORT_DIR/basic-performance-${TIMESTAMP}.json" \
+  --summary-export="$REPORT_DIR/basic-summary-${TIMESTAMP}.json"
 
-# Create latest symlinks for easy access in dashboard
-cp "$REPORT_DIR/http-performance-${TIMESTAMP}.json" "$REPORT_DIR/http-performance-latest.json"
-cp "$REPORT_DIR/http-summary-${TIMESTAMP}.json" "$REPORT_DIR/http-summary-latest.json"
+cp "$REPORT_DIR/basic-performance-${TIMESTAMP}.json" "$REPORT_DIR/basic-performance-latest.json"
+cp "$REPORT_DIR/basic-summary-${TIMESTAMP}.json" "$REPORT_DIR/basic-summary-latest.json"
+
+echo ""
+echo "────────────────────────────────────────"
+
+# Test 2: Enhanced Security & Performance
+echo ""
+echo "🔒 Test 2: Enhanced Security & Performance (test-k6-enhanced.js)"
+echo "────────────────────────────────────────"
+k6 run tests/k6/test-k6-enhanced.js \
+  --out json="$REPORT_DIR/enhanced-performance-${TIMESTAMP}.json" \
+  --summary-export="$REPORT_DIR/enhanced-summary-${TIMESTAMP}.json"
+
+cp "$REPORT_DIR/enhanced-performance-${TIMESTAMP}.json" "$REPORT_DIR/enhanced-performance-latest.json"
+cp "$REPORT_DIR/enhanced-summary-${TIMESTAMP}.json" "$REPORT_DIR/enhanced-summary-latest.json"
 
 echo ""
 echo "════════════════════════════════════════"

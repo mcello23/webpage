@@ -38,7 +38,7 @@ describe('Index Page (Main Portfolio)', () => {
     test('has brand logo with correct text', () => {
       const brand = document.querySelector('.brand-logo');
       expect(brand).toBeTruthy();
-      expect(brand.getAttribute('href')).toBe('/webpage/');
+      expect(brand.getAttribute('href')).toBe('/');
       expect(brand.textContent).toContain('Marcelo Costa');
     });
 
@@ -67,8 +67,8 @@ describe('Index Page (Main Portfolio)', () => {
     test('navigation buttons have correct hrefs', () => {
       const buttons = document.querySelectorAll('a.nav-btn');
       const hrefs = Array.from(buttons).map((btn) => btn.getAttribute('href'));
-      expect(hrefs).toContain('/webpage/pages/side_proj/');
-      expect(hrefs).toContain('/webpage/pages/frameworks/');
+      expect(hrefs).toContain('/pages/side_proj/');
+      expect(hrefs).toContain('/pages/frameworks/');
       expect(hrefs).toContain('#');
     });
 

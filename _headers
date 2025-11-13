@@ -1,32 +1,33 @@
 # Cloudflare Pages Security Headers
-# Syntax: Path, then headers indented with exactly 2 spaces
 
-/*
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com https://www.googletagmanager.com\; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://api.web3forms.com\; img-src 'self' data: https:\; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com\; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com\; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com\; upgrade-insecure-requests
-  Referrer-Policy: strict-origin-when-cross-origin
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
-  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()
-  X-XSS-Protection: 1; mode=block
-  Cache-Control: public, max-age=300, must-revalidate
+# Syntax: Path on one line, headers indented with exactly 2 spaces
 
-/css/*
-  Cache-Control: public, max-age=31536000, immutable
+/\*
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://cdnjs.cloudflare.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://api.web3forms.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests
+Referrer-Policy: strict-origin-when-cross-origin
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()
+X-XSS-Protection: 1; mode=block
+Cache-Control: public, max-age=300, must-revalidate
 
-/js/*
-  Cache-Control: public, max-age=31536000, immutable
+/css/\*
+Cache-Control: public, max-age=31536000, immutable
 
-/images/*
-  Cache-Control: public, max-age=31536000, immutable
+/js/\*
+Cache-Control: public, max-age=31536000, immutable
 
-/favicon/*
-  Cache-Control: public, max-age=31536000, immutable
+/images/\*
+Cache-Control: public, max-age=31536000, immutable
 
-*.woff
-  Cache-Control: public, max-age=31536000, immutable
-  Access-Control-Allow-Origin: *
+/favicon/\*
+Cache-Control: public, max-age=31536000, immutable
 
-*.woff2
-  Cache-Control: public, max-age=31536000, immutable
-  Access-Control-Allow-Origin: *
+_.woff
+Cache-Control: public, max-age=31536000, immutable
+Access-Control-Allow-Origin: _
+
+_.woff2
+Cache-Control: public, max-age=31536000, immutable
+Access-Control-Allow-Origin: _

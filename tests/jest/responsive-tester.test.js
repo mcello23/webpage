@@ -304,7 +304,7 @@ describe('Responsive Breakpoint Tester Page', () => {
     test('has link to frameworks page', () => {
       const links = Array.from(document.querySelectorAll('.test-links a'));
       const frameworksLink = links.find(
-        (link) => link.getAttribute('href') === '/webpage/pages/frameworks/'
+        (link) => link.getAttribute('href') === '/pages/frameworks/'
       );
       expect(frameworksLink).toBeTruthy();
       expect(frameworksLink.textContent).toContain('Frameworks');
@@ -313,7 +313,7 @@ describe('Responsive Breakpoint Tester Page', () => {
     test('has link to projects page', () => {
       const links = Array.from(document.querySelectorAll('.test-links a'));
       const projectsLink = links.find(
-        (link) => link.getAttribute('href') === '/webpage/pages/side_proj/'
+        (link) => link.getAttribute('href') === '/pages/side_proj/'
       );
       expect(projectsLink).toBeTruthy();
       expect(projectsLink.textContent).toContain('Projects');

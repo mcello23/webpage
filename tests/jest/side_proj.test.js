@@ -86,7 +86,7 @@ describe('Side Projects Page', () => {
       const brand = document.querySelector('a.brand-logo');
       expect(brand).toBeTruthy();
       // Using Jekyll pretty URLs now, all pages link to root
-      expect(brand.getAttribute('href')).toBe('/webpage/');
+      expect(brand.getAttribute('href')).toBe('/');
       expect(brand.textContent).toContain('Marcelo Costa — SDET');
     });
 
@@ -109,8 +109,8 @@ describe('Side Projects Page', () => {
       const buttons = document.querySelectorAll('a.nav-btn');
       const hrefs = Array.from(buttons).map((btn) => btn.getAttribute('href'));
       // Using Jekyll pretty URLs
-      expect(hrefs).toContain('/webpage/pages/side_proj/');
-      expect(hrefs).toContain('/webpage/pages/frameworks/');
+      expect(hrefs).toContain('/pages/side_proj/');
+      expect(hrefs).toContain('/pages/frameworks/');
       expect(hrefs).toContain('#');
     });
 

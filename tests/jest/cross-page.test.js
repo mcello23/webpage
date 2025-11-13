@@ -95,10 +95,10 @@ describe('Cross-Page Consistency Tests', () => {
       const frameworksBrand = frameworksDoc.querySelector('.brand-logo').getAttribute('href');
       const sideProjBrand = sideProjDoc.querySelector('.brand-logo').getAttribute('href');
 
-      // All pages now link to /webpage/ with proper GitHub Pages project paths
-      expect(indexBrand).toBe('/webpage/');
-      expect(frameworksBrand).toBe('/webpage/');
-      expect(sideProjBrand).toBe('/webpage/');
+      // All pages now link to / with proper GitHub Pages project paths
+      expect(indexBrand).toBe('/');
+      expect(frameworksBrand).toBe('/');
+      expect(sideProjBrand).toBe('/');
     });
   });
 
