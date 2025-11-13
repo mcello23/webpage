@@ -151,16 +151,11 @@ jobs:
           retention-days: 30
 
   deploy:
-    name: Deploy to GitHub Pages
+    name: Archive Test Reports
     runs-on: ubuntu-latest
     needs: [test]
     if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     timeout-minutes: 10
-
-    # Required for GitHub Pages deployment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout code
@@ -357,21 +352,16 @@ jobs:
           echo "First 500 chars:"
           head -c 500 deploy_temp/test-data.js
 
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./deploy_temp
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      - name: Verify deployment
+      - name: Archive test reports
         run: |
-          echo "✓ Deployment complete!"
-          echo "📊 Test dashboard available at: ${{ steps.deployment.outputs.page_url }}"
+          echo "✓ Test reports archived successfully!"
           echo ""
-          echo "🔍 Test data file:"
-          echo "   - ${{ steps.deployment.outputs.page_url }}test-data.js"
+          echo "📊 Reports available in workflow artifacts:"
+          echo "   - Jest reports (tests/jest/reports/)"
+          echo "   - K6 reports (tests/k6/reports/)"
+          echo "   - Coverage reports (coverage/)"
           echo ""
-          echo "💡 GitHub Pages may take 1-2 minutes to propagate changes"
+          echo "🌐 Live site: https://marcelocosta.pages.dev"
+          echo "   Cloudflare Pages auto-deploys on every push to main"
+          echo ""
+          echo "💡 Test data and reports are deployed to Cloudflare Pages automatically"
