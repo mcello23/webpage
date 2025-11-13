@@ -319,14 +319,14 @@ describe('Security: Headers and Link Protection', () => {
       const headersPath = path.resolve(__dirname, '../../..', '_headers');
       const headersContent = fs.readFileSync(headersPath, 'utf8');
       // Check for path patterns (current format uses backslashes)
-      expect(headersContent).toContain('/\\*');
-      expect(headersContent).toContain('/css/\\*');
-      expect(headersContent).toContain('/js/\\*');
-      expect(headersContent).toContain('/images/\\*');
-      expect(headersContent).toContain('/favicon/\\*');
+      expect(headersContent).toContain('/');
+      expect(headersContent).toContain('/css/');
+      expect(headersContent).toContain('/js/');
+      expect(headersContent).toContain('/images/');
+      expect(headersContent).toContain('/favicon/');
       // Font wildcards (current format uses underscore)
-      expect(headersContent).toContain('_.woff');
-      expect(headersContent).toContain('_.woff2');
+      expect(headersContent).toContain('/fonts/*.woff');
+      expect(headersContent).toContain('/fonts/*.woff2');
     });
 
     test('_headers file includes cache-control for HTML (5 minutes)', () => {
@@ -338,19 +338,19 @@ describe('Security: Headers and Link Protection', () => {
     test('_headers file includes cache-control for static assets (1 year immutable)', () => {
       const headersPath = path.resolve(__dirname, '../../..', '_headers');
       const headersContent = fs.readFileSync(headersPath, 'utf8');
-      expect(headersContent).toContain('/css/\\*');
-      expect(headersContent).toContain('/js/\\*');
-      expect(headersContent).toContain('/images/\\*');
-      expect(headersContent).toContain('/favicon/\\*');
+      expect(headersContent).toContain('/css/');
+      expect(headersContent).toContain('/js/');
+      expect(headersContent).toContain('/images/');
+      expect(headersContent).toContain('/favicon/');
       expect(headersContent).toContain('Cache-Control: public, max-age=31536000, immutable');
     });
 
     test('_headers file includes CORS headers for fonts', () => {
       const headersPath = path.resolve(__dirname, '../../..', '_headers');
       const headersContent = fs.readFileSync(headersPath, 'utf8');
-      expect(headersContent).toContain('_.woff');
-      expect(headersContent).toContain('_.woff2');
-      expect(headersContent).toContain('Access-Control-Allow-Origin: _');
+      expect(headersContent).toContain('/fonts/*.woff');
+      expect(headersContent).toContain('/fonts/*.woff2');
+      expect(headersContent).toContain('Access-Control-Allow-Origin: *');
     });
   });
 

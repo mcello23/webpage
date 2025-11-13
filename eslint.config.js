@@ -22,6 +22,7 @@ module.exports = [
       'tests/puppeteer/reports/**',
       'dist/**',
       'deploy_temp/**',
+      '_headers',
     ],
   },
   {
