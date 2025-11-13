@@ -1,15 +1,22 @@
 # Dependencies
+
 node_modules/
 
 # Generated files
+
 coverage/
-tests/*/reports/
+tests/\*/reports/
 tests/jest/reports/
 tests/k6/reports/
 tests/puppeteer/reports/
 
 # Vendor CSS
+
 css/materialize.css
 css/materialize.min.css
 css/prism.css
 js/materialize.js
+
+# Dist folder
+
+dist/

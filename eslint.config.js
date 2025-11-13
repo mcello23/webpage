@@ -20,6 +20,8 @@ module.exports = [
       'tests/jest/reports/**',
       'tests/k6/reports/**',
       'tests/puppeteer/reports/**',
+      'dist/**',
+      'deploy_temp/**',
     ],
   },
   {
