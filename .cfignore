@@ -1,0 +1,37 @@
+# Cloudflare Pages Ignore File
+# Excludes files from deployment to avoid 25MB file size limit
+
+# Dependencies
+node_modules/
+.yarn/cache/
+.yarn/install-state.gz
+.pnp.*
+
+# Development
+.git/
+.github/
+.vscode/
+
+# Tests (results are generated during build)
+tests/
+coverage/
+
+# Build artifacts
+deploy_temp/
+
+# Documentation (not needed in production)
+*.md
+!README.md
+
+# Scripts (not needed in production)
+scripts/
+update-test-reports.sh
+pre-flight-check.sh
+
+# Configuration files (not needed in production)
+.gitignore
+.eslintrc.*
+.prettierrc
+babel.config.js
+jest.config.js
+eslint.config.js
