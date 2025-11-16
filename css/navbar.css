@@ -453,15 +453,11 @@ a[aria-label='discord-link']:hover {
     -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
   }
 
-  /* Style the mobile home button with a distinctive color */
-  .center-nav.active .mobile-home-btn {
-    background: linear-gradient(135deg, #00bcd4, #0097a7) !important;
-  }
-
   .center-nav.active a:hover {
     transform: translateY(-2px); /* Subtler hover */
     box-shadow: 0 6px 18px rgb(0 0 0 / 15%);
-    filter: brightness(1.08);
+
+    /* filter: brightness(1.08); */
   }
 
   .center-nav.active a i {
@@ -709,12 +705,12 @@ a[aria-label='discord-link']:hover {
   }
 
   .center-nav.active a:hover {
-    background: rgb(255 255 255 / 10%);
     transform: translateX(4px);
   }
 
   .center-nav.active a:active {
-    background: rgb(255 255 255 / 15%); /* Subtle active state */
+    filter: brightness(0.9); /* Darkens by 10% but keeps gradient */
+    transform: translateY(0); /* Remove hover lift */
   }
 
   /* Smaller, left-aligned buttons */

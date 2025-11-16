@@ -186,17 +186,6 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
         expect(certsBtn.className).toContain('nav-btn-certs');
       }
     );
-
-    test('CSS should define cyan gradient for mobile home button', () => {
-      const cssContent = fs.readFileSync(path.join(__dirname, '../../css/navbar.css'), 'utf8');
-
-      // Check that mobile-home-btn has a cyan gradient background
-      expect(cssContent).toMatch(
-        /\.center-nav\.active\s+\.mobile-home-btn\s*{[\s\S]*?background:\s*linear-gradient/
-      );
-      expect(cssContent).toMatch(/#00bcd4/); // cyan color
-      expect(cssContent).toMatch(/#0097a7/); // darker cyan
-    });
   });
 
   describe('Alignment Tests - CTA & Icons', () => {
@@ -406,13 +395,6 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
     test('Mobile menu should have matching teal background', () => {
       // Mobile menu should have same teal as navbar
       expect(cssContent).toMatch(/\.center-nav\.active\s*{[\s\S]*?background:\s*#00bfa5/);
-    });
-
-    test('Mobile home button should have cyan gradient', () => {
-      // Cyan gradient: #00bcd4 to #0097a7
-      expect(cssContent).toMatch(
-        /\.center-nav\.active\s+\.mobile-home-btn\s*{[\s\S]*?background:\s*linear-gradient\([^)]*#00bcd4[^)]*#0097a7[^)]*\)/
-      );
     });
 
     test('Projects button should have blue gradient', () => {
