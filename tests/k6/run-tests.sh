@@ -13,7 +13,7 @@ echo "════════════════════════�
 # Detect target URL (Cloudflare Pages or GitHub Pages)
 if [ -z "$BASE_URL" ]; then
   echo "⚠️  BASE_URL not set. Using Cloudflare Pages by default."
-  export BASE_URL="https://marcelocosta.pages.dev"
+  export BASE_URL="https://www.marcelo-costa.com"
 fi
 
 echo "🎯 Target: $BASE_URL"

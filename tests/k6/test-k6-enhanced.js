@@ -71,8 +71,7 @@ export const options = {
 };
 
 // Configuration
-const BASE_URL = __ENV.BASE_URL || 'https://marcelocosta.pages.dev';
-const IS_CLOUDFLARE = BASE_URL.includes('pages.dev');
+const BASE_URL = __ENV.BASE_URL || 'https://www.marcelo-costa.com';
 
 // Required security headers for Cloudflare Pages
 const REQUIRED_HEADERS = {
@@ -116,7 +115,8 @@ export default function () {
     });
 
     // Security headers validation
-    const securityScore = validateSecurityHeaders(res.headers, IS_CLOUDFLARE);
+    const isCloudflare = BASE_URL.includes('cloudflare');
+    const securityScore = validateSecurityHeaders(res.headers, isCloudflare);
     securityHeadersPresent.add(securityScore > 0.7); // At least 70% headers present
 
     // Check for critical content
@@ -278,6 +278,7 @@ function __randomBetween(min, max) {
  * Setup function - runs once per VU
  */
 export function setup() {
+  const IS_CLOUDFLARE = BASE_URL.includes('cloudflare');
   console.log(`🚀 Starting enhanced k6 test against: ${BASE_URL}`);
   console.log(`📊 Platform: ${IS_CLOUDFLARE ? 'Cloudflare Pages' : 'GitHub Pages'}`);
 

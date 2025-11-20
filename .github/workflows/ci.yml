@@ -110,14 +110,12 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Setup k6
-        uses: grafana/setup-k6-action@v1
-
       - name: Run Jest tests
         run: yarn test --passWithNoTests
         continue-on-error: false
 
-      - name: Run K6 smoke test
-        run: |
-          chmod +x tests/k6/run-tests.sh
-          ./tests/k6/run-tests.sh || true
+      - name: Run K6 tests from Node.js
+        run: node tests/k6/test-k6.js
+        env:
+          BASE_URL: https://www.marcelo-costa.com
+        continue-on-error: true
