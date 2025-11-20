@@ -437,6 +437,28 @@ class TestDashboard {
           ? metrics.http_req_duration.thresholds['p(95)<2000']
           : false;
 
+      // Additional network timing metrics
+      const httpReqBlocked = metrics.http_req_blocked?.avg || null;
+      const httpReqConnecting = metrics.http_req_connecting?.avg || null;
+      const httpReqTlsHandshaking = metrics.http_req_tls_handshaking?.avg || null;
+      const httpReqSending = metrics.http_req_sending?.avg || null;
+      const httpReqWaiting = metrics.http_req_waiting?.avg || null;
+      const httpReqReceiving = metrics.http_req_receiving?.avg || null;
+
+      // Data transfer metrics
+      const dataReceived = metrics.data_received?.count || null;
+      const dataSent = metrics.data_sent?.count || null;
+
+      // Virtual users and iterations
+      const vusMax = metrics.vus_max?.max || metrics.vus_max?.value || metrics.vus?.value || null;
+      const iterations = metrics.iterations?.count || null;
+      const iterationDuration = metrics.iteration_duration?.avg || null;
+
+      // Failure rate
+      const httpReqFailed = metrics.http_req_failed?.rate || 0;
+      const failureRate = (httpReqFailed * 100).toFixed(2);
+      const successRate = (100 - httpReqFailed * 100).toFixed(2);
+
       // Generate detailed metrics HTML
       const detailsHTML = `
         <div class="k6-details-section">
@@ -458,9 +480,42 @@ class TestDashboard {
               <h4>Test Configuration</h4>
               <div class="metric-row"><span class="metric-label">Total Requests:</span><span class="metric-value">${httpReqs}</span></div>
               <div class="metric-row"><span class="metric-label">Request Rate:</span><span class="metric-value">${httpRate} req/s</span></div>
-              <div class="metric-row"><span class="metric-label">Duration:</span><span class="metric-value">30s</span></div>
-              <div class="metric-row"><span class="metric-label">Virtual Users:</span><span class="metric-value">10</span></div>
+              <div class="metric-row"><span class="metric-label">Success Rate:</span><span class="metric-value ${Number(successRate) >= 95 ? 'success' : 'warning'}">${successRate}%</span></div>
+              ${vusMax !== null ? `<div class="metric-row"><span class="metric-label">Max Virtual Users:</span><span class="metric-value">${Math.round(vusMax)}</span></div>` : ''}
+              ${iterations !== null ? `<div class="metric-row"><span class="metric-label">Iterations:</span><span class="metric-value">${iterations}</span></div>` : ''}
+              ${iterationDuration !== null ? `<div class="metric-row"><span class="metric-label">Avg Iteration:</span><span class="metric-value">${Number(iterationDuration).toFixed(2)}ms</span></div>` : ''}
             </div>
+            ${
+              httpReqWaiting !== null ||
+              httpReqBlocked !== null ||
+              httpReqConnecting !== null ||
+              httpReqSending !== null ||
+              httpReqReceiving !== null
+                ? `
+            <div class="metric-group">
+              <h4>Network Timing Breakdown</h4>
+              ${httpReqBlocked !== null ? `<div class="metric-row"><span class="metric-label">⏱️ Blocked:</span><span class="metric-value">${Number(httpReqBlocked).toFixed(2)}ms</span></div>` : ''}
+              ${httpReqConnecting !== null ? `<div class="metric-row"><span class="metric-label">🔌 Connecting:</span><span class="metric-value">${Number(httpReqConnecting).toFixed(2)}ms</span></div>` : ''}
+              ${httpReqTlsHandshaking !== null ? `<div class="metric-row"><span class="metric-label">🔐 TLS Handshake:</span><span class="metric-value">${Number(httpReqTlsHandshaking).toFixed(2)}ms</span></div>` : ''}
+              ${httpReqSending !== null ? `<div class="metric-row"><span class="metric-label">📤 Sending:</span><span class="metric-value">${Number(httpReqSending).toFixed(2)}ms</span></div>` : ''}
+              ${httpReqWaiting !== null ? `<div class="metric-row"><span class="metric-label">⏳ Waiting (TTFB):</span><span class="metric-value">${Number(httpReqWaiting).toFixed(2)}ms</span></div>` : ''}
+              ${httpReqReceiving !== null ? `<div class="metric-row"><span class="metric-label">📥 Receiving:</span><span class="metric-value">${Number(httpReqReceiving).toFixed(2)}ms</span></div>` : ''}
+            </div>
+            `
+                : ''
+            }
+            ${
+              dataReceived !== null || dataSent !== null
+                ? `
+            <div class="metric-group">
+              <h4>Data Transfer</h4>
+              ${dataReceived !== null ? `<div class="metric-row"><span class="metric-label">📥 Data Received:</span><span class="metric-value">${(Number(dataReceived) / 1024).toFixed(2)} KB</span></div>` : ''}
+              ${dataSent !== null ? `<div class="metric-row"><span class="metric-label">📤 Data Sent:</span><span class="metric-value">${(Number(dataSent) / 1024).toFixed(2)} KB</span></div>` : ''}
+              ${dataReceived !== null && dataSent !== null ? `<div class="metric-row"><span class="metric-label">🔄 Total Traffic:</span><span class="metric-value">${((Number(dataReceived) + Number(dataSent)) / 1024).toFixed(2)} KB</span></div>` : ''}
+            </div>
+            `
+                : ''
+            }
             ${
               data.root_group && data.root_group.checks && Array.isArray(data.root_group.checks)
                 ? `
@@ -494,6 +549,10 @@ class TestDashboard {
             <span class="stat-label">HTTP Requests</span>
           </div>
           <div class="stat-item">
+            <span class="stat-value ${Number(successRate) >= 95 ? 'success' : 'warning'}">${successRate}%</span>
+            <span class="stat-label">Success Rate</span>
+          </div>
+          <div class="stat-item">
             <span class="stat-value">${httpDuration}ms</span>
             <span class="stat-label">Avg Duration</span>
           </div>
@@ -507,6 +566,14 @@ class TestDashboard {
           </div>
         </div>
         <div class="test-details">
+          <div class="detail-row">
+            <span class="detail-label">✓ HTTP Success Rate:</span>
+            <span class="detail-value ${Number(successRate) >= 95 ? 'success' : 'warning'}">${successRate}%</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">✗ HTTP Failure Rate:</span>
+            <span class="detail-value ${Number(failureRate) > 5 ? 'error' : 'success'}">${failureRate}%</span>
+          </div>
           <div class="detail-row">
             <span class="detail-label">✓ Checks Passed:</span>
             <span class="detail-value success">${checksPass}</span>
