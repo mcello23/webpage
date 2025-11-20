@@ -123,7 +123,15 @@ jobs:
           sudo apt-get install k6
 
       - name: Run K6 tests
-        run: k6 run tests/k6/test-k6.js
+        run: k6 run tests/k6/test-k6.js --out json=tests/k6/reports/results-latest.json
         env:
           BASE_URL: https://www.marcelo-costa.com
         continue-on-error: true
+
+      - name: Commit K6 results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tests/k6/reports/results-latest.json
+          git commit -m "Update K6 test results [skip ci]" || true
+          git push
