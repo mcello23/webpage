@@ -11,6 +11,12 @@ class TestDashboard {
     this.dashboardElement = null;
     this.dataLoaded = false;
     this.intervalId = null; // Store interval ID for cleanup
+
+    // GitHub Gist configuration for K6 results
+    this.gistUsername = 'mcello23'; // Replace with your GitHub username
+    this.gistId = '357c72c8e92ae6cf7eaef887e076fc42'; // Replace with your Gist ID after creating it
+    this.gistFilename = 'k6-results.json';
+
     // Register instance for global cleanup tracking
     if (!TestDashboard.instances) {
       TestDashboard.instances = [];
@@ -111,33 +117,96 @@ class TestDashboard {
 
   /**
    * Load the data script dynamically
+   * Jest results from test-data.js, K6 results from GitHub Gist
    */
   loadDataScript() {
-    // Check if data is already available
-    if (window.TEST_RESULTS && !this.dataLoaded) {
-      this.dataLoaded = true;
-      this.displayResults();
-      return;
+    // Load both Jest (from file) and K6 (from Gist) in parallel
+    Promise.all([this.loadJestDataScript(), this.loadK6DataFromGist()])
+      .then(() => {
+        this.dataLoaded = true;
+        this.displayResults();
+      })
+      .catch((error) => {
+        console.error('Failed to load test data:', error);
+        this.displayError();
+      });
+  }
+
+  /**
+   * Load Jest results from test-data.js file
+   */
+  loadJestDataScript() {
+    return new Promise((resolve, reject) => {
+      // Check if data is already available
+      if (window.TEST_RESULTS && window.TEST_RESULTS.jest) {
+        resolve(window.TEST_RESULTS.jest);
+        return;
+      }
+
+      // Load script dynamically
+      const existingScript = document.getElementById('test-data-script');
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      const script = document.createElement('script');
+      script.id = 'test-data-script';
+      script.src = `${this.dataScriptPath}?t=${Date.now()}`; // Cache bust
+      script.onload = () => {
+        if (window.TEST_RESULTS && window.TEST_RESULTS.jest) {
+          resolve(window.TEST_RESULTS.jest);
+        } else {
+          reject(new Error('Jest data not found in test-data.js'));
+        }
+      };
+      script.onerror = () => {
+        reject(new Error('Failed to load test-data.js'));
+      };
+      document.head.appendChild(script);
+    });
+  }
+
+  /**
+   * Load K6 results from GitHub Gist
+   */
+  async loadK6DataFromGist() {
+    // Skip if Gist is not configured
+    if (this.gistId === '357c72c8e92ae6cf7eaef887e076fc42' || !this.gistId) {
+      console.warn('Gist ID not configured, falling back to test-data.js for K6 results');
+      // Return K6 data from test-data.js if available
+      if (window.TEST_RESULTS && window.TEST_RESULTS.k6) {
+        return window.TEST_RESULTS.k6;
+      }
+      throw new Error('K6 data not available');
     }
 
-    // Load script dynamically
-    const existingScript = document.getElementById('test-data-script');
-    if (existingScript) {
-      existingScript.remove();
-    }
+    const gistUrl = `https://gist.githubusercontent.com/${this.gistUsername}/${this.gistId}/raw/${this.gistFilename}`;
 
-    const script = document.createElement('script');
-    script.id = 'test-data-script';
-    script.src = `${this.dataScriptPath}?t=${Date.now()}`; // Cache bust
-    script.onload = () => {
-      this.dataLoaded = true;
-      this.displayResults();
-    };
-    script.onerror = () => {
-      console.error('Failed to load test data script');
-      this.displayError();
-    };
-    document.head.appendChild(script);
+    try {
+      const response = await fetch(gistUrl + '?t=' + Date.now()); // Cache bust
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      // Store in window.TEST_RESULTS for compatibility
+      if (!window.TEST_RESULTS) {
+        window.TEST_RESULTS = {};
+      }
+      window.TEST_RESULTS.k6 = data;
+
+      return data;
+    } catch (error) {
+      console.error('Error loading K6 data from Gist:', error);
+      // Fallback to test-data.js if Gist fails
+      if (window.TEST_RESULTS && window.TEST_RESULTS.k6) {
+        console.log('Using K6 data from test-data.js as fallback');
+        return window.TEST_RESULTS.k6;
+      }
+      throw error;
+    }
   }
 
   /**
