@@ -137,14 +137,14 @@ describe('TestDashboard Unit - Methods coverage', () => {
   test('loadDataScript uses existing TEST_RESULTS fast-path', async () => {
     const d = new TestDashboard();
     d.createDashboard();
-    
+
     // Wait for async loadDataScript to complete
     await new Promise((resolve) => {
       d.loadDataScript();
       // Give it a tick to resolve the Promise
       setTimeout(resolve, 50);
     });
-    
+
     expect(d.dataLoaded).toBe(true);
     expect(document.getElementById('jest-results').innerHTML).not.toContain('Loading');
   });
@@ -155,24 +155,24 @@ describe('TestDashboard Unit - Methods coverage', () => {
 
     // Remove TEST_RESULTS to force script path
     delete window.TEST_RESULTS;
-    
+
     // Mock fetch to fail for Gist
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
 
     d.loadDataScript();
-    
+
     // Wait for script to be added
     await new Promise((resolve) => setTimeout(resolve, 10));
-    
+
     const script = document.getElementById('test-data-script');
     expect(script).toBeTruthy();
 
     // Trigger error on both paths
     script.onerror();
-    
+
     // Wait for error handling
     await new Promise((resolve) => setTimeout(resolve, 50));
-    
+
     expect(document.getElementById('jest-results').innerHTML).toContain(
       'Unable to load test results'
     );
