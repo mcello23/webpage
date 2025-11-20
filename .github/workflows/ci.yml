@@ -132,7 +132,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         env:
           GIST_ID: ${{ secrets.GIST_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIST_TOKEN }}
         run: |
           # Create payload file with properly escaped K6 results
           # This avoids "Argument list too long" errors
