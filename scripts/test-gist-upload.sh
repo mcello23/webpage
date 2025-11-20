@@ -78,14 +78,20 @@ echo ""
 # Step 4: Upload to Gist
 echo -e "${YELLOW}[4/4]${NC} Uploading K6 results to Gist..."
 
-K6_RESULTS=$(cat tests/k6/reports/results-latest.json)
-K6_RESULTS_ESCAPED=$(echo "$K6_RESULTS" | jq -Rs .)
+# Create payload file (avoids "Argument list too long" error)
+jq -n \
+  --rawfile k6data tests/k6/reports/results-latest.json \
+  '{"files":{"k6-results.json":{"content":$k6data}}}' \
+  > /tmp/gist-payload.json
 
 RESPONSE=$(curl -s -X PATCH \
     -H "Authorization: token $GITHUB_TOKEN" \
     -H "Accept: application/vnd.github.v3+json" \
     "https://api.github.com/gists/$GIST_ID" \
-    -d "{\"files\":{\"k6-results.json\":{\"content\":$K6_RESULTS_ESCAPED}}}")
+    -d @/tmp/gist-payload.json)
+
+# Clean up
+rm -f /tmp/gist-payload.json
 
 # Check if update was successful
 if echo "$RESPONSE" | jq -e '.id' > /dev/null 2>&1; then

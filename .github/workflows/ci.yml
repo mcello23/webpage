@@ -134,17 +134,31 @@ jobs:
           GIST_ID: ${{ secrets.GIST_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Read the K6 results file
-          K6_RESULTS=$(cat tests/k6/reports/results-latest.json)
+          # Create payload file with properly escaped K6 results
+          # This avoids "Argument list too long" errors
+          jq -n \
+            --rawfile k6data tests/k6/reports/results-latest.json \
+            '{"files":{"k6-results.json":{"content":$k6data}}}' \
+            > /tmp/gist-payload.json
 
-          # Escape JSON for API call
-          K6_RESULTS_ESCAPED=$(echo "$K6_RESULTS" | jq -Rs .)
-
-          # Update the Gist with new results
-          curl -X PATCH \
+          # Update the Gist using the payload file
+          RESPONSE=$(curl -s -X PATCH \
             -H "Authorization: token $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/gists/$GIST_ID \
-            -d "{\"files\":{\"k6-results.json\":{\"content\":$K6_RESULTS_ESCAPED}}}"
+            -d @/tmp/gist-payload.json)
 
-          echo "✅ K6 results uploaded to Gist: https://gist.github.com/$GIST_ID"
+          # Clean up
+          rm -f /tmp/gist-payload.json
+
+          # Check if update was successful
+          if echo "$RESPONSE" | jq -e '.id' > /dev/null 2>&1; then
+            echo "✅ K6 results uploaded successfully to Gist!"
+            echo "📊 View at: https://gist.github.com/$GIST_ID"
+            echo "🔗 Raw URL: https://gist.githubusercontent.com/$(echo "$RESPONSE" | jq -r '.owner.login')/$GIST_ID/raw/k6-results.json"
+          else
+            echo "❌ Failed to upload K6 results"
+            echo "Response:"
+            echo "$RESPONSE" | jq '.'
+            exit 1
+          fi

@@ -172,9 +172,12 @@ describe('TestDashboard Module - Unit Tests', () => {
       expect(typeof dashboard.init).toBe('function');
     });
 
-    test('should create dashboard on init', () => {
+    test('should create dashboard on init', async () => {
       const dashboard = new TestDashboard();
       dashboard.init();
+
+      // Wait a tick for async initialization
+      await new Promise((resolve) => setTimeout(resolve, 0));
 
       const container = document.getElementById('test-dashboard-container');
       expect(container.innerHTML).not.toBe('');
@@ -211,9 +214,13 @@ describe('TestDashboard Module - Unit Tests', () => {
       expect(typeof dashboard.loadDataScript).toBe('function');
     });
 
-    test('should display results when data exists', () => {
+    test('should display results when data exists', async () => {
       const dashboard = new TestDashboard();
       dashboard.init();
+
+      // Wait a tick for async initialization
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
       dashboard.displayResults();
 
       const jestResults = document.getElementById('jest-results');
@@ -221,10 +228,13 @@ describe('TestDashboard Module - Unit Tests', () => {
       expect(jestResults.innerHTML).not.toContain('Loading');
     });
 
-    test('should handle missing data gracefully', () => {
+    test('should handle missing data gracefully', async () => {
       window.TEST_RESULTS = undefined;
       const dashboard = new TestDashboard();
       dashboard.init();
+
+      // Wait a tick for async initialization
+      await new Promise((resolve) => setTimeout(resolve, 10));
 
       // Should not crash
       expect(dashboard).toBeDefined();

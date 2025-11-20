@@ -118,16 +118,26 @@ class TestDashboard {
   /**
    * Load the data script dynamically
    * Jest results from test-data.js, K6 results from GitHub Gist
+   * @returns {Promise} - Returns promise for testing
    */
   loadDataScript() {
     // Load both Jest (from file) and K6 (from Gist) in parallel
-    Promise.all([this.loadJestDataScript(), this.loadK6DataFromGist()])
+    return Promise.all([this.loadJestDataScript(), this.loadK6DataFromGist()])
       .then(() => {
         this.dataLoaded = true;
         this.displayResults();
       })
       .catch((error) => {
-        console.error('Failed to load test data:', error);
+        // Check if we should suppress logs (test env with torn-down DOM)
+        const isTestEnv =
+          typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test';
+        const windowExists = typeof window !== 'undefined';
+        const domAvailable = typeof document !== 'undefined' && document.getElementById;
+        const shouldSuppressLogs = isTestEnv && (!windowExists || !domAvailable);
+
+        if (!shouldSuppressLogs) {
+          console.error('Failed to load test data:', error);
+        }
         this.displayError();
       });
   }
@@ -137,6 +147,12 @@ class TestDashboard {
    */
   loadJestDataScript() {
     return new Promise((resolve, reject) => {
+      // Check if environment is still valid
+      if (typeof window === 'undefined' || typeof document === 'undefined') {
+        reject(new Error('Environment torn down'));
+        return;
+      }
+
       // Check if data is already available
       if (window.TEST_RESULTS && window.TEST_RESULTS.jest) {
         resolve(window.TEST_RESULTS.jest);
@@ -153,7 +169,7 @@ class TestDashboard {
       script.id = 'test-data-script';
       script.src = `${this.dataScriptPath}?t=${Date.now()}`; // Cache bust
       script.onload = () => {
-        if (window.TEST_RESULTS && window.TEST_RESULTS.jest) {
+        if (typeof window !== 'undefined' && window.TEST_RESULTS && window.TEST_RESULTS.jest) {
           resolve(window.TEST_RESULTS.jest);
         } else {
           reject(new Error('Jest data not found in test-data.js'));
@@ -170,11 +186,24 @@ class TestDashboard {
    * Load K6 results from GitHub Gist
    */
   async loadK6DataFromGist() {
+    // Helper to check if we should suppress logs (test env with torn-down DOM)
+    const shouldSuppressLogs = () => {
+      const isTestEnv =
+        typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'test';
+      const windowExists = typeof window !== 'undefined';
+      const domAvailable = typeof document !== 'undefined' && document.getElementById;
+
+      // Suppress if in test AND (window gone OR DOM not available)
+      return isTestEnv && (!windowExists || !domAvailable);
+    };
+
     // Skip if Gist is not configured
-    if (this.gistId === '357c72c8e92ae6cf7eaef887e076fc42' || !this.gistId) {
-      console.warn('Gist ID not configured, falling back to test-data.js for K6 results');
+    if (this.gistId === 'YOUR_GIST_ID_HERE' || !this.gistId) {
+      if (!shouldSuppressLogs()) {
+        console.warn('Gist ID not configured, falling back to test-data.js for K6 results');
+      }
       // Return K6 data from test-data.js if available
-      if (window.TEST_RESULTS && window.TEST_RESULTS.k6) {
+      if (typeof window !== 'undefined' && window.TEST_RESULTS && window.TEST_RESULTS.k6) {
         return window.TEST_RESULTS.k6;
       }
       throw new Error('K6 data not available');
@@ -192,17 +221,24 @@ class TestDashboard {
       const data = await response.json();
 
       // Store in window.TEST_RESULTS for compatibility
-      if (!window.TEST_RESULTS) {
-        window.TEST_RESULTS = {};
+      if (typeof window !== 'undefined') {
+        if (!window.TEST_RESULTS) {
+          window.TEST_RESULTS = {};
+        }
+        window.TEST_RESULTS.k6 = data;
       }
-      window.TEST_RESULTS.k6 = data;
 
       return data;
     } catch (error) {
-      console.error('Error loading K6 data from Gist:', error);
+      // Only log errors if not suppressing
+      if (!shouldSuppressLogs()) {
+        console.error('Error loading K6 data from Gist:', error);
+      }
       // Fallback to test-data.js if Gist fails
-      if (window.TEST_RESULTS && window.TEST_RESULTS.k6) {
-        console.log('Using K6 data from test-data.js as fallback');
+      if (typeof window !== 'undefined' && window.TEST_RESULTS && window.TEST_RESULTS.k6) {
+        if (!shouldSuppressLogs()) {
+          console.log('Using K6 data from test-data.js as fallback');
+        }
         return window.TEST_RESULTS.k6;
       }
       throw error;
@@ -213,6 +249,11 @@ class TestDashboard {
    * Display results from loaded data
    */
   displayResults() {
+    // Guard against calling after DOM cleanup (e.g., in tests)
+    if (typeof document === 'undefined' || !document.getElementById) {
+      return;
+    }
+
     if (!window.TEST_RESULTS) {
       this.displayError();
       return;
@@ -227,10 +268,17 @@ class TestDashboard {
    * Display error message
    */
   displayError() {
+    // Guard against calling after DOM cleanup (e.g., in tests)
+    if (typeof document === 'undefined' || !document.getElementById) {
+      return;
+    }
+
     const jestContainer = document.getElementById('jest-results');
     const k6Container = document.getElementById('k6-results');
     const isDev =
-      window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      typeof window !== 'undefined' &&
+      window.location &&
+      (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
 
     const errorHTML = `
       <div class="error-message">

@@ -138,12 +138,8 @@ describe('TestDashboard Unit - Methods coverage', () => {
     const d = new TestDashboard();
     d.createDashboard();
 
-    // Wait for async loadDataScript to complete
-    await new Promise((resolve) => {
-      d.loadDataScript();
-      // Give it a tick to resolve the Promise
-      setTimeout(resolve, 50);
-    });
+    // Wait for async loadDataScript to complete (it now returns a Promise)
+    await d.loadDataScript();
 
     expect(d.dataLoaded).toBe(true);
     expect(document.getElementById('jest-results').innerHTML).not.toContain('Loading');
@@ -156,10 +152,11 @@ describe('TestDashboard Unit - Methods coverage', () => {
     // Remove TEST_RESULTS to force script path
     delete window.TEST_RESULTS;
 
-    // Mock fetch to fail for Gist
+    // Mock fetch to fail for Gist (K6 will fail)
     global.fetch = jest.fn().mockRejectedValue(new Error('Network error'));
 
-    d.loadDataScript();
+    // Start loading (will fail on both paths)
+    const loadPromise = d.loadDataScript();
 
     // Wait for script to be added
     await new Promise((resolve) => setTimeout(resolve, 10));
@@ -167,11 +164,11 @@ describe('TestDashboard Unit - Methods coverage', () => {
     const script = document.getElementById('test-data-script');
     expect(script).toBeTruthy();
 
-    // Trigger error on both paths
+    // Trigger error on Jest script path
     script.onerror();
 
-    // Wait for error handling
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    // Wait for the entire load process to complete/fail
+    await loadPromise.catch(() => {}); // Suppress unhandled rejection
 
     expect(document.getElementById('jest-results').innerHTML).toContain(
       'Unable to load test results'
