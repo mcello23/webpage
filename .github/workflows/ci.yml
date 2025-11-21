@@ -123,7 +123,7 @@ jobs:
           sudo apt-get install k6
 
       - name: Run K6 tests
-        run: k6 run tests/k6/test-k6.js --out json=tests/k6/reports/results-latest.json
+        run: k6 run tests/k6/test-k6.js --summary-export=tests/k6/reports/results-latest.json
         env:
           BASE_URL: https://www.marcelo-costa.com
         continue-on-error: true
@@ -135,7 +135,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIST_TOKEN }}
         run: |
           # Create payload file with properly escaped K6 results
-          # This avoids "Argument list too long" errors
+          # Using --summary-export gives us aggregated metrics (not NDJSON)
           jq -n \
             --rawfile k6data tests/k6/reports/results-latest.json \
             '{"files":{"k6-results.json":{"content":$k6data}}}' \

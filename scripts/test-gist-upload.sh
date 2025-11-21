@@ -43,7 +43,7 @@ if [ ! -f "tests/k6/reports/results-latest.json" ]; then
     echo -e "${RED}✗ K6 results file not found!${NC}"
     echo ""
     echo "Please run K6 tests first:"
-    echo "  k6 run tests/k6/test-k6.js --out json=tests/k6/reports/results-latest.json"
+    echo "  k6 run tests/k6/test-k6.js --summary-export=tests/k6/reports/results-latest.json"
     exit 1
 fi
 echo -e "${GREEN}✓ K6 results file found${NC}"
