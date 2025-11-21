@@ -1229,19 +1229,21 @@ describe('Index Page (Main Portfolio)', () => {
     });
 
     test('has CV request form handler script', () => {
-      const scripts = Array.from(document.querySelectorAll('script'))
-        .map((s) => s.textContent)
-        .join('');
-      expect(scripts).toContain('sendCVRequest');
+      const scripts = Array.from(document.querySelectorAll('script'));
+      const cvScript = scripts.find((s) => s.getAttribute('src') === 'js/contact-form.js');
+      expect(cvScript).toBeTruthy();
     });
 
     test('CV handler validates form fields', () => {
-      const scripts = Array.from(document.querySelectorAll('script'))
-        .map((s) => s.textContent)
-        .join('');
-      expect(scripts).toContain('cv-name');
-      expect(scripts).toContain('cv-subject');
-      expect(scripts).toContain('cv-message');
+      // Read the external file content to verify validation logic
+      const fs = require('fs');
+      const path = require('path');
+      const scriptPath = path.resolve(__dirname, '..', '..', 'js', 'contact-form.js');
+      const scriptContent = fs.readFileSync(scriptPath, 'utf8');
+
+      expect(scriptContent).toContain('cv-name');
+      expect(scriptContent).toContain('cv-subject');
+      expect(scriptContent).toContain('cv-message');
     });
   });
 

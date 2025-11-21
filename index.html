@@ -733,28 +733,6 @@
         font-size: 28px;
       }
     </style>
-    <script>
-      (function () {
-        try {
-          var path = window.location && window.location.pathname ? window.location.pathname : '';
-          var base = path.indexOf('/webpage/') === 0 ? '/webpage' : '';
-          if (!base) return;
-          var anchors = document.querySelectorAll('a[href^="/"]');
-          for (var i = 0; i < anchors.length; i++) {
-            var a = anchors[i];
-            var href = a.getAttribute('href');
-            if (!href) continue;
-            if (href === '/') {
-              a.setAttribute('href', base + '/');
-            } else if (href.indexOf('/pages/') === 0) {
-              a.setAttribute('href', base + href);
-            }
-          }
-        } catch {
-          // no-op
-        }
-      })();
-    </script>
   </head>
 
   <body>
@@ -847,27 +825,6 @@
         </ul>
       </div>
     </nav>
-
-    <script>
-      // eslint-disable-next-line no-unused-vars -- Function is called from onclick attribute in HTML
-      function toggleMobileMenu() {
-        const menu = document.getElementById('mobileMenu');
-        const toggle = document.querySelector('.mobile-menu-toggle');
-        const icon = toggle.querySelector('i');
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-
-        const nowOpen = !expanded;
-        menu.classList.toggle('active', nowOpen);
-        toggle.classList.toggle('active', nowOpen);
-        toggle.setAttribute('aria-expanded', String(nowOpen));
-
-        // Clean up any inline styles that may have been left from previous code
-        menu.removeAttribute('style');
-
-        // Toggle icon between menu and close
-        icon.textContent = nowOpen ? 'close' : 'menu';
-      }
-    </script>
 
     <!-- Test Dashboard Modal -->
     <div id="testDashboardModal" class="test-dashboard-modal" style="display: none">
@@ -2585,100 +2542,6 @@
     <script defer src="js/certificates.js"></script>
     <script defer src="js/cookie-consent.js"></script>
 
-    <script>
-      // Track form load time for timing check
-      const formLoadTime = Date.now();
-
-      // eslint-disable-next-line no-unused-vars -- Function is called from onsubmit attribute in HTML
-      async function sendCVRequest(e) {
-        e.preventDefault();
-
-        const form = document.getElementById('cv-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const btnText = document.getElementById('btn-text');
-        const btnLoading = document.getElementById('btn-loading');
-        const confirmEl = document.getElementById('cv-confirm');
-        const successMsg = document.getElementById('success-msg');
-        const errorMsg = document.getElementById('error-msg');
-
-        const formData = new FormData(form);
-        const name = document.getElementById('cv-name').value.trim();
-        const email = document.getElementById('cv-email').value.trim();
-        const subject = document.getElementById('cv-subject').value.trim();
-        const message = document.getElementById('cv-message').value.trim();
-        const honeypot = document.getElementById('botcheck').value;
-
-        // Basic validation
-        if (!name || !email || !subject || !message) {
-          alert('Please fill all fields before sending the request.');
-          return false;
-        }
-
-        // Bot mitigation checks
-        // 1. Honeypot check - bots often fill hidden fields
-        if (honeypot) {
-          console.warn('Bot detected: honeypot filled');
-          return false;
-        }
-
-        // 2. Timing check - bots submit forms too quickly (< 800ms)
-        const timeSinceLoad = Date.now() - formLoadTime;
-        if (timeSinceLoad < 800) {
-          console.warn('Bot detected: form submitted too quickly');
-          return false;
-        }
-
-        // 3. Basic input sanitization - check for suspicious patterns
-        const suspiciousPatterns = /<script|javascript:|onerror=|onclick=/i;
-        if (
-          suspiciousPatterns.test(name) ||
-          suspiciousPatterns.test(subject) ||
-          suspiciousPatterns.test(message)
-        ) {
-          alert('Invalid input detected. Please remove any special characters or scripts.');
-          return false;
-        }
-
-        submitBtn.disabled = true;
-        btnText.style.display = 'none';
-        btnLoading.style.display = 'inline';
-        confirmEl.style.display = 'none';
-
-        try {
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData,
-          });
-          const data = await response.json();
-
-          if (data.success) {
-            successMsg.style.display = 'block';
-            errorMsg.style.display = 'none';
-            confirmEl.style.display = 'block';
-            form.reset();
-
-            // Re-initialize Materialize labels
-            setTimeout(() => {
-              form.querySelectorAll('label').forEach((label) => label.classList.remove('active'));
-            }, 100);
-          } else {
-            throw new Error('Submission failed');
-          }
-        } catch (err) {
-          console.error('Error:', err);
-          successMsg.style.display = 'none';
-          errorMsg.style.display = 'block';
-          confirmEl.style.display = 'block';
-        } finally {
-          submitBtn.disabled = false;
-          btnText.style.display = 'inline';
-          btnLoading.style.display = 'none';
-        }
-
-        return false;
-      }
-    </script>
-
     <!-- Floating Dashboard Button -->
     <button
       class="dashboard-fab"
@@ -2697,6 +2560,10 @@
 
     <!-- Test Data (generated by CI/CD) -->
     <script defer src="test-data.js"></script>
+
+    <script defer src="js/path-helper.js"></script>
+    <script defer src="js/navbar.js"></script>
+    <script defer src="js/contact-form.js"></script>
 
     <!-- Test Dashboard Script (Modal & Logic) -->
     <script defer src="js/test-dashboard.js"></script>

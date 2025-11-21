@@ -118,46 +118,40 @@ describe('Contact Form - Web3Forms Integration', () => {
       expect(onsubmitValue).toMatch(handlerRegex);
     });
 
-    test('sendCVRequest function is defined in HTML script tag', () => {
-      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
-      const html = fs.readFileSync(htmlPath, 'utf8');
-      expect(html).toContain('async function sendCVRequest');
+    test('sendCVRequest function is defined in external JS file', () => {
+      const jsPath = path.resolve(__dirname, '..', '..', 'js', 'contact-form.js');
+      const jsContent = fs.readFileSync(jsPath, 'utf8');
+      expect(jsContent).toContain('async function sendCVRequest');
     });
 
     test('sendCVRequest function accepts event parameter', () => {
-      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
-      const html = fs.readFileSync(htmlPath, 'utf8');
+      const jsPath = path.resolve(__dirname, '..', '..', 'js', 'contact-form.js');
+      const jsContent = fs.readFileSync(jsPath, 'utf8');
       // Check for function signature with event parameter
-      expect(html).toMatch(/async\s+function\s+sendCVRequest\s*\(\s*e\s*\)/);
+      expect(jsContent).toMatch(/async\s+function\s+sendCVRequest\s*\(\s*e\s*\)/);
     });
 
     test('sendCVRequest function calls preventDefault', () => {
-      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
-      const html = fs.readFileSync(htmlPath, 'utf8');
-      const scriptMatch = html.match(/async function sendCVRequest[\s\S]*?(?=<\/script>)/);
-      expect(scriptMatch).toBeTruthy();
-      expect(scriptMatch[0]).toContain('e.preventDefault()');
+      const jsPath = path.resolve(__dirname, '..', '..', 'js', 'contact-form.js');
+      const jsContent = fs.readFileSync(jsPath, 'utf8');
+      expect(jsContent).toContain('e.preventDefault()');
     });
 
     test('sendCVRequest function makes fetch call to web3forms API', () => {
-      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
-      const html = fs.readFileSync(htmlPath, 'utf8');
-      const scriptMatch = html.match(/async function sendCVRequest[\s\S]*?(?=<\/script>)/);
-      expect(scriptMatch).toBeTruthy();
-      expect(scriptMatch[0]).toContain('fetch');
-      expect(scriptMatch[0]).toContain('api.web3forms.com/submit');
+      const jsPath = path.resolve(__dirname, '..', '..', 'js', 'contact-form.js');
+      const jsContent = fs.readFileSync(jsPath, 'utf8');
+      expect(jsContent).toContain('fetch');
+      expect(jsContent).toContain('api.web3forms.com/submit');
     });
 
     test('sendCVRequest function handles form validation', () => {
-      const htmlPath = path.resolve(__dirname, '..', '..', 'index.html');
-      const html = fs.readFileSync(htmlPath, 'utf8');
-      const scriptMatch = html.match(/async function sendCVRequest[\s\S]*?(?=<\/script>)/);
-      expect(scriptMatch).toBeTruthy();
-      expect(scriptMatch[0]).toContain('cv-form');
-      expect(scriptMatch[0]).toContain('cv-name');
-      expect(scriptMatch[0]).toContain('cv-email');
-      expect(scriptMatch[0]).toContain('cv-subject');
-      expect(scriptMatch[0]).toContain('cv-message');
+      const jsPath = path.resolve(__dirname, '..', '..', 'js', 'contact-form.js');
+      const jsContent = fs.readFileSync(jsPath, 'utf8');
+      expect(jsContent).toContain('cv-form');
+      expect(jsContent).toContain('cv-name');
+      expect(jsContent).toContain('cv-email');
+      expect(jsContent).toContain('cv-subject');
+      expect(jsContent).toContain('cv-message');
     });
 
     test('submit button exists with correct ID', () => {
