@@ -2872,6 +2872,38 @@
 
         console.log('✓ Modal dashboard initialized with data:', data);
       }
+
+      // Fetch K6 data from Gist to get latest results
+      async function fetchK6DataFromGist() {
+        const gistId = '357c72c8e92ae6cf7eaef887e076fc42';
+        const gistUsername = 'mcello23';
+        const gistFilename = 'k6-results.json';
+        const gistUrl = `https://gist.githubusercontent.com/${gistUsername}/${gistId}/raw/${gistFilename}`;
+
+        try {
+          const response = await fetch(gistUrl + '?t=' + Date.now()); // Cache bust
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+          const data = await response.json();
+
+          if (typeof window !== 'undefined') {
+            if (!window.TEST_RESULTS) window.TEST_RESULTS = {};
+            window.TEST_RESULTS.k6 = data;
+            console.log('✓ Loaded fresh K6 data from Gist');
+
+            // If modal is open, refresh it
+            const modal = document.getElementById('testDashboardModal');
+            if (modal && modal.style.display === 'flex') {
+              initializeModalDashboard();
+            }
+          }
+        } catch (error) {
+          console.warn('Failed to fetch K6 data from Gist, using static fallback:', error);
+        }
+      }
+
+      // Load data on page load
+      document.addEventListener('DOMContentLoaded', fetchK6DataFromGist);
     </script>
   </body>
 </html>
