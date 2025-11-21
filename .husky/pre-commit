@@ -1,1 +1,1 @@
-yarn lint && yarn test
+yarn quality:fix && yarn test
