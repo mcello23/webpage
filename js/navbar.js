@@ -21,4 +21,3 @@ function toggleMobileMenu() {
   // Toggle icon between menu and close
   icon.textContent = nowOpen ? 'close' : 'menu';
 }
-

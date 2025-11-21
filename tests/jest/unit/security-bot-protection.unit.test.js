@@ -15,11 +15,11 @@ describe('Security: Bot Protection - 3-Layer Defense', () => {
   // Cache script content
   let cachedScriptContent;
   let cachedHtml;
-  
+
   beforeAll(() => {
     const htmlPath = path.resolve(__dirname, '../../..', 'index.html');
     const jsPath = path.resolve(__dirname, '../../..', 'js', 'contact-form.js');
-    
+
     cachedHtml = fs.readFileSync(htmlPath, 'utf8');
     cachedScriptContent = fs.readFileSync(jsPath, 'utf8');
 
@@ -162,11 +162,11 @@ describe('Security: Bot Protection - 3-Layer Defense', () => {
   describe('Integration: All 3 Layers Work Together', () => {
     test('bot protection runs before form submission', () => {
       expect(cachedScriptContent).toBeTruthy();
-      
+
       // Find positions within the sendCVRequest function to ensure we check execution order
       const functionStart = cachedScriptContent.indexOf('function sendCVRequest');
       const functionBody = cachedScriptContent.substring(functionStart);
-      
+
       const preventDefaultPos = functionBody.indexOf('preventDefault');
       const honeypotPos = functionBody.indexOf('botcheck');
       // Use a unique string for timing check usage inside the function
