@@ -1080,6 +1080,80 @@
                   </div>
                 </div>
 
+                <!-- K6 Network Timing Details -->
+                <div style="margin-top: 30px" id="modal-k6-network-section">
+                  <h3
+                    style="
+                      font-size: 1.2rem;
+                      color: var(--ink);
+                      margin-bottom: 15px;
+                      display: flex;
+                      align-items: center;
+                      gap: 8px;
+                    "
+                  >
+                    <i class="material-icons" style="font-size: 20px">dns</i>
+                    Network Timing Breakdown
+                  </h3>
+                  <div class="metrics-grid">
+                    <div class="metric-item">
+                      <span class="metric-label">Blocked</span>
+                      <span class="metric-value" id="modal-k6-blocked">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Connecting</span>
+                      <span class="metric-value" id="modal-k6-connecting">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">TLS Handshake</span>
+                      <span class="metric-value" id="modal-k6-tls">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Sending</span>
+                      <span class="metric-value" id="modal-k6-sending">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Waiting (TTFB)</span>
+                      <span class="metric-value" id="modal-k6-waiting">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Receiving</span>
+                      <span class="metric-value" id="modal-k6-receiving">-</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- K6 Data Transfer Details -->
+                <div style="margin-top: 30px" id="modal-k6-data-section">
+                  <h3
+                    style="
+                      font-size: 1.2rem;
+                      color: var(--ink);
+                      margin-bottom: 15px;
+                      display: flex;
+                      align-items: center;
+                      gap: 8px;
+                    "
+                  >
+                    <i class="material-icons" style="font-size: 20px">swap_vert</i>
+                    Data Transfer
+                  </h3>
+                  <div class="metrics-grid">
+                    <div class="metric-item">
+                      <span class="metric-label">Received</span>
+                      <span class="metric-value" id="modal-k6-data-recv">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Sent</span>
+                      <span class="metric-value" id="modal-k6-data-sent">-</span>
+                    </div>
+                    <div class="metric-item">
+                      <span class="metric-label">Total</span>
+                      <span class="metric-value" id="modal-k6-data-total">-</span>
+                    </div>
+                  </div>
+                </div>
+
                 <!-- K6 Checks Details -->
                 <div style="margin-top: 30px" id="modal-k6-checks-section">
                   <h3
@@ -2592,11 +2666,8 @@
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
 
-        // Initialize dashboard if not already done
-        if (!window.testDashboardInitialized) {
-          initializeModalDashboard();
-          window.testDashboardInitialized = true;
-        }
+        // Always refresh dashboard data when opening modal
+        initializeModalDashboard();
       }
 
       function closeTestDashboardModal() {
@@ -2706,7 +2777,7 @@
         // K6 Metrics
         if (data.k6?.metrics) {
           const metrics = data.k6.metrics;
-          const rate = metrics.http_reqs?.rate ? metrics.http_reqs.rate.toFixed(2) : '0';
+          const rate = metrics.http_reqs?.rate ? Number(metrics.http_reqs.rate).toFixed(2) : '0';
 
           document.getElementById('modal-k6-requests').textContent = metrics.http_reqs?.count || 0;
           document.getElementById('modal-k6-rate').textContent = rate + ' req/s';
@@ -2717,9 +2788,10 @@
               2
             ) + 'ms';
 
-          const checksTotal = (metrics.checks?.passes || 0) + (metrics.checks?.fails || 0);
+          const checksPass = metrics.checks?.passes || 0;
+          const checksTotal = checksPass + (metrics.checks?.fails || 0);
           const checksRate =
-            checksTotal > 0 ? ((metrics.checks.passes / checksTotal) * 100).toFixed(1) : '100';
+            checksTotal > 0 ? ((checksPass / checksTotal) * 100).toFixed(1) : '100';
           document.getElementById('modal-k6-checks').textContent = checksRate + '%';
 
           // Duration breakdown
@@ -2734,10 +2806,51 @@
           document.getElementById('modal-k6-max').textContent =
             (metrics.http_req_duration?.max || 0).toFixed(2) + 'ms';
 
+          // Network Timing breakdown
+          document.getElementById('modal-k6-blocked').textContent =
+            (metrics.http_req_blocked?.avg || 0).toFixed(2) + 'ms';
+          document.getElementById('modal-k6-connecting').textContent =
+            (metrics.http_req_connecting?.avg || 0).toFixed(2) + 'ms';
+          document.getElementById('modal-k6-tls').textContent =
+            (metrics.http_req_tls_handshaking?.avg || 0).toFixed(2) + 'ms';
+          document.getElementById('modal-k6-sending').textContent =
+            (metrics.http_req_sending?.avg || 0).toFixed(2) + 'ms';
+          document.getElementById('modal-k6-waiting').textContent =
+            (metrics.http_req_waiting?.avg || 0).toFixed(2) + 'ms';
+          document.getElementById('modal-k6-receiving').textContent =
+            (metrics.http_req_receiving?.avg || 0).toFixed(2) + 'ms';
+
+          // Data Transfer
+          const recv = metrics.data_received?.count || 0;
+          const sent = metrics.data_sent?.count || 0;
+          document.getElementById('modal-k6-data-recv').textContent =
+            (recv / 1024).toFixed(2) + ' KB';
+          document.getElementById('modal-k6-data-sent').textContent =
+            (sent / 1024).toFixed(2) + ' KB';
+          document.getElementById('modal-k6-data-total').textContent =
+            ((recv + sent) / 1024).toFixed(2) + ' KB';
+
           // Populate K6 Checks Details
           const checksList = document.getElementById('modal-k6-checks-list');
           if (data.k6.root_group?.checks && data.k6.root_group.checks.length > 0) {
             checksList.innerHTML = data.k6.root_group.checks
+              .map((check) => {
+                const total = check.passes + check.fails;
+                const rate = total > 0 ? ((check.passes / total) * 100).toFixed(1) : '100';
+                const status = check.fails > 0 ? 'failed' : 'passed';
+                return `
+                <div class="check-item ${status}">
+                  <span class="check-name">${check.name}</span>
+                  <span class="check-result ${check.fails > 0 ? 'error' : 'success'}">
+                    ${check.passes} / ${total} (${rate}%)
+                  </span>
+                </div>
+              `;
+              })
+              .join('');
+          } else if (Array.isArray(data.k6.checks)) {
+            // Fallback for different K6 JSON structure
+            checksList.innerHTML = data.k6.checks
               .map((check) => {
                 const total = check.passes + check.fails;
                 const rate = total > 0 ? ((check.passes / total) * 100).toFixed(1) : '100';
