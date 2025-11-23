@@ -148,7 +148,7 @@ describe('Index Page (Main Portfolio)', () => {
 
   describe('Quick Impact Metrics Section', () => {
     test('has Quick Impact Metrics card', () => {
-      const metricsHeading = Array.from(document.querySelectorAll('h3')).find((h) =>
+      const metricsHeading = Array.from(document.querySelectorAll('h2')).find((h) =>
         h.textContent.includes('Quick Impact Metrics')
       );
       expect(metricsHeading).toBeTruthy();
@@ -181,7 +181,7 @@ describe('Index Page (Main Portfolio)', () => {
 
   describe('What I Do Section', () => {
     test('has What I Do card', () => {
-      const whatIDoHeading = Array.from(document.querySelectorAll('h3')).find((h) =>
+      const whatIDoHeading = Array.from(document.querySelectorAll('h2')).find((h) =>
         h.textContent.includes('What I Do')
       );
       expect(whatIDoHeading).toBeTruthy();
