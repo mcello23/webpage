@@ -399,7 +399,7 @@ describe('Index Page (Main Portfolio)', () => {
 
     test('GraphQL article has correct title', () => {
       const articlesSection = document.querySelector('#articles');
-      const articleHeadings = articlesSection.querySelectorAll('.card-content h3');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
       const graphqlHeading = Array.from(articleHeadings).find((h) =>
         h.textContent.includes('Hasura GraphQL')
       );
@@ -456,7 +456,7 @@ describe('Index Page (Main Portfolio)', () => {
 
     test('Auth0 article has correct title', () => {
       const articlesSection = document.querySelector('#articles');
-      const articleHeadings = articlesSection.querySelectorAll('.card-content h3');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
       const auth0Heading = Array.from(articleHeadings).find((h) => h.textContent.includes('Auth0'));
       expect(auth0Heading).toBeTruthy();
       expect(auth0Heading.textContent).toContain(
@@ -511,7 +511,7 @@ describe('Index Page (Main Portfolio)', () => {
 
     test('Cyprompt article has correct title', () => {
       const articlesSection = document.querySelector('#articles');
-      const articleHeadings = articlesSection.querySelectorAll('.card-content h3');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
       const cypromptHeading = Array.from(articleHeadings).find((h) =>
         h.textContent.includes('cy.prompt()')
       );
@@ -566,7 +566,7 @@ describe('Index Page (Main Portfolio)', () => {
 
     test('Article 4 (cy.prompt() Tips) has correct title', () => {
       const articlesSection = document.querySelector('#articles');
-      const articleHeadings = articlesSection.querySelectorAll('.card-content h3');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
       const article4Heading = Array.from(articleHeadings).find((h) =>
         h.textContent.includes('How to get most out of cy.prompt()')
       );
@@ -692,7 +692,7 @@ describe('Index Page (Main Portfolio)', () => {
       });
 
       expect(article4Card).toBeTruthy();
-      const headerText = article4Card.querySelector('.card-image h3');
+      const headerText = article4Card.querySelector('.card-image h5');
       expect(headerText).toBeTruthy();
       expect(headerText.textContent.trim()).toBe('cy.prompt() Tips');
       expect(headerText.classList.contains('white-text')).toBe(true);
@@ -742,7 +742,7 @@ describe('Index Page (Main Portfolio)', () => {
 
     test('XLSX article has correct title', () => {
       const articlesSection = document.querySelector('#articles');
-      const articleHeadings = articlesSection.querySelectorAll('.card-content h3');
+      const articleHeadings = articlesSection.querySelectorAll('.card-content h5');
       const xlsxHeading = Array.from(articleHeadings).find((h) =>
         h.textContent.includes('validate tables, rows or any content of an Excel file')
       );
@@ -870,7 +870,7 @@ describe('Index Page (Main Portfolio)', () => {
       });
 
       expect(xlsxCard).toBeTruthy();
-      const headerText = xlsxCard.querySelector('.card-image h3');
+      const headerText = xlsxCard.querySelector('.card-image h5');
       expect(headerText).toBeTruthy();
       expect(headerText.textContent.trim()).toBe('Excel Validation');
       expect(headerText.classList.contains('white-text')).toBe(true);
@@ -924,7 +924,7 @@ describe('Index Page (Main Portfolio)', () => {
 
       let moreArticlesCard = null;
       cards.forEach((card) => {
-        const heading = card.querySelector('h3');
+        const heading = card.querySelector('h5');
         if (heading && heading.textContent.includes('More Articles Coming Soon')) {
           moreArticlesCard = card;
         }
@@ -939,7 +939,7 @@ describe('Index Page (Main Portfolio)', () => {
 
       let moreArticlesCard = null;
       cards.forEach((card) => {
-        const heading = card.querySelector('h3');
+        const heading = card.querySelector('h5');
         if (heading && heading.textContent.includes('More Articles Coming Soon')) {
           moreArticlesCard = card;
         }
@@ -956,7 +956,7 @@ describe('Index Page (Main Portfolio)', () => {
 
       let moreArticlesCard = null;
       cards.forEach((card) => {
-        const heading = card.querySelector('h3');
+        const heading = card.querySelector('h5');
         if (heading && heading.textContent.includes('More Articles Coming Soon')) {
           moreArticlesCard = card;
         }
@@ -975,7 +975,7 @@ describe('Index Page (Main Portfolio)', () => {
 
       let moreArticlesCard = null;
       cards.forEach((card) => {
-        const heading = card.querySelector('h3');
+        const heading = card.querySelector('h5');
         if (heading && heading.textContent.includes('More Articles Coming Soon')) {
           moreArticlesCard = card;
         }

@@ -239,7 +239,7 @@ describe('All Pages - Link Validation', () => {
         }
       });
 
-      const heading = cypromptCard.querySelector('.card-content h3');
+      const heading = cypromptCard.querySelector('.card-content h5');
       expect(heading.textContent).toContain(
         'How Cypress Will Revolutionize AI in Testing with cy.prompt()'
       );
