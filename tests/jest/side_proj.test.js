@@ -35,7 +35,7 @@ describe('Side Projects Page', () => {
     });
 
     test('has main page heading', () => {
-      const heading = document.querySelector('h2.header');
+      const heading = document.querySelector('h1.header');
       expect(heading).toBeTruthy();
       expect(heading.textContent).toContain('Side Projects');
     });
@@ -395,10 +395,8 @@ describe('Side Projects Page', () => {
   describe('Typography', () => {
     test('has multiple heading levels', () => {
       const h3 = document.querySelector('h3');
-      const h4 = document.querySelector('h4');
 
       expect(h3).toBeTruthy();
-      expect(h4).toBeTruthy();
     });
 
     test('headings have proper classes', () => {

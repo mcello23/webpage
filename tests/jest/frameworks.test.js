@@ -139,9 +139,9 @@ describe('Frameworks Page', () => {
 
   describe('Main Content', () => {
     test('has main heading', () => {
-      const heading = document.querySelector('h2.header');
+      const heading = document.querySelector('h1.header');
       expect(heading).toBeTruthy();
-      expect(heading.textContent).toContain('Testing Frameworks');
+      expect(heading.textContent).toContain('Enterprise Testing Frameworks');
     });
 
     test('has parallax containers', () => {
