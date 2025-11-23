@@ -123,7 +123,7 @@ describe('Index Page (Main Portfolio)', () => {
     });
 
     test('displays correct name', () => {
-      const name = document.querySelector('h1');
+      const name = document.querySelector('h2');
       expect(name).toBeTruthy();
       expect(name.textContent).toContain('Marcelo Costa');
     });
@@ -150,7 +150,7 @@ describe('Index Page (Main Portfolio)', () => {
 
   describe('Quick Impact Metrics Section', () => {
     test('has Quick Impact Metrics card', () => {
-      const metricsHeading = Array.from(document.querySelectorAll('h2')).find((h) =>
+      const metricsHeading = Array.from(document.querySelectorAll('h3')).find((h) =>
         h.textContent.includes('Quick Impact Metrics')
       );
       expect(metricsHeading).toBeTruthy();
@@ -183,7 +183,7 @@ describe('Index Page (Main Portfolio)', () => {
 
   describe('What I Do Section', () => {
     test('has What I Do card', () => {
-      const whatIDoHeading = Array.from(document.querySelectorAll('h2')).find((h) =>
+      const whatIDoHeading = Array.from(document.querySelectorAll('h3')).find((h) =>
         h.textContent.includes('What I Do')
       );
       expect(whatIDoHeading).toBeTruthy();
@@ -232,7 +232,7 @@ describe('Index Page (Main Portfolio)', () => {
 
   describe('Tech Stack Section', () => {
     test('has Tech Stack card', () => {
-      const techStackHeading = Array.from(document.querySelectorAll('h2')).find((h) =>
+      const techStackHeading = Array.from(document.querySelectorAll('h3')).find((h) =>
         h.textContent.includes('Tech Stack')
       );
       expect(techStackHeading).toBeTruthy();
@@ -326,7 +326,7 @@ describe('Index Page (Main Portfolio)', () => {
     });
 
     test('displays Recent Experience heading', () => {
-      const heading = Array.from(document.querySelectorAll('h2')).find((h) =>
+      const heading = Array.from(document.querySelectorAll('h3')).find((h) =>
         h.textContent.includes('Recent Experience')
       );
       expect(heading).toBeTruthy();
@@ -368,7 +368,7 @@ describe('Index Page (Main Portfolio)', () => {
     });
 
     test('displays Articles heading', () => {
-      const heading = Array.from(document.querySelectorAll('h2')).find((h) =>
+      const heading = Array.from(document.querySelectorAll('h3')).find((h) =>
         h.textContent.includes('Articles')
       );
       expect(heading).toBeTruthy();

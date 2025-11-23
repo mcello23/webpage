@@ -300,7 +300,7 @@ describe('Gradient Colors and Styling', () => {
   describe('Color Consistency', () => {
     test('tech stack skill tags with gradients have box-shadow', () => {
       // Find the Tech Stack section by finding the heading
-      const headings = Array.from(document.querySelectorAll('h2'));
+      const headings = Array.from(document.querySelectorAll('h3'));
       const techStackHeading = headings.find((h) => h.textContent.includes('Tech Stack'));
       const techStackSection = techStackHeading.closest('.intro-card');
       const skillTags = techStackSection.querySelectorAll('.skill-tag');
@@ -344,7 +344,7 @@ describe('Gradient Colors and Styling', () => {
     });
 
     test('tech stack skill tags have role="listitem" for accessibility', () => {
-      const headings = Array.from(document.querySelectorAll('h2'));
+      const headings = Array.from(document.querySelectorAll('h3'));
       const techStackHeading = headings.find((h) => h.textContent.includes('Tech Stack'));
       const techStackSection = techStackHeading.closest('.intro-card');
       const skillTags = techStackSection.querySelectorAll('.skill-tag');
@@ -371,7 +371,7 @@ describe('Gradient Colors and Styling', () => {
     });
 
     test('gradient colors use color stop format', () => {
-      const headings = Array.from(document.querySelectorAll('h2'));
+      const headings = Array.from(document.querySelectorAll('h3'));
       const techStackHeading = headings.find((h) => h.textContent.includes('Tech Stack'));
       const techStackSection = techStackHeading.closest('.intro-card');
       const skillTags = techStackSection.querySelectorAll('.skill-tag');
