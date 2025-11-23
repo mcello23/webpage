@@ -155,12 +155,12 @@ describe('Booking Call Responsive Behavior', () => {
 
   describe('Cache Busting Verification', () => {
     test('index.html should have updated cache version to v16 or higher', () => {
-      expect(htmlContent).toMatch(/navbar\.css\?v=(1[6-9]|[2-9]\d)/);
+      expect(htmlContent).toMatch(/navbar(\.min)?\.css\?v=(1[6-9]|[2-9]\d)/);
     });
 
     test('should NOT have old cache version v15 or v14', () => {
-      const v15Pattern = /navbar\.css\?v=15["\s>]/;
-      const v14Pattern = /navbar\.css\?v=14["\s>]/;
+      const v15Pattern = /navbar(\.min)?\.css\?v=15["\s>]/;
+      const v14Pattern = /navbar(\.min)?\.css\?v=14["\s>]/;
       expect(htmlContent).not.toMatch(v15Pattern);
       expect(htmlContent).not.toMatch(v14Pattern);
     });

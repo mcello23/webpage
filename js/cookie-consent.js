@@ -139,7 +139,7 @@
         <div id="cookieConsentBanner" class="cookie-consent-banner" role="dialog" aria-live="polite" aria-label="Cookie consent banner" aria-describedby="cookieConsentText">
           <div class="cookie-consent-content">
             <div class="cookie-consent-text">
-              <h4>🍪 This site uses cookies</h4>
+              <p style="font-size: 1.3rem; font-weight: 700; margin: 0 0 8px 0; color: #2c3e50;">🍪 This site uses cookies</p>
               <p id="cookieConsentText">
                 We use cookies and Google Analytics to understand how you interact with our portfolio 
                 (pages visited, time spent, traffic source). Your data is processed anonymously and 

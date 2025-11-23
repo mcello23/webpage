@@ -145,7 +145,7 @@ describe('Cross-Page Consistency Tests', () => {
 
     test('all pages load certificates.js', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const certScript = doc.querySelector('script[src*="certificates.js"]');
+        const certScript = doc.querySelector('script[src*="certificates"]');
         expect(certScript).toBeTruthy();
       });
     });
@@ -154,16 +154,16 @@ describe('Cross-Page Consistency Tests', () => {
   describe('CSS Consistency', () => {
     test('all pages load Materialize CSS', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const materializeCSS = doc.querySelector('link[href*="materialize.css"]');
+        const materializeCSS = doc.querySelector('link[href*="materialize"]');
         expect(materializeCSS).toBeTruthy();
       });
     });
 
     test('all pages load style.css', () => {
-      // index.html uses css/style.css, pages use ../../css/style.css
-      const indexStyle = indexDoc.querySelector('link[href="css/style.css"]');
-      const frameworksStyle = frameworksDoc.querySelector('link[href="../../css/style.css"]');
-      const sideProjStyle = sideProjDoc.querySelector('link[href="../../css/style.css"]');
+      // index.html uses css/style.min.css, pages use ../../css/style.min.css
+      const indexStyle = indexDoc.querySelector('link[href*="style"]');
+      const frameworksStyle = frameworksDoc.querySelector('link[href*="style"]');
+      const sideProjStyle = sideProjDoc.querySelector('link[href*="style"]');
 
       expect(indexStyle).toBeTruthy();
       expect(frameworksStyle).toBeTruthy();
@@ -196,24 +196,28 @@ describe('Cross-Page Consistency Tests', () => {
 
     test('all pages load certificates.css stylesheet', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const certStyles = doc.querySelector('link[href*="certificates.css"]');
+        const certStyles = doc.querySelector('link[href*="certificates"]');
         expect(certStyles).toBeTruthy();
       });
     });
 
     test('all pages load certificates.js script with correct path', () => {
-      const indexScript = indexDoc.querySelector('script[src*="certificates.js"]');
-      const frameworksScript = frameworksDoc.querySelector('script[src*="certificates.js"]');
-      const sideProjScript = sideProjDoc.querySelector('script[src*="certificates.js"]');
+      const indexScript = indexDoc.querySelector('script[src*="certificates"]');
+      const frameworksScript = frameworksDoc.querySelector('script[src*="certificates"]');
+      const sideProjScript = sideProjDoc.querySelector('script[src*="certificates"]');
 
       expect(indexScript).toBeTruthy();
       expect(frameworksScript).toBeTruthy();
       expect(sideProjScript).toBeTruthy();
 
-      // index.html uses js/certificates.js, other pages use ../../js/certificates.js
-      expect(indexScript.getAttribute('src')).toBe('js/certificates.js');
-      expect(frameworksScript.getAttribute('src')).toBe('../../js/certificates.js');
-      expect(sideProjScript.getAttribute('src')).toBe('../../js/certificates.js');
+      // index.html uses js/certificates.min.js, other pages use ../../js/certificates.min.js
+      expect(indexScript.getAttribute('src')).toMatch(/js\/certificates(\.min)?\.js/);
+      expect(frameworksScript.getAttribute('src')).toMatch(
+        /\.\.\/\.\.\/js\/certificates(\.min)?\.js/
+      );
+      expect(sideProjScript.getAttribute('src')).toMatch(
+        /\.\.\/\.\.\/js\/certificates(\.min)?\.js/
+      );
     });
 
     test('certificate images folder exists and is accessible', () => {

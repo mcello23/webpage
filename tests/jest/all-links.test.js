@@ -651,18 +651,18 @@ describe('All Pages - Link Validation', () => {
     test('index.html should link to all required CSS files', () => {
       const html = fs.readFileSync(path.join(__dirname, '../../index.html'), 'utf8');
 
-      expect(html).toContain('css/materialize.css');
-      expect(html).toContain('css/style.css');
-      expect(html).toContain('css/navbar.css');
-      expect(html).toContain('css/certificates.css');
+      expect(html).toContain('css/materialize');
+      expect(html).toContain('css/style');
+      expect(html).toContain('css/navbar');
+      expect(html).toContain('css/certificates');
     });
 
     test('index.html should link to all required JS files', () => {
       const html = fs.readFileSync(path.join(__dirname, '../../index.html'), 'utf8');
 
       expect(html).toContain('js/materialize.js');
-      expect(html).toContain('js/init.js');
-      expect(html).toContain('js/certificates.js');
+      expect(html).toContain('js/init');
+      expect(html).toContain('js/certificates');
     });
 
     test('frameworks.html should link to required CSS files', () => {

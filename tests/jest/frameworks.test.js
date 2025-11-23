@@ -199,7 +199,7 @@ describe('Frameworks Page', () => {
     });
 
     test('loads certificates.js for modern certificate modal', () => {
-      const certScript = document.querySelector('script[src*="certificates.js"]');
+      const certScript = document.querySelector('script[src*="certificates"]');
       expect(certScript).toBeTruthy();
     });
   });

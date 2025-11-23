@@ -23,6 +23,8 @@ module.exports = [
       'dist/**',
       'deploy_temp/**',
       '_headers',
+      '**/*.min.js',
+      '**/*.min.css',
     ],
   },
   {

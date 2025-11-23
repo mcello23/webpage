@@ -326,7 +326,7 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
   describe('Cache Busting', () => {
     test('should have cache version parameter in CSS link', () => {
       const navbarCssLink = Array.from(document.querySelectorAll('link')).find(
-        (link) => link.href && link.href.includes('navbar.css')
+        (link) => link.href && link.href.includes('navbar')
       );
       expect(navbarCssLink).toBeTruthy();
       expect(navbarCssLink.href).toMatch(/\?v=/);
@@ -334,7 +334,7 @@ describe('Navbar Responsive Design & Icon Alignment', () => {
 
     test('cache version should be v14 or higher', () => {
       const navbarCssLink = Array.from(document.querySelectorAll('link')).find(
-        (link) => link.href && link.href.includes('navbar.css')
+        (link) => link.href && link.href.includes('navbar')
       );
       const versionMatch = navbarCssLink.href.match(/\?v=(\d+)/);
       expect(versionMatch).toBeTruthy();

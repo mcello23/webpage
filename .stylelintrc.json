@@ -10,8 +10,10 @@
   "ignoreFiles": [
     "node_modules/**",
     "coverage/**",
+    "dist/**",
     "css/materialize.css",
     "css/materialize.min.css",
-    "css/prism.css"
+    "css/prism.css",
+    "**/*.min.css"
   ]
 }

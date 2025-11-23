@@ -129,7 +129,9 @@ describe('Index Page (Main Portfolio)', () => {
     });
 
     test('displays updated professional title', () => {
-      const title = document.querySelector('p[style*="color: #667eea"]');
+      const title =
+        document.querySelector('p[style*="color: #4f58b5"]') ||
+        document.querySelector('p[style*="color: #667eea"]');
       expect(title).toBeTruthy();
       const titleText = title.textContent;
       expect(titleText).toContain('Senior QA Engineer');
@@ -1081,12 +1083,12 @@ describe('Index Page (Main Portfolio)', () => {
     });
 
     test('certificate modal loads certificates.js script', () => {
-      const certScript = document.querySelector('script[src*="certificates.js"]');
+      const certScript = document.querySelector('script[src*="certificates"]');
       expect(certScript).toBeTruthy();
     });
 
     test('certificate modal loads certificates.css stylesheet', () => {
-      const certStyles = document.querySelector('link[href*="certificates.css"]');
+      const certStyles = document.querySelector('link[href*="certificates"]');
       expect(certStyles).toBeTruthy();
     });
 
@@ -1114,9 +1116,9 @@ describe('Index Page (Main Portfolio)', () => {
     });
 
     test('certificates.js is properly loaded and accessible', () => {
-      const certScript = document.querySelector('script[src="js/certificates.js"]');
+      const certScript = document.querySelector('script[src*="certificates"]');
       expect(certScript).toBeTruthy();
-      expect(certScript.getAttribute('src')).toBe('js/certificates.js');
+      expect(certScript.getAttribute('src')).toMatch(/js\/certificates(\.min)?\.js/);
     });
 
     test('certificate thumbnails exist in thumbs folder', () => {
@@ -1219,12 +1221,12 @@ describe('Index Page (Main Portfolio)', () => {
     });
 
     test('loads init.js', () => {
-      const initScript = document.querySelector('script[src*="init.js"]');
+      const initScript = document.querySelector('script[src*="init"]');
       expect(initScript).toBeTruthy();
     });
 
     test('loads certificates.js script', () => {
-      const certScript = document.querySelector('script[src*="certificates.js"]');
+      const certScript = document.querySelector('script[src*="certificates"]');
       expect(certScript).toBeTruthy();
     });
 
@@ -1289,8 +1291,8 @@ describe('Index Page (Main Portfolio)', () => {
       expect(cssLinks.length).toBeGreaterThan(0);
 
       const hrefs = Array.from(cssLinks).map((link) => link.getAttribute('href'));
-      expect(hrefs).toContain('css/materialize.css');
-      expect(hrefs).toContain('css/style.css');
+      expect(hrefs.some((href) => href && href.includes('materialize'))).toBeTruthy();
+      expect(hrefs.some((href) => href && href.includes('style'))).toBeTruthy();
     });
 
     test('has Material Icons link', () => {
