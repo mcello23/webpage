@@ -671,10 +671,10 @@ describe('All Pages - Link Validation', () => {
         'utf8'
       );
 
-      expect(html).toContain('../css/materialize.css');
-      expect(html).toContain('../css/style.css');
-      expect(html).toContain('../css/navbar.css');
-      expect(html).toContain('../css/certificates.css');
+      expect(html).toContain('../css/materialize');
+      expect(html).toContain('../css/style');
+      expect(html).toContain('../css/navbar');
+      expect(html).toContain('../css/certificates');
     });
 
     test('side_proj.html should link to required CSS files', () => {
@@ -683,10 +683,10 @@ describe('All Pages - Link Validation', () => {
         'utf8'
       );
 
-      expect(html).toContain('../css/materialize.css');
-      expect(html).toContain('../css/style.css');
-      expect(html).toContain('../css/navbar.css');
-      expect(html).toContain('../css/certificates.css');
+      expect(html).toContain('../css/materialize');
+      expect(html).toContain('../css/style');
+      expect(html).toContain('../css/navbar');
+      expect(html).toContain('../css/certificates');
     });
   });
 });

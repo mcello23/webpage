@@ -21,39 +21,71 @@
     <link rel="manifest" href="../../favicon/site.webmanifest" />
     <meta name="theme-color" content="#3F51B5" />
     <!-- CSS  -->
+    <!-- Preload critical CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+
+    <link rel="preload" href="../../css/materialize.min.css" as="style" />
+    <link rel="preload" href="../../css/style.min.css" as="style" />
+    <link rel="preload" href="../../css/navbar.min.css?v=32" as="style" />
+
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <link
-      href="../../css/materialize.css"
+      href="../../css/materialize.min.css"
       type="text/css"
       rel="stylesheet"
       media="screen,projection"
     />
-    <link href="../../css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link
+      href="../../css/style.min.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        rel="stylesheet"
+      />
+    </noscript>
     <link href="../../css/prism.css" rel="stylesheet" />
     <link
-      href="../../css/navbar.css?v=18"
+      href="../../css/navbar.min.css?v=32"
       type="text/css"
       rel="stylesheet"
       media="screen,projection"
     />
     <link
-      href="../../css/certificates.css"
+      href="../../css/certificates.min.css"
       type="text/css"
       rel="stylesheet"
-      media="screen,projection"
+      media="print"
+      onload="this.media='screen,projection'"
     />
     <link
-      href="../../css/cookie-consent.css"
+      href="../../css/cookie-consent.min.css"
       type="text/css"
       rel="stylesheet"
-      media="screen,projection"
+      media="print"
+      onload="this.media='screen,projection'"
     />
     <style>
       /* Animation keyframes for parallax separators */
@@ -438,7 +470,7 @@
                 <a
                   href="https://github.com/mcello23/ai-test-plan-generator"
                   id="download-button-ai"
-                  class="btn-large waves-effect waves-light teal lighten-1 pad center-align"
+                  class="btn-large waves-effect waves-light teal pad center-align"
                   >Check out my GitHub project</a
                 >
               </div>
@@ -591,7 +623,7 @@
                 <a
                   href="https://github.com/mcello23/python-music-download"
                   id="download-button-python"
-                  class="btn-large waves-effect waves-light teal lighten-1 pad center-align"
+                  class="btn-large waves-effect waves-light teal pad center-align"
                   >Check out my GitHub project</a
                 >
               </div>
@@ -624,7 +656,7 @@
                   href="https://www.linkedin.com/in/marceloc/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="btn-large white teal-text waves-effect"
+                  class="btn-large teal white-text waves-effect"
                   style="margin: 10px; border-radius: 25px"
                   ><i class="fab fa-linkedin left" aria-hidden="true"></i>Let's Connect</a
                 >
@@ -632,13 +664,13 @@
                   href="https://calendly.com/marceloadsc/15min"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="btn-large white teal-text waves-effect"
+                  class="btn-large teal white-text waves-effect"
                   style="margin: 10px; border-radius: 25px"
                   ><i class="material-icons left" aria-hidden="true">event</i>Book 15-min Call</a
                 >
                 <a
                   href="/#contact"
-                  class="btn-large white teal-text waves-effect"
+                  class="btn-large teal white-text waves-effect"
                   style="margin: 10px; border-radius: 25px"
                   ><i class="material-icons left" aria-hidden="true">email</i>Send Message</a
                 >
@@ -654,13 +686,13 @@
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js" defer></script>
     <script src="../../js/materialize.js" defer></script>
-    <script src="../../js/init.js" defer></script>
+    <script src="../../js/init.min.js" defer></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
       defer
     ></script>
-    <script src="../../js/certificates.js" defer></script>
+    <script src="../../js/certificates.min.js" defer></script>
     <script src="../../js/prism.js" defer></script>
-    <script src="../../js/cookie-consent.js" defer></script>
+    <script src="../../js/cookie-consent.min.js" defer></script>
   </body>
 </html>

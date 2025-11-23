@@ -291,7 +291,7 @@ describe('Side Projects Page', () => {
     });
 
     test('certificate modal loads certificates.css stylesheet', () => {
-      const certStyles = document.querySelector('link[href*="certificates.css"]');
+      const certStyles = document.querySelector('link[href*="certificates"]');
       expect(certStyles).toBeTruthy();
     });
   });
@@ -347,8 +347,8 @@ describe('Side Projects Page', () => {
       expect(cssLinks.length).toBeGreaterThan(0);
 
       const hrefs = Array.from(cssLinks).map((link) => link.getAttribute('href'));
-      expect(hrefs).toContain('../../css/materialize.css');
-      expect(hrefs).toContain('../../css/style.css');
+      expect(hrefs.some((href) => href && href.includes('materialize'))).toBeTruthy();
+      expect(hrefs.some((href) => href && href.includes('style'))).toBeTruthy();
       expect(hrefs).toContain('../../css/prism.css');
     });
 

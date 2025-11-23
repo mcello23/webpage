@@ -390,11 +390,11 @@ describe('Booking Call Responsive Behavior', () => {
     });
 
     test('frameworks.html should have updated cache version v16 or higher', () => {
-      expect(frameworksHtml).toMatch(/navbar\.css\?v=(1[6-9]|[2-9]\d)/);
+      expect(frameworksHtml).toMatch(/navbar(\.min)?\.css\?v=(1[6-9]|[2-9]\d)/);
     });
 
     test('side_proj.html should have updated cache version v16 or higher', () => {
-      expect(sideProjHtml).toMatch(/navbar\.css\?v=(1[6-9]|[2-9]\d)/);
+      expect(sideProjHtml).toMatch(/navbar(\.min)?\.css\?v=(1[6-9]|[2-9]\d)/);
     });
 
     test('frameworks.html should have booking call link', () => {
