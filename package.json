@@ -32,7 +32,7 @@
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
-    "@swc/core": "^1.14.0",
+    "@swc/core": "^1.15.3",
     "@swc/jest": "^0.2.39",
     "babel-jest": "^30.2.0",
     "cheerio": "^1.1.2",
