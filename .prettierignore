@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+coverage/
+
+# Third-party libraries (not our code to format)
+css/materialize.css
+css/materialize.min.css
+js/materialize.js
+js/materialize.min.js
+js/prism.js
+
+# Minified files (auto-generated, shouldn't be formatted)
+**/*.min.js
+**/*.min.css
+
+# Test reports
+tests/**/reports/
+
+# Yarn
+.yarn/
+
+# Other generated files
+_headers
