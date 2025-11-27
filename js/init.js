@@ -46,9 +46,18 @@
    * @function
    * @name documentReady
    */
-  $(function () {
-    initMaterialize();
-  }); // end of document ready
+  if ($) {
+    $(function () {
+      initMaterialize();
+    }); // end of document ready
+  } else {
+    // Fallback when jQuery is not available - use native DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMaterialize);
+    } else {
+      initMaterialize();
+    }
+  }
 
   // Export for testing
   if (typeof window !== 'undefined') {
