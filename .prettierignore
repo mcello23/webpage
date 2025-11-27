@@ -17,10 +17,7 @@ js/prism.js
 **/*.min.css
 
 # Test reports
-tests/*/reports/
-tests/jest/reports/
-tests/k6/reports/
-tests/puppeteer/reports/
+tests/**/reports/
 
 # Yarn
 .yarn/
