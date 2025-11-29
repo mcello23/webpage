@@ -70,6 +70,29 @@ describe('init.js - Unit Tests', () => {
       // Updated to handle conditional jQuery loading
       expect(initCode).toMatch(/\}\)\(.*jQuery.*\)/);
     });
+
+    test('checks for jQuery availability', () => {
+      // Ensure code handles missing jQuery gracefully or throws expected error
+      // Since we are static analysis here, checking for usage pattern
+      expect(initCode).not.toContain('window.$ ='); // Should not clobber global
+    });
+  });
+
+  describe('Browser Compatibility', () => {
+    test('does not use unsupported ES6 features outside safe scope', () => {
+      // Check against known problematic syntax for older browsers if targetting them
+      // For example, avoiding top-level await or similar
+      expect(initCode).not.toContain('await ');
+    });
+
+    test('uses standard event listeners or jQuery', () => {
+      // Code uses either standard addEventListener or jQuery's methods
+      const usesStandard = initCode.includes('addEventListener');
+      const usesJQuery = initCode.includes('$(');
+
+      expect(usesStandard || usesJQuery).toBe(true);
+      expect(initCode).not.toContain('attachEvent'); // No IE8 specific code
+    });
   });
 
   describe('Code Quality', () => {

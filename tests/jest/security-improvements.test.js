@@ -318,4 +318,18 @@ describe('Code Documentation and Security Enhancements', () => {
       expect(examplesCount).toBeGreaterThan(3);
     });
   });
+
+  describe('Additional JavaScript File Documentation', () => {
+    test('navbar.js has JSDoc', () => {
+      const navbarCode = fs.readFileSync(path.join(__dirname, '../../js/navbar.js'), 'utf8');
+      expect(navbarCode).toContain('/**');
+      expect(navbarCode).toContain('* Navbar Logic');
+    });
+
+    test('contact-form.js has JSDoc', () => {
+      const contactCode = fs.readFileSync(path.join(__dirname, '../../js/contact-form.js'), 'utf8');
+      expect(contactCode).toContain('/**');
+      expect(contactCode).toContain('* Contact Form Logic');
+    });
+  });
 });

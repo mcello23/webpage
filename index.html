@@ -700,23 +700,46 @@
       }
 
       /* Custom Scrollbar for Suite Details */
-      #modal-jest-suites-list::-webkit-scrollbar,
-      #modal-k6-checks-list::-webkit-scrollbar {
-        width: 8px;
+      /* Firefox Support */
+      .custom-scrollbar,
+      #modal-jest-suites-list,
+      #modal-k6-checks-list,
+      #modal-k6-content {
+        scrollbar-width: thin;
+        scrollbar-color: #764ba2 #f1f1f1;
       }
+
+      /* WebKit Support */
+      .custom-scrollbar::-webkit-scrollbar,
+      #modal-jest-suites-list::-webkit-scrollbar,
+      #modal-k6-checks-list::-webkit-scrollbar,
+      #modal-k6-content::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-track,
       #modal-jest-suites-list::-webkit-scrollbar-track,
-      #modal-k6-checks-list::-webkit-scrollbar-track {
+      #modal-k6-checks-list::-webkit-scrollbar-track,
+      #modal-k6-content::-webkit-scrollbar-track {
         background: #f1f1f1;
         border-radius: 10px;
       }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb,
       #modal-jest-suites-list::-webkit-scrollbar-thumb,
-      #modal-k6-checks-list::-webkit-scrollbar-thumb {
-        background: linear-gradient(135deg, #667eea, #764ba2);
+      #modal-k6-checks-list::-webkit-scrollbar-thumb,
+      #modal-k6-content::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #667eea, #764ba2) !important;
         border-radius: 10px;
+        border: 1px solid #f1f1f1;
       }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover,
       #modal-jest-suites-list::-webkit-scrollbar-thumb:hover,
-      #modal-k6-checks-list::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(135deg, #764ba2, #667eea);
+      #modal-k6-checks-list::-webkit-scrollbar-thumb:hover,
+      #modal-k6-content::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #764ba2, #667eea) !important;
       }
 
       /* Floating Dashboard Button */
@@ -2243,11 +2266,16 @@
     </div>
 
     <!-- Modals -->
-    <div id="testDashboardModal" class="test-dashboard-modal" style="display: none">
+    <div
+      id="testDashboardModal"
+      class="test-dashboard-modal"
+      style="display: none"
+      aria-hidden="true"
+    >
       <div class="modal-overlay" onclick="closeTestDashboardModal()"></div>
       <div class="modal-content-wrapper">
         <div class="modal-header">
-          <h4><i class="material-icons">analytics</i> Test Results Dashboard</h4>
+          <h5><i class="material-icons">analytics</i> Test Results Dashboard</h5>
           <button
             class="modal-close-btn"
             onclick="closeTestDashboardModal()"
@@ -2327,7 +2355,7 @@
             <!-- Jest Details -->
             <div class="section-card" id="modal-jest-section">
               <div class="section-header">
-                <h4><i class="material-icons">check_circle</i> Jest Unit Tests</h4>
+                <h5><i class="material-icons">check_circle</i> Jest Unit Tests</h5>
                 <button
                   class="btn-collapse"
                   aria-label="Toggle section"
@@ -2377,6 +2405,7 @@
                   </h3>
                   <div
                     id="modal-jest-suites-list"
+                    class="custom-scrollbar"
                     style="
                       display: grid;
                       gap: 12px;
@@ -2394,7 +2423,7 @@
             <!-- K6 Performance -->
             <div class="section-card" id="modal-k6-section">
               <div class="section-header">
-                <h4><i class="material-icons">speed</i> K6 Performance Tests</h4>
+                <h5><i class="material-icons">speed</i> K6 Performance Tests</h5>
                 <button
                   class="btn-collapse"
                   aria-label="Toggle section"
@@ -2553,10 +2582,11 @@
                   </h3>
                   <div
                     id="modal-k6-checks-list"
+                    class="custom-scrollbar"
                     style="
                       display: grid;
                       gap: 12px;
-                      max-height: 300px;
+                      max-height: 400px;
                       overflow-y: auto;
                       padding-right: 8px;
                     "
