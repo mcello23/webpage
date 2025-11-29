@@ -234,6 +234,11 @@ a#download-button9 {
   font-size: inherit;
 }
 
+/* Override Material Icons default size */
+.material-icons {
+  font-size: 28px;
+}
+
 footer.page-footer {
   margin: auto;
 }

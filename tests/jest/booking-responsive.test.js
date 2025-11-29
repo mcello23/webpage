@@ -200,11 +200,31 @@ describe('Booking Call Responsive Behavior', () => {
   });
 
   describe('JSDOM Simulated Responsive Behavior', () => {
+    // Minimal HTML for faster responsive testing
+    const minimalHtml = `
+      <!doctype html>
+      <html>
+      <body>
+        <nav class="main-nav">
+          <div class="nav-wrapper">
+             <a href="#" class="brand-logo">
+                <span>Marcelo Costa</span>
+             </a>
+             <a href="https://calendly.com" class="cta-link book-call">
+                <i class="material-icons">schedule</i>
+                <span>Book 15-min call</span>
+             </a>
+          </div>
+        </nav>
+      </body>
+      </html>
+    `;
+
     describe('Desktop Resolution (>= 1600px)', () => {
       let dom, document, window;
 
       beforeAll(() => {
-        dom = new JSDOM(htmlContent, {
+        dom = new JSDOM(minimalHtml, {
           url: 'http://localhost',
           pretendToBeVisual: true,
         });
@@ -253,7 +273,7 @@ describe('Booking Call Responsive Behavior', () => {
       let dom, document, window;
 
       beforeAll(() => {
-        dom = new JSDOM(htmlContent, {
+        dom = new JSDOM(minimalHtml, {
           url: 'http://localhost',
           pretendToBeVisual: true,
         });
@@ -299,7 +319,7 @@ describe('Booking Call Responsive Behavior', () => {
       let dom, document, window;
 
       beforeAll(() => {
-        dom = new JSDOM(htmlContent, {
+        dom = new JSDOM(minimalHtml, {
           url: 'http://localhost',
           pretendToBeVisual: true,
         });

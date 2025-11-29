@@ -184,6 +184,9 @@ a#download-button9 {
 .icon-block .material-icons {
   font-size: inherit;
 }
+.material-icons {
+  font-size: 28px;
+}
 footer.page-footer {
   margin: auto;
 }

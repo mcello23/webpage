@@ -14,15 +14,29 @@ describe('Navbar Improvements - Alignment & Mobile Menu', () => {
 
   beforeAll(() => {
     // Load all HTML pages
-    const indexHtml = fs.readFileSync(path.join(__dirname, '../../index.html'), 'utf8');
-    const frameworksHtml = fs.readFileSync(
+    const indexHtmlFull = fs.readFileSync(path.join(__dirname, '../../index.html'), 'utf8');
+    const frameworksHtmlFull = fs.readFileSync(
       path.join(__dirname, '../../pages/frameworks/index.html'),
       'utf8'
     );
-    const sideProjHtml = fs.readFileSync(
+    const sideProjHtmlFull = fs.readFileSync(
       path.join(__dirname, '../../pages/side_proj/index.html'),
       'utf8'
     );
+
+    // Helper to extract navbar
+    const extractNavbar = (html) => {
+      const match = html.match(/<nav class="main-nav"[\s\S]*?<\/nav>/);
+      return match ? match[0] : '';
+    };
+
+    // Create minimal HTMLs
+    const createMinimalDoc = (navHtml) =>
+      `<!doctype html><html><head></head><body>${navHtml}</body></html>`;
+
+    const indexHtml = createMinimalDoc(extractNavbar(indexHtmlFull));
+    const frameworksHtml = createMinimalDoc(extractNavbar(frameworksHtmlFull));
+    const sideProjHtml = createMinimalDoc(extractNavbar(sideProjHtmlFull));
 
     // Create JSDOM instances
     indexDOM = new JSDOM(indexHtml);

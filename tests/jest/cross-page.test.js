@@ -1,9 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const { JSDOM } = require('jsdom');
+const cheerio = require('cheerio');
 
 describe('Cross-Page Consistency Tests', () => {
-  let indexDom, frameworksDom, sideProjDom;
   let indexDoc, frameworksDoc, sideProjDoc;
 
   beforeAll(() => {
@@ -17,27 +16,18 @@ describe('Cross-Page Consistency Tests', () => {
       'utf8'
     );
 
-    indexDom = new JSDOM(indexHtml);
-    frameworksDom = new JSDOM(frameworksHtml);
-    sideProjDom = new JSDOM(sideProjHtml);
-
-    indexDoc = indexDom.window.document;
-    frameworksDoc = frameworksDom.window.document;
-    sideProjDoc = sideProjDom.window.document;
+    indexDoc = cheerio.load(indexHtml);
+    frameworksDoc = cheerio.load(frameworksHtml);
+    sideProjDoc = cheerio.load(sideProjHtml);
   });
 
-  afterAll(() => {
-    // Clean up JSDOM instances
-    if (indexDom) indexDom.window.close();
-    if (frameworksDom) frameworksDom.window.close();
-    if (sideProjDom) sideProjDom.window.close();
-  });
+  // No cleanup needed for cheerio
 
   describe('Navigation Consistency', () => {
     test('all pages have the same brand logo text', () => {
-      const indexBrand = indexDoc.querySelector('.brand-logo').textContent;
-      const frameworksBrand = frameworksDoc.querySelector('.brand-logo').textContent;
-      const sideProjBrand = sideProjDoc.querySelector('.brand-logo').textContent;
+      const indexBrand = indexDoc('.brand-logo').text();
+      const frameworksBrand = frameworksDoc('.brand-logo').text();
+      const sideProjBrand = sideProjDoc('.brand-logo').text();
 
       expect(indexBrand).toContain('Marcelo Costa — SDET');
       expect(frameworksBrand).toContain('Marcelo Costa — SDET');
@@ -46,12 +36,14 @@ describe('Cross-Page Consistency Tests', () => {
 
     test('all pages have the same navigation buttons', () => {
       const getNavButtons = (doc) => {
-        const buttons = doc.querySelectorAll('.nav-btn');
+        const buttons = doc('.nav-btn');
         // Normalize paths by removing both ../ and pages/ prefixes for comparison
-        return Array.from(buttons).map((btn) => {
-          const href = btn.getAttribute('href');
-          return href ? href.replace('../', '').replace('pages/', '') : href;
-        });
+        return buttons
+          .map((i, btn) => {
+            const href = doc(btn).attr('href');
+            return href ? href.replace(/\.\.\//g, '').replace('pages/', '') : href;
+          })
+          .get();
       };
 
       const indexButtons = getNavButtons(indexDoc);
@@ -64,9 +56,10 @@ describe('Cross-Page Consistency Tests', () => {
 
     test('all pages have the same social media links', () => {
       const getSocialLinks = (doc) => {
-        const socials = doc.querySelectorAll('.social-icon');
-        return Array.from(socials)
-          .map((a) => a.getAttribute('href'))
+        const socials = doc('.social-icon');
+        return socials
+          .map((i, a) => doc(a).attr('href'))
+          .get()
           .sort();
       };
 
@@ -83,17 +76,17 @@ describe('Cross-Page Consistency Tests', () => {
 
     test('all pages have fixed navigation with same class', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const nav = doc.querySelector('nav');
-        expect(nav).toBeTruthy();
+        const nav = doc('nav');
+        expect(nav.length).toBeGreaterThan(0);
         // navbar styling moved to external CSS and uses the 'main-nav' class
-        expect(nav.classList.contains('main-nav')).toBe(true);
+        expect(nav.hasClass('main-nav')).toBe(true);
       });
     });
 
     test('all pages link back to index.html from brand logo', () => {
-      const indexBrand = indexDoc.querySelector('.brand-logo').getAttribute('href');
-      const frameworksBrand = frameworksDoc.querySelector('.brand-logo').getAttribute('href');
-      const sideProjBrand = sideProjDoc.querySelector('.brand-logo').getAttribute('href');
+      const indexBrand = indexDoc('.brand-logo').attr('href');
+      const frameworksBrand = frameworksDoc('.brand-logo').attr('href');
+      const sideProjBrand = sideProjDoc('.brand-logo').attr('href');
 
       // All pages now link to / with proper GitHub Pages project paths
       expect(indexBrand).toBe('/');
@@ -104,9 +97,9 @@ describe('Cross-Page Consistency Tests', () => {
 
   describe('Footer Consistency', () => {
     test('all pages have professional footer without emojis', () => {
-      const indexFooter = indexDoc.body.textContent;
-      const frameworksFooter = frameworksDoc.body.textContent;
-      const sideProjFooter = sideProjDoc.body.textContent;
+      const indexFooter = indexDoc('body').text();
+      const frameworksFooter = frameworksDoc('body').text();
+      const sideProjFooter = sideProjDoc('body').text();
 
       expect(indexFooter).toContain('© 2025 Marcelo Costa');
       expect(frameworksFooter).toContain('© 2025 Marcelo Costa');
@@ -118,9 +111,9 @@ describe('Cross-Page Consistency Tests', () => {
     });
 
     test('all pages have thank you message', () => {
-      const indexFooter = indexDoc.body.textContent;
-      const frameworksFooter = frameworksDoc.body.textContent;
-      const sideProjFooter = sideProjDoc.body.textContent;
+      const indexFooter = indexDoc('body').text();
+      const frameworksFooter = frameworksDoc('body').text();
+      const sideProjFooter = sideProjDoc('body').text();
 
       expect(indexFooter).toContain('Thanks for exploring');
       expect(frameworksFooter).toContain('Thanks for exploring');
@@ -131,22 +124,22 @@ describe('Cross-Page Consistency Tests', () => {
   describe('Script Consistency', () => {
     test('all pages load jQuery', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const jquery = doc.querySelector('script[src*="jquery"]');
-        expect(jquery).toBeTruthy();
+        const jquery = doc('script[src*="jquery"]');
+        expect(jquery.length).toBeGreaterThan(0);
       });
     });
 
     test('all pages load Materialize', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const materialize = doc.querySelector('script[src*="materialize"]');
-        expect(materialize).toBeTruthy();
+        const materialize = doc('script[src*="materialize"]');
+        expect(materialize.length).toBeGreaterThan(0);
       });
     });
 
     test('all pages load certificates.js', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const certScript = doc.querySelector('script[src*="certificates"]');
-        expect(certScript).toBeTruthy();
+        const certScript = doc('script[src*="certificates"]');
+        expect(certScript.length).toBeGreaterThan(0);
       });
     });
   });
@@ -154,33 +147,33 @@ describe('Cross-Page Consistency Tests', () => {
   describe('CSS Consistency', () => {
     test('all pages load Materialize CSS', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const materializeCSS = doc.querySelector('link[href*="materialize"]');
-        expect(materializeCSS).toBeTruthy();
+        const materializeCSS = doc('link[href*="materialize"]');
+        expect(materializeCSS.length).toBeGreaterThan(0);
       });
     });
 
     test('all pages load style.css', () => {
       // index.html uses css/style.min.css, pages use ../../css/style.min.css
-      const indexStyle = indexDoc.querySelector('link[href*="style"]');
-      const frameworksStyle = frameworksDoc.querySelector('link[href*="style"]');
-      const sideProjStyle = sideProjDoc.querySelector('link[href*="style"]');
+      const indexStyle = indexDoc('link[href*="style"]');
+      const frameworksStyle = frameworksDoc('link[href*="style"]');
+      const sideProjStyle = sideProjDoc('link[href*="style"]');
 
-      expect(indexStyle).toBeTruthy();
-      expect(frameworksStyle).toBeTruthy();
-      expect(sideProjStyle).toBeTruthy();
+      expect(indexStyle.length).toBeGreaterThan(0);
+      expect(frameworksStyle.length).toBeGreaterThan(0);
+      expect(sideProjStyle.length).toBeGreaterThan(0);
     });
 
     test('all pages load Material Icons', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const icons = doc.querySelector('link[href*="Material+Icons"]');
-        expect(icons).toBeTruthy();
+        const icons = doc('link[href*="Material+Icons"]');
+        expect(icons.length).toBeGreaterThan(0);
       });
     });
 
     test('all pages load Font Awesome', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const fontAwesome = doc.querySelector('link[href*="font-awesome"]');
-        expect(fontAwesome).toBeTruthy();
+        const fontAwesome = doc('link[href*="font-awesome"]');
+        expect(fontAwesome.length).toBeGreaterThan(0);
       });
     });
   });
@@ -188,36 +181,32 @@ describe('Cross-Page Consistency Tests', () => {
   describe('Certificate Modal Consistency', () => {
     test('all pages have modern certificate modal', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const modal = doc.querySelector('#certificateModal');
-        expect(modal).toBeTruthy();
-        expect(modal.classList.contains('cert-modal')).toBe(true);
+        const modal = doc('#certificateModal');
+        expect(modal.length).toBeGreaterThan(0);
+        expect(modal.hasClass('cert-modal')).toBe(true);
       });
     });
 
     test('all pages load certificates.css stylesheet', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const certStyles = doc.querySelector('link[href*="certificates"]');
-        expect(certStyles).toBeTruthy();
+        const certStyles = doc('link[href*="certificates"]');
+        expect(certStyles.length).toBeGreaterThan(0);
       });
     });
 
     test('all pages load certificates.js script with correct path', () => {
-      const indexScript = indexDoc.querySelector('script[src*="certificates"]');
-      const frameworksScript = frameworksDoc.querySelector('script[src*="certificates"]');
-      const sideProjScript = sideProjDoc.querySelector('script[src*="certificates"]');
+      const indexScript = indexDoc('script[src*="certificates"]');
+      const frameworksScript = frameworksDoc('script[src*="certificates"]');
+      const sideProjScript = sideProjDoc('script[src*="certificates"]');
 
-      expect(indexScript).toBeTruthy();
-      expect(frameworksScript).toBeTruthy();
-      expect(sideProjScript).toBeTruthy();
+      expect(indexScript.length).toBeGreaterThan(0);
+      expect(frameworksScript.length).toBeGreaterThan(0);
+      expect(sideProjScript.length).toBeGreaterThan(0);
 
       // index.html uses js/certificates.min.js, other pages use ../../js/certificates.min.js
-      expect(indexScript.getAttribute('src')).toMatch(/js\/certificates(\.min)?\.js/);
-      expect(frameworksScript.getAttribute('src')).toMatch(
-        /\.\.\/\.\.\/js\/certificates(\.min)?\.js/
-      );
-      expect(sideProjScript.getAttribute('src')).toMatch(
-        /\.\.\/\.\.\/js\/certificates(\.min)?\.js/
-      );
+      expect(indexScript.attr('src')).toMatch(/js\/certificates(\.min)?\.js/);
+      expect(frameworksScript.attr('src')).toMatch(/\.\.\/\.\.\/js\/certificates(\.min)?\.js/);
+      expect(sideProjScript.attr('src')).toMatch(/\.\.\/\.\.\/js\/certificates(\.min)?\.js/);
     });
 
     test('certificate images folder exists and is accessible', () => {
@@ -254,9 +243,9 @@ describe('Cross-Page Consistency Tests', () => {
 
   describe('Meta Tags Consistency', () => {
     test('all pages have the same title pattern', () => {
-      const indexTitle = indexDoc.querySelector('title').textContent;
-      const frameworksTitle = frameworksDoc.querySelector('title').textContent;
-      const sideProjTitle = sideProjDoc.querySelector('title').textContent;
+      const indexTitle = indexDoc('title').text();
+      const frameworksTitle = frameworksDoc('title').text();
+      const sideProjTitle = sideProjDoc('title').text();
 
       // Updated titles have different formats, just check they contain Marcelo Costa
       expect(indexTitle).toContain('Marcelo Costa');
@@ -266,9 +255,9 @@ describe('Cross-Page Consistency Tests', () => {
 
     test('all pages have viewport meta tag', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const viewport = doc.querySelector('meta[name="viewport"]');
-        expect(viewport).toBeTruthy();
-        expect(viewport.getAttribute('content')).toContain('width=device-width');
+        const viewport = doc('meta[name="viewport"]');
+        expect(viewport.length).toBeGreaterThan(0);
+        expect(viewport.attr('content')).toContain('width=device-width');
       });
     });
 
@@ -276,22 +265,23 @@ describe('Cross-Page Consistency Tests', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
         // Check for charset meta tag (can be in different formats)
         const charsetMeta =
-          doc.querySelector('meta[http-equiv="Content-Type"]') ||
-          doc.querySelector('meta[charset]');
-        expect(charsetMeta).toBeTruthy();
+          doc('meta[http-equiv="Content-Type"]').length > 0
+            ? doc('meta[http-equiv="Content-Type"]')
+            : doc('meta[charset]');
+        expect(charsetMeta.length).toBeGreaterThan(0);
 
-        if (charsetMeta.hasAttribute('content')) {
-          expect(charsetMeta.getAttribute('content')).toContain('UTF-8');
+        if (charsetMeta.attr('content')) {
+          expect(charsetMeta.attr('content')).toContain('UTF-8');
         } else {
-          expect(charsetMeta.getAttribute('charset')).toBe('utf-8');
+          expect(charsetMeta.attr('charset').toLowerCase()).toBe('utf-8');
         }
       });
     });
 
     test('all pages have English language', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const html = doc.querySelector('html');
-        expect(html.getAttribute('lang')).toBe('en');
+        const html = doc('html');
+        expect(html.attr('lang')).toBe('en');
       });
     });
   });
@@ -299,21 +289,21 @@ describe('Cross-Page Consistency Tests', () => {
   describe('Professional Branding', () => {
     test('no page contains informal emojis in navigation', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const nav = doc.querySelector('nav').textContent;
+        const nav = doc('nav').text();
         expect(nav).not.toMatch(/😊|😄|🎉|👍/);
       });
     });
 
     test('all pages reference Marcelo Costa', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const content = doc.body.textContent;
+        const content = doc('body').text();
         expect(content).toContain('Marcelo Costa');
       });
     });
 
     test('all pages have copyright with current year', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const content = doc.body.textContent;
+        const content = doc('body').text();
         expect(content).toContain('© 2025');
       });
     });
@@ -322,22 +312,25 @@ describe('Cross-Page Consistency Tests', () => {
   describe('Accessibility Features', () => {
     test('all pages have descriptive aria labels for social links', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const githubLink = doc.querySelector('[aria-label="GitHub"]');
-        const linkedinLink = doc.querySelector('[aria-label="LinkedIn"]');
+        const githubLink = doc('[aria-label="GitHub"]');
+        const linkedinLink = doc('[aria-label="LinkedIn"]');
 
-        expect(githubLink).toBeTruthy();
-        expect(linkedinLink).toBeTruthy();
+        expect(githubLink.length).toBeGreaterThan(0);
+        expect(linkedinLink.length).toBeGreaterThan(0);
         // Discord removed from index.html, so it's optional
       });
     });
 
     test('all navigation buttons have both icon and text', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const navButtons = doc.querySelectorAll('.nav-btn');
-        navButtons.forEach((btn) => {
-          const icon = btn.querySelector('i.material-icons');
-          const text = btn.textContent.replace(/[a-z_]+/g, '').trim();
-          expect(icon).toBeTruthy();
+        const navButtons = doc('.nav-btn');
+        navButtons.each((i, btn) => {
+          const icon = doc(btn).find('i.material-icons');
+          const text = doc(btn)
+            .text()
+            .replace(/[a-z_]+/g, '')
+            .trim(); // This regex looks wrong for cleaning text but keeping for compatibility
+          expect(icon.length).toBeGreaterThan(0);
           expect(text.length).toBeGreaterThan(0);
         });
       });
@@ -347,16 +340,16 @@ describe('Cross-Page Consistency Tests', () => {
   describe('Responsive Design', () => {
     test('all pages have center-nav element', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const centerNav = doc.querySelectorAll('.center-nav');
+        const centerNav = doc('.center-nav');
         expect(centerNav.length).toBeGreaterThan(0);
       });
     });
 
     test('all pages use Materialize grid system', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const containers = doc.querySelectorAll('.container');
-        const rows = doc.querySelectorAll('.row');
-        const cols = doc.querySelectorAll('[class*="col s"]');
+        const containers = doc('.container');
+        const rows = doc('.row');
+        const cols = doc('[class*="col s"]');
 
         expect(containers.length).toBeGreaterThan(0);
         expect(rows.length).toBeGreaterThan(0);
@@ -368,21 +361,21 @@ describe('Cross-Page Consistency Tests', () => {
   describe('Navigation Behavior', () => {
     test('certificates button opens modern modal on all pages', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const certsBtn = doc.querySelector('.nav-btn-certs');
-        expect(certsBtn).toBeTruthy();
-        expect(certsBtn.textContent).toContain('Certificates');
-        expect(certsBtn.getAttribute('onclick')).toContain('certificateModal.open()');
+        const certsBtn = doc('.nav-btn-certs');
+        expect(certsBtn.length).toBeGreaterThan(0);
+        expect(certsBtn.text()).toContain('Certificates');
+        expect(certsBtn.attr('onclick')).toContain('certificateModal.open()');
       });
     });
 
     test('nav buttons have proper styling classes', () => {
       [indexDoc, frameworksDoc, sideProjDoc].forEach((doc) => {
-        const projectsBtn = doc.querySelector('.nav-btn-projects');
-        const frameworksBtn = doc.querySelector('.nav-btn-frameworks');
-        const certsBtn = doc.querySelector('.nav-btn-certs');
-        expect(projectsBtn).toBeTruthy();
-        expect(frameworksBtn).toBeTruthy();
-        expect(certsBtn).toBeTruthy();
+        const projectsBtn = doc('.nav-btn-projects');
+        const frameworksBtn = doc('.nav-btn-frameworks');
+        const certsBtn = doc('.nav-btn-certs');
+        expect(projectsBtn.length).toBeGreaterThan(0);
+        expect(frameworksBtn.length).toBeGreaterThan(0);
+        expect(certsBtn.length).toBeGreaterThan(0);
       });
     });
   });

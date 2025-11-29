@@ -745,6 +745,20 @@
         color: #fff;
         font-size: 28px;
       }
+
+      /* Mobile optimizations for K6 section */
+      @media screen and (max-width: 768px) {
+        #modal-k6-content {
+          max-height: 60vh !important;
+          overflow-y: auto !important;
+        }
+
+        /* Ensure collapsed state is respected */
+        #modal-k6-content.collapsed {
+          max-height: 0 !important;
+          overflow: hidden !important;
+        }
+      }
     </style>
   </head>
 
@@ -2233,7 +2247,7 @@
       <div class="modal-overlay" onclick="closeTestDashboardModal()"></div>
       <div class="modal-content-wrapper">
         <div class="modal-header">
-          <h3><i class="material-icons">analytics</i> Test Results Dashboard</h3>
+          <h4><i class="material-icons">analytics</i> Test Results Dashboard</h4>
           <button
             class="modal-close-btn"
             onclick="closeTestDashboardModal()"
@@ -2313,7 +2327,7 @@
             <!-- Jest Details -->
             <div class="section-card" id="modal-jest-section">
               <div class="section-header">
-                <h3><i class="material-icons">check_circle</i> Jest Unit Tests</h3>
+                <h4><i class="material-icons">check_circle</i> Jest Unit Tests</h4>
                 <button
                   class="btn-collapse"
                   aria-label="Toggle section"
@@ -2380,7 +2394,7 @@
             <!-- K6 Performance -->
             <div class="section-card" id="modal-k6-section">
               <div class="section-header">
-                <h3><i class="material-icons">speed</i> K6 Performance Tests</h3>
+                <h4><i class="material-icons">speed</i> K6 Performance Tests</h4>
                 <button
                   class="btn-collapse"
                   aria-label="Toggle section"
