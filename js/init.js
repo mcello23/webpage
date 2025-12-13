@@ -37,6 +37,13 @@
     if ($ && $('.parallax').parallax) {
       $('.parallax').parallax();
     }
+
+    // Disable right-click on images to discourage downloading
+    document.addEventListener('contextmenu', function (e) {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+      }
+    });
   }
 
   /**

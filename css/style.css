@@ -21,6 +21,19 @@ body {
   margin: 0;
 }
 
+/* Protect images from easy downloading (drag and select) */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 /* Utility: force a section to span full viewport width regardless of parent containers */
 .fullwidth-cta {
   width: 100vw;
