@@ -23,6 +23,7 @@ body {
 
 /* Protect images from easy downloading (drag and select) */
 img {
+  /* stylelint-disable */
   -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;
@@ -32,6 +33,7 @@ img {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  /* stylelint-enable */
 }
 
 /* Utility: force a section to span full viewport width regardless of parent containers */

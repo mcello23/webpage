@@ -1,1 +1,1 @@
-yarn quality:fix && yarn test
+npx lint-staged && yarn test
