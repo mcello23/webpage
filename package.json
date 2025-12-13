@@ -45,7 +45,7 @@
     "jsdom": "^27.3.0",
     "lint-staged": "^16.2.7",
     "prettier": "^3.6.2",
-    "puppeteer": "^24.29.1",
+    "puppeteer": "^24.33.0",
     "sharp": "^0.34.4",
     "stylelint": "^16.25.0",
     "stylelint-config-standard": "^39.0.1"
