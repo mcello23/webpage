@@ -113,6 +113,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
+    <!-- DNS Prefetch for third-party domains -->
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://region1.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://analytics.google.com" />
+    <link rel="dns-prefetch" href="https://api.web3forms.com" />
+
     <!-- Material Icons loaded via CSS - preload removed to avoid console warning -->
     <!-- The font loads fast enough without preload since it's cached after first visit -->
 
@@ -2609,7 +2615,7 @@
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
     ></script>
-    <script defer src="js/materialize.js"></script>
+    <!-- <script defer src="js/materialize.js"></script> -->
     <script defer src="js/init.min.js"></script>
     <script defer src="js/certificates.min.js"></script>
     <script defer src="js/cookie-consent.min.js"></script>
