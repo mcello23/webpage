@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
+    "test:all": "jest --coverage",
     "test:watch": "jest --watch",
     "test:components": "jest src/",
     "test:k6": "./tests/k6/run-tests.sh",
