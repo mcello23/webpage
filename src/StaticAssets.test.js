@@ -53,7 +53,7 @@ describe('Static Assets & Configuration', () => {
 
     test('loads non-critical CSS in a non-blocking way', () => {
       expect(html).toMatch(
-        /<link[^>]*rel="stylesheet"[^>]*media="print"[^>]*onload="this\.media='all'"[^>]*>/
+        /<link[^>]*rel="stylesheet"[^>]*media="print"[^>]*onload="this\.media\s*=\s*'all'"[^>]*>/
       );
     });
   });

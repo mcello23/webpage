@@ -4,16 +4,8 @@ import '../styles/certificates.min.css';
 
 const CertificatesModal = ({ isOpen, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
-
-  // Filter certificates based on search term
-  const filteredCertificates = certificates.filter(
-    (cert) =>
-      cert.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      cert.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -140,7 +132,7 @@ const CertificatesModal = ({ isOpen, onClose }) => {
           <h2>Professional Certificates</h2>
           {currentIndex === null && (
             <p className="cert-count">
-              <span id="currentCert">{filteredCertificates.length}</span> / {certificates.length}
+              <span id="currentCert">{certificates.length}</span> certificates
             </p>
           )}
         </div>
@@ -149,119 +141,49 @@ const CertificatesModal = ({ isOpen, onClose }) => {
         <div
           className="cert-grid-container"
           style={{
-            display: currentIndex === null ? 'flex' : 'none',
-            flexDirection: 'column',
+            display: currentIndex === null ? 'block' : 'none',
             height: 'calc(100% - 100px)',
-            overflow: 'hidden',
+            overflow: 'auto',
+            padding: '0 20px',
           }}
         >
-          {/* Search Bar */}
-          <div
-            className="cert-search-container"
-            style={{ padding: '0 20px 20px', width: '100%', maxWidth: '600px', margin: '0 auto' }}
-          >
-            <div
-              className="input-field"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                background: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: '30px',
-                padding: '0 20px',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                backdropFilter: 'blur(10px)',
-              }}
-            >
-              <i
-                className="material-icons"
-                style={{ color: 'rgba(255, 255, 255, 0.7)', marginRight: '10px' }}
-              >
-                search
-              </i>
-              <input
-                type="text"
-                placeholder="Search certificates..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                style={{
-                  border: 'none',
-                  boxShadow: 'none',
-                  width: '100%',
-                  height: '45px',
-                  background: 'transparent',
-                  outline: 'none',
-                  color: 'white',
-                  fontSize: '16px',
-                }}
-              />
-              {searchTerm && (
-                <i
-                  className="material-icons"
-                  style={{ color: 'rgba(255, 255, 255, 0.7)', cursor: 'pointer' }}
-                  onClick={() => setSearchTerm('')}
-                >
-                  close
-                </i>
-              )}
-            </div>
-          </div>
-
           <div
             className="cert-grid"
             id="certGrid"
             style={{
-              overflowY: 'auto',
-              padding: '0 20px 20px',
-              flex: 1,
-              maxHeight: 'none',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+              gap: '20px',
+              padding: '20px 0',
             }}
           >
-            {filteredCertificates.length > 0 ? (
-              filteredCertificates.map((cert) => (
-                <div
-                  key={cert.id}
-                  className="cert-card"
-                  data-id={cert.id}
-                  onClick={() => handleCertClick(cert.id)}
-                  style={{ animation: 'fadeIn 0.5s ease-out' }}
-                >
-                  <div className="cert-card-image">
-                    <img src={cert.thumb} alt={cert.title} loading="lazy" decoding="async" />
-                    <div className="cert-card-overlay">
-                      <i className="material-icons">visibility</i>
-                      <span>View Certificate</span>
-                    </div>
-                  </div>
-                  <div className="cert-card-content">
-                    <h4>{cert.title}</h4>
-                    <span className="cert-badge">{cert.category}</span>
-                    {cert.linkedinUrl && (
-                      <i
-                        className="fab fa-linkedin cert-linkedin-icon"
-                        title="Available on LinkedIn"
-                      ></i>
-                    )}
+            {certificates.map((cert) => (
+              <div
+                key={cert.id}
+                className="cert-card"
+                data-id={cert.id}
+                onClick={() => handleCertClick(cert.id)}
+                style={{ animation: 'fadeIn 0.5s ease-out' }}
+              >
+                <div className="cert-card-image">
+                  <img src={cert.thumb} alt={cert.title} loading="lazy" decoding="async" />
+                  <div className="cert-card-overlay">
+                    <i className="material-icons">visibility</i>
+                    <span>View Certificate</span>
                   </div>
                 </div>
-              ))
-            ) : (
-              <div
-                style={{
-                  gridColumn: '1 / -1',
-                  textAlign: 'center',
-                  padding: '40px',
-                  color: '#aaa',
-                }}
-              >
-                <i
-                  className="material-icons"
-                  style={{ fontSize: '48px', marginBottom: '10px', color: '#666' }}
-                >
-                  sentiment_dissatisfied
-                </i>
-                <p>No certificates found matching "{searchTerm}"</p>
+                <div className="cert-card-content">
+                  <h4>{cert.title}</h4>
+                  <span className="cert-badge">{cert.category}</span>
+                  {cert.linkedinUrl && (
+                    <i
+                      className="fab fa-linkedin cert-linkedin-icon"
+                      title="Available on LinkedIn"
+                    ></i>
+                  )}
+                </div>
               </div>
-            )}
+            ))}
           </div>
         </div>
 

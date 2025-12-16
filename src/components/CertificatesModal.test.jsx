@@ -40,25 +40,6 @@ describe('CertificatesModal Component', () => {
     expect(screen.getByText('Node.js Certification')).toBeInTheDocument();
   });
 
-  test('filters certificates based on search', () => {
-    render(<CertificatesModal isOpen={true} onClose={jest.fn()} />);
-    const searchInput = screen.getByPlaceholderText(/Search certificates/i);
-
-    fireEvent.change(searchInput, { target: { value: 'React' } });
-
-    expect(screen.getByText('React Certification')).toBeInTheDocument();
-    expect(screen.queryByText('Node.js Certification')).not.toBeInTheDocument();
-  });
-
-  test('shows no results message when search yields no matches', () => {
-    render(<CertificatesModal isOpen={true} onClose={jest.fn()} />);
-    const searchInput = screen.getByPlaceholderText(/Search certificates/i);
-
-    fireEvent.change(searchInput, { target: { value: 'NonExistent' } });
-
-    expect(screen.getByText(/No certificates found matching "NonExistent"/i)).toBeInTheDocument();
-  });
-
   test('opens detail view on click', () => {
     render(<CertificatesModal isOpen={true} onClose={jest.fn()} />);
 

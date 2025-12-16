@@ -215,14 +215,10 @@
 
 /* Enhanced highlight boxes */
 .highlight-box {
-  background: rgb(102 126 234 / 30%) !important;
-  backdrop-filter: blur(10px);
-  border-radius: 8px !important;
   transition: all 0.3s ease;
 }
 
 .highlight-box:hover {
-  background: rgb(102 126 234 / 40%) !important;
   transform: translateX(5px);
 }
 

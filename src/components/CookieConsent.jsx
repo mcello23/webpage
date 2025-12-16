@@ -99,14 +99,19 @@ const CookieConsent = () => {
     >
       <div className="cookie-consent-content">
         <div className="cookie-consent-text">
-          <p style={{ fontSize: '1.3rem', fontWeight: 700, margin: '0 0 8px 0', color: '#2c3e50' }}>
+          <p style={{ fontSize: '1.3rem', fontWeight: 700, margin: '0 0 8px 0', color: '#ffffff' }}>
             🍪 This site uses cookies
           </p>
-          <p id="cookieConsentText">
+          <p id="cookieConsentText" style={{ color: '#ffffff' }}>
             We use cookies and Google Analytics to understand how you interact with our portfolio
             (pages visited, time spent, traffic source). Your data is processed anonymously and
             following GDPR/LGPD regulations. You can accept or decline.
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#ffffff', textDecoration: 'underline' }}
+            >
               Privacy Policy
             </a>
           </p>

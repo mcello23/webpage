@@ -1,0 +1,6 @@
+# Cloudflare Pages SPA Redirect Rules
+# This file ensures React Router works correctly on Cloudflare Pages
+# All routes should be handled by index.html (SPA)
+
+# Redirect all routes to index.html for client-side routing
+/*    /index.html   200

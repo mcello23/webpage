@@ -38,11 +38,12 @@
 }
 
 .highlight-box {
-  background: rgb(255 255 255 / 90%);
+  background: rgba(255, 255, 255, 0.9);
   padding: 10px 12px;
   margin: 10px 0;
   border-left: 4px solid #4db6ac;
   border-radius: 6px;
+  border-left-color: #1e88e5;
 }
 
 .intro-card .highlight-box {
@@ -60,6 +61,10 @@
 
 .parallax-articles {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+#articles .btn {
+  border-radius: 8px;
 }
 
 .parallax-fundamentals {
@@ -114,6 +119,13 @@
   font-size: 0.95rem;
   font-weight: 600;
   box-shadow: 0 4px 12px rgb(102 126 234 / 25%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-tag:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgb(102 126 234 / 50%);
+  filter: brightness(1.15) saturate(1.2);
 }
 
 .parallax-container {

@@ -179,6 +179,7 @@ const Contact = () => {
                           className="btn-large waves-effect waves-light teal"
                           aria-live="polite"
                           disabled={isSubmitting}
+                          style={{ borderRadius: '8px' }}
                         >
                           {isSubmitting ? (
                             <span id="btn-loading">Sending...</span>
