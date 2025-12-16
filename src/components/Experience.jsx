@@ -138,6 +138,61 @@ const Experience = () => {
             </div>
           </div>
           {/* /row */}
+
+          {/* Board Achievements */}
+          <div
+            className="intro-card"
+            style={{
+              background: 'linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%)',
+              color: '#fff',
+            }}
+          >
+            <h3 style={{ color: '#fff' }}>🎯 2025 Achievements at Board International</h3>
+            <ul
+              style={{
+                lineHeight: 2.1,
+                fontSize: '1.05rem',
+                listStyle: 'none',
+                paddingLeft: 0,
+              }}
+              role="list"
+            >
+              <li
+                role="listitem"
+                className="highlight-box"
+                style={{ background: 'rgba(255, 255, 255, 0.15)', borderLeftColor: '#fff' }}
+              >
+                <strong>⚡ Performance:</strong> 98% reduction in test startup via webpack refactor
+                (60s → instant)
+              </li>
+              <li
+                role="listitem"
+                className="highlight-box"
+                style={{ background: 'rgba(255, 255, 255, 0.15)', borderLeftColor: '#fff' }}
+              >
+                <strong>🔧 DX:</strong> Step Decorators → debugging hours → seconds across suites
+              </li>
+              <li
+                role="listitem"
+                className="highlight-box"
+                style={{ background: 'rgba(255, 255, 255, 0.15)', borderLeftColor: '#fff' }}
+              >
+                <strong>📊 Scale:</strong> Maintaining & optimizing 5,000+ E2E tests in Azure DevOps
+              </li>
+              <li
+                role="listitem"
+                className="highlight-box"
+                style={{ background: 'rgba(255, 255, 255, 0.15)', borderLeftColor: '#fff' }}
+              >
+                <strong>🚀 CI/CD:</strong> Ongoing pipeline parallelization & modernization
+              </li>
+            </ul>
+            <div style={{ textAlign: 'center', marginTop: '12px', opacity: 0.95 }}>
+              <p style={{ fontSize: '1.05rem', fontWeight: 600 }}>
+                Now: Senior QA Engineer focusing on flake reduction and pipeline acceleration
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </>
