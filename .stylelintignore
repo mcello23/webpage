@@ -12,11 +12,14 @@ tests/k6/reports/
 tests/puppeteer/reports/
 
 # Vendor CSS
+public/css/
+src/styles/prism.css
+**/materialize.css
+**/materialize.min.css
+**/prism.css
 
-css/materialize.css
-css/materialize.min.css
-css/prism.css
-js/materialize.js
+# All minified files
+**/*.min.css
 
 # Dist folder
 

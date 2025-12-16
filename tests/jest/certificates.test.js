@@ -7,7 +7,7 @@ describe('Certificate Data Validation', () => {
   let certificates;
 
   const ROOT = path.resolve(__dirname, '..', '..');
-  const certPath = path.resolve(ROOT, 'js', 'certificates.js');
+  const certPath = path.resolve(ROOT, 'public', 'js', 'certificates.js');
   const certCode = fs.readFileSync(certPath, 'utf-8');
 
   beforeAll(() => {
@@ -97,14 +97,14 @@ describe('Certificate Data Validation', () => {
 
     test('all image files should exist', () => {
       certificates.forEach((cert) => {
-        const imagePath = path.resolve(ROOT, cert.image);
+        const imagePath = path.resolve(ROOT, 'public', cert.image);
         expect(fs.existsSync(imagePath)).toBe(true);
       });
     });
 
     test('all thumb files should exist', () => {
       certificates.forEach((cert) => {
-        const thumbPath = path.resolve(ROOT, cert.thumb);
+        const thumbPath = path.resolve(ROOT, 'public', cert.thumb);
         expect(fs.existsSync(thumbPath)).toBe(true);
       });
     });

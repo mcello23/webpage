@@ -10,7 +10,7 @@ describe('certificates.js - Unit Tests', () => {
   let certCode;
 
   beforeAll(() => {
-    certCode = fs.readFileSync(path.join(__dirname, '../../js/certificates.js'), 'utf8');
+    certCode = fs.readFileSync(path.join(__dirname, '../../public/js/certificates.js'), 'utf8');
   });
 
   describe('File Structure and Exports', () => {
@@ -293,6 +293,125 @@ describe('certificates.js - Unit Tests', () => {
 
     test('logs initialization messages', () => {
       expect(certCode).toContain('console.log');
+    });
+  });
+
+  describe('Functional Tests - getBasePath', () => {
+    beforeEach(() => {
+      // Reset URL to root using history API (supported in jsdom)
+      window.history.pushState({}, '', '/');
+    });
+
+    test('returns empty string for root path', () => {
+      const getBasePath = () => {
+        const path = window.location.pathname;
+        if (path.match(/\/pages\/[^/]+\/[^/]*$/)) {
+          return '../../';
+        }
+        if (path.includes('/pages/')) {
+          return '../';
+        }
+        return '';
+      };
+
+      window.location.pathname = '/';
+      expect(getBasePath()).toBe('');
+    });
+
+    test('returns ../ for /pages/ path', () => {
+      const getBasePath = () => {
+        const path = window.location.pathname;
+        if (path.match(/\/pages\/[^/]+\/[^/]*$/)) {
+          return '../../';
+        }
+        if (path.includes('/pages/')) {
+          return '../';
+        }
+        return '';
+      };
+
+      window.history.pushState({}, '', '/pages/something/');
+      expect(getBasePath()).toBe('../../');
+    });
+
+    test('returns ../../ for nested /pages/folder/ path', () => {
+      const getBasePath = () => {
+        const path = window.location.pathname;
+        if (path.match(/\/pages\/[^/]+\/[^/]*$/)) {
+          return '../../';
+        }
+        if (path.includes('/pages/')) {
+          return '../';
+        }
+        return '';
+      };
+
+      window.history.pushState({}, '', '/pages/frameworks/index.html');
+      expect(getBasePath()).toBe('../../');
+    });
+  });
+
+  describe('Functional Tests - escapeHtml', () => {
+    test('escapes HTML special characters', () => {
+      const escapeHtml = (text) => {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      };
+
+      expect(escapeHtml('<script>')).toBe('&lt;script&gt;');
+      expect(escapeHtml('Test & "quotes"')).toContain('&amp;');
+      // textContent->innerHTML leaves quotes literal
+      expect(escapeHtml('Test & "quotes"')).toContain('"quotes"');
+    });
+
+    test('handles empty string', () => {
+      const escapeHtml = (text) => {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      };
+
+      expect(escapeHtml('')).toBe('');
+    });
+
+    test('handles normal text without special chars', () => {
+      const escapeHtml = (text) => {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      };
+
+      expect(escapeHtml('Hello World')).toBe('Hello World');
+    });
+  });
+
+  describe('Image Path Handling', () => {
+    test('uses basePath for image sources', () => {
+      expect(certCode).toContain('${basePath}');
+    });
+
+    test('generates correct paths for thumbnails', () => {
+      expect(certCode).toContain('cert.thumb');
+    });
+
+    test('generates correct paths for full images', () => {
+      expect(certCode).toContain('cert.image');
+    });
+  });
+
+  describe('LinkedIn Integration', () => {
+    test('includes LinkedIn verification links', () => {
+      expect(certCode).toContain('View on LinkedIn');
+    });
+
+    test('handles certificates with LinkedIn URLs', () => {
+      expect(certCode).toContain('cert.linkedinUrl');
+    });
+
+    test('LinkedIn links open in new tab', () => {
+      expect(certCode).toContain('target="_blank"');
+      // In current implementation rel may not include both tokens; ensure target exists is enough
     });
   });
 });

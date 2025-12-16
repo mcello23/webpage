@@ -1,13 +1,20 @@
 module.exports = {
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/tests/jest/setup.js'],
   transform: {
-    '^.+\\.js$': [
+    '^.+\\.(js|jsx)$': [
       '@swc/jest',
       {
         jsc: {
           target: 'es2022',
           parser: {
             syntax: 'ecmascript',
+            jsx: true,
+          },
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
           },
         },
         module: {
@@ -17,11 +24,11 @@ module.exports = {
       },
     ],
   },
-  transformIgnorePatterns: ['/node_modules/(?!(jsdom|parse5)/).+\\.js$'],
+  transformIgnorePatterns: ['/node_modules/(?!(jsdom|parse5|cheerio)/).+\\.js$'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
-  testMatch: ['**/tests/jest/**/*.test.js'],
+  testMatch: ['**/tests/jest/**/*.test.{js,jsx}', '**/src/**/*.test.{js,jsx}'],
   testPathIgnorePatterns: [
     '/node_modules/',
     '/coverage/',
@@ -32,9 +39,10 @@ module.exports = {
   coverageProvider: 'v8',
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
-    'js/**/*.js', // Only collect coverage from our JS files
-    '!js/materialize.js', // Exclude third-party libraries
-    '!js/prism.js', // Exclude third-party libraries
+    'public/js/**/*.js',
+    'src/**/*.{js,jsx}',
+    '!public/js/materialize.js',
+    '!public/js/prism.js',
     '!**/node_modules/**',
     '!**/coverage/**',
     '!**/tests/**',
@@ -53,6 +61,5 @@ module.exports = {
   },
   maxWorkers: 8,
   testTimeout: 30000,
-  // Prefer natural Jest exit; with proper cleanup, workers should terminate cleanly
   forceExit: false,
 };

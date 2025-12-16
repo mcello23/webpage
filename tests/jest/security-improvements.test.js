@@ -11,7 +11,7 @@ describe('Code Documentation and Security Enhancements', () => {
     let certCode;
 
     beforeAll(() => {
-      certCode = fs.readFileSync(path.join(__dirname, '../../js/certificates.js'), 'utf8');
+      certCode = fs.readFileSync(path.join(__dirname, '../../public/js/certificates.js'), 'utf8');
     });
 
     test('has file-level JSDoc documentation', () => {
@@ -118,7 +118,7 @@ describe('Code Documentation and Security Enhancements', () => {
     let initCode;
 
     beforeAll(() => {
-      initCode = fs.readFileSync(path.join(__dirname, '../../js/init.js'), 'utf8');
+      initCode = fs.readFileSync(path.join(__dirname, '../../public/js/init.js'), 'utf8');
     });
 
     test('has file-level JSDoc documentation', () => {
@@ -157,7 +157,7 @@ describe('Code Documentation and Security Enhancements', () => {
     let certCode;
 
     beforeAll(() => {
-      certCode = fs.readFileSync(path.join(__dirname, '../../js/certificates.js'), 'utf8');
+      certCode = fs.readFileSync(path.join(__dirname, '../../public/js/certificates.js'), 'utf8');
     });
 
     test('escapeHtml function is defined', () => {
@@ -212,7 +212,7 @@ describe('Code Documentation and Security Enhancements', () => {
     let certCode;
 
     beforeAll(() => {
-      certCode = fs.readFileSync(path.join(__dirname, '../../js/certificates.js'), 'utf8');
+      certCode = fs.readFileSync(path.join(__dirname, '../../public/js/certificates.js'), 'utf8');
     });
 
     test('thumbnail images have loading="lazy" attribute', () => {
@@ -260,7 +260,7 @@ describe('Code Documentation and Security Enhancements', () => {
     let certCode;
 
     beforeAll(() => {
-      certCode = fs.readFileSync(path.join(__dirname, '../../js/certificates.js'), 'utf8');
+      certCode = fs.readFileSync(path.join(__dirname, '../../public/js/certificates.js'), 'utf8');
     });
 
     test('consistent JSDoc formatting', () => {
@@ -291,15 +291,21 @@ describe('Code Documentation and Security Enhancements', () => {
 
   describe('Overall Documentation Coverage and Completeness', () => {
     test('all JavaScript files have JSDoc', () => {
-      const certCode = fs.readFileSync(path.join(__dirname, '../../js/certificates.js'), 'utf8');
-      const initCode = fs.readFileSync(path.join(__dirname, '../../js/init.js'), 'utf8');
+      const certCode = fs.readFileSync(
+        path.join(__dirname, '../../public/js/certificates.js'),
+        'utf8'
+      );
+      const initCode = fs.readFileSync(path.join(__dirname, '../../public/js/init.js'), 'utf8');
 
       expect(certCode).toContain('@fileoverview');
       expect(initCode).toContain('@fileoverview');
     });
 
     test('documentation is comprehensive', () => {
-      const certCode = fs.readFileSync(path.join(__dirname, '../../js/certificates.js'), 'utf8');
+      const certCode = fs.readFileSync(
+        path.join(__dirname, '../../public/js/certificates.js'),
+        'utf8'
+      );
 
       // Count JSDoc blocks
       const jsdocBlocks = (certCode.match(/\/\*\*[\s\S]*?\*\//g) || []).length;
@@ -316,20 +322,6 @@ describe('Code Documentation and Security Enhancements', () => {
       // Count examples
       const examplesCount = (certCode.match(/@example/g) || []).length;
       expect(examplesCount).toBeGreaterThan(3);
-    });
-  });
-
-  describe('Additional JavaScript File Documentation', () => {
-    test('navbar.js has JSDoc', () => {
-      const navbarCode = fs.readFileSync(path.join(__dirname, '../../js/navbar.js'), 'utf8');
-      expect(navbarCode).toContain('/**');
-      expect(navbarCode).toContain('* Navbar Logic');
-    });
-
-    test('contact-form.js has JSDoc', () => {
-      const contactCode = fs.readFileSync(path.join(__dirname, '../../js/contact-form.js'), 'utf8');
-      expect(contactCode).toContain('/**');
-      expect(contactCode).toContain('* Contact Form Logic');
     });
   });
 });

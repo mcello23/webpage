@@ -111,7 +111,9 @@ jobs:
         run: yarn install --immutable
 
       - name: Run Jest tests
-        run: yarn test --passWithNoTests
+        run: |
+          mkdir -p tests/jest/reports
+          yarn test:all --json --outputFile=tests/jest/reports/results-latest.json
         continue-on-error: false
 
       - name: Install K6
@@ -123,7 +125,9 @@ jobs:
           sudo apt-get install k6
 
       - name: Run K6 tests
-        run: k6 run tests/k6/test-k6.js --summary-export=tests/k6/reports/results-latest.json
+        run: |
+          mkdir -p tests/k6/reports
+          k6 run tests/k6/test-k6.js --summary-export=tests/k6/reports/http-summary-latest.json
         env:
           BASE_URL: https://www.marcelo-costa.com
         continue-on-error: true
@@ -137,7 +141,7 @@ jobs:
           # Create payload file with properly escaped K6 results
           # Using --summary-export gives us aggregated metrics (not NDJSON)
           jq -n \
-            --rawfile k6data tests/k6/reports/results-latest.json \
+            --rawfile k6data tests/k6/reports/http-summary-latest.json \
             '{"files":{"k6-results.json":{"content":$k6data}}}' \
             > /tmp/gist-payload.json
 
@@ -162,6 +166,70 @@ jobs:
             echo "$RESPONSE" | jq '.'
             exit 1
           fi
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            tests/jest/reports/results-latest.json
+            tests/k6/reports/http-summary-latest.json
+            coverage/coverage-summary.json
+
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    needs: [test]
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.20.0'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Download Test Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: test-reports
+          path: .
+
+      - name: Generate Test Data
+        run: |
+          # Ensure directories exist for the script to find files
+          mkdir -p tests/jest/reports tests/k6/reports coverage
+          # Move downloaded artifacts to expected locations if download-artifact flattened them
+          # (v4 preserves structure if path is set correctly, but let's be safe)
+          # Assuming structure is preserved based on upload path.
+          
+          node scripts/generate-test-data.js
+
+      - name: Move Test Data to Public
+        run: mv test-data.js public/
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: webpage
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+
 
   lighthouse:
     name: Lighthouse CI

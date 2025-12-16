@@ -1,8 +1,12 @@
 module.exports = {
   ci: {
     collect: {
-      staticDistDir: '.',
-      url: ['index.html', 'pages/side_proj/index.html', 'pages/frameworks/index.html'],
+      staticDistDir: './dist',
+      url: [
+        'http://localhost:4173/',
+        'http://localhost:4173/side-projects',
+        'http://localhost:4173/frameworks',
+      ],
       numberOfRuns: 3,
     },
     upload: {
