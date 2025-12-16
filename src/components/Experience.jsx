@@ -157,17 +157,33 @@ const Experience = () => {
               }}
               role="list"
             >
-              <li role="listitem" className="highlight-box">
+              <li
+                role="listitem"
+                className="highlight-box"
+                style={{ background: 'rgba(255, 255, 255, 0.15)', borderLeftColor: '#fff' }}
+              >
                 <strong>⚡ Performance:</strong> 98% reduction in test startup via webpack refactor
                 (60s → instant)
               </li>
-              <li role="listitem" className="highlight-box">
+              <li
+                role="listitem"
+                className="highlight-box"
+                style={{ background: 'rgba(255, 255, 255, 0.15)', borderLeftColor: '#fff' }}
+              >
                 <strong>🔧 DX:</strong> Step Decorators → debugging hours → seconds across suites
               </li>
-              <li role="listitem" className="highlight-box">
+              <li
+                role="listitem"
+                className="highlight-box"
+                style={{ background: 'rgba(255, 255, 255, 0.15)', borderLeftColor: '#fff' }}
+              >
                 <strong>📊 Scale:</strong> Maintaining & optimizing 5,000+ E2E tests in Azure DevOps
               </li>
-              <li role="listitem" className="highlight-box">
+              <li
+                role="listitem"
+                className="highlight-box"
+                style={{ background: 'rgba(255, 255, 255, 0.15)', borderLeftColor: '#fff' }}
+              >
                 <strong>🚀 CI/CD:</strong> Ongoing pipeline parallelization & modernization
               </li>
             </ul>
