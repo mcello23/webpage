@@ -122,20 +122,27 @@ const TestDashboardModal = ({ isOpen, onClose }) => {
             <span className="stat-label">Failed</span>
           </div>
         </div>
-        <div className="test-details">
-          <div className="detail-row">
-            <span className="detail-label">✓ Success Rate:</span>
-            <span className={`detail-value ${Number(rate) >= 95 ? 'success' : 'warning'}`}>
-              {rate}%
-            </span>
-          </div>
-        </div>
+
         <div className="test-progress">
           <div className="progress-bar">
             <div
               className={`progress-fill ${Number(rate) >= 95 ? 'success' : Number(rate) >= 80 ? 'warning' : 'error'}`}
               style={{ width: `${rate}%` }}
             ></div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginTop: '8px',
+              fontSize: '0.85rem',
+              color: '#718096',
+            }}
+          >
+            <span>Success Rate</span>
+            <span style={{ fontWeight: 'bold', color: Number(rate) >= 95 ? '#48bb78' : '#ed8936' }}>
+              {rate}%
+            </span>
           </div>
         </div>
 
@@ -381,72 +388,29 @@ const TestDashboardModal = ({ isOpen, onClose }) => {
   return (
     <div
       className="test-dashboard-modal-overlay"
+      onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="dashboard-title"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        zIndex: 1000,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '20px',
-      }}
     >
-      <div
-        className="test-dashboard"
-        style={{
-          width: '100%',
-          maxWidth: '1200px',
-          height: '90vh',
-          overflowY: 'auto',
-          margin: 0,
-          position: 'relative',
-        }}
-      >
-        <div className="test-dashboard-header" style={{ display: 'block' }}>
-          <div
-            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}
-          >
+      <div className="test-dashboard-modal-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="test-dashboard-modal-close"
+          onClick={onClose}
+          aria-label="Close dashboard"
+        >
+          <i className="material-icons">close</i>
+        </button>
+
+        <div className="test-dashboard-header">
+          <div className="test-dashboard-title">
             <h3 id="dashboard-title">
-              <i className="material-icons">assessment</i>
+              <i className="material-icons">dashboard</i>
               Test Results Dashboard
             </h3>
-            <button
-              onClick={onClose}
-              aria-label="Close dashboard"
-              style={{
-                background: 'transparent',
-                border: 'none',
-                color: 'white',
-                cursor: 'pointer',
-                padding: '5px',
-                marginTop: '-5px',
-                marginRight: '-10px',
-              }}
-            >
-              <i className="material-icons" style={{ fontSize: '2rem' }}>
-                close
-              </i>
-            </button>
           </div>
-
-          <div
-            className="metadata-row"
-            style={{
-              display: 'flex',
-              gap: '20px',
-              marginTop: '10px',
-              fontSize: '0.9rem',
-              opacity: 0.8,
-            }}
-          >
-            <span className="last-updated">
+          <div className="test-dashboard-meta">
+            <span>
               <i
                 className="material-icons"
                 style={{ fontSize: '1rem', verticalAlign: 'text-bottom', marginRight: '4px' }}

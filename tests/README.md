@@ -25,8 +25,6 @@ npm run test:all
 ```bash
 # Jest tests (unit/integration)
 npm test
-# or
-npm run test:jest
 
 # k6 tests (performance)
 npm run test:k6
@@ -40,7 +38,7 @@ npm run test:puppeteer
 ## 🧪 Jest - Unit & Integration Tests
 
 **Location:** `tests/jest/`  
-**Command:** `npm test` or `npm run test:jest`
+**Command:** `npm test`
 
 ### Overview
 
