@@ -156,6 +156,7 @@
 .jest-card .test-card-header h4 i {
   color: #48bb78;
 }
+
 .k6-card .test-card-header h4 i {
   color: #667eea;
 }
@@ -203,9 +204,11 @@
 .stat-value.success {
   color: #48bb78;
 }
+
 .stat-value.error {
   color: #f56565;
 }
+
 .stat-value.warning {
   color: #ed8936;
 }
@@ -228,9 +231,11 @@
 .progress-fill.success {
   background: #48bb78;
 }
+
 .progress-fill.warning {
   background: #ed8936;
 }
+
 .progress-fill.error {
   background: #f56565;
 }
@@ -401,9 +406,11 @@
 .metric-value.success {
   color: #48bb78;
 }
+
 .metric-value.warning {
   color: #ed8936;
 }
+
 .metric-value.error {
   color: #f56565;
 }
@@ -432,6 +439,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
