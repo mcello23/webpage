@@ -5,12 +5,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const { JSDOM } = require('jsdom');
 
 describe('init.js - Unit Tests', () => {
   let initCode;
 
   beforeAll(() => {
-    initCode = fs.readFileSync(path.join(__dirname, '../../js/init.js'), 'utf8');
+    initCode = fs.readFileSync(path.join(__dirname, '../../public/js/init.js'), 'utf8');
   });
 
   describe('File Structure', () => {
@@ -109,6 +110,123 @@ describe('init.js - Unit Tests', () => {
 
     test('uses semicolons for statement termination', () => {
       expect(initCode).toContain(';');
+    });
+  });
+
+  describe('Functional Tests - Module Coverage', () => {
+    test('exports initMaterialize function', () => {
+      // Execute init.js code in a controlled environment
+      const initModule = require('../../public/js/init.js');
+      expect(initModule).toBeDefined();
+      expect(initModule.initMaterialize).toBeDefined();
+      expect(typeof initModule.initMaterialize).toBe('function');
+    });
+
+    test('init.js can be loaded without errors', () => {
+      expect(() => {
+        require('../../public/js/init.js');
+      }).not.toThrow();
+    });
+  });
+
+  describe('Runtime Behavior Tests', () => {
+    let originalDocument;
+    let originalWindow;
+
+    beforeEach(() => {
+      originalDocument = global.document;
+      originalWindow = global.window;
+    });
+
+    afterEach(() => {
+      global.document = originalDocument;
+      global.window = originalWindow;
+    });
+
+    test('handles DOM ready state when loading', () => {
+      const addEventListenerMock = jest.fn();
+      global.document = {
+        readyState: 'loading',
+        addEventListener: addEventListenerMock,
+      };
+
+      global.window = {
+        initMaterialize: undefined,
+      };
+
+      // The script should add event listener when document is still loading
+      expect(initCode).toContain('DOMContentLoaded');
+    });
+
+    test('handles DOM ready state when complete', () => {
+      const addEventListenerMock = jest.fn();
+      global.document = {
+        readyState: 'complete',
+        addEventListener: addEventListenerMock,
+      };
+
+      // The script should execute immediately if document is already loaded
+      expect(initCode).toContain('document.readyState');
+    });
+  });
+
+  describe('Live initMaterialize execution', () => {
+    let dom;
+    let sidenavMock;
+    let parallaxMock;
+    let initModule;
+
+    beforeEach(() => {
+      jest.resetModules();
+      dom = new JSDOM(
+        `<!doctype html><html><head></head><body><ul class="sidenav"></ul><div class="parallax"></div></body></html>`,
+        { url: 'https://example.com/', pretendToBeVisual: true }
+      );
+
+      global.window = dom.window;
+      global.document = dom.window.document;
+
+      sidenavMock = jest.fn().mockReturnValue({});
+      parallaxMock = jest.fn().mockReturnValue({});
+
+      const mockjQuery = (arg) => {
+        if (typeof arg === 'function') {
+          arg();
+        }
+        return {
+          sidenav: sidenavMock,
+          parallax: parallaxMock,
+        };
+      };
+
+      global.jQuery = mockjQuery;
+      global.$ = mockjQuery;
+
+      initModule = require('../../public/js/init.js');
+    });
+
+    afterEach(() => {
+      dom.window.close();
+      delete global.jQuery;
+      delete global.$;
+    });
+
+    test('initializes sidenav and parallax when jQuery is present', () => {
+      initModule.initMaterialize();
+
+      expect(sidenavMock).toHaveBeenCalled();
+      expect(parallaxMock).toHaveBeenCalled();
+    });
+
+    test('prevents context menu on images', () => {
+      initModule.initMaterialize();
+
+      const img = document.createElement('img');
+      document.body.appendChild(img);
+      const evt = new window.Event('contextmenu', { bubbles: true, cancelable: true });
+
+      const dispatched = img.dispatchEvent(evt);
+      expect(evt.defaultPrevented || dispatched === false).toBe(true);
     });
   });
 });

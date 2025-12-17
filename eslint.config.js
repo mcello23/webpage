@@ -5,6 +5,7 @@ module.exports = [
     // Global ignores (equivalent to .eslintignore)
     ignores: [
       'node_modules/**',
+      '.yarn/**',
       'jbcore/**',
       'images/**',
       'backgrounds/**',
@@ -12,9 +13,13 @@ module.exports = [
       'thumbs/**',
       'css/materialize.css',
       'css/materialize.min.css',
-      'js/materialize.js',
-      'js/materialize.min.js',
-      'js/prism.js',
+      '**/js/materialize.js',
+      '**/js/materialize.min.js',
+      '**/js/prism.js',
+      'public/js/materialize.js',
+      'public/js/prism.js',
+      'src/styles/materialize.css',
+      'src/styles/materialize.min.css',
       'coverage/**',
       'tests/*/reports/**',
       'tests/jest/reports/**',
@@ -25,6 +30,7 @@ module.exports = [
       '_headers',
       '**/*.min.js',
       '**/*.min.css',
+      '*.config.js',
     ],
   },
   {
@@ -79,6 +85,50 @@ module.exports = [
     },
     rules: {
       'no-unused-vars': ['warn'],
+      'no-undef': 'error',
+    },
+  },
+  {
+    // Configuration for JSX/React files
+    files: ['**/*.jsx'],
+    languageOptions: {
+      ecmaVersion: 12,
+      sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+      globals: {
+        // Browser globals
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        console: 'readonly',
+        fetch: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        FormData: 'readonly',
+        Image: 'readonly',
+        // React globals
+        React: 'readonly',
+        // Node.js globals (for CookieConsent component)
+        process: 'readonly',
+        // Jest/Testing globals
+        describe: 'readonly',
+        test: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        jest: 'readonly',
+        global: 'writable',
+      },
+    },
+    rules: {
+      'no-unused-vars': 'off',
       'no-undef': 'error',
     },
   },

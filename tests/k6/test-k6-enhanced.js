@@ -8,7 +8,7 @@
 
 import { check, group, sleep } from 'k6';
 import http from 'k6/http';
-import { Rate, Trend, Counter } from 'k6/metrics';
+import { Counter, Rate, Trend } from 'k6/metrics';
 
 // Custom metrics
 const securityHeadersPresent = new Rate('security_headers_present');
@@ -187,7 +187,7 @@ export default function () {
   // Simulate some users checking frameworks page
   if (Math.random() > 0.7) {
     group('Frameworks Page', () => {
-      const res = http.get(`${BASE_URL}/pages/frameworks/`, {
+      const res = http.get(`${BASE_URL}/`, {
         tags: { page: 'frameworks' },
       });
       check(res, {

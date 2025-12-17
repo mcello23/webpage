@@ -17,10 +17,14 @@ describe('CSS Variables & Theming', () => {
     // Assuming styles are in style.css or similar main file
     // Based on file list, checking index.html or likely css/style.css
     try {
-      cssContent = fs.readFileSync(path.resolve(__dirname, '../../css/style.css'), 'utf8');
+      cssContent = fs.readFileSync(path.resolve(__dirname, '../../src/index.css'), 'utf8');
     } catch {
-      // Fallback to index.html styles if main css not found or variables defined there
-      cssContent = fs.readFileSync(path.resolve(__dirname, '../../index.html'), 'utf8');
+      try {
+        cssContent = fs.readFileSync(path.resolve(__dirname, '../../css/style.css'), 'utf8');
+      } catch {
+        // Fallback to index.html styles if main css not found or variables defined there
+        cssContent = fs.readFileSync(path.resolve(__dirname, '../../index.html'), 'utf8');
+      }
     }
 
     // Parse :root variables
