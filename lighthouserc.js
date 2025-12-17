@@ -1,7 +1,7 @@
 module.exports = {
   ci: {
     collect: {
-      staticDistDir: './dist',
+      startServerCommand: 'yarn preview',
       url: [
         'http://localhost:4173/',
         'http://localhost:4173/side-projects',
