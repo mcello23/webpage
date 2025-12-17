@@ -2,6 +2,24 @@ import { render, screen } from '@testing-library/react';
 import TestDashboardModal from './TestDashboardModal';
 
 describe('TestDashboardModal Accessibility', () => {
+  beforeEach(() => {
+    // Mock fetch to prevent network errors and warnings
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({}),
+      })
+    );
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+    console.warn.mockRestore();
+    console.error.mockRestore();
+  });
+
   test('has correct accessibility attributes', () => {
     render(<TestDashboardModal isOpen={true} onClose={jest.fn()} />);
 

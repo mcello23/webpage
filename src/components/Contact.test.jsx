@@ -7,10 +7,13 @@ global.fetch = jest.fn();
 describe('Contact Component', () => {
   afterEach(() => {
     cleanup();
+    jest.restoreAllMocks();
   });
 
   beforeEach(() => {
     fetch.mockClear();
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    jest.spyOn(console, 'error').mockImplementation(() => {});
   });
 
   test('renders contact form with correct access key', () => {

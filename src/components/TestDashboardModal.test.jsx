@@ -22,6 +22,8 @@ const mockTestResults = {
 
 describe('TestDashboardModal Component', () => {
   beforeEach(() => {
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    jest.spyOn(console, 'error').mockImplementation(() => {});
     window.TEST_RESULTS = mockTestResults;
     // Mock fetch for K6 data if needed, or rely on window.TEST_RESULTS if the component supports it
     // The component tries to load from window.TEST_RESULTS first for Jest.
@@ -44,6 +46,8 @@ describe('TestDashboardModal Component', () => {
   afterEach(() => {
     delete window.TEST_RESULTS;
     jest.clearAllMocks();
+    console.warn.mockRestore();
+    console.error.mockRestore();
   });
 
   test('does not render when isOpen is false', () => {
@@ -202,15 +206,13 @@ describe('TestDashboardModal Component', () => {
     // Mock fetch to fail for K6
     global.fetch.mockImplementationOnce(() => Promise.reject(new Error('Network error')));
 
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
     try {
       render(<TestDashboardModal isOpen={true} onClose={() => {}} />);
 
       // Wait for component to render and process errors
       await waitFor(
         () => {
-          expect(consoleErrorSpy).toHaveBeenCalledWith(
+          expect(console.error).toHaveBeenCalledWith(
             expect.stringContaining('Failed to load test data'),
             expect.anything()
           );
@@ -219,7 +221,6 @@ describe('TestDashboardModal Component', () => {
       );
     } finally {
       document.createElement = originalCreateElement;
-      consoleErrorSpy.mockRestore();
     }
   });
 
