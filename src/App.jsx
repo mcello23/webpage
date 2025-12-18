@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { useEffect, useLayoutEffect, useState } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Articles from './components/Articles';
 import CertificatesModal from './components/CertificatesModal';
 import Contact from './components/Contact';
@@ -16,59 +16,84 @@ import TestDashboardModal from './components/TestDashboardModal';
 function App() {
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
   const [isTestDashboardOpen, setIsTestDashboardOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     // Initialize Materialize components if needed
     if (window.M) {
       window.M.AutoInit();
     }
+  }, []);
 
-    // Fade in/out effect for sections on scroll
-    const handleScroll = () => {
-      const sections = document.querySelectorAll('.section');
-      const windowHeight = window.innerHeight;
-      const scrollTop = window.scrollY;
+  useLayoutEffect(() => {
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      sections.forEach((section) => {
-        // Skip parallax containers and sections inside them
-        if (
-          section.classList.contains('parallax-container') ||
-          section.closest('.parallax-container') ||
-          section.classList.contains('no-pad-bot')
-        ) {
-          return;
-        }
+    const REVEAL_TRANSITION_MS = 600;
 
-        const rect = section.getBoundingClientRect();
-        const elementTop = rect.top + scrollTop;
-        const elementBottom = elementTop + rect.height;
-        const viewportTop = scrollTop;
-        const viewportBottom = scrollTop + windowHeight;
+    // Targets:
+    // - regular `.section` blocks (excluding ones inside parallax and `.no-pad-bot`)
+    // - parallax banners themselves (`.parallax-container`)
+    const sectionTargets = Array.from(document.querySelectorAll('.section')).filter((section) => {
+      if (section.classList.contains('no-pad-bot')) return false;
+      if (section.closest('.parallax-container')) return false;
+      return true;
+    });
 
-        // Calculate if element is in viewport
-        if (elementBottom > viewportTop && elementTop < viewportBottom) {
-          // Element is in viewport - calculate opacity based on position
-          const elementCenter = elementTop + rect.height / 2;
-          const viewportCenter = viewportTop + windowHeight / 2;
-          const distance = Math.abs(elementCenter - viewportCenter);
-          const maxDistance = windowHeight * 1.5;
-          const opacity = Math.max(0.5, 1 - (distance / maxDistance) * 0.47);
+    const parallaxTargets = Array.from(document.querySelectorAll('.parallax-container'));
+    const targets = [...parallaxTargets, ...sectionTargets];
 
-          section.style.opacity = opacity;
-          section.style.transition = 'opacity 0.4s ease-out';
-        } else {
-          // Element is out of viewport
-          section.style.opacity = '0.15';
-        }
-      });
+    if (targets.length === 0) return;
+
+    const reveal = (el) => {
+      el.style.opacity = '1';
+      el.style.pointerEvents = '';
+      el.dataset.revealed = '1';
     };
 
-    // Initial call
-    handleScroll();
+    const hide = (el) => {
+      if (el.dataset.revealed === '1') return;
+      el.style.opacity = '0';
+      el.style.pointerEvents = 'none';
+    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (prefersReducedMotion || typeof window.IntersectionObserver !== 'function') {
+      targets.forEach(reveal);
+      return;
+    }
+
+    // Initial hidden state (so the reveal is noticeable)
+    targets.forEach((el) => {
+      if (!el.dataset.revealInit) {
+        el.style.transition = `opacity ${REVEAL_TRANSITION_MS}ms ease-out`;
+        el.style.willChange = 'opacity';
+        el.dataset.revealInit = '1';
+      }
+      hide(el);
+    });
+
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          reveal(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -15% 0px',
+      }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [location.pathname]);
 
   return (
     <div className="App">

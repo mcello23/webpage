@@ -9,11 +9,31 @@ jest.mock('./components/Navbar', () => ({ onOpenCertificates }) => (
     <button onClick={onOpenCertificates}>Open Certs</button>
   </div>
 ));
-jest.mock('./components/Hero', () => () => <div data-testid="hero">Hero</div>);
-jest.mock('./components/Skills', () => () => <div data-testid="skills">Skills</div>);
-jest.mock('./components/Experience', () => () => <div data-testid="experience">Experience</div>);
-jest.mock('./components/Articles', () => () => <div data-testid="articles">Articles</div>);
-jest.mock('./components/Contact', () => () => <div data-testid="contact">Contact</div>);
+jest.mock('./components/Hero', () => () => (
+  <div className="section" data-testid="hero">
+    Hero
+  </div>
+));
+jest.mock('./components/Skills', () => () => (
+  <div className="section" data-testid="skills">
+    Skills
+  </div>
+));
+jest.mock('./components/Experience', () => () => (
+  <div className="section" data-testid="experience">
+    Experience
+  </div>
+));
+jest.mock('./components/Articles', () => () => (
+  <div className="section" data-testid="articles">
+    Articles
+  </div>
+));
+jest.mock('./components/Contact', () => () => (
+  <div className="section" data-testid="contact">
+    Contact
+  </div>
+));
 jest.mock('./components/Footer', () => () => <div data-testid="footer">Footer</div>);
 jest.mock(
   './components/CertificatesModal',
@@ -49,6 +69,25 @@ describe('App Component', () => {
     window.M = {
       AutoInit: jest.fn(),
     };
+  });
+
+  beforeEach(() => {
+    // Stable viewport defaults for viewport checks
+    Object.defineProperty(window, 'innerHeight', { value: 800, writable: true });
+    Object.defineProperty(window, 'innerWidth', { value: 1024, writable: true });
+
+    // Mock IntersectionObserver with access to observe/unobserve/disconnect
+    const ioInstance = {
+      observe: jest.fn(),
+      unobserve: jest.fn(),
+      disconnect: jest.fn(),
+    };
+
+    window.IntersectionObserver = jest.fn((cb) => {
+      window.__ioCallback = cb;
+      return ioInstance;
+    });
+    window.__ioInstance = ioInstance;
   });
 
   test('renders home route components', () => {
@@ -141,7 +180,7 @@ describe('App Component', () => {
     expect(screen.queryByTestId('certificates-modal')).not.toBeInTheDocument();
   });
 
-  test('applies fade effect on scroll - initial state', () => {
+  test('starts sections hidden and reveals on intersection', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <App />
@@ -150,73 +189,26 @@ describe('App Component', () => {
 
     // Check that sections exist
     const sections = document.querySelectorAll('.section');
-    expect(sections.length).toBeGreaterThanOrEqual(0);
+    expect(sections.length).toBeGreaterThan(0);
 
-    // Initial opacity should be set
+    // Hidden by default (before intersection callback)
     sections.forEach((section) => {
-      const opacity = window.getComputedStyle(section).opacity;
-      expect(parseFloat(opacity)).toBeGreaterThanOrEqual(0.5);
-      expect(parseFloat(opacity)).toBeLessThanOrEqual(1);
+      expect(section.style.opacity).toBe('0');
     });
+
+    // Simulate intersection for the first section
+    window.__ioCallback([
+      {
+        target: sections[0],
+        isIntersecting: true,
+      },
+    ]);
+
+    expect(sections[0].style.opacity).toBe('1');
+    expect(window.__ioInstance.unobserve).toHaveBeenCalledWith(sections[0]);
   });
 
-  test('applies fade effect on scroll - scroll behavior', () => {
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <App />
-      </MemoryRouter>
-    );
-
-    // Mock getBoundingClientRect for sections
-    const sections = document.querySelectorAll('.section, .parallax-container, .card, .intro-card');
-    sections.forEach((section, index) => {
-      section.getBoundingClientRect = jest.fn(() => ({
-        top: 100 + index * 200,
-        bottom: 300 + index * 200,
-        height: 200,
-      }));
-    });
-
-    // Trigger scroll event
-    fireEvent.scroll(window, { target: { scrollY: 500 } });
-
-    // Verify opacity was applied
-    sections.forEach((section) => {
-      expect(section.style.opacity).toBeDefined();
-      const opacity = parseFloat(section.style.opacity);
-      expect(opacity).toBeGreaterThanOrEqual(0.5);
-      expect(opacity).toBeLessThanOrEqual(1);
-    });
-  });
-
-  test('applies transition property to sections on scroll', () => {
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <App />
-      </MemoryRouter>
-    );
-
-    const sections = document.querySelectorAll('.section, .parallax-container');
-
-    // Mock getBoundingClientRect
-    sections.forEach((section) => {
-      section.getBoundingClientRect = jest.fn(() => ({
-        top: 100,
-        bottom: 300,
-        height: 200,
-      }));
-    });
-
-    // Trigger scroll event
-    fireEvent.scroll(window);
-
-    // Check that transition is applied
-    sections.forEach((section) => {
-      expect(section.style.transition).toContain('opacity');
-    });
-  });
-
-  test('sets lower opacity for elements outside viewport', () => {
+  test('hides sections outside viewport and reveals when intersecting', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <App />
@@ -224,27 +216,24 @@ describe('App Component', () => {
     );
 
     const sections = document.querySelectorAll('.section');
+    expect(sections.length).toBeGreaterThan(0);
 
-    // Mock element far outside viewport
-    if (sections.length > 0) {
-      sections[0].getBoundingClientRect = jest.fn(() => ({
-        top: -1000,
-        bottom: -800,
-        height: 200,
-      }));
+    expect(sections[0].style.opacity).toBe('0');
+    expect(window.__ioInstance.observe).toHaveBeenCalled();
 
-      // Trigger scroll
-      fireEvent.scroll(window);
+    // Simulate intersection event
+    window.__ioCallback([
+      {
+        target: sections[0],
+        isIntersecting: true,
+      },
+    ]);
 
-      // Element outside viewport should have lower opacity
-      const opacity = parseFloat(sections[0].style.opacity);
-      expect(opacity).toBeLessThan(1);
-    }
+    expect(sections[0].style.opacity).toBe('1');
+    expect(window.__ioInstance.unobserve).toHaveBeenCalledWith(sections[0]);
   });
 
-  test('cleanup removes scroll event listener', () => {
-    const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
-
+  test('cleanup disconnects IntersectionObserver', () => {
     const { unmount } = render(
       <MemoryRouter>
         <App />
@@ -253,8 +242,7 @@ describe('App Component', () => {
 
     unmount();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function));
-    removeEventListenerSpy.mockRestore();
+    expect(window.__ioInstance.disconnect).toHaveBeenCalled();
   });
 
   describe('Background Gradient Effect', () => {
