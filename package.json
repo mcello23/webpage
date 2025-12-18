@@ -58,7 +58,10 @@
   },
   "lint-staged": {
     "*.{js,jsx,html,json}": "prettier --write --ignore-unknown",
-    "*.css": "prettier --write --ignore-unknown",
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write --ignore-unknown"
+    ],
     "*.{js,html}": "eslint --fix --no-warn-ignored",
     "*.jsx": "eslint --fix --no-warn-ignored"
   },
