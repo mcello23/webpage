@@ -512,6 +512,24 @@ body {
   box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
 }
 
+/* Hero: keep name on one line on mobile and avoid flex squeeze */
+.hero-name {
+  font-size: 2.8rem;
+  line-height: 1.1;
+}
+
+@media only screen and (width <= 600px) {
+  /* Materialize `.valign-wrapper` uses flex without wrapping; allow stacking on small screens */
+  .row.valign-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .hero-name {
+    white-space: nowrap;
+    font-size: clamp(2rem, 7vw, 2.6rem);
+  }
+}
+
 .section-header {
   display: flex;
   align-items: center;

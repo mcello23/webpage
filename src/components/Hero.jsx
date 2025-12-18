@@ -42,11 +42,11 @@ const Hero = () => {
           <div className="col s12 m8 l9">
             <div className="left-align">
               <h2
+                className="hero-name"
                 style={{
                   marginTop: '0',
                   fontWeight: 700,
                   color: 'var(--ink)',
-                  fontSize: '2.8rem',
                 }}
               >
                 Marcelo Costa

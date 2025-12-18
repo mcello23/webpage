@@ -20,7 +20,6 @@ const INCLUDE_PATTERNS = [
   'js/',
   'images/',
   'pages/',
-  'data/',
   'favicon/',
 ];
 
