@@ -51,7 +51,7 @@ describe('SideProjects Component', () => {
 
   describe('AI Test Plan Generator Section', () => {
     test('renders section title and description', () => {
-      expect(screen.getByText(/🤖 AI Test Plan Generator/i)).toBeInTheDocument();
+      expect(screen.getByText(/🤖 GPT-grade Test Plan generation/i)).toBeInTheDocument();
       expect(
         screen.getByText(/Intelligent test planning powered by artificial intelligence/i)
       ).toBeInTheDocument();
@@ -95,7 +95,7 @@ describe('SideProjects Component', () => {
 
   describe('Python Music Downloader Section', () => {
     test('renders section title and description', () => {
-      expect(screen.getByText(/🎵 Python Music Downloader/i)).toBeInTheDocument();
+      expect(screen.getByText(/🎵 Download music anywhere!/i)).toBeInTheDocument();
       expect(
         screen.getByText(/Automated YouTube to MP3 conversion with batch processing/i)
       ).toBeInTheDocument();
