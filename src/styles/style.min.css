@@ -392,13 +392,13 @@ p#manual-tests {
 }
 
 @media only screen and (width >= 576px) and (width <= 767px) {
-  nav .nav-wrapper {
+  nav:not(.main-nav) .nav-wrapper {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
     padding: 10px !important;
   }
-  nav .brand-logo {
+  nav:not(.main-nav) .brand-logo {
     font-size: 1.1rem !important;
     text-align: center !important;
     position: static !important;
@@ -406,7 +406,7 @@ p#manual-tests {
     justify-content: center !important;
     padding: 10px !important;
   }
-  nav .hide-on-med-and-down {
+  nav:not(.main-nav) .hide-on-med-and-down {
     display: flex !important;
     flex-direction: column !important;
     position: static !important;
@@ -416,10 +416,10 @@ p#manual-tests {
     gap: 8px !important;
     margin: 10px 0 0 !important;
   }
-  nav .center-nav {
+  nav:not(.main-nav) .center-nav {
     order: 1 !important;
   }
-  nav ul:last-child {
+  nav:not(.main-nav) ul:last-child {
     order: 2 !important;
     flex-direction: row !important;
     justify-content: center !important;
@@ -465,13 +465,13 @@ p#manual-tests {
 }
 
 @media only screen and (width >= 768px) and (width <= 991px) {
-  nav .hide-on-med-and-down {
+  nav:not(.main-nav) .hide-on-med-and-down {
     display: flex !important;
   }
-  nav .center-nav {
+  nav:not(.main-nav) .center-nav {
     gap: 20px !important;
   }
-  nav .brand-logo {
+  nav:not(.main-nav) .brand-logo {
     font-size: 1.3rem !important;
   }
   .nav-btn {

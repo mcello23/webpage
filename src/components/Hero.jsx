@@ -1,43 +1,17 @@
-import { useEffect, useState } from 'react';
-
 const Hero = () => {
-  const [opacity, setOpacity] = useState(1);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const maxScroll = 500; // Fade out completely after 500px scroll
-      const newOpacity = Math.max(0, 1 - scrollPosition / maxScroll);
-      setOpacity(newOpacity);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <div className="container">
-      <div className="section" style={{ paddingTop: '120px' }}>
-        <div className="row valign-wrapper">
+      <div className="section hero-section">
+        <div className="row hero-row">
           <div className="col s12 m4 l3 center-align">
-            <div style={{ opacity, transition: 'opacity 0.1s ease-out' }}>
-              <img
-                src="/images/assets/headshot.webp"
-                alt="Portrait of Marcelo Costa"
-                className="responsive-img"
-                style={{
-                  maxWidth: '280px',
-                  width: '100%',
-                  border: '2px solid var(--muted)',
-                  borderRadius: '4px',
-                  maskImage: 'linear-gradient(to bottom, black 95%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 95%, transparent 100%)',
-                }}
-                fetchPriority="high"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
+            <img
+              src="/images/assets/headshot.webp"
+              alt="Portrait of Marcelo Costa"
+              className="responsive-img hero-headshot"
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+            />
           </div>
           <div className="col s12 m8 l9">
             <div className="left-align">
