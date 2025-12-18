@@ -57,41 +57,34 @@ describe('SideProjects Component', () => {
       ).toBeInTheDocument();
     });
 
-    test('renders tech stack', () => {
-      expect(screen.getByText(/OpenAI GPT-4 • Node.js • TypeScript/i)).toBeInTheDocument();
-    });
-
     test('renders OpenAI logo', () => {
-      const logo = screen.getByAltText('openai-logo');
+      const logo = screen.getByAltText('OpenAI Logo');
       expect(logo).toBeInTheDocument();
       expect(logo).toHaveAttribute('src', expect.stringContaining('OpenAI_Logo.svg'));
     });
 
     test('renders TypeScript logo', () => {
-      const logo = screen.getByAltText('typescript-logo');
+      const logo = screen.getByAltText('TypeScript Logo');
       expect(logo).toBeInTheDocument();
       expect(logo).toHaveAttribute('src', expect.stringContaining('Typescript_logo_2020.svg'));
     });
 
     test('renders project description', () => {
-      expect(screen.getByText(/innovative AI-powered test plan generator/i)).toBeInTheDocument();
-      expect(screen.getByText(/CLI interface/i)).toBeInTheDocument();
-      expect(screen.getByText(/web interface/i)).toBeInTheDocument();
+      expect(screen.getByText(/Enterprise-grade tool leveraging/i)).toBeInTheDocument();
+      expect(screen.getByText(/OpenAI's GPT-4/i)).toBeInTheDocument();
+      expect(screen.getByText(/Transforms manual planning into structured/i)).toBeInTheDocument();
     });
 
     test('renders key features', () => {
-      expect(screen.getByText(/AI-Powered Intelligence:/i)).toBeInTheDocument();
-      expect(screen.getByText(/Comprehensive Test Coverage:/i)).toBeInTheDocument();
-      expect(screen.getByText(/Multiple Testing Types:/i)).toBeInTheDocument();
-      expect(screen.getByText(/Multi-Platform Support:/i)).toBeInTheDocument();
-      expect(screen.getByText(/Flexible Export Options:/i)).toBeInTheDocument();
+      expect(screen.getByText(/Smart Generation:/i)).toBeInTheDocument();
+      expect(screen.getByText(/Full Coverage:/i)).toBeInTheDocument();
+      expect(screen.getByText(/Multi-Platform:/i)).toBeInTheDocument();
       expect(screen.getByText(/Dual Interface:/i)).toBeInTheDocument();
-      expect(screen.getByText(/Smart Prioritization:/i)).toBeInTheDocument();
-      expect(screen.getByText(/Time Estimation:/i)).toBeInTheDocument();
+      expect(screen.getByText(/Export Ready:/i)).toBeInTheDocument();
     });
 
     test('renders GitHub link', () => {
-      const links = screen.getAllByRole('link', { name: /Check out my GitHub project/i });
+      const links = screen.getAllByRole('link', { name: /View on GitHub/i });
       const aiLink = links.find(
         (link) => link.getAttribute('href') === 'https://github.com/mcello23/ai-test-plan-generator'
       );
@@ -108,41 +101,34 @@ describe('SideProjects Component', () => {
       ).toBeInTheDocument();
     });
 
-    test('renders tech stack', () => {
-      expect(screen.getByText(/yt-dlp • youtubesearchpython • FFmpeg/i)).toBeInTheDocument();
-    });
-
     test('renders Python logo', () => {
-      const logo = screen.getByAltText('python-logo');
+      const logo = screen.getByAltText('Python Logo');
       expect(logo).toBeInTheDocument();
       expect(logo).toHaveAttribute('src', expect.stringContaining('Python-logo-notext.svg'));
     });
 
     test('renders YouTube logo', () => {
-      const logo = screen.getByAltText('youtube-logo');
+      const logo = screen.getByAltText('YouTube Logo');
       expect(logo).toBeInTheDocument();
       expect(logo).toHaveAttribute('src', expect.stringContaining('YouTube_full-color_icon'));
     });
 
     test('renders project description', () => {
-      expect(screen.getByText(/practical Python automation tool/i)).toBeInTheDocument();
-      expect(screen.getAllByText(/yt-dlp/i)[0]).toBeInTheDocument();
-      expect(screen.getAllByText(/youtubesearchpython/i)[0]).toBeInTheDocument();
-      expect(screen.getAllByText(/FFmpeg/i)[0]).toBeInTheDocument();
+      expect(screen.getByText(/Production-ready automation script/i)).toBeInTheDocument();
+      expect(screen.getByText(/high-fidelity YouTube to MP3 conversion/i)).toBeInTheDocument();
+      expect(screen.getByText(/Demonstrates advanced Python scripting/i)).toBeInTheDocument();
     });
 
     test('renders key features', () => {
-      expect(screen.getByText(/Smart YouTube Search:/i)).toBeInTheDocument();
-      expect(screen.getByText(/High-Quality Audio:/i)).toBeInTheDocument();
+      expect(screen.getByText(/High-Fidelity Audio:/i)).toBeInTheDocument();
+      expect(screen.getByText(/Smart Search:/i)).toBeInTheDocument();
       expect(screen.getByText(/Batch Processing:/i)).toBeInTheDocument();
-      expect(screen.getByText(/Automatic Organization:/i)).toBeInTheDocument();
-      expect(screen.getByText(/FFmpeg Integration:/i)).toBeInTheDocument();
-      expect(screen.getByText(/Error Handling:/i)).toBeInTheDocument();
-      expect(screen.getByText(/Cross-Platform:/i)).toBeInTheDocument();
+      expect(screen.getByText(/Robust Architecture:/i)).toBeInTheDocument();
+      expect(screen.getByText(/DevOps Ready:/i)).toBeInTheDocument();
     });
 
     test('renders GitHub link', () => {
-      const links = screen.getAllByRole('link', { name: /Check out my GitHub project/i });
+      const links = screen.getAllByRole('link', { name: /View on GitHub/i });
       const pythonLink = links.find(
         (link) => link.getAttribute('href') === 'https://github.com/mcello23/python-music-download'
       );

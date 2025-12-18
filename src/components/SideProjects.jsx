@@ -77,7 +77,7 @@ const SideProjects = () => {
                 className="header col s12 white-text text-lighten-2"
                 style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}
               >
-                🤖 AI Test Plan Generator
+                🤖 GPT-grade Test Plan generation
               </h3>
               <p
                 className="flow-text white-text"
@@ -90,109 +90,120 @@ const SideProjects = () => {
         </div>
       </div>
 
-      <div className="container center-align">
-        <div className="section">
-          <br />
-          <h3
-            className="mdi-content-send dark center-align"
-            id="title-ai2"
-            style={{ marginBottom: '20px' }}
-          >
-            <b>OpenAI GPT-4 • Node.js • TypeScript</b>
-          </h3>
-          <div className="section">
-            <img
-              className="image-cyp right-align"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/150px-OpenAI_Logo.svg.png"
-              alt="openai-logo"
-              width="100"
-              height="100"
-              loading="lazy"
-              style={{ width: '100px', height: '100px', objectFit: 'contain' }}
-            />
-            <br />
-            <div className="row">
-              <div className="center-align">
-                <p className="text-accent-2 waves-green left-align">
-                  I developed an innovative AI-powered test plan generator that leverages
-                  <b>OpenAI's GPT-4</b> to create comprehensive, structured test plans for software
-                  projects. This tool revolutionizes the test planning process by intelligently
-                  generating detailed test cases, reducing manual effort from hours to minutes while
-                  maintaining professional quality standards.
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  The application features both a <b>CLI interface</b> and a <b>web interface</b>,
-                  built with <b>Node.js</b> and <b>TypeScript</b>. It intelligently generates
-                  complete test plans including test objectives, scope definition, testing approach,
-                  environment requirements, and detailed test cases with preconditions, step-by-step
-                  procedures, expected results, priority levels, and realistic time estimates. The
-                  AI analyzes your project requirements and automatically creates test cases
-                  covering functional, non-functional, edge cases, and regression scenarios.
-                </p>
-                <img
-                  className="image-js center-align"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/120px-Typescript_logo_2020.svg.png"
-                  alt="typescript-logo"
-                  width="80"
-                  height="80"
-                  loading="lazy"
-                  style={{ width: '80px', height: '80px', objectFit: 'contain' }}
-                />
-                <p className="text-accent-2 waves-green left-align">
-                  <b>Key Features:</b>
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>AI-Powered Intelligence:</b> Uses GPT-4 to generate context-aware test cases
-                  based on project description, features, and requirements
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Comprehensive Test Coverage:</b> Automatically generates 5-10+ test cases
-                  covering functional, non-functional, edge cases, and regression scenarios
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Multiple Testing Types:</b> Support for unit, integration, E2E testing, or
-                  comprehensive coverage across all types
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Multi-Platform Support:</b> Optimized test plans for web, mobile, API, and
-                  desktop applications
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Flexible Export Options:</b> Export test plans in JSON format for tool
-                  integration or Markdown for documentation
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Dual Interface:</b> Choose between interactive CLI for automation or modern
-                  web UI for ease of use
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Smart Prioritization:</b> AI automatically assigns priority levels (high,
-                  medium, low) based on test case criticality
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Time Estimation:</b> Realistic time estimates for each test case and total
-                  test execution duration
-                </p>
-                <br />
-                <br />
-                <div className="row center">
-                  <a
-                    href="https://github.com/mcello23/ai-test-plan-generator"
-                    id="download-button-ai"
-                    className="btn-large waves-effect waves-light teal pad center-align"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Check out my GitHub project
-                  </a>
+      <div className="container">
+        <div className="section" style={{ padding: '40px 0' }}>
+          {/* AI Test Plan Generator Project */}
+          <div className="row valign-wrapper" style={{ flexWrap: 'wrap' }}>
+            <div className="col s12 m4 center-align" style={{ marginBottom: '20px' }}>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/150px-OpenAI_Logo.svg.png"
+                alt="OpenAI Logo"
+                style={{
+                  height: '80px',
+                  marginBottom: '20px',
+                  display: 'block',
+                  margin: '0 auto 20px',
+                }}
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/120px-Typescript_logo_2020.svg.png"
+                alt="TypeScript Logo"
+                style={{ height: '60px' }}
+              />
+            </div>
+            <div className="col s12 m8">
+              <h4 style={{ marginTop: 0, fontWeight: 600, color: '#2c3e50' }}>
+                AI Test Plan Generator
+              </h4>
+              <p
+                className="flow-text"
+                style={{ fontSize: '1.1rem', marginBottom: '20px', color: '#546e7a' }}
+              >
+                Enterprise-grade tool leveraging <b>OpenAI's GPT-4</b> to generate comprehensive
+                test plans in minutes. Transforms manual planning into structured, production-ready
+                documentation matching industry standards.
+              </p>
+
+              <div className="row">
+                <div className="col s12 m6">
+                  <ul style={{ marginTop: 0 }}>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>Smart Generation:</b> Context-aware test cases from project descriptions
+                      </span>
+                    </li>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>Full Coverage:</b> Functional, non-functional, edge cases, and regression
+                      </span>
+                    </li>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>Multi-Platform:</b> Web, mobile, API, and desktop support
+                      </span>
+                    </li>
+                  </ul>
                 </div>
+                <div className="col s12 m6">
+                  <ul style={{ marginTop: 0 }}>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>Dual Interface:</b> CLI for automation, Web UI for ease of use
+                      </span>
+                    </li>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>Export Ready:</b> JSON for integration, Markdown for documentation
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style={{ marginTop: '20px' }}>
+                <a
+                  href="https://github.com/mcello23/ai-test-plan-generator"
+                  className="btn-large waves-effect waves-light teal darken-1"
+                  style={{ borderRadius: '30px', fontWeight: 600, padding: '0 40px' }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fab fa-github left"></i>
+                  View on GitHub
+                </a>
               </div>
             </div>
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
         </div>
       </div>
 
@@ -245,7 +256,7 @@ const SideProjects = () => {
                 className="header col s12 white-text text-lighten-2"
                 style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}
               >
-                🎵 Python Music Downloader
+                🎵 Download music anywhere!
               </h3>
               <p
                 className="flow-text white-text"
@@ -258,104 +269,119 @@ const SideProjects = () => {
         </div>
       </div>
 
-      <div className="container center-align">
-        <div className="section">
-          <br />
+      <div className="container">
+        <div className="section" style={{ padding: '40px 0' }}>
           {/* Python Music Downloader Project */}
-          <br />
-          <h3
-            className="mdi-content-send dark center-align"
-            id="title-python2"
-            style={{ marginBottom: '20px' }}
-          >
-            <b>yt-dlp • youtubesearchpython • FFmpeg</b>
-          </h3>
-          <div className="section">
-            <img
-              className="image-cyp right-align"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/150px-Python-logo-notext.svg.png"
-              alt="python-logo"
-              width="100"
-              height="100"
-              loading="lazy"
-              style={{ width: '100px', height: '100px', objectFit: 'contain' }}
-            />
-            <br />
-            <div className="row">
-              <div className="center-align">
-                <p className="text-accent-2 waves-green left-align">
-                  I built a practical Python automation tool that simplifies music downloading from
-                  YouTube by converting videos directly to high-quality MP3 files. This project
-                  demonstrates proficiency in Python scripting, API integration, and automation
-                  workflows - skills that translate directly to test automation and DevOps tasks.
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  The tool uses <b>yt-dlp</b> (an advanced fork of youtube-dl) combined with
-                  <b>youtubesearchpython</b> to automatically search YouTube, download audio
-                  streams, and convert them to MP3 format using <b>FFmpeg</b>. It features smart
-                  search capabilities, automatic metadata extraction, and batch processing support
-                  for multiple songs simultaneously.
-                </p>
-                <img
-                  className="image-js center-align"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/150px-YouTube_full-color_icon_%282017%29.svg.png"
-                  alt="youtube-logo"
-                  width="100"
-                  height="70"
-                  loading="lazy"
-                  style={{ width: '100px', height: '70px', objectFit: 'contain', margin: '10px 0' }}
-                />
-                <p className="text-accent-2 waves-green left-align">
-                  <b>Key Features:</b>
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Smart YouTube Search:</b> Automatically searches YouTube for songs using
-                  artist and track name
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>High-Quality Audio:</b> Downloads and converts to MP3 at 192 kbps for optimal
-                  sound quality
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Batch Processing:</b> Process multiple songs in a single execution from a
-                  simple Python list
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Automatic Organization:</b> Creates organized output folders with numbered
-                  files for easy management
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>FFmpeg Integration:</b> Leverages FFmpeg for professional-grade audio
-                  conversion
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Error Handling:</b> Robust error handling for failed searches or download
-                  issues
-                </p>
-                <p className="text-accent-2 waves-green left-align">
-                  • <b>Cross-Platform:</b> Works on macOS, Linux, and Windows with proper
-                  dependencies
-                </p>
-                <br />
-                <br />
-                <div className="row center">
-                  <a
-                    href="https://github.com/mcello23/python-music-download"
-                    id="download-button-python"
-                    className="btn-large waves-effect waves-light teal pad center-align"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Check out my GitHub project
-                  </a>
+          <div className="row valign-wrapper" style={{ flexWrap: 'wrap' }}>
+            <div className="col s12 m4 center-align" style={{ marginBottom: '20px' }}>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/150px-Python-logo-notext.svg.png"
+                alt="Python Logo"
+                style={{
+                  height: '80px',
+                  marginBottom: '20px',
+                  display: 'block',
+                  margin: '0 auto 20px',
+                }}
+              />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/150px-YouTube_full-color_icon_%282017%29.svg.png"
+                alt="YouTube Logo"
+                style={{ height: '50px' }}
+              />
+            </div>
+            <div className="col s12 m8">
+              <h4 style={{ marginTop: 0, fontWeight: 600, color: '#2c3e50' }}>
+                Python Music Downloader
+              </h4>
+              <p
+                className="flow-text"
+                style={{ fontSize: '1.1rem', marginBottom: '20px', color: '#546e7a' }}
+              >
+                Production-ready automation script for high-fidelity YouTube to MP3 conversion.
+                Demonstrates advanced Python scripting, API orchestration, and process automation.
+              </p>
+
+              <div className="row">
+                <div className="col s12 m6">
+                  <ul style={{ marginTop: 0 }}>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>High-Fidelity Audio:</b> 192 kbps MP3 conversion via FFmpeg
+                      </span>
+                    </li>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>Smart Search:</b> Automated artist/track matching with yt-dlp
+                      </span>
+                    </li>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>Batch Processing:</b> Concurrent downloads with auto-organization
+                      </span>
+                    </li>
+                  </ul>
                 </div>
+                <div className="col s12 m6">
+                  <ul style={{ marginTop: 0 }}>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>Robust Architecture:</b> Error recovery and cross-platform support
+                      </span>
+                    </li>
+                    <li style={{ marginBottom: '10px', display: 'flex', alignItems: 'start' }}>
+                      <i
+                        className="material-icons tiny teal-text"
+                        style={{ marginRight: '8px', marginTop: '4px' }}
+                      >
+                        check_circle
+                      </i>
+                      <span>
+                        <b>DevOps Ready:</b> Parallels CI/CD pipeline scripting concepts
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style={{ marginTop: '20px' }}>
+                <a
+                  href="https://github.com/mcello23/python-music-download"
+                  className="btn-large waves-effect waves-light teal darken-1"
+                  style={{ borderRadius: '30px', fontWeight: 600, padding: '0 40px' }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fab fa-github left"></i>
+                  View on GitHub
+                </a>
               </div>
             </div>
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
         </div>
       </div>
     </div>

@@ -52,13 +52,13 @@ function App() {
           const viewportCenter = viewportTop + windowHeight / 2;
           const distance = Math.abs(elementCenter - viewportCenter);
           const maxDistance = windowHeight * 1.5;
-          const opacity = Math.max(0.88, 1 - (distance / maxDistance) * 0.12);
+          const opacity = Math.max(0.5, 1 - (distance / maxDistance) * 0.47);
 
           section.style.opacity = opacity;
           section.style.transition = 'opacity 0.4s ease-out';
         } else {
           // Element is out of viewport
-          section.style.opacity = '0.75';
+          section.style.opacity = '0.15';
         }
       });
     };
