@@ -6,6 +6,33 @@
   --muted: #424242;
 }
 
+html,
+body,
+#root,
+.App {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(
+    to right,
+    #e8eef5 0%,
+    #ecf1f7 25%,
+    #f0f4f9 50%,
+    #f4f7fb 75%,
+    #f8fafd 100%
+  );
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.App {
+  position: relative;
+  min-height: 100vh;
+}
+
 .container {
   max-width: 1120px;
 }
@@ -20,6 +47,28 @@
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
+}
+
+.hero-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 800px;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  opacity: 0.4;
+  filter: grayscale(100%) contrast(1.2);
+  transform: scale(1.1);
 }
 
 .gradient-card {

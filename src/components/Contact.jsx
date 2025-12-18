@@ -86,7 +86,7 @@ const Contact = () => {
       <section
         id="contact"
         className="section"
-        style={{ padding: '48px 0', background: 'linear-gradient(180deg, #fff, #fbfdff)' }}
+        style={{ padding: '48px 0', background: 'transparent' }}
       >
         <div className="container">
           <div className="row">

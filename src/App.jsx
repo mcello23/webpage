@@ -22,6 +22,52 @@ function App() {
     if (window.M) {
       window.M.AutoInit();
     }
+
+    // Fade in/out effect for sections on scroll
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('.section');
+      const windowHeight = window.innerHeight;
+      const scrollTop = window.scrollY;
+
+      sections.forEach((section) => {
+        // Skip parallax containers and sections inside them
+        if (
+          section.classList.contains('parallax-container') ||
+          section.closest('.parallax-container') ||
+          section.classList.contains('no-pad-bot')
+        ) {
+          return;
+        }
+
+        const rect = section.getBoundingClientRect();
+        const elementTop = rect.top + scrollTop;
+        const elementBottom = elementTop + rect.height;
+        const viewportTop = scrollTop;
+        const viewportBottom = scrollTop + windowHeight;
+
+        // Calculate if element is in viewport
+        if (elementBottom > viewportTop && elementTop < viewportBottom) {
+          // Element is in viewport - calculate opacity based on position
+          const elementCenter = elementTop + rect.height / 2;
+          const viewportCenter = viewportTop + windowHeight / 2;
+          const distance = Math.abs(elementCenter - viewportCenter);
+          const maxDistance = windowHeight * 1.5;
+          const opacity = Math.max(0.88, 1 - (distance / maxDistance) * 0.12);
+
+          section.style.opacity = opacity;
+          section.style.transition = 'opacity 0.4s ease-out';
+        } else {
+          // Element is out of viewport
+          section.style.opacity = '0.75';
+        }
+      });
+    };
+
+    // Initial call
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (

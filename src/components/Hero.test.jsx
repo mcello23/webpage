@@ -10,7 +10,7 @@ describe('Hero Component', () => {
     test('displays profile image with correct attributes', () => {
       const profileImg = screen.getByAltText('Portrait of Marcelo Costa');
       expect(profileImg).toBeInTheDocument();
-      expect(profileImg).toHaveAttribute('src', '/images/assets/DSC_9554-optimized.webp');
+      expect(profileImg).toHaveAttribute('src', '/images/assets/headshot.webp');
       expect(profileImg).toHaveAttribute('fetchPriority', 'high');
     });
 

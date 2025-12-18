@@ -30,7 +30,7 @@ const Articles = () => {
       <section
         id="articles"
         className="section"
-        style={{ padding: '60px 0', background: '#f9fafb' }}
+        style={{ padding: '60px 0', background: 'transparent' }}
         aria-labelledby="articles-heading"
       >
         <div className="container">
