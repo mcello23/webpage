@@ -47,13 +47,48 @@ describe('Static Assets & Configuration', () => {
       );
     });
 
-    test('has CSP meta tag', () => {
-      expect(html).toMatch(/<meta[^>]*http-equiv="Content-Security-Policy"[^>]*>/);
+    test('does not include CSP meta tag (CSP is enforced via HTTP headers)', () => {
+      expect(html).not.toMatch(/<meta[^>]*http-equiv="Content-Security-Policy"[^>]*>/);
     });
 
     test('loads non-critical CSS in a non-blocking way', () => {
       expect(html).toMatch(
         /<link[^>]*rel="stylesheet"[^>]*media="print"[^>]*onload="this\.media\s*=\s*'all'"[^>]*>/
+      );
+    });
+  });
+
+  describe('SEO Meta Tags', () => {
+    let html;
+
+    beforeAll(() => {
+      html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
+    });
+
+    test('has meta description', () => {
+      expect(html).toMatch(/<meta[^>]*name="description"[^>]*content="[^"]+"[^>]*>/);
+    });
+
+    test('has canonical link', () => {
+      expect(html).toMatch(
+        /<link[^>]*rel="canonical"[^>]*href="https:\/\/www\.marcelo-costa\.com\/"[^>]*>/
+      );
+    });
+
+    test('has Open Graph tags', () => {
+      expect(html).toMatch(/<meta[^>]*property="og:title"[^>]*content="[^"]+"[^>]*>/);
+      expect(html).toMatch(
+        /<meta[^>]*property="og:url"[^>]*content="https:\/\/www\.marcelo-costa\.com\/"[^>]*>/
+      );
+      expect(html).toMatch(
+        /<meta[^>]*property="og:image"[^>]*content="https:\/\/www\.marcelo-costa\.com\/images\/assets\/headshot\.webp"[^>]*>/
+      );
+    });
+
+    test('has Twitter card tags', () => {
+      expect(html).toMatch(/<meta[^>]*name="twitter:card"[^>]*content="summary_large_image"[^>]*>/);
+      expect(html).toMatch(
+        /<meta[^>]*name="twitter:image"[^>]*content="https:\/\/www\.marcelo-costa\.com\/images\/assets\/headshot\.webp"[^>]*>/
       );
     });
   });

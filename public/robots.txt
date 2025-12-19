@@ -10,5 +10,4 @@ Disallow: /utils/
 Disallow: /coverage/
 Disallow: /test-data.js
 
-# Optional: Add sitemap when available
-# Sitemap: https://mcello23.github.io/webpage/sitemap.xml
+Sitemap: https://www.marcelo-costa.com/sitemap.xml

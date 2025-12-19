@@ -127,14 +127,14 @@ describe('Code Documentation and Security Enhancements', () => {
       expect(initCode).toContain('@version');
     });
 
-    test('documents jQuery dependency', () => {
-      expect(initCode).toContain('@requires jquery');
+    test('documents dependencies (Materialize + optional jQuery fallback)', () => {
       expect(initCode).toContain('@requires materialize-css');
+      expect(initCode).toContain('Optional dependency: jQuery');
     });
 
     test('IIFE has JSDoc', () => {
       expect(initCode).toContain('IIFE');
-      expect(initCode).toContain('@param {jQuery} $');
+      expect(initCode).toContain('@param {Function|null} $');
     });
 
     test('document ready function has JSDoc', () => {

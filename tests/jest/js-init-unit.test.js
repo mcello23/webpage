@@ -20,32 +20,34 @@ describe('init.js - Unit Tests', () => {
       expect(initCode.length).toBeGreaterThan(50);
     });
 
-    test('uses jQuery wrapper pattern', () => {
-      expect(initCode).toContain('(function ($)');
-      // Updated to handle conditional jQuery loading
-      expect(initCode).toMatch(/\}\)\(.*jQuery.*\)/);
+    test('uses IIFE wrapper pattern (optional jQuery, prefers window.M)', () => {
+      expect(initCode).toContain('(function ($, M)');
+      expect(initCode).toContain('typeof jQuery');
+      expect(initCode).toContain('window.M');
     });
 
-    test('waits for document ready', () => {
-      expect(initCode).toContain('$(function ()');
+    test('waits for DOMContentLoaded (native DOM ready)', () => {
+      expect(initCode).toContain('DOMContentLoaded');
+      expect(initCode).toContain('document.readyState');
     });
   });
 
   describe('Materialize Component Initialization', () => {
     test('initializes sidenav component', () => {
       expect(initCode).toContain('.sidenav');
-      expect(initCode).toContain('.sidenav()');
+      expect(initCode).toMatch(/Sidenav\.init|\.sidenav\(\)/);
     });
 
     test('initializes parallax component', () => {
       expect(initCode).toContain('.parallax');
-      expect(initCode).toContain('.parallax()');
+      expect(initCode).toMatch(/Parallax\.init|\.parallax\(\)/);
     });
   });
 
   describe('Code Structure', () => {
-    test('uses jQuery selectors', () => {
-      expect(initCode).toContain("$('");
+    test('does not require jQuery to run', () => {
+      expect(initCode).toContain('document.addEventListener');
+      expect(initCode).toMatch(/M\.AutoInit|Sidenav\.init|Parallax\.init/);
     });
 
     test('properly closes function scopes', () => {
@@ -62,14 +64,9 @@ describe('init.js - Unit Tests', () => {
   });
 
   describe('jQuery Integration', () => {
-    test('uses jQuery namespace protection', () => {
-      expect(initCode).toContain('(function ($)');
-      expect(initCode).toContain('// end of jQuery name space');
-    });
-
-    test('references jQuery at the end', () => {
-      // Updated to handle conditional jQuery loading
-      expect(initCode).toMatch(/\}\)\(.*jQuery.*\)/);
+    test('treats jQuery as optional (does not require it)', () => {
+      expect(initCode).toContain('typeof jQuery');
+      expect(initCode).toContain('jQuery : null');
     });
 
     test('checks for jQuery availability', () => {
@@ -104,8 +101,7 @@ describe('init.js - Unit Tests', () => {
     });
 
     test('includes code comments', () => {
-      expect(initCode).toContain('// end of document ready');
-      expect(initCode).toContain('// end of jQuery name space');
+      expect(initCode).toContain('Document ready');
     });
 
     test('uses semicolons for statement termination', () => {
@@ -189,29 +185,20 @@ describe('init.js - Unit Tests', () => {
       sidenavMock = jest.fn().mockReturnValue({});
       parallaxMock = jest.fn().mockReturnValue({});
 
-      const mockjQuery = (arg) => {
-        if (typeof arg === 'function') {
-          arg();
-        }
-        return {
-          sidenav: sidenavMock,
-          parallax: parallaxMock,
-        };
+      global.window.M = {
+        Sidenav: { init: sidenavMock },
+        Parallax: { init: parallaxMock },
       };
-
-      global.jQuery = mockjQuery;
-      global.$ = mockjQuery;
 
       initModule = require('../../public/js/init.js');
     });
 
     afterEach(() => {
       dom.window.close();
-      delete global.jQuery;
-      delete global.$;
+      delete global.window.M;
     });
 
-    test('initializes sidenav and parallax when jQuery is present', () => {
+    test('initializes sidenav and parallax via window.M when present', () => {
       initModule.initMaterialize();
 
       expect(sidenavMock).toHaveBeenCalled();
