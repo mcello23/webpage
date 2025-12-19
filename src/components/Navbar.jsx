@@ -1,23 +1,96 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = ({ onOpenCertificates }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [navHeightPx, setNavHeightPx] = useState(null);
+  const navRef = useRef(null);
+  const location = useLocation();
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((isOpen) => !isOpen);
+  };
+
+  useEffect(() => {
+    closeMobileMenu();
+  }, [location]);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') closeMobileMenu();
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isMobileMenuOpen]);
+
+  useLayoutEffect(() => {
+    const navEl = navRef.current;
+    if (!navEl) return;
+
+    const updateNavHeight = () => {
+      const height = navEl.getBoundingClientRect().height;
+      if (!Number.isFinite(height) || height <= 0) return;
+      setNavHeightPx(Math.round(height));
+    };
+
+    updateNavHeight();
+
+    let resizeObserver;
+    if (typeof window !== 'undefined' && typeof window.ResizeObserver === 'function') {
+      resizeObserver = new window.ResizeObserver(() => updateNavHeight());
+      resizeObserver.observe(navEl);
+    }
+
+    window.addEventListener('resize', updateNavHeight);
+    return () => {
+      window.removeEventListener('resize', updateNavHeight);
+      if (resizeObserver) resizeObserver.disconnect();
+    };
+  }, []);
+
+  const overlayStyle =
+    isMobileMenuOpen && typeof navHeightPx === 'number'
+      ? {
+          top: `${navHeightPx}px`,
+          height: `calc(100vh - ${navHeightPx}px)`,
+        }
+      : undefined;
+
+  const mobileMenuStyle =
+    isMobileMenuOpen && typeof navHeightPx === 'number'
+      ? {
+          top: `${navHeightPx}px`,
+          maxHeight: `calc(100vh - ${navHeightPx}px)`,
+        }
+      : undefined;
+
   return (
-    <nav className="main-nav" role="navigation" aria-label="Primary">
+    <nav ref={navRef} className="main-nav" role="navigation" aria-label="Primary">
       <div className="nav-wrapper">
         {/* Left: Brand */}
-        <Link to="/" className="brand-logo" aria-label="Home">
+        <Link to="/" className="brand-logo" aria-label="Home" onClick={closeMobileMenu}>
           <i className="material-icons" aria-hidden="true">
             home
           </i>
           <span>Marcelo Costa — SDET</span>
         </Link>
+
+        <button
+          className={`mobile-menu-backdrop ${isMobileMenuOpen ? 'active' : ''}`}
+          type="button"
+          aria-label="Close navigation"
+          onClick={closeMobileMenu}
+          style={overlayStyle}
+        />
 
         {/* Mobile toggle */}
         <button
@@ -34,9 +107,13 @@ const Navbar = ({ onOpenCertificates }) => {
         </button>
 
         {/* Center nav */}
-        <ul className={`center-nav ${isMobileMenuOpen ? 'active' : ''}`} id="mobileMenu">
+        <ul
+          className={`center-nav ${isMobileMenuOpen ? 'active' : ''}`}
+          id="mobileMenu"
+          style={mobileMenuStyle}
+        >
           <li className="mobile-home-link">
-            <Link to="/" className="mobile-home-btn">
+            <Link to="/" className="mobile-home-btn" onClick={closeMobileMenu}>
               <i className="material-icons" aria-hidden="true">
                 home
               </i>{' '}
@@ -44,7 +121,11 @@ const Navbar = ({ onOpenCertificates }) => {
             </Link>
           </li>
           <li>
-            <Link to="/side-projects" className="nav-btn nav-btn-projects">
+            <Link
+              to="/side-projects"
+              className="nav-btn nav-btn-projects"
+              onClick={closeMobileMenu}
+            >
               <i className="material-icons" aria-hidden="true">
                 extension
               </i>{' '}
@@ -52,7 +133,7 @@ const Navbar = ({ onOpenCertificates }) => {
             </Link>
           </li>
           <li>
-            <Link to="/frameworks" className="nav-btn nav-btn-frameworks">
+            <Link to="/frameworks" className="nav-btn nav-btn-frameworks" onClick={closeMobileMenu}>
               <i className="material-icons" aria-hidden="true">
                 code
               </i>{' '}
@@ -64,6 +145,7 @@ const Navbar = ({ onOpenCertificates }) => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
+                closeMobileMenu();
                 if (onOpenCertificates) onOpenCertificates();
               }}
               className="nav-btn nav-btn-certs"

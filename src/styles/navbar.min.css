@@ -273,9 +273,14 @@ a[aria-label='discord-link']:hover {
   width: 100%;
   height: calc(100vh - 80px);
   background: rgb(0 0 0 / 25%);
-  z-index: 1090;
+  z-index: 1190;
   opacity: 0;
   transition: opacity 0.25s ease;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
 }
 .mobile-menu-backdrop.active {
   display: block;
@@ -347,6 +352,8 @@ a[aria-label='discord-link']:hover {
     z-index: 1200;
     max-height: calc(100vh - 70px);
     overflow-y: auto;
+    margin-top: 0;
+    border-top: 0;
   }
   .center-nav.active li {
     width: 100%;
@@ -545,6 +552,8 @@ a[aria-label='discord-link']:hover {
     z-index: 1200;
     max-height: calc(100vh - 50px);
     overflow-y: auto;
+    margin-top: 0;
+    border-top: 0;
   }
   .center-nav li {
     width: 100%;

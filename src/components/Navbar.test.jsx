@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Navbar from './Navbar';
 
@@ -109,5 +109,70 @@ describe('Navbar Component', () => {
 
     expect(toggle).toHaveAttribute('aria-expanded', 'false');
     expect(menu).not.toHaveClass('active');
+  });
+
+  test('closes mobile menu when a nav link is clicked', async () => {
+    const { container } = render(
+      <MemoryRouter>
+        <Navbar />
+      </MemoryRouter>
+    );
+
+    const toggle = screen.getByLabelText('Toggle navigation');
+    const menu = container.querySelector('#mobileMenu');
+
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    expect(menu).toHaveClass('active');
+
+    fireEvent.click(screen.getByText(/Side Projects/i));
+
+    await waitFor(() => {
+      expect(toggle).toHaveAttribute('aria-expanded', 'false');
+      expect(menu).not.toHaveClass('active');
+    });
+  });
+
+  test('closes mobile menu when backdrop is clicked', async () => {
+    const { container } = render(
+      <MemoryRouter>
+        <Navbar />
+      </MemoryRouter>
+    );
+
+    const toggle = screen.getByLabelText('Toggle navigation');
+    const menu = container.querySelector('#mobileMenu');
+    const backdrop = screen.getByLabelText('Close navigation');
+
+    fireEvent.click(toggle);
+    expect(menu).toHaveClass('active');
+
+    fireEvent.click(backdrop);
+
+    await waitFor(() => {
+      expect(toggle).toHaveAttribute('aria-expanded', 'false');
+      expect(menu).not.toHaveClass('active');
+    });
+  });
+
+  test('closes mobile menu on Escape key', async () => {
+    const { container } = render(
+      <MemoryRouter>
+        <Navbar />
+      </MemoryRouter>
+    );
+
+    const toggle = screen.getByLabelText('Toggle navigation');
+    const menu = container.querySelector('#mobileMenu');
+
+    fireEvent.click(toggle);
+    expect(menu).toHaveClass('active');
+
+    fireEvent.keyDown(document, { key: 'Escape' });
+
+    await waitFor(() => {
+      expect(toggle).toHaveAttribute('aria-expanded', 'false');
+      expect(menu).not.toHaveClass('active');
+    });
   });
 });
